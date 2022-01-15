@@ -24,8 +24,9 @@ An overview of all functions can be found as simple text file in
 
 ## Usage
 
-Run the *configure* script to create a *Makefile* with the desired
-targets.
+The *configure.in* file has not been updated for modern systems.
+So, just run the premade *configure* script already present to
+create a *Makefile* with the desired targets.
 
 ```bash
 ./configure

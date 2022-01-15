@@ -1,0 +1,31 @@
+name: 'check'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: 'Run checks'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: git clone
+      uses: actions/checkout@v2
+
+    - name: chmod u+x
+      run: |
+        chmod u+x configure
+        chmod u+x config.sub
+        chmod u+x config.guess
+      
+    - name: ./configure
+      run: ./configure
+
+    - name: make check
+      run: make check
+
+    - name: cat checkcal.out
+      run: cat checkcal.out
