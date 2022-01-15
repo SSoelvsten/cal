@@ -249,7 +249,7 @@ endif
 
 
 check : checkcal
-	checkcal > checkcal.out
+	./checkcal > checkcal.out
 	@echo "Test appears successful -- results in checkcal.out"
 
 checkcal : libcal.a calTest.c
