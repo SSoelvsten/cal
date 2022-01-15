@@ -20,7 +20,7 @@ This project was developed in the late 90's at
 
 An overview of all functions can be found as simple text file in
 [*calDoc.txt*](calDoc) or as an easier to navigate HTML page in
-[*doc/calDesc.html*](doc/calDesc.html).
+[*docs/index.html*](docs/index.html).
 
 ## Usage
 
