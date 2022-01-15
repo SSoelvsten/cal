@@ -1,4 +1,12 @@
 # CAL
+
+[![Release](https://img.shields.io/github/v/release/ssoelvsten/cal)](https://github.com/SSoelvsten/cal/releases)
+&nbsp;
+[![Documentation](https://img.shields.io/website?down_message=not%20available&label=docs&up_message=available&url=https%3A%2F%2Fssoelvsten.github.io%2Fcal)](https://ssoelvsten.github.io/cal)
+&nbsp;
+[![test](https://img.shields.io/github/workflow/status/ssoelvsten/cal/check/main?label=test&logo=github&logoColor=white)](https://github.com/SSoelvsten/cal/actions/workflows/check.yml)
+&nbsp;
+
 CAL is a BDD package [[Bryant86](#references)] that uses breadt-first
 algorithms [[Ochi93](#references), [Ashar94](#references),
 [Sanghavi96](#references)] to exploit a locality of BDD nodes on disk.
