@@ -1,0 +1,7870 @@
+<html>
+<head><title>The cal package: all functions </title></head>
+<body>
+
+
+<HR>
+<DL>
+<dt><pre>
+<A NAME="AddBlock"></A>
+static void <I></I>
+<B>AddBlock</B>(
+  Cal_Block  <b>b1</b>, <i></i>
+  Cal_Block  <b>b2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="AddToFreeList"></A>
+static void <I></I>
+<B>AddToFreeList</B>(
+  Block  <b>b</b> <i></i>
+)
+</pre>
+<dd> AddToFreeList(b) adds b to the appropriate free list.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="AssociationIsEqual"></A>
+static int <I></I>
+<B>AssociationIsEqual</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t * <b>p</b>, <i></i>
+  Cal_Bdd_t * <b>q</b> <i></i>
+)
+</pre>
+<dd> Checks for equality of two associations
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddAddInternalReferences"></A>
+static void <I></I>
+<B>BddAddInternalReferences</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddArrayOpBF"></A>
+static Cal_Bdd_t * <I></I>
+<B>BddArrayOpBF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t* <b>bddArray</b>, <i></i>
+  int  <b>numFunction</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b> <i></i>
+)
+</pre>
+<dd> Internal common routine for Cal_BddPairwiseAnd and Cal_BddPairwiseOr
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddArrayToRequestNodeListArray"></A>
+static void <I></I>
+<B>BddArrayToRequestNodeListArray</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t * <b>calBddArray</b>, <i></i>
+  int  <b>numBdds</b> <i></i>
+)
+</pre>
+<dd> Converts an array of BDDs to a list of requests representing BDD
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddCofactorBF"></A>
+static Cal_Bdd_t <I></I>
+<B>BddCofactorBF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>c</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddConvertDataStructBack"></A>
+static void <I></I>
+<B>BddConvertDataStructBack</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Data structure conversion: thenBddId -> id 
+  elseBddId -> ref count
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddConvertDataStruct"></A>
+static void <I></I>
+<B>BddConvertDataStruct</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> New data structure: thenBddId -> id 
+                                          elseBddId -> ref count
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddCountNoNodes"></A>
+static int <I></I>
+<B>BddCountNoNodes</B>(
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddCountNodes"></A>
+static int <I></I>
+<B>BddCountNodes</B>(
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddDFStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddDFStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b>, <i></i>
+  unsigned short  <b>opCode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddDefaultTransformFn"></A>
+static void <I></I>
+<B>BddDefaultTransformFn</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalAddress_t  <b>value1</b>, <i></i>
+  CalAddress_t  <b>value2</b>, <i></i>
+  CalAddress_t * <b>result1</b>, <i></i>
+  CalAddress_t * <b>result2</b>, <i></i>
+  Cal_Pointer_t  <b>pointer</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddDominatedStep"></A>
+static void <I></I>
+<B>BddDominatedStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  long * <b>funcCounts</b>, <i></i>
+  CalHashTable_t * <b>h</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddDumpBddStep"></A>
+static void <I></I>
+<B>BddDumpBddStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  FILE * <b>fp</b>, <i></i>
+  CalHashTable_t * <b>h</b>, <i></i>
+  Cal_BddIndex_t * <b>normalizedIndexes</b>, <i></i>
+  int  <b>indexSize</b>, <i></i>
+  int  <b>nodeNumberSize</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExchangeAux"></A>
+static void <I></I>
+<B>BddExchangeAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalBddNode_t * <b>f</b>, <i></i>
+  int  <b>id</b>, <i></i>
+  int  <b>nextId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExchangeVarBlocks"></A>
+static void <I></I>
+<B>BddExchangeVarBlocks</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>parent</b>, <i></i>
+  long  <b>blockIndex</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExchange"></A>
+static void <I></I>
+<B>BddExchange</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  long  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExistsApply"></A>
+static void <I></I>
+<B>BddExistsApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>quantifying</b>, <i></i>
+  CalHashTable_t * <b>existHashTable</b>, <i></i>
+  CalHashTable_t ** <b>existHashTableArray</b>, <i></i>
+  CalOpProc1_t  <b>calOpProc</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExistsBFAux"></A>
+static void <I></I>
+<B>BddExistsBFAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>minIndex</b>, <i></i>
+  CalHashTable_t ** <b>existHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>orHashTableArray</b>, <i></i>
+  CalOpProc1_t  <b>calOpProc</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExistsBFPlusDF"></A>
+static Cal_Bdd_t <I></I>
+<B>BddExistsBFPlusDF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>association</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExistsReduce"></A>
+static void <I></I>
+<B>BddExistsReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>existHashTable</b>, <i></i>
+  CalHashTable_t ** <b>existHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>orHashTableArray</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>association</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddExistsStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddExistsStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>association</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddHighestRefStep"></A>
+static void <I></I>
+<B>BddHighestRefStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  CalHashTable_t * <b>h</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddIntersectsStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddIntersectsStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b> <i></i>
+)
+</pre>
+<dd> Recursive routine to returns a BDD that implies conjunction of
+  argument BDDs
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddMarkBdd"></A>
+static void <I></I>
+<B>BddMarkBdd</B>(
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddMultiwayOp"></A>
+static Cal_Bdd_t <I></I>
+<B>BddMultiwayOp</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t * <b>calBddArray</b>, <i></i>
+  int  <b>numBdds</b>, <i></i>
+  CalOpProc_t  <b>op</b> <i></i>
+)
+</pre>
+<dd> Internal routine for multiway operations
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddNukeInternalReferences"></A>
+static void <I></I>
+<B>BddNukeInternalReferences</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddPrintBddStep"></A>
+static void <I></I>
+<B>BddPrintBddStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_VarNamingFn_t  <b>VarNamingFn</b>, <i></i>
+  Cal_TerminalIdFn_t  <b>TerminalIdFn</b>, <i></i>
+  Cal_Pointer_t  <b>env</b>, <i></i>
+  FILE * <b>fp</b>, <i></i>
+  CalHashTable_t* <b>hashTable</b>, <i></i>
+  int  <b>indentation</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddPrintTopVar"></A>
+static void <I></I>
+<B>BddPrintTopVar</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_VarNamingFn_t  <b>VarNamingFn</b>, <i></i>
+  Cal_Pointer_t  <b>env</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddProfileStep"></A>
+static void <I></I>
+<B>BddProfileStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  long * <b>levelCounts</b>, <i></i>
+  CountFn_t  <b>countFn</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReallocateNodesInPlace"></A>
+static void <I></I>
+<B>BddReallocateNodesInPlace</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReallocateNodes"></A>
+static void <I></I>
+<B>BddReallocateNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReduceBF"></A>
+static Cal_Bdd_t <I></I>
+<B>BddReduceBF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>c</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddRelProdApply"></A>
+static void <I></I>
+<B>BddRelProdApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>quantifying</b>, <i></i>
+  CalHashTable_t * <b>relProdHashTable</b>, <i></i>
+  CalHashTable_t ** <b>relProdHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>andHashTableArray</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddRelProdBFAux"></A>
+static void <I></I>
+<B>BddRelProdBFAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>minIndex</b>, <i></i>
+  CalHashTable_t ** <b>relProdHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>andHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>orHashTableArray</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddRelProdBFPlusDF"></A>
+static Cal_Bdd_t <I></I>
+<B>BddRelProdBFPlusDF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>association</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddRelProdReduce"></A>
+static void <I></I>
+<B>BddRelProdReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>relProdHashTable</b>, <i></i>
+  CalHashTable_t ** <b>relProdHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>andHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>orHashTableArray</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddRelProdStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddRelProdStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderFixAndFreeForwardingNodes"></A>
+static void <I></I>
+<B>BddReorderFixAndFreeForwardingNodes</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b>, <i></i>
+  int  <b>numLevels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderFixForwardingNodes"></A>
+static void <I></I>
+<B>BddReorderFixForwardingNodes</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b> <i></i>
+)
+</pre>
+<dd> As opposed to CalBddReorderFixCofactors, which fixes
+  the cofactors of the non-forwarding nodes, this routine traverses
+  the list of forwarding nodes and removes the intermediate level of
+  forwarding. Number of levels should be 1 or 2.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderFreeNodes"></A>
+static void <I></I>
+<B>BddReorderFreeNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>varId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderSiftAux"></A>
+static void <I></I>
+<B>BddReorderSiftAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  Cal_Block * <b>toSift</b>, <i></i>
+  double  <b>maxSizeFactor</b> <i></i>
+)
+</pre>
+<dd> Reorder variables using "sift" algorithm.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderSiftToBestPos"></A>
+static int <I></I>
+<B>BddReorderSiftToBestPos</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>varStartIndex</b>, <i></i>
+  double  <b>maxSizeFactor</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderSift"></A>
+static void <I></I>
+<B>BddReorderSift</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  double  <b>maxSizeFactor</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderStableWindow3Aux"></A>
+static void <I></I>
+<B>BddReorderStableWindow3Aux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  char * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderStableWindow3"></A>
+static void <I></I>
+<B>BddReorderStableWindow3</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderSwapVarIndex"></A>
+static void <I></I>
+<B>BddReorderSwapVarIndex</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>varIndex</b>, <i></i>
+  int  <b>forwardCheckFlag</b> <i></i>
+)
+</pre>
+<dd> Traversesoptional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderVarSift"></A>
+static void <I></I>
+<B>BddReorderVarSift</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  double  <b>maxSizeFactor</b> <i></i>
+)
+</pre>
+<dd> Reorder variables using "sift" algorithm.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderVarWindow"></A>
+static void <I></I>
+<B>BddReorderVarWindow</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  char * <b>levels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderWindow2"></A>
+static int <I></I>
+<B>BddReorderWindow2</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  long  <b>index</b>, <i></i>
+  int  <b>directionFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderWindow2"></A>
+static int <I></I>
+<B>BddReorderWindow2</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  long  <b>i</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderWindow3"></A>
+static int <I></I>
+<B>BddReorderWindow3</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  long  <b>index</b>, <i></i>
+  int  <b>directionFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddReorderWindow3"></A>
+static int <I></I>
+<B>BddReorderWindow3</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  long  <b>i</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddSatisfyStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddSatisfyStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddSatisfySupportStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddSatisfySupportStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_BddId_t * <b>support</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddSatisfyingFractionStep"></A>
+static double <I></I>
+<B>BddSatisfyingFractionStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddSiftBlock"></A>
+static void <I></I>
+<B>BddSiftBlock</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  long  <b>startPosition</b>, <i></i>
+  double  <b>maxSizeFactor</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddSiftPerfromPhaseIV"></A>
+static void <I></I>
+<B>BddSiftPerfromPhaseIV</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>varStartIndex</b>, <i></i>
+  int  <b>bestIndex</b>, <i></i>
+  int  <b>bottomMostSwapIndex</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddSizeStep"></A>
+static long <I></I>
+<B>BddSizeStep</B>(
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  CountFn_t  <b>countFn</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddTerminalId"></A>
+static char * <I></I>
+<B>BddTerminalId</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_TerminalIdFn_t  <b>TerminalIdFn</b>, <i></i>
+  Cal_Pointer_t  <b>env</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddTerminalValueAux"></A>
+static void <I></I>
+<B>BddTerminalValueAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  CalAddress_t * <b>value1</b>, <i></i>
+  CalAddress_t * <b>value2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="BddUndumpBddStep"></A>
+static Cal_Bdd_t <I></I>
+<B>BddUndumpBddStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t * <b>vars</b>, <i></i>
+  FILE * <b>fp</b>, <i></i>
+  Cal_BddIndex_t  <b>numberVars</b>, <i></i>
+  Cal_Bdd_t * <b>shared</b>, <i></i>
+  long  <b>numberShared</b>, <i></i>
+  long * <b>sharedSoFar</b>, <i></i>
+  int  <b>indexSize</b>, <i></i>
+  int  <b>nodeNumberSize</b>, <i></i>
+  int * <b>error</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="BlockSizeIndex"></A>
+static int <I></I>
+<B>BlockSizeIndex</B>(
+  Cal_Address_t  <b>size</b> <i></i>
+)
+</pre>
+<dd> BlockSizeIndex(size) return the coded size for a block.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Buddy"></A>
+static Block <I></I>
+<B>Buddy</B>(
+  Block  <b>b</b> <i></i>
+)
+</pre>
+<dd> Buddy(b) returns the Buddy block of b, or null if there is no  Buddy.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="BytesNeeded"></A>
+static int <I></I>
+<B>BytesNeeded</B>(
+  long  <b>n</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="CacheTablePrint"></A>
+static void <I></I>
+<B>CacheTablePrint</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CacheTableTwoRehash"></A>
+static void <I></I>
+<B>CacheTableTwoRehash</B>(
+  CalCacheTable_t * <b>cacheTable</b>, <i></i>
+  int  <b>grow</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalAlignCollisionChains"></A>
+void <I></I>
+<B>CalAlignCollisionChains</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalAssociationListFree"></A>
+void <I></I>
+<B>CalAssociationListFree</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddArrayPreProcessing"></A>
+int <I></I>
+<B>CalBddArrayPreProcessing</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddBlockDelta"></A>
+void <I></I>
+<B>CalBddBlockDelta</B>(
+  Cal_Block  <b>b</b>, <i></i>
+  long  <b>delta</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddDependsOnStep"></A>
+static int <I></I>
+<B>CalBddDependsOnStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_BddIndex_t  <b>varIndex</b>, <i></i>
+  int  <b>mark</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSupport.c"TARGET="ABSTRACT"><CODE>calBddSupport.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddFatalMessage"></A>
+void <I></I>
+<B>CalBddFatalMessage</B>(
+  char * <b>string</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddFindBlock"></A>
+long <I></I>
+<B>CalBddFindBlock</B>(
+  Cal_Block  <b>block</b>, <i></i>
+  long  <b>index</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddFunctionPrint"></A>
+void <I></I>
+<B>CalBddFunctionPrint</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>calBdd</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> Prints the function implemented by the argument BDD
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddGetExternalBdd"></A>
+Cal_Bdd <I></I>
+<B>CalBddGetExternalBdd</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>internalBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddGetInternalBdd"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddGetInternalBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddITE"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddITE</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>F</b>, <i></i>
+  Cal_Bdd_t  <b>G</b>, <i></i>
+  Cal_Bdd_t  <b>H</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical If-Then-Else
+ 
+   Description [Returns the BDD for the logical operation IF f THEN g ELSE h
+   - f g + f' h
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddAnd">Cal_BddAnd</a>
+<a href="#Cal_BddNand">Cal_BddNand</a>
+<a href="#Cal_BddOr">Cal_BddOr</a>
+<a href="#Cal_BddNor">Cal_BddNor</a>
+<a href="#Cal_BddXor">Cal_BddXor</a>
+<a href="#Cal_BddXnor">Cal_BddXnor</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddITE.c"TARGET="ABSTRACT"><CODE>calBddITE.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddIdentity"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddIdentity</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>calBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the duplicate BDD of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddNot">Cal_BddNot</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddIf"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddIf</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>F</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD corresponding to the top variable of
+  the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddIsCubeStep"></A>
+int <I></I>
+<B>CalBddIsCubeStep</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is a cube, 0 otherwise
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddManagerCreateNewVar"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddManagerCreateNewVar</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_BddIndex_t  <b>index</b> <i></i>
+)
+</pre>
+<dd> Right now this function does not handle the case when the
+  package is working in multiprocessor mode. We need to put in the necessary
+  code later.
+<p>
+
+<dd> <b>Side Effects</b> If the number of variables in the manager exceeds that of value
+  of numMaxVars, then we need to reallocate various fields of the manager. Also
+  depending upon the value of "index", idToIndex and indexToId tables would
+  change.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddManagerGCCheck"></A>
+void <I></I>
+<B>CalBddManagerGCCheck</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddManagerGetCacheTableData"></A>
+void <I></I>
+<B>CalBddManagerGetCacheTableData</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  unsigned long * <b>cacheSize</b>, <i></i>
+  unsigned long * <b>cacheEntries</b>, <i></i>
+  unsigned long * <b>cacheInsertions</b>, <i></i>
+  unsigned long * <b>cacheLookups</b>, <i></i>
+  unsigned long * <b>cacheHits</b>, <i></i>
+  unsigned long * <b>cacheCollisions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddManagerPrint"></A>
+static int <I></I>
+<B>CalBddManagerPrint</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddMarkSharedNodes"></A>
+void <I></I>
+<B>CalBddMarkSharedNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddNodePrint"></A>
+void <I></I>
+<B>CalBddNodePrint</B>(
+  CalBddNode_t * <b>bddNode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddNumberSharedNodes"></A>
+void <I></I>
+<B>CalBddNumberSharedNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  long * <b>next</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddOpBF"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddOpBF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b>, <i></i>
+  Cal_Bdd_t  <b>F</b>, <i></i>
+  Cal_Bdd_t  <b>G</b> <i></i>
+)
+</pre>
+<dd> Internal routine to compute a logical operation on a pair of BDDs
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddOpITEBF"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddOpITEBF</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  Cal_Bdd_t  <b>h</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddITE.c"TARGET="ABSTRACT"><CODE>calBddITE.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPackNodesAfterReorderForSingleId"></A>
+void <I></I>
+<B>CalBddPackNodesAfterReorderForSingleId</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>fixForwardedNodesFlag</b>, <i></i>
+  int  <b>bestIndex</b>, <i></i>
+  int  <b>bottomIndex</b> <i></i>
+)
+</pre>
+<dd> fixForwardedNodesFlag: Whether we need to fix
+  the forwarded nodes of variables corresponding to bestIndex through
+  bottomIndex. If this flag is set, then the forwarded nodes of these
+  variables are traversed and updated after the nodes of the bestIndex
+  have been copied. At the end the forwarded nodes are freed. If this
+  flag is not set, it is assumed that the cleanup pass has already
+  been performed.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPackNodesForMultipleIds"></A>
+void <I></I>
+<B>CalBddPackNodesForMultipleIds</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>beginId</b>, <i></i>
+  int  <b>numLevels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPackNodesForSingleId"></A>
+void <I></I>
+<B>CalBddPackNodesForSingleId</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPostProcessing"></A>
+int <I></I>
+<B>CalBddPostProcessing</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPreProcessing"></A>
+int <I></I>
+<B>CalBddPreProcessing</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>count</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPrintProfileAux"></A>
+static void <I></I>
+<B>CalBddPrintProfileAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  long * <b>levelCounts</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrintProfile.c"TARGET="ABSTRACT"><CODE>calPrintProfile.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddPrint"></A>
+void <I></I>
+<B>CalBddPrint</B>(
+  Cal_Bdd_t  <b>calBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddReorderAuxBF"></A>
+void <I></I>
+<B>CalBddReorderAuxBF</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddReorderAuxDF"></A>
+void <I></I>
+<B>CalBddReorderAuxDF</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddReorderFixCofactors"></A>
+void <I></I>
+<B>CalBddReorderFixCofactors</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b> <i></i>
+)
+</pre>
+<dd> This routine traverses the unique table and for
+  each node, looks at the then and else cofactors. If needed fixes the
+  cofactors.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddReorderFixProvisionalNodes"></A>
+void <I></I>
+<B>CalBddReorderFixProvisionalNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddReorderFixUserBddPtrs"></A>
+void <I></I>
+<B>CalBddReorderFixUserBddPtrs</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddReorderReclaimForwardedNodes"></A>
+void <I></I>
+<B>CalBddReorderReclaimForwardedNodes</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>startIndex</b>, <i></i>
+  int  <b>endIndex</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddShiftBlock"></A>
+Cal_Block <I></I>
+<B>CalBddShiftBlock</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Block  <b>b</b>, <i></i>
+  long  <b>index</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddSupportStep"></A>
+static Cal_Bdd_t * <I></I>
+<B>CalBddSupportStep</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t * <b>support</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSupport.c"TARGET="ABSTRACT"><CODE>calBddSupport.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddTypeAux"></A>
+int <I></I>
+<B>CalBddTypeAux</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD type by recursively traversing the argument BDD
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddUniqueTableNumLockedNodes"></A>
+unsigned long <I></I>
+<B>CalBddUniqueTableNumLockedNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>uniqueTableForId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddUnmarkNodes"></A>
+static void <I></I>
+<B>CalBddUnmarkNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSupport.c"TARGET="ABSTRACT"><CODE>calBddSupport.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddVarName"></A>
+char * <I></I>
+<B>CalBddVarName</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>v</b>, <i></i>
+  Cal_VarNamingFn_t  <b>VarNamingFn</b>, <i></i>
+  Cal_Pointer_t  <b>env</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddVarSubstitute"></A>
+Cal_Bdd_t <I></I>
+<B>CalBddVarSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  unsigned short  <b>opCode</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD for f using the substitution defined by current
+  variable association. Each variable is replaced by its associated BDDs. The 
+  substitution is effective simultaneously
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddCompose">Cal_BddCompose</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddVarSubstitute.c"TARGET="ABSTRACT"><CODE>calBddVarSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBddWarningMessage"></A>
+void <I></I>
+<B>CalBddWarningMessage</B>(
+  char * <b>string</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalBlockMemoryConsumption"></A>
+unsigned long <I></I>
+<B>CalBlockMemoryConsumption</B>(
+  Cal_Block  <b>block</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableMemoryConsumption"></A>
+unsigned long <I></I>
+<B>CalCacheTableMemoryConsumption</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTablePrint"></A>
+void <I></I>
+<B>CalCacheTablePrint</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableRehash"></A>
+void <I></I>
+<B>CalCacheTableRehash</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoFixResultPointers"></A>
+void <I></I>
+<B>CalCacheTableTwoFixResultPointers</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoFlushAll"></A>
+int <I></I>
+<B>CalCacheTableTwoFlushAll</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoFlushAssociationId"></A>
+void <I></I>
+<B>CalCacheTableTwoFlushAssociationId</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>associationId</b> <i></i>
+)
+</pre>
+<dd> Flushes the entries from the cache which
+                      correspond to the given associationId.
+<p>
+
+<dd> <b>Side Effects</b> Cache entries are affected.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoFlush"></A>
+void <I></I>
+<B>CalCacheTableTwoFlush</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoGCFlush"></A>
+void <I></I>
+<B>CalCacheTableTwoGCFlush</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoInit"></A>
+CalCacheTable_t * <I></I>
+<B>CalCacheTableTwoInit</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoInsert"></A>
+void <I></I>
+<B>CalCacheTableTwoInsert</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  Cal_Bdd_t  <b>result</b>, <i></i>
+  unsigned long  <b>opCode</b>, <i></i>
+  int  <b>cacheLevel</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoLookup"></A>
+int <I></I>
+<B>CalCacheTableTwoLookup</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  unsigned long  <b>opCode</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoQuit"></A>
+int <I></I>
+<B>CalCacheTableTwoQuit</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCacheTableTwoRepackUpdate"></A>
+void <I></I>
+<B>CalCacheTableTwoRepackUpdate</B>(
+  CalCacheTable_t * <b>cacheTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckAllValidity"></A>
+int <I></I>
+<B>CalCheckAllValidity</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckAssociationValidity"></A>
+void <I></I>
+<B>CalCheckAssociationValidity</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckAssoc"></A>
+int <I></I>
+<B>CalCheckAssoc</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckCacheTableValidity"></A>
+void <I></I>
+<B>CalCheckCacheTableValidity</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calCacheTableTwo.c"TARGET="ABSTRACT"><CODE>calCacheTableTwo.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckPipelineValidity"></A>
+void <I></I>
+<B>CalCheckPipelineValidity</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckRefCountValidity"></A>
+void <I></I>
+<B>CalCheckRefCountValidity</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckValidityOfANode"></A>
+int <I></I>
+<B>CalCheckValidityOfANode</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalBddNode_t * <b>bddNode</b>, <i></i>
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckValidityOfNodesForId"></A>
+int <I></I>
+<B>CalCheckValidityOfNodesForId</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalCheckValidityOfNodesForWindow"></A>
+int <I></I>
+<B>CalCheckValidityOfNodesForWindow</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddIndex_t  <b>index</b>, <i></i>
+  int  <b>numLevels</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalComposeRequestCreate"></A>
+void <I></I>
+<B>CalComposeRequestCreate</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>h</b>, <i></i>
+  Cal_BddIndex_t  <b>composeIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForCompose</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForITE</b>, <i></i>
+  Cal_Bdd_t * <b>resultPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddCompose.c"TARGET="ABSTRACT"><CODE>calBddCompose.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalDecreasingOrderCompare"></A>
+int <I></I>
+<B>CalDecreasingOrderCompare</B>(
+  const void * <b>a</b>, <i></i>
+  const void * <b>b</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalFixupAssoc"></A>
+void <I></I>
+<B>CalFixupAssoc</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  long  <b>id1</b>, <i></i>
+  long  <b>id2</b>, <i></i>
+  CalAssociation_t * <b>assoc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderUtil.c"TARGET="ABSTRACT"><CODE>calReorderUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalFreeBlockRecursively"></A>
+void <I></I>
+<B>CalFreeBlockRecursively</B>(
+  Cal_Block  <b>block</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableAddDirectAux"></A>
+int <I></I>
+<B>CalHashTableAddDirectAux</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>thenBdd</b>, <i></i>
+  Cal_Bdd_t  <b>elseBdd</b>, <i></i>
+  Cal_Bdd_t * <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableAddDirect"></A>
+void <I></I>
+<B>CalHashTableAddDirect</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalBddNode_t * <b>bddNode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableApply"></A>
+void <I></I>
+<B>CalHashTableApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>reqQueAtPipeDepth</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calApplyReduce.c"TARGET="ABSTRACT"><CODE>calApplyReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableCleanUp"></A>
+void <I></I>
+<B>CalHashTableCleanUp</B>(
+  CalHashTable_t * <b>hashTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableComposeApply"></A>
+void <I></I>
+<B>CalHashTableComposeApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_BddIndex_t  <b>gIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForCompose</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForITE</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddCompose.c"TARGET="ABSTRACT"><CODE>calBddCompose.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableDelete"></A>
+void <I></I>
+<B>CalHashTableDelete</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalBddNode_t * <b>bddNode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableFindOrAdd"></A>
+int <I></I>
+<B>CalHashTableFindOrAdd</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>thenBdd</b>, <i></i>
+  Cal_Bdd_t  <b>elseBdd</b>, <i></i>
+  Cal_Bdd_t * <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableGC"></A>
+int <I></I>
+<B>CalHashTableGC</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b> <i></i>
+)
+</pre>
+<dd> The input is the hash table containing the nodes
+  belonging to that level. Each bin of the hash table is traversed and
+  the Bdd nodes with 0 reference count are put at the appropriate
+  level in the processing que of the manager.
+<p>
+
+<dd> <b>Side Effects</b> The number of nodes in the hash table can possibly decrease.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableITEApply"></A>
+void <I></I>
+<B>CalHashTableITEApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>reqQueAtPipeDepth</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddITE.c"TARGET="ABSTRACT"><CODE>calBddITE.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableInit"></A>
+CalHashTable_t * <I></I>
+<B>CalHashTableInit</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>bddId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableLookup"></A>
+int <I></I>
+<B>CalHashTableLookup</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>thenBdd</b>, <i></i>
+  Cal_Bdd_t  <b>elseBdd</b>, <i></i>
+  Cal_Bdd_t * <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableOneInit"></A>
+CalHashTable_t * <I></I>
+<B>CalHashTableOneInit</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>itemSize</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableOne.c"TARGET="ABSTRACT"><CODE>calHashTableOne.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableOneInsert"></A>
+void <I></I>
+<B>CalHashTableOneInsert</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>keyBdd</b>, <i></i>
+  char * <b>valuePtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableOne.c"TARGET="ABSTRACT"><CODE>calHashTableOne.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableOneLookup"></A>
+int <I></I>
+<B>CalHashTableOneLookup</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>keyBdd</b>, <i></i>
+  char ** <b>valuePtrPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableOne.c"TARGET="ABSTRACT"><CODE>calHashTableOne.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableOnePrint"></A>
+void <I></I>
+<B>CalHashTableOnePrint</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  int  <b>flag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableOneQuit"></A>
+void <I></I>
+<B>CalHashTableOneQuit</B>(
+  CalHashTable_t * <b>hashTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableOne.c"TARGET="ABSTRACT"><CODE>calHashTableOne.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTablePrint"></A>
+void <I></I>
+<B>CalHashTablePrint</B>(
+  CalHashTable_t * <b>hashTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableQuit"></A>
+int <I></I>
+<B>CalHashTableQuit</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableReduce"></A>
+void <I></I>
+<B>CalHashTableReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t * <b>uniqueTableForId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calApplyReduce.c"TARGET="ABSTRACT"><CODE>calApplyReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableRehash"></A>
+void <I></I>
+<B>CalHashTableRehash</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  int  <b>grow</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSubstituteApply"></A>
+static void <I></I>
+<B>CalHashTableSubstituteApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  int  <b>lastIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSubstitute</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSubstitute.c"TARGET="ABSTRACT"><CODE>calBddSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSubstituteApply"></A>
+static void <I></I>
+<B>CalHashTableSubstituteApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  int  <b>lastIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSubstitute</b>, <i></i>
+  unsigned short  <b>opCode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddVarSubstitute.c"TARGET="ABSTRACT"><CODE>calBddVarSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSubstituteReduce"></A>
+static void <I></I>
+<B>CalHashTableSubstituteReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForITE</b>, <i></i>
+  CalHashTable_t * <b>uniqueTableForId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSubstitute.c"TARGET="ABSTRACT"><CODE>calBddSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSubstituteReduce"></A>
+static void <I></I>
+<B>CalHashTableSubstituteReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForITE</b>, <i></i>
+  CalHashTable_t * <b>uniqueTableForId</b>, <i></i>
+  unsigned short  <b>opCode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddVarSubstitute.c"TARGET="ABSTRACT"><CODE>calBddVarSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSwapVarsApply"></A>
+static void <I></I>
+<B>CalHashTableSwapVarsApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_BddIndex_t  <b>gIndex</b>, <i></i>
+  Cal_BddIndex_t  <b>hIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVars</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVarsPlus</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVarsMinus</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForCompose</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForITE</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSwapVars.c"TARGET="ABSTRACT"><CODE>calBddSwapVars.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSwapVarsMinusApply"></A>
+static void <I></I>
+<B>CalHashTableSwapVarsMinusApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_BddIndex_t  <b>hIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVars</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVarsPlus</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVarsMinus</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForCompose</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSwapVars.c"TARGET="ABSTRACT"><CODE>calBddSwapVars.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableSwapVarsPlusApply"></A>
+static void <I></I>
+<B>CalHashTableSwapVarsPlusApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_BddIndex_t  <b>hIndex</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVars</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVarsPlus</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForSwapVarsMinus</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForCompose</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSwapVars.c"TARGET="ABSTRACT"><CODE>calBddSwapVars.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableThreeFindOrAdd"></A>
+int <I></I>
+<B>CalHashTableThreeFindOrAdd</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  Cal_Bdd_t  <b>h</b>, <i></i>
+  Cal_Bdd_t * <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableThree.c"TARGET="ABSTRACT"><CODE>calHashTableThree.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalHashTableThreeRehash"></A>
+static void <I></I>
+<B>CalHashTableThreeRehash</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  int  <b>grow</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableThree.c"TARGET="ABSTRACT"><CODE>calHashTableThree.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalIncreasingOrderCompare"></A>
+int <I></I>
+<B>CalIncreasingOrderCompare</B>(
+  const void * <b>a</b>, <i></i>
+  const void * <b>b</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalInitInteract"></A>
+int <I></I>
+<B>CalInitInteract</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Initializes the interaction matrix. The interaction
+  matrix is implemented as a bit vector storing the upper triangle of
+  the symmetric interaction matrix. The bit vector is kept in an array
+  of long integers. The computation is based on a series of depth-first
+  searches, one for each root of the DAG. A local flag (the mark bits)
+  is used.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calInteract.c"TARGET="ABSTRACT"><CODE>calInteract.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalNodeManagerInit"></A>
+CalNodeManager_t * <I></I>
+<B>CalNodeManagerInit</B>(
+  CalPageManager_t * <b>pageManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalNodeManagerPrint"></A>
+void <I></I>
+<B>CalNodeManagerPrint</B>(
+  CalNodeManager_t * <b>nodeManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalNodeManagerQuit"></A>
+int <I></I>
+<B>CalNodeManagerQuit</B>(
+  CalNodeManager_t * <b>nodeManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> The associated nodes are lost.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpAnd"></A>
+int <I></I>
+<B>CalOpAnd</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>F</b>, <i></i>
+  Cal_Bdd_t  <b>G</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTerminal.c"TARGET="ABSTRACT"><CODE>calTerminal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpBddVarSubstitute"></A>
+int <I></I>
+<B>CalOpBddVarSubstitute</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddVarSubstitute.c"TARGET="ABSTRACT"><CODE>calBddVarSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpCofactor"></A>
+int <I></I>
+<B>CalOpCofactor</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>c</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpExists"></A>
+int <I></I>
+<B>CalOpExists</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpITE"></A>
+Cal_Bdd_t <I></I>
+<B>CalOpITE</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  Cal_Bdd_t  <b>h</b>, <i></i>
+  CalHashTable_t ** <b>reqQueForITE</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTerminal.c"TARGET="ABSTRACT"><CODE>calTerminal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpNand"></A>
+int <I></I>
+<B>CalOpNand</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>F</b>, <i></i>
+  Cal_Bdd_t  <b>G</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTerminal.c"TARGET="ABSTRACT"><CODE>calTerminal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpOr"></A>
+int <I></I>
+<B>CalOpOr</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>F</b>, <i></i>
+  Cal_Bdd_t  <b>G</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTerminal.c"TARGET="ABSTRACT"><CODE>calTerminal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpRelProd"></A>
+int <I></I>
+<B>CalOpRelProd</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  Cal_Bdd_t  <b>g</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalOpXor"></A>
+int <I></I>
+<B>CalOpXor</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>F</b>, <i></i>
+  Cal_Bdd_t  <b>G</b>, <i></i>
+  Cal_Bdd_t * <b>resultBddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTerminal.c"TARGET="ABSTRACT"><CODE>calTerminal.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPackNodes"></A>
+void <I></I>
+<B>CalPackNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPageManagerAllocPage"></A>
+CalAddress_t * <I></I>
+<B>CalPageManagerAllocPage</B>(
+  CalPageManager_t * <b>pageManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPageManagerFreePage"></A>
+void <I></I>
+<B>CalPageManagerFreePage</B>(
+  CalPageManager_t * <b>pageManager</b>, <i></i>
+  CalAddress_t * <b>page</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPageManagerInit"></A>
+CalPageManager_t * <I></I>
+<B>CalPageManagerInit</B>(
+  int  <b>numPagesPerSegment</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPageManagerPrint"></A>
+void <I></I>
+<B>CalPageManagerPrint</B>(
+  CalPageManager_t * <b>pageManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPageManagerQuit"></A>
+int <I></I>
+<B>CalPageManagerQuit</B>(
+  CalPageManager_t * <b>pageManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformaceTestSuperscalar"></A>
+static void <I></I>
+<B>CalPerformaceTestSuperscalar</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceMemoryOverhead"></A>
+static void <I></I>
+<B>CalPerformanceMemoryOverhead</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestAnd"></A>
+static void <I></I>
+<B>CalPerformanceTestAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestCompose"></A>
+static void <I></I>
+<B>CalPerformanceTestCompose</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestMultiway"></A>
+static void <I></I>
+<B>CalPerformanceTestMultiway</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestNonSuperscalar"></A>
+static void <I></I>
+<B>CalPerformanceTestNonSuperscalar</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestOneway"></A>
+static void <I></I>
+<B>CalPerformanceTestOneway</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestQuantifyAllTogether"></A>
+static void <I></I>
+<B>CalPerformanceTestQuantifyAllTogether</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b>, <i></i>
+  int  <b>bfZeroBFPlusDFOne</b>, <i></i>
+  int  <b>cacheExistsResultsFlag</b>, <i></i>
+  int  <b>cacheOrResultsFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestRelProd"></A>
+static void <I></I>
+<B>CalPerformanceTestRelProd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b>, <i></i>
+  int  <b>bfZeroBFPlusDFOne</b>, <i></i>
+  int  <b>cacheRelProdResultsFlag</b>, <i></i>
+  int  <b>cacheAndResultsFlag</b>, <i></i>
+  int  <b>cacheOrResultsFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestSubstitute"></A>
+static void <I></I>
+<B>CalPerformanceTestSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalPerformanceTestSwapVars"></A>
+static void <I></I>
+<B>CalPerformanceTestSwapVars</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalQuantifySanityCheck"></A>
+static void <I></I>
+<B>CalQuantifySanityCheck</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalReorderAssociationFix"></A>
+void <I></I>
+<B>CalReorderAssociationFix</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalRepackNodesAfterGC"></A>
+static void <I></I>
+<B>CalRepackNodesAfterGC</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalRequestNodeListArrayITE"></A>
+void <I></I>
+<B>CalRequestNodeListArrayITE</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalRequestNode_t ** <b>requestNodeListArray</b> <i></i>
+)
+</pre>
+<dd> This routine is to be used for pipelined and
+  superscalar ITE operations. Currently there is no user interface
+  provided to this routine.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddITE.c"TARGET="ABSTRACT"><CODE>calBddITE.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalRequestNodeListArrayOp"></A>
+void <I></I>
+<B>CalRequestNodeListArrayOp</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalRequestNode_t ** <b>requestNodeListArray</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b> <i></i>
+)
+</pre>
+<dd> Computes result BDDs for an array of lists, each entry of which
+  is pair of pointers, each of which points to a operand BDD or an entry in
+  another list with a smaller array index
+<p>
+
+<dd> <b>Side Effects</b> ThenBDD pointer of an entry is over written by the result BDD
+  and ElseBDD pointer is marked using FORWARD_FLAG
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalRequestNodeListCompose"></A>
+void <I></I>
+<B>CalRequestNodeListCompose</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalRequestNode_t * <b>requestNodeList</b>, <i></i>
+  Cal_BddIndex_t  <b>composeIndex</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddCompose.c"TARGET="ABSTRACT"><CODE>calBddCompose.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalSetInteract"></A>
+void <I></I>
+<B>CalSetInteract</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>x</b>, <i></i>
+  int  <b>y</b> <i></i>
+)
+</pre>
+<dd> Given a pair of variables 0 <= x < y < table->size,
+  sets the corresponding bit of the interaction matrix to 1.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calInteract.c"TARGET="ABSTRACT"><CODE>calInteract.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalTestInteract"></A>
+int <I></I>
+<B>CalTestInteract</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>x</b>, <i></i>
+  int  <b>y</b> <i></i>
+)
+</pre>
+<dd> Given a pair of variables 0 <= x < y < bddManager->numVars,
+  tests whether the corresponding bit of the interaction matrix is 1.
+  Returns the value of the bit.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calInteract.c"TARGET="ABSTRACT"><CODE>calInteract.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalUniqueTableForIdFindOrAdd"></A>
+int <I></I>
+<B>CalUniqueTableForIdFindOrAdd</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>thenBdd</b>, <i></i>
+  Cal_Bdd_t  <b>elseBdd</b>, <i></i>
+  Cal_Bdd_t * <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> If a new BDD node is created (found == false), then the
+  numNodes field of the manager needs to be incremented.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalUniqueTableForIdLookup"></A>
+int <I></I>
+<B>CalUniqueTableForIdLookup</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  Cal_Bdd_t  <b>thenBdd</b>, <i></i>
+  Cal_Bdd_t  <b>elseBdd</b>, <i></i>
+  Cal_Bdd_t * <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalUniqueTableForIdRehashNode"></A>
+void <I></I>
+<B>CalUniqueTableForIdRehashNode</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalBddNode_t * <b>bddNode</b>, <i></i>
+  CalBddNode_t * <b>thenBddNode</b>, <i></i>
+  CalBddNode_t * <b>elseBddNode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalUniqueTablePrint"></A>
+void <I></I>
+<B>CalUniqueTablePrint</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="CalVarAssociationRepackUpdate"></A>
+void <I></I>
+<B>CalVarAssociationRepackUpdate</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_AssociationInit"></A>
+int <I></I>
+<B>Cal_AssociationInit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>associationInfoUserBdds</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> Creates or finds a variable association. The association is
+  specified by associationInfo, which is a an array of BDD with 
+  Cal_BddNull(bddManager) as the end marker. If pairs is 0, the array is
+  assumed to be an array of variables. In this case, each variable is paired
+  with constant BDD one. Such an association may viewed as specifying a set
+  of variables for use with routines such as Cal_BddExists. If pair is not 0,
+  then the even numbered array elements should be variables and the odd numbered
+  elements should be the BDDs which they are mapped to. In both cases, the 
+  return value is an integer identifier for this association. If the given
+  association is equivalent to one which already exists, the same identifier
+  is used for both, and the reference count of the association is increased by
+  one.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_AssociationQuit">Cal_AssociationQuit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_AssociationQuit"></A>
+void <I></I>
+<B>Cal_AssociationQuit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>associationId</b> <i></i>
+)
+</pre>
+<dd> Decrements the reference count of the variable association with
+  identifier id, and frees it if the reference count becomes zero.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_AssociationInit">Cal_AssociationInit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_AssociationSetCurrent"></A>
+int <I></I>
+<B>Cal_AssociationSetCurrent</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>associationId</b> <i></i>
+)
+</pre>
+<dd> Sets the current variable association to the one given by id and
+  returns the ID of the old association.  An id of -1 indicates the temporary
+  association
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddAnd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical AND of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddBetween"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddBetween</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fMinUserBdd</b>, <i></i>
+  Cal_Bdd  <b>fMaxUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a minimal BDD f which is contains fMin and is
+  contained in fMax ( fMin <= f <= fMax).
+  This operation is typically used in state space searches to simplify
+  the representation for the set of states wich will be expanded at
+  each step (Rk Rk-1' <= f <= Rk).
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddReduce">Cal_BddReduce</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddCofactor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddCofactor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>cUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the generalized cofactor of BDD f with respect
+  to BDD c. The constrain operator given by Coudert et al (ICCAD90) is
+  used to find the generalized cofactor.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddReduce">Cal_BddReduce</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddCompose"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddCompose</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b>, <i></i>
+  Cal_Bdd  <b>hUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD obtained by substituting a variable by a function
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddCompose.c"TARGET="ABSTRACT"><CODE>calBddCompose.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddDependsOn"></A>
+int <I></I>
+<B>Cal_BddDependsOn</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>varUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if f depends on var and returns 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSupport.c"TARGET="ABSTRACT"><CODE>calBddSupport.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddDumpBdd"></A>
+int <I></I>
+<B>Cal_BddDumpBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd * <b>userVars</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Writes an encoded description of the BDD to the file given by fp.
+  The argument vars should be a null-terminated array of variables that include
+  the support of f .  These variables need not be in order of increasing index.
+  The function returns a nonzero value if f was written to the file successfully.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddDynamicReordering"></A>
+void <I></I>
+<B>Cal_BddDynamicReordering</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>technique</b> <i></i>
+)
+</pre>
+<dd> Selects the method for dynamic reordering.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddReorder">Cal_BddReorder</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddElse"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddElse</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the negative cofactor of the argument BDD with
+  respect to the top variable of the BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the returned BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddThen">Cal_BddThen</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddExists"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddExists</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for f with all the variables that are
+  paired with something in the current variable association
+  existentially quantified out.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddRelProd">Cal_BddRelProd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddForAll"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddForAll</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for f with all the variables that are
+  paired with something in the current variable association
+  universally quantified out.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddFree"></A>
+void <I></I>
+<B>Cal_BddFree</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Frees the argument BDD. It is an error to free a BDD
+  more than once.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the argument BDD is decreased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddUnFree">Cal_BddUnFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddFunctionPrint"></A>
+void <I></I>
+<B>Cal_BddFunctionPrint</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> Prints the function implemented by the argument BDD
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calUtil.c"TARGET="ABSTRACT"><CODE>calUtil.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddFunctionProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddFunctionProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>fUserBddArray</b>, <i></i>
+  long * <b>funcCounts</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddFunctionProfile"></A>
+void <I></I>
+<B>Cal_BddFunctionProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  long * <b>funcCounts</b> <i></i>
+)
+</pre>
+<dd> The nth entry of the function
+  profile array is the number of subfunctions of f which may be obtained by 
+  restricting the variables whose index is less than n.  An entry of zero 
+  indicates that f is independent of the variable with the corresponding index.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddGetIfId"></A>
+Cal_BddId_t <I></I>
+<B>Cal_BddGetIfId</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the id of the top variable of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddGetIfIndex">Cal_BddGetIfIndex</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddGetIfIndex"></A>
+Cal_BddId_t <I></I>
+<B>Cal_BddGetIfIndex</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the index of the top variable of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddGetIfId">Cal_BddGetIfId</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddGetRegular"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddGetRegular</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD with positive from a given BDD with arbitrary phase
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddITE"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddITE</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b>, <i></i>
+  Cal_Bdd  <b>hUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical If-Then-Else
+
+  Description [Returns the BDD for the logical operation IF f THEN g ELSE h
+  - f g + f' h
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddAnd">Cal_BddAnd</a>
+<a href="#Cal_BddNand">Cal_BddNand</a>
+<a href="#Cal_BddOr">Cal_BddOr</a>
+<a href="#Cal_BddNor">Cal_BddNor</a>
+<a href="#Cal_BddXor">Cal_BddXor</a>
+<a href="#Cal_BddXnor">Cal_BddXnor</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddITE.c"TARGET="ABSTRACT"><CODE>calBddITE.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIdentity"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddIdentity</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the duplicate BDD of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddNot">Cal_BddNot</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIf"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddIf</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD corresponding to the top variable of
+  the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddImplies"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddImplies</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Computes a BDD that implies conjunction of f and Cal_BddNot(g)
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIntersects">Cal_BddIntersects</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIntersects"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddIntersects</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Computes a BDD that implies conjunction of f and g.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddImplies">Cal_BddImplies</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddConst"></A>
+int <I></I>
+<B>Cal_BddIsBddConst</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is either constant one or
+  constant zero, otherwise returns 0.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIsBddOne">Cal_BddIsBddOne</a>
+<a href="#Cal_BddIsBddZero">Cal_BddIsBddZero</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddNull"></A>
+int <I></I>
+<B>Cal_BddIsBddNull</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is NULL, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddOne"></A>
+int <I></I>
+<B>Cal_BddIsBddOne</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is constant one, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIsBddZero">Cal_BddIsBddZero</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddZero"></A>
+int <I></I>
+<B>Cal_BddIsBddZero</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is constant zero, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIsBddOne">Cal_BddIsBddOne</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsCube"></A>
+int <I></I>
+<B>Cal_BddIsCube</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is a cube, 0 otherwise
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsEqual"></A>
+int <I></I>
+<B>Cal_BddIsEqual</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd1</b>, <i></i>
+  Cal_Bdd  <b>userBdd2</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if argument BDDs are equal, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddIsProvisional"></A>
+int <I></I>
+<B>Cal_BddIsProvisional</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1, if the given user BDD contains
+  provisional BDD node.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarAfter"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarAfter</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable after the specified one in
+  the variable  order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarBefore"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarBefore</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable before the specified one in
+  the variable order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarFirst"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarFirst</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable at the start of the
+  variable order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarLast"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarLast</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable at the end of the variable
+  order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGC"></A>
+int <I></I>
+<B>Cal_BddManagerGC</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> For each variable in the increasing id free nodes with reference
+  count equal to zero freeing a node results in decrementing reference count of
+  then and else nodes by one.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetHooks"></A>
+void * <I></I>
+<B>Cal_BddManagerGetHooks</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the hooks field of the manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetNumNodes"></A>
+unsigned long <I></I>
+<B>Cal_BddManagerGetNumNodes</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the number of BDD nodes
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddTotalSize">Cal_BddTotalSize</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetVarWithId"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerGetVarWithId</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b> <i></i>
+)
+</pre>
+<dd> Returns the variable with the specified id, null if no
+  such variable exists
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetVarWithIndex"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerGetVarWithIndex</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddIndex_t  <b>index</b> <i></i>
+)
+</pre>
+<dd> Returns the variable with the specified index, null if no
+  such variable exists
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerInit"></A>
+Cal_BddManager <I></I>
+<B>Cal_BddManagerInit</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Initializes and allocates fields of the BDD manager. Some of the
+  fields are initialized for maxNumVars+1 or numVars+1, whereas some of them are
+  initialized for maxNumVars or numVars. The first kind of fields are associated
+  with the id of a variable and the second ones are with the index of the
+  variable.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerQuit">Cal_BddManagerQuit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerQuit"></A>
+int <I></I>
+<B>Cal_BddManagerQuit</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Frees the BDD manager and all the associated allocations
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerInit">Cal_BddManagerInit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerSetGCLimit"></A>
+void <I></I>
+<B>Cal_BddManagerSetGCLimit</B>(
+  Cal_BddManager  <b>manager</b> <i></i>
+)
+</pre>
+<dd> It tries to set the limit at twice the number of nodes
+  in the manager at the current point. However, the limit is not
+  allowed to fall below the MIN_GC_LIMIT or to exceed the value of
+  node limit (if one exists).
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerSetHooks"></A>
+void <I></I>
+<B>Cal_BddManagerSetHooks</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  void * <b>hooks</b> <i></i>
+)
+</pre>
+<dd> Sets the hooks field of the manager.
+<p>
+
+<dd> <b>Side Effects</b> Hooks field changes.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddManagerSetParameters"></A>
+void <I></I>
+<B>Cal_BddManagerSetParameters</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  long  <b>reorderingThreshold</b>, <i></i>
+  long  <b>maxForwardedNodes</b>, <i></i>
+  double  <b>repackAfterGCThreshold</b>, <i></i>
+  double  <b>tableRepackThreshold</b> <i></i>
+)
+</pre>
+<dd> This function is used to set the parameters which are
+  used to control the reordering process. "reorderingThreshold"
+  determines the number of nodes below which reordering will NOT be
+  invoked, "maxForwardedNodes" determines the maximum number of
+  forwarded nodes which are allowed (at that point the cleanup must be
+  done), and "repackingThreshold" determines the fraction of the page
+  utilized below which repacking has to be invoked. These parameters
+  have different affect on the computational and memory usage aspects
+  of reordeing. For instance, higher value of "maxForwardedNodes" will
+  result in process consuming more memory, and a lower value on the
+  other hand would invoke the cleanup process repeatedly resulting in
+  increased computation.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddManager.c"TARGET="ABSTRACT"><CODE>calBddManager.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddMultiwayAnd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddMultiwayAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical AND of set of BDDs in the bddArray
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddMultiwayOr"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddMultiwayOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical OR of set of BDDs in the bddArray
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddMultiwayXor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddMultiwayXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical XOR of set of BDDs in the bddArray
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddNand"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddNand</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical NAND of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddNewVarBlock"></A>
+Cal_Block <I></I>
+<B>Cal_BddNewVarBlock</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>variable</b>, <i></i>
+  long  <b>length</b> <i></i>
+)
+</pre>
+<dd> The block is specified by passing the first
+  variable and the length of the block. The "length" number of
+  consecutive variables starting from "variable" are put in the
+  block.
+<p>
+
+<dd> <b>Side Effects</b> A new block is created.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddNodeLimit"></A>
+long <I></I>
+<B>Cal_BddNodeLimit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  long  <b>newLimit</b> <i></i>
+)
+</pre>
+<dd> Sets the node limit to new_limit and returns the old limit.
+<p>
+
+<dd> <b>Side Effects</b> Threshold for garbage collection may change
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerGC">Cal_BddManagerGC</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddNor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddNor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical NOR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddNot"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddNot</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the complement of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the argument BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIdentity">Cal_BddIdentity</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddOne"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddOne</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for the constant one
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddZero">Cal_BddZero</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddOr"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical OR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddOverflow"></A>
+int <I></I>
+<B>Cal_BddOverflow</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the node limit has been exceeded, 0 otherwise. The
+  overflow flag is cleared.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddNodeLimit">Cal_BddNodeLimit</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPairwiseAnd"></A>
+Cal_Bdd * <I></I>
+<B>Cal_BddPairwiseAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns an array of BDDs obtained by logical AND of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddPairwiseOr">Cal_BddPairwiseOr</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPairwiseOr"></A>
+Cal_Bdd * <I></I>
+<B>Cal_BddPairwiseOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns an array of BDDs obtained by logical OR of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddPairwiseAnd">Cal_BddPairwiseAnd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPairwiseXor"></A>
+Cal_Bdd * <I></I>
+<B>Cal_BddPairwiseXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns an array of BDDs obtained by logical XOR of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddPairwiseAnd">Cal_BddPairwiseAnd</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPrintBdd"></A>
+void <I></I>
+<B>Cal_BddPrintBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_VarNamingFn_t  <b>VarNamingFn</b>, <i></i>
+  Cal_TerminalIdFn_t  <b>TerminalIdFn</b>, <i></i>
+  Cal_Pointer_t  <b>env</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints a human-readable representation of the BDD f to
+  the file given by fp. The namingFn should be a pointer to a function
+  taking a bddManager, a BDD and the pointer given by env. This
+  function should return either a null pointer or a srting that is the
+  name of the supplied variable. If it returns a null pointer, a
+  default name is generated based on the index of the variable. It is
+  also legal for naminFN to e null; in this case, default names are
+  generated for all variables. The macro bddNamingFnNone is a null
+  pointer of suitable type. terminalIdFn should be apointer to a
+  function taking a bddManager and two longs. plus the pointer given
+  by the env. It should return either a null pointer. If it returns a
+  null pointer, or if terminalIdFn is null, then default names are
+  generated for the terminals. The macro bddTerminalIdFnNone is a null
+  pointer of suitable type.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPrintFunctionProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddPrintFunctionProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBdds</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrintProfile.c"TARGET="ABSTRACT"><CODE>calPrintProfile.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPrintFunctionProfile"></A>
+void <I></I>
+<B>Cal_BddPrintFunctionProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrintProfile.c"TARGET="ABSTRACT"><CODE>calPrintProfile.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPrintProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddPrintProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBdds</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrintProfile.c"TARGET="ABSTRACT"><CODE>calPrintProfile.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddPrintProfile"></A>
+void <I></I>
+<B>Cal_BddPrintProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrintProfile.c"TARGET="ABSTRACT"><CODE>calPrintProfile.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>fUserBddArray</b>, <i></i>
+  long * <b>levelCounts</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddProfile"></A>
+void <I></I>
+<B>Cal_BddProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  long * <b>levelCounts</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> negout is as in Cal_BddSize. levelCounts should be an array of
+  size Cal_BddVars(bddManager)+1 to hold the profile.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddReduce"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddReduce</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>cUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD which agrees with f for all valuations
+  which satisfy c. The result is usually smaller in terms of number of
+  BDD nodes than f. This operation is typically used in state space
+  searches to simplify the representation for the set of states wich
+  will be expanded at each step.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddCofactor">Cal_BddCofactor</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddRelProd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddRelProd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for the logical AND of f and g with all
+  the variables that are paired with something in the current variable
+  association existentially quantified out.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddReorder"></A>
+void <I></I>
+<B>Cal_BddReorder</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Invoke the current dynamic reodering method.
+<p>
+
+<dd> <b>Side Effects</b> Index of a variable may change due to reodering
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddDynamicReordering">Cal_BddDynamicReordering</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSatisfySupport"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSatisfySupport</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> The returned BDD which implies f, is true for some valuation on
+               which f is true, which has at most one node at each level,
+               and which has exactly one node corresponding to each variable
+               which is associated with something in the current variable
+               association.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSatisfyingFraction"></A>
+double <I></I>
+<B>Cal_BddSatisfyingFraction</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSatisfy"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSatisfy</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSetGCMode"></A>
+void <I></I>
+<B>Cal_BddSetGCMode</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>gcMode</b> <i></i>
+)
+</pre>
+<dd> Sets the garbage collection mode, 0 means the garbage
+  collection should be turned off, 1 means garbage collection should
+  be on.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSizeMultiple"></A>
+long <I></I>
+<B>Cal_BddSizeMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>fUserBddArray</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSize"></A>
+long <I></I>
+<B>Cal_BddSize</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSize.c"TARGET="ABSTRACT"><CODE>calBddSize.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddStats"></A>
+void <I></I>
+<B>Cal_BddStats</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints miscellaneous BDD statistics
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSubstitute"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD for f using the substitution defined by current
+  variable association. Each variable is replaced by its associated BDDs. The 
+  substitution is effective simultaneously
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddCompose">Cal_BddCompose</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSubstitute.c"TARGET="ABSTRACT"><CODE>calBddSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSupport"></A>
+void <I></I>
+<B>Cal_BddSupport</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd * <b>support</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSupport.c"TARGET="ABSTRACT"><CODE>calBddSupport.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddSwapVars"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSwapVars</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b>, <i></i>
+  Cal_Bdd  <b>hUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD obtained by simultaneously substituting variable
+  g by variable h and variable h and variable g in the BDD f
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddSubstitute">Cal_BddSubstitute</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSwapVars.c"TARGET="ABSTRACT"><CODE>calBddSwapVars.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddThen"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddThen</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the positive cofactor of the argument BDD with
+  respect to the top variable of the BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the returned BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddElse">Cal_BddElse</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddTotalSize"></A>
+unsigned long <I></I>
+<B>Cal_BddTotalSize</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the number of nodes in the Unique table
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerGetNumNodes">Cal_BddManagerGetNumNodes</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddType"></A>
+int <I></I>
+<B>Cal_BddType</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns BDD_TYPE_ZERO if f is false, BDD_TYPE_ONE 
+  if f is true, BDD_TYPE_POSVAR is f is an unnegated variable,
+  BDD_TYPE_NEGVAR if f is a negated variable, BDD_TYPE_OVERFLOW if f
+  is null, and BDD_TYPE_NONTERMINAL otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddUnFree"></A>
+void <I></I>
+<B>Cal_BddUnFree</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Unfrees the argument BDD. It is an error to pass a BDD
+  with reference count of zero to be unfreed.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the argument BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddFree">Cal_BddFree</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddUndumpBdd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddUndumpBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userVars</b>, <i></i>
+  FILE * <b>fp</b>, <i></i>
+  int * <b>error</b> <i></i>
+)
+</pre>
+<dd> Loads an encoded description of a BDD from the file given by
+  fp. The argument vars should be a null terminated array of variables that will
+  become the support of the BDD. As in Cal_BddDumpBdd, these need not be in
+  the order of increasing index. If the same array of variables in used in 
+  dumping and undumping, the BDD returned will be equal to the one that was 
+  dumped. More generally, if array v1 is used when dumping, and the array v2
+  is used when undumping, the BDD returned will be equal to the original BDD
+  with the ith variable in v2 substituted for the ith variable in v1 for all i.
+  Null BDD is returned in the operation fails for reason (node limit reached,
+  I/O error, invalid file format, etc.). In this case, an error code is stored
+  in error. the code will be one of the following. 
+  CAL_BDD_UNDUMP_FORMAT Invalid file format
+  CAL_BDD_UNDUMP_OVERFLOW Node limit exceeded
+  CAL_BDD_UNDUMP_IOERROR File I/O error
+  CAL_BDD_UNDUMP_EOF Unexpected EOF
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddVarBlockReorderable"></A>
+void <I></I>
+<B>Cal_BddVarBlockReorderable</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  int  <b>reorderable</b> <i></i>
+)
+</pre>
+<dd> If a block is reorderable, the child blocks are
+  recursively involved in swapping.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBlk.c"TARGET="ABSTRACT"><CODE>calBlk.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddVarSubstitute"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddVarSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD for f using the substitution defined by current
+  variable association. It is assumed that each variable is replaced
+  by another variable. For the substitution of a variable by a
+  function, use Cal_BddSubstitute instead.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddSubstitute">Cal_BddSubstitute</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddVarSubstitute.c"TARGET="ABSTRACT"><CODE>calBddVarSubstitute.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddVars"></A>
+long <I></I>
+<B>Cal_BddVars</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the number of BDD variables
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddXnor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddXnor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical exclusive NOR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddXor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical exclusive OR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_BddZero"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddZero</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for the constant zero
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddOne">Cal_BddOne</a>
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#cal.c"TARGET="ABSTRACT"><CODE>cal.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemAllocation"></A>
+Cal_Address_t <I></I>
+<B>Cal_MemAllocation</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Returns the memory allocated.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemFatal"></A>
+void <I></I>
+<B>Cal_MemFatal</B>(
+  char * <b>message</b> <i></i>
+)
+</pre>
+<dd> Prints an error message and exits.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemFreeBlock"></A>
+void <I></I>
+<B>Cal_MemFreeBlock</B>(
+  Cal_Pointer_t  <b>p</b> <i></i>
+)
+</pre>
+<dd> Frees the block.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemFreeRecMgr"></A>
+void <I></I>
+<B>Cal_MemFreeRecMgr</B>(
+  Cal_RecMgr  <b>mgr</b> <i></i>
+)
+</pre>
+<dd> Frees all the storage associated with the specified record manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemFreeRec"></A>
+void <I></I>
+<B>Cal_MemFreeRec</B>(
+  Cal_RecMgr  <b>mgr</b>, <i></i>
+  Cal_Pointer_t  <b>rec</b> <i></i>
+)
+</pre>
+<dd> Frees a record managed by the indicated record manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemGetBlock"></A>
+Cal_Pointer_t <I></I>
+<B>Cal_MemGetBlock</B>(
+  Cal_Address_t  <b>size</b> <i></i>
+)
+</pre>
+<dd> Allocates a new block of the specified size.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemNewRecMgr"></A>
+Cal_RecMgr <I></I>
+<B>Cal_MemNewRecMgr</B>(
+  int  <b>size</b> <i></i>
+)
+</pre>
+<dd> Creates a new record manager with the given  record size.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemNewRec"></A>
+Cal_Pointer_t <I></I>
+<B>Cal_MemNewRec</B>(
+  Cal_RecMgr  <b>mgr</b> <i></i>
+)
+</pre>
+<dd> Allocates a record from the specified record manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_MemResizeBlock"></A>
+Cal_Pointer_t <I></I>
+<B>Cal_MemResizeBlock</B>(
+  Cal_Pointer_t  <b>p</b>, <i></i>
+  Cal_Address_t  <b>newSize</b> <i></i>
+)
+</pre>
+<dd> Expands or contracts the block to a new size.
+  We try to avoid moving the block if possible.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PerformanceTest"></A>
+int <I></I>
+<B>Cal_PerformanceTest</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b>, <i></i>
+  int  <b>iteration</b>, <i></i>
+  int  <b>seed</b>, <i></i>
+  int  <b>andPerformanceFlag</b>, <i></i>
+  int  <b>multiwayPerformanceFlag</b>, <i></i>
+  int  <b>onewayPerformanceFlag</b>, <i></i>
+  int  <b>quantifyPerformanceFlag</b>, <i></i>
+  int  <b>composePerformanceFlag</b>, <i></i>
+  int  <b>relprodPerformanceFlag</b>, <i></i>
+  int  <b>swapPerformanceFlag</b>, <i></i>
+  int  <b>substitutePerformanceFlag</b>, <i></i>
+  int  <b>sanityCheckFlag</b>, <i></i>
+  int  <b>computeMemoryOverheadFlag</b>, <i></i>
+  int  <b>superscalarFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PipelineCreateProvisionalBdd"></A>
+Cal_Bdd <I></I>
+<B>Cal_PipelineCreateProvisionalBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> The provisional BDD is automatically freed once the
+  pipeline is quitted.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PipelineExecute"></A>
+int <I></I>
+<B>Cal_PipelineExecute</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> All the results are computed. User should update the
+  BDDs of interest. Eventually this feature would become transparent.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PipelineInit"></A>
+int <I></I>
+<B>Cal_PipelineInit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddOp_t  <b>bddOp</b> <i></i>
+)
+</pre>
+<dd> All the operations for this pipeline must be of the
+  same kind.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PipelineQuit"></A>
+void <I></I>
+<B>Cal_PipelineQuit</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> The user must make sure to update all provisional BDDs
+  of interest before calling this routine.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PipelineSetDepth"></A>
+void <I></I>
+<B>Cal_PipelineSetDepth</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>depth</b> <i></i>
+)
+</pre>
+<dd> The "depth" determines the amount of dependency we
+  would allow in pipelined computation.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_PipelineUpdateProvisionalBdd"></A>
+Cal_Bdd <I></I>
+<B>Cal_PipelineUpdateProvisionalBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>provisionalBdd</b> <i></i>
+)
+</pre>
+<dd> The provisional BDD is automatically freed after
+  quitting pipeline.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPipeline.c"TARGET="ABSTRACT"><CODE>calPipeline.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_TempAssociationAugment"></A>
+void <I></I>
+<B>Cal_TempAssociationAugment</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>associationInfoUserBdds</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> Pairs is 0 if the information represents only a list of
+  variables rather than a full association.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_TempAssociationInit"></A>
+void <I></I>
+<B>Cal_TempAssociationInit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>associationInfoUserBdds</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> Pairs is 0 if the information represents only a list of
+  variables rather than a full association.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cal_TempAssociationQuit"></A>
+void <I></I>
+<B>Cal_TempAssociationQuit</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Cleans up temporary associationoptional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="CeilLog2"></A>
+static int <I></I>
+<B>CeilLog2</B>(
+  int  <b>number</b> <i></i>
+)
+</pre>
+<dd> Returns the smallest integer greater than or equal to log2 of a
+  number (The assumption is that the number is >= 1)
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddOp.c"TARGET="ABSTRACT"><CODE>calBddOp.c</CODE></A>
+
+<dt><pre>
+<A NAME="CeilLog2"></A>
+static int <I></I>
+<B>CeilLog2</B>(
+  int  <b>number</b> <i></i>
+)
+</pre>
+<dd> Returns the smallest integer greater than or equal to log2 of a
+  number (The assumption is that the number is >= 1)
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calGC.c"TARGET="ABSTRACT"><CODE>calGC.c</CODE></A>
+
+<dt><pre>
+<A NAME="CeilLog2"></A>
+static int <I></I>
+<B>CeilLog2</B>(
+  int  <b>number</b> <i></i>
+)
+</pre>
+<dd> Returns the smallest integer greater than or equal to log2 of a
+  number (The assumption is that the number is >= 1)
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTable.c"TARGET="ABSTRACT"><CODE>calHashTable.c</CODE></A>
+
+<dt><pre>
+<A NAME="CeilLog2"></A>
+static int <I></I>
+<B>CeilLog2</B>(
+  int  <b>number</b> <i></i>
+)
+</pre>
+<dd> Returns the smallest integer greater than or equal to log2 of a
+  number (The assumption is that the number is >= 1)
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="CeilingLog2"></A>
+static int <I></I>
+<B>CeilingLog2</B>(
+  Cal_Address_t  <b>i</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="Chars"></A>
+static void <I></I>
+<B>Chars</B>(
+  char  <b>c</b>, <i></i>
+  int  <b>n</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrint.c"TARGET="ABSTRACT"><CODE>calPrint.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckAssoc"></A>
+static int <I></I>
+<B>CheckAssoc</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>assocInfo</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calAssociation.c"TARGET="ABSTRACT"><CODE>calAssociation.c</CODE></A>
+
+<dt><pre>
+<A NAME="CheckValidityOfNodes"></A>
+static int <I></I>
+<B>CheckValidityOfNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  long  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="CofactorFixAndReclaimForwardedNodes"></A>
+static int <I></I>
+<B>CofactorFixAndReclaimForwardedNodes</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int  <b>cofactorCheckStartIndex</b>, <i></i>
+  int  <b>cofactorCheckEndIndex</b>, <i></i>
+  int  <b>reclaimStartIndex</b>, <i></i>
+  int  <b>reclaimEndIndex</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="Cofactor"></A>
+static TruthTable_t <I></I>
+<B>Cofactor</B>(
+  TruthTable_t  <b>table</b>, <i></i>
+  int  <b>var</b>, <i></i>
+  int  <b>value</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="Decode"></A>
+static Cal_Bdd <I></I>
+<B>Decode</B>(
+  int  <b>var</b>, <i></i>
+  TruthTable_t  <b>table</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="Error"></A>
+static void <I></I>
+<B>Error</B>(
+  char * <b>op</b>, <i></i>
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>result</b>, <i></i>
+  Cal_Bdd  <b>expected</b>, <i></i>
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="GetRandomNumbers"></A>
+static void <I></I>
+<B>GetRandomNumbers</B>(
+  int  <b>lowerBound</b>, <i></i>
+  int  <b>upperBound</b>, <i></i>
+  int  <b>count</b>, <i></i>
+  int * <b>resultVector</b> <i></i>
+)
+</pre>
+<dd> The restriction is that count <= upperBound-lowerBound+1. The
+  size of the resultVector should be >= count.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableAddDirect"></A>
+static void <I></I>
+<B>HashTableAddDirect</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalBddNode_t * <b>bddNode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableApply"></A>
+static void <I></I>
+<B>HashTableApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>reqQueAtPipeDepth</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b>, <i></i>
+  unsigned long  <b>opCode</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableCofactorApply"></A>
+static void <I></I>
+<B>HashTableCofactorApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>cofactorHashTableArray</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableCofactorReduce"></A>
+static void <I></I>
+<B>HashTableCofactorReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t * <b>uniqueTableForId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableFindOrAdd"></A>
+static int <I></I>
+<B>HashTableFindOrAdd</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalBddNode_t * <b>thenBdd</b>, <i></i>
+  CalBddNode_t * <b>elseBdd</b>, <i></i>
+  CalBddNode_t ** <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableOneRehash"></A>
+static void <I></I>
+<B>HashTableOneRehash</B>(
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  int  <b>grow</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calHashTableOne.c"TARGET="ABSTRACT"><CODE>calHashTableOne.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableReduceApply"></A>
+static void <I></I>
+<B>HashTableReduceApply</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t ** <b>reduceHashTableArray</b>, <i></i>
+  CalHashTable_t ** <b>orHashTableArray</b>, <i></i>
+  CalOpProc_t  <b>calOpProc</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReduce.c"TARGET="ABSTRACT"><CODE>calReduce.c</CODE></A>
+
+<dt><pre>
+<A NAME="HashTableReduce"></A>
+static void <I></I>
+<B>HashTableReduce</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalHashTable_t * <b>uniqueTableForId</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calQuant.c"TARGET="ABSTRACT"><CODE>calQuant.c</CODE></A>
+
+<dt><pre>
+<A NAME="IndexCmp"></A>
+static int <I></I>
+<B>IndexCmp</B>(
+  const void * <b>p1</b>, <i></i>
+  const void * <b>p2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddSatisfy.c"TARGET="ABSTRACT"><CODE>calBddSatisfy.c</CODE></A>
+
+<dt><pre>
+<A NAME="MergeAndFree"></A>
+static void <I></I>
+<B>MergeAndFree</B>(
+  Block  <b>b</b> <i></i>
+)
+</pre>
+<dd> MergeAndFree(b) repeatedly merges b its Buddy until b has no Buddy or the Buddy isn't free, then adds the result to the  appropriate free list.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="PageAlign"></A>
+static CalAddress_t * <I></I>
+<B>PageAlign</B>(
+  CalAddress_t * <b>p</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="PageManagerExpandStorage"></A>
+static int <I></I>
+<B>PageManagerExpandStorage</B>(
+  CalPageManager_t * <b>pageManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> The size of the segment is stored in one of the fields
+              of page manager - numPagesPerSegment. If a memory
+              segment of a specific size cannot be allocated, the
+              routine calls itself recursively by reducing
+              numPagesPerSegment by a factor of 2.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintBddProfileAfterReorder"></A>
+static void <I></I>
+<B>PrintBddProfileAfterReorder</B>(
+  Cal_BddManager_t * <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderBF.c"TARGET="ABSTRACT"><CODE>calReorderBF.c</CODE></A>
+
+<dt><pre>
+<A NAME="PrintBdd"></A>
+static void <I></I>
+<B>PrintBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="RandomTests"></A>
+static void <I></I>
+<B>RandomTests</B>(
+  int  <b>numVars</b>, <i></i>
+  int  <b>iterations</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="Read"></A>
+static unsigned long <I></I>
+<B>Read</B>(
+  int * <b>error</b>, <i></i>
+  int  <b>bytes</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="RemoveFromFreeList"></A>
+static Block <I></I>
+<B>RemoveFromFreeList</B>(
+  Block  <b>b</b> <i></i>
+)
+</pre>
+<dd> RemoveFromFreeList(b) removes b from the free list which it is on.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="SegmentToPageList"></A>
+static int <I></I>
+<B>SegmentToPageList</B>(
+  CalAddress_t * <b>segment</b>, <i></i>
+  int  <b>numPages</b>, <i></i>
+  CalAddress_t * <b>lastPointer</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMemoryManagement.c"TARGET="ABSTRACT"><CODE>calMemoryManagement.c</CODE></A>
+
+<dt><pre>
+<A NAME="SweepVarTable"></A>
+static void <I></I>
+<B>SweepVarTable</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  long  <b>id</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestAnd"></A>
+static void <I></I>
+<B>TestAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestArrayOp"></A>
+static void <I></I>
+<B>TestArrayOp</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>numBdds</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestAssoc"></A>
+static void <I></I>
+<B>TestAssoc</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  TruthTable_t  <b>table</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestCompose"></A>
+static void <I></I>
+<B>TestCompose</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestDump"></A>
+static void <I></I>
+<B>TestDump</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestGenCof"></A>
+static void <I></I>
+<B>TestGenCof</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestITE"></A>
+static void <I></I>
+<B>TestITE</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  Cal_Bdd  <b>f3</b>, <i></i>
+  TruthTable_t  <b>table3</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestIdNot"></A>
+static void <I></I>
+<B>TestIdNot</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  TruthTable_t  <b>table</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestInterImpl"></A>
+static void <I></I>
+<B>TestInterImpl</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestMultiwayAnd"></A>
+static void <I></I>
+<B>TestMultiwayAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  Cal_Bdd  <b>f3</b>, <i></i>
+  TruthTable_t  <b>table3</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestMultiwayLarge"></A>
+static void <I></I>
+<B>TestMultiwayLarge</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>numBdds</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestMultiwayOr"></A>
+static void <I></I>
+<B>TestMultiwayOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  Cal_Bdd  <b>f3</b>, <i></i>
+  TruthTable_t  <b>table3</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestNand"></A>
+static void <I></I>
+<B>TestNand</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestOr"></A>
+static void <I></I>
+<B>TestOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestPipeline"></A>
+static void <I></I>
+<B>TestPipeline</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  Cal_Bdd  <b>f3</b>, <i></i>
+  TruthTable_t  <b>table3</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestQnt"></A>
+static void <I></I>
+<B>TestQnt</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  TruthTable_t  <b>table</b>, <i></i>
+  int  <b>bfZeroBFPlusDFOne</b>, <i></i>
+  int  <b>cacheExistsResultsFlag</b>, <i></i>
+  int  <b>cacheOrResultsFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestReduce"></A>
+static void <I></I>
+<B>TestReduce</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestRelProd"></A>
+static void <I></I>
+<B>TestRelProd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  int  <b>bfZeroBFPlusDFOne</b>, <i></i>
+  int  <b>cacheRelProdResultsFlag</b>, <i></i>
+  int  <b>cacheAndResultsFlag</b>, <i></i>
+  int  <b>cacheOrResultsFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestReorderBlock"></A>
+static void <I></I>
+<B>TestReorderBlock</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  TruthTable_t  <b>table</b>, <i></i>
+  Cal_Bdd  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestReorder"></A>
+static void <I></I>
+<B>TestReorder</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  TruthTable_t  <b>table</b>, <i></i>
+  Cal_Bdd  <b>f</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestSatisfy"></A>
+static void <I></I>
+<B>TestSatisfy</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  TruthTable_t  <b>table</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestSize"></A>
+static void <I></I>
+<B>TestSize</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestSubstitute"></A>
+static void <I></I>
+<B>TestSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  Cal_Bdd  <b>f3</b>, <i></i>
+  TruthTable_t  <b>table3</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestSwapVars"></A>
+static void <I></I>
+<B>TestSwapVars</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  TruthTable_t  <b>table</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestVarSubstitute"></A>
+static void <I></I>
+<B>TestVarSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b>, <i></i>
+  Cal_Bdd  <b>f3</b>, <i></i>
+  TruthTable_t  <b>table3</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TestXor"></A>
+static void <I></I>
+<B>TestXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f1</b>, <i></i>
+  TruthTable_t  <b>table1</b>, <i></i>
+  Cal_Bdd  <b>f2</b>, <i></i>
+  TruthTable_t  <b>table2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="TrimToSize"></A>
+static void <I></I>
+<B>TrimToSize</B>(
+  Block  <b>b</b>, <i></i>
+  int  <b>sizeIndex</b> <i></i>
+)
+</pre>
+<dd> TrimToSize(b, sizeIndex) repeatedly splits b until it has  the indicated size.  Blocks which are split off are added to the appropriate free list.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calMem.c"TARGET="ABSTRACT"><CODE>calMem.c</CODE></A>
+
+<dt><pre>
+<A NAME="UniqueTableForIdFindOrAdd"></A>
+static int <I></I>
+<B>UniqueTableForIdFindOrAdd</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  CalHashTable_t * <b>hashTable</b>, <i></i>
+  CalBddNode_t * <b>thenBdd</b>, <i></i>
+  CalBddNode_t * <b>elseBdd</b>, <i></i>
+  CalBddNode_t ** <b>bddPtr</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> If a new BDD node is created (found == false), then the
+  numNodes field of the manager needs to be incremented.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calReorderDF.c"TARGET="ABSTRACT"><CODE>calReorderDF.c</CODE></A>
+
+<dt><pre>
+<A NAME="Write"></A>
+static void <I></I>
+<B>Write</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  unsigned long  <b>n</b>, <i></i>
+  int  <b>bytes</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calDump.c"TARGET="ABSTRACT"><CODE>calDump.c</CODE></A>
+
+<dt><pre>
+<A NAME="asAddress"></A>
+static void <I></I>
+<B>asAddress</B>(
+  double  <b>n</b>, <i></i>
+  CalAddress_t * <b>r1</b>, <i></i>
+  CalAddress_t * <b>r2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="asDouble"></A>
+static double <I></I>
+<B>asDouble</B>(
+  CalAddress_t  <b>v1</b>, <i></i>
+  CalAddress_t  <b>v2</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="chars"></A>
+static void <I></I>
+<B>chars</B>(
+  char  <b>c</b>, <i></i>
+  int  <b>n</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPrintProfile.c"TARGET="ABSTRACT"><CODE>calPrintProfile.c</CODE></A>
+
+<dt><pre>
+<A NAME="cpuTime"></A>
+static double <I></I>
+<B>cpuTime</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="cpuTime"></A>
+static double <I></I>
+<B>cpuTime</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddReorderTest.c"TARGET="ABSTRACT"><CODE>calBddReorderTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="ddClearLocal"></A>
+static void <I></I>
+<B>ddClearLocal</B>(
+  Cal_Bdd_t  <b>f</b> <i></i>
+)
+</pre>
+<dd> Performs a DFS from f, clearing the LSB of the then pointers.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calInteract.c"TARGET="ABSTRACT"><CODE>calInteract.c</CODE></A>
+
+<dt><pre>
+<A NAME="ddSuppInteract"></A>
+static void <I></I>
+<B>ddSuppInteract</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  Cal_Bdd_t  <b>f</b>, <i></i>
+  int * <b>support</b> <i></i>
+)
+</pre>
+<dd> Performs a DFS from f. Uses the LSB of the then pointer
+  as visited flag.
+<p>
+
+<dd> <b>Side Effects</b> Accumulates in support the variables on which f depends.
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calInteract.c"TARGET="ABSTRACT"><CODE>calInteract.c</CODE></A>
+
+<dt><pre>
+<A NAME="ddUpdateInteract"></A>
+static void <I></I>
+<B>ddUpdateInteract</B>(
+  Cal_BddManager_t * <b>bddManager</b>, <i></i>
+  int * <b>support</b> <i></i>
+)
+</pre>
+<dd> If support[i
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calInteract.c"TARGET="ABSTRACT"><CODE>calInteract.c</CODE></A>
+
+<dt><pre>
+<A NAME="elapsedTime"></A>
+static long <I></I>
+<B>elapsedTime</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddReorderTest.c"TARGET="ABSTRACT"><CODE>calBddReorderTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="elapsedTime"></A>
+static long <I></I>
+<B>elapsedTime</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="handler"></A>
+static void <I></I>
+<B>handler</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="main"></A>
+int <I></I>
+<B>main</B>(
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calBddReorderTest.c"TARGET="ABSTRACT"><CODE>calBddReorderTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="main"></A>
+int <I></I>
+<B>main</B>(
+  int  <b>argc</b>, <i></i>
+  char ** <b>argv</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="pageFaults"></A>
+static long <I></I>
+<B>pageFaults</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calPerformanceTest.c"TARGET="ABSTRACT"><CODE>calPerformanceTest.c</CODE></A>
+
+<dt><pre>
+<A NAME="terminalIdFn"></A>
+static char * <I></I>
+<B>terminalIdFn</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  CalAddress_t  <b>v1</b>, <i></i>
+  CalAddress_t  <b>v2</b>, <i></i>
+  Cal_Pointer_t  <b>pointer</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<DD> <B>Defined in </B> <A HREF="calAllFile.html#calTest.c"TARGET="ABSTRACT"><CODE>calTest.c</CODE></A>
+
+
+</DL>
+<HR>
+Last updated on 970711 20h11
+</BODY></HTML>

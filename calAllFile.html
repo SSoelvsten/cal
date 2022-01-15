@@ -1,0 +1,1756 @@
+<HTML>
+<HEAD><TITLE>The cal package: files</TITLE></HEAD>
+<BODY>
+
+<DL>
+ <DT> <A HREF="#cal.h"><CODE>cal.h</CODE></A>
+ <DD> External header file
+ <DT> <A HREF="#calInt.h"><CODE>calInt.h</CODE></A>
+ <DD> Internal header file
+ <DT> <A HREF="#cal.c"><CODE>cal.c</CODE></A>
+ <DD> Miscellaneous collection of exported BDD functions
+ <DT> <A HREF="#calApplyReduce.c"><CODE>calApplyReduce.c</CODE></A>
+ <DD> Generic routines for processing temporary nodes during
+  "apply" and "reduce" phases.
+ <DT> <A HREF="#calAssociation.c"><CODE>calAssociation.c</CODE></A>
+ <DD> Contains the routines related to the variable association.
+ <DT> <A HREF="#calBddCompose.c"><CODE>calBddCompose.c</CODE></A>
+ <DD> Routine for composing one BDD into another.
+ <DT> <A HREF="#calBddITE.c"><CODE>calBddITE.c</CODE></A>
+ <DD> Routine for computing ITE of 3 BDD operands.
+ <DT> <A HREF="#calBddManager.c"><CODE>calBddManager.c</CODE></A>
+ <DD> Routines for maintaing the manager and creating
+  variables etc.
+ <DT> <A HREF="#calBddOp.c"><CODE>calBddOp.c</CODE></A>
+ <DD> Routines for performing simple boolean operations on a
+  pair of BDDs or on an array of pair of BDDs or on an array of BDDs.
+ <DT> <A HREF="#calBddReorderTest.c"><CODE>calBddReorderTest.c</CODE></A>
+ <DD> A test routine for checking the functionality of
+  dynamic reordering.
+ <DT> <A HREF="#calBddSatisfy.c"><CODE>calBddSatisfy.c</CODE></A>
+ <DD> Routines for BDD satisfying valuation.
+ <DT> <A HREF="#calBddSize.c"><CODE>calBddSize.c</CODE></A>
+ <DD> BDD size and profile routines
+ <DT> <A HREF="#calBddSubstitute.c"><CODE>calBddSubstitute.c</CODE></A>
+ <DD> Routine for simultaneous substitution of an array of
+  variables with an array of functions.
+ <DT> <A HREF="#calBddSupport.c"><CODE>calBddSupport.c</CODE></A>
+ <DD> Routines related to the support of a BDD.
+ <DT> <A HREF="#calBddSwapVars.c"><CODE>calBddSwapVars.c</CODE></A>
+ <DD> Routine for swapping two variables.
+ <DT> <A HREF="#calBddVarSubstitute.c"><CODE>calBddVarSubstitute.c</CODE></A>
+ <DD> Routine for simultaneous substitution of an array of
+  variables with another array of variables.
+ <DT> <A HREF="#calBlk.c"><CODE>calBlk.c</CODE></A>
+ <DD> Routines for manipulating blocks of variables.
+ <DT> <A HREF="#calCacheTableTwo.c"><CODE>calCacheTableTwo.c</CODE></A>
+ <DD> Functions to manage the Cache tables.
+ <DT> <A HREF="#calDump.c"><CODE>calDump.c</CODE></A>
+ <DD> BDD library dump/undump routines
+ <DT> <A HREF="#calGC.c"><CODE>calGC.c</CODE></A>
+ <DD> Garbage collection routines
+ <DT> <A HREF="#calHashTable.c"><CODE>calHashTable.c</CODE></A>
+ <DD> Functions to manage the hash tables that are a part of
+                  1. unique table
+                  2. request queue
+ <DT> <A HREF="#calHashTableOne.c"><CODE>calHashTableOne.c</CODE></A>
+ <DD> Routines for managing hash table with Bdd is a key and
+               int, long, or double as a value
+ <DT> <A HREF="#calHashTableThree.c"><CODE>calHashTableThree.c</CODE></A>
+ <DD> Functions to manage the hash tables that are a part of
+                  ITE operation
+ <DT> <A HREF="#calInteract.c"><CODE>calInteract.c</CODE></A>
+ <DD> Functions to manipulate the variable interaction matrix.
+ <DT> <A HREF="#calMem.c"><CODE>calMem.c</CODE></A>
+ <DD> Routines for memory management.
+ <DT> <A HREF="#calMemoryManagement.c"><CODE>calMemoryManagement.c</CODE></A>
+ <DD> Special memory management routines specific to CAL.
+ <DT> <A HREF="#calPerformanceTest.c"><CODE>calPerformanceTest.c</CODE></A>
+ <DD> This file contains the performance test routines for
+  the CAL package.
+ <DT> <A HREF="#calPipeline.c"><CODE>calPipeline.c</CODE></A>
+ <DD> Routines for creating and managing the pipelined BDD
+  operations.
+ <DT> <A HREF="#calPrint.c"><CODE>calPrint.c</CODE></A>
+ <DD> Routine for printing a BDD.
+ <DT> <A HREF="#calPrintProfile.c"><CODE>calPrintProfile.c</CODE></A>
+ <DD> Routines for printing various profiles for a BDD.
+ <DT> <A HREF="#calQuant.c"><CODE>calQuant.c</CODE></A>
+ <DD> Routines for existential/universal quantification and
+  relational product.
+ <DT> <A HREF="#calReduce.c"><CODE>calReduce.c</CODE></A>
+ <DD> Routines for optimizing a BDD with respect to a don't
+  care set (cofactor and restrict).
+ <DT> <A HREF="#calReorderBF.c"><CODE>calReorderBF.c</CODE></A>
+ <DD> Routines for dynamic reordering of variables.
+ <DT> <A HREF="#calReorderDF.c"><CODE>calReorderDF.c</CODE></A>
+ <DD> Routines for dynamic reordering of variables.
+ <DT> <A HREF="#calReorderUtil.c"><CODE>calReorderUtil.c</CODE></A>
+ <DD> Some utility routines used by both breadth-first and
+  depth-first reordering techniques.
+ <DT> <A HREF="#calTerminal.c"><CODE>calTerminal.c</CODE></A>
+ <DD> Contains the terminal function for various BDD operations.
+ <DT> <A HREF="#calTest.c"><CODE>calTest.c</CODE></A>
+ <DD> This file contains the test routines for the CAL package.
+ <DT> <A HREF="#calUtil.c"><CODE>calUtil.c</CODE></A>
+ <DD> Utility functions for the Cal package.
+</DL><HR>
+<A NAME="cal.h"><H1>cal.h</H1></A>
+External header file <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu)
+               Jagesh V. Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="calInt.h"><H1>calInt.h</H1></A>
+Internal header file <P>
+<B>By: Rajeev K. Ranjan (rajeev@ic.eecs.berkeley.edu
+               Jagesh Sanghavi  (sanghavi@ic.eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#cal.h"><CODE>cal.h</CODE></A>
+<DL>
+</DL>
+<HR>
+<A NAME="cal.c"><H1>cal.c</H1></A>
+Miscellaneous collection of exported BDD functions <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu) and
+               Jagesh V. Sanghavi (sanghavi@eecs.berkeley.edu</B><P>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddIsEqual" TARGET="MAIN"><CODE>Cal_BddIsEqual()</CODE></A>
+ <DD> Returns 1 if argument BDDs are equal, 0 otherwise.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIsBddOne" TARGET="MAIN"><CODE>Cal_BddIsBddOne()</CODE></A>
+ <DD> Returns 1 if the argument BDD is constant one, 0 otherwise.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIsBddZero" TARGET="MAIN"><CODE>Cal_BddIsBddZero()</CODE></A>
+ <DD> Returns 1 if the argument BDD is constant zero, 0 otherwise.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIsBddNull" TARGET="MAIN"><CODE>Cal_BddIsBddNull()</CODE></A>
+ <DD> Returns 1 if the argument BDD is NULL, 0 otherwise.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIsBddConst" TARGET="MAIN"><CODE>Cal_BddIsBddConst()</CODE></A>
+ <DD> Returns 1 if the argument BDD is a constant, 0 otherwise.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIdentity" TARGET="MAIN"><CODE>Cal_BddIdentity()</CODE></A>
+ <DD> Returns the duplicate BDD of the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddOne" TARGET="MAIN"><CODE>Cal_BddOne()</CODE></A>
+ <DD> Returns the BDD for the constant one
+
+ <DT> <A HREF="calAllDet.html#Cal_BddZero" TARGET="MAIN"><CODE>Cal_BddZero()</CODE></A>
+ <DD> Returns the BDD for the constant zero
+
+ <DT> <A HREF="calAllDet.html#Cal_BddNot" TARGET="MAIN"><CODE>Cal_BddNot()</CODE></A>
+ <DD> Returns the complement of the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddGetIfIndex" TARGET="MAIN"><CODE>Cal_BddGetIfIndex()</CODE></A>
+ <DD> Returns the index of the top variable of the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddGetIfId" TARGET="MAIN"><CODE>Cal_BddGetIfId()</CODE></A>
+ <DD> Returns the id of the top variable of the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIf" TARGET="MAIN"><CODE>Cal_BddIf()</CODE></A>
+ <DD> Returns the BDD corresponding to the top variable of
+  the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddThen" TARGET="MAIN"><CODE>Cal_BddThen()</CODE></A>
+ <DD> Returns the positive cofactor of the argument BDD with
+  respect to the top variable of the BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddElse" TARGET="MAIN"><CODE>Cal_BddElse()</CODE></A>
+ <DD> Returns the negative cofactor of the argument BDD with
+  respect to the top variable of the BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddFree" TARGET="MAIN"><CODE>Cal_BddFree()</CODE></A>
+ <DD> Frees the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddUnFree" TARGET="MAIN"><CODE>Cal_BddUnFree()</CODE></A>
+ <DD> Unfrees the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddGetRegular" TARGET="MAIN"><CODE>Cal_BddGetRegular()</CODE></A>
+ <DD> Returns a BDD with positive from a given BDD with arbitrary phase
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIntersects" TARGET="MAIN"><CODE>Cal_BddIntersects()</CODE></A>
+ <DD> Computes a BDD that implies conjunction of f and g.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddImplies" TARGET="MAIN"><CODE>Cal_BddImplies()</CODE></A>
+ <DD> Computes a BDD that implies conjunction of f and Cal_BddNot(g)
+
+ <DT> <A HREF="calAllDet.html#Cal_BddTotalSize" TARGET="MAIN"><CODE>Cal_BddTotalSize()</CODE></A>
+ <DD> Returns the number of nodes in the Unique table
+
+ <DT> <A HREF="calAllDet.html#Cal_BddStats" TARGET="MAIN"><CODE>Cal_BddStats()</CODE></A>
+ <DD> Prints miscellaneous BDD statistics
+
+ <DT> <A HREF="calAllDet.html#Cal_BddDynamicReordering" TARGET="MAIN"><CODE>Cal_BddDynamicReordering()</CODE></A>
+ <DD> Specify dynamic reordering technique.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddReorder" TARGET="MAIN"><CODE>Cal_BddReorder()</CODE></A>
+ <DD> Invoke the current dynamic reodering method.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddType" TARGET="MAIN"><CODE>Cal_BddType()</CODE></A>
+ <DD> Returns type of a BDD ( 0, 1, +var, -var, ovrflow, nonterminal)
+
+ <DT> <A HREF="calAllDet.html#Cal_BddVars" TARGET="MAIN"><CODE>Cal_BddVars()</CODE></A>
+ <DD> Returns the number of BDD variables
+
+ <DT> <A HREF="calAllDet.html#Cal_BddNodeLimit" TARGET="MAIN"><CODE>Cal_BddNodeLimit()</CODE></A>
+ <DD> Sets the node limit to new_limit and returns the old limit.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddOverflow" TARGET="MAIN"><CODE>Cal_BddOverflow()</CODE></A>
+ <DD> Returns 1 if the node limit has been exceeded, 0 otherwise. The
+  overflow flag is cleared.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIsCube" TARGET="MAIN"><CODE>Cal_BddIsCube()</CODE></A>
+ <DD> Returns 1 if the argument BDD is a cube, 0 otherwise
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerGetHooks" TARGET="MAIN"><CODE>Cal_BddManagerGetHooks()</CODE></A>
+ <DD> Returns the hooks field of the manager.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerSetHooks" TARGET="MAIN"><CODE>Cal_BddManagerSetHooks()</CODE></A>
+ <DD> Sets the hooks field of the manager.
+
+ <DT> <A HREF="calAllDet.html#CalBddIf" TARGET="MAIN"><CODE>CalBddIf()</CODE></A>
+ <DD> Returns the BDD corresponding to the top variable of
+  the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#CalBddIsCubeStep" TARGET="MAIN"><CODE>CalBddIsCubeStep()</CODE></A>
+ <DD> Returns 1 if the argument BDD is a cube, 0 otherwise
+
+ <DT> <A HREF="calAllDet.html#CalBddTypeAux" TARGET="MAIN"><CODE>CalBddTypeAux()</CODE></A>
+ <DD> Returns the BDD type by recursively traversing the argument BDD
+
+ <DT> <A HREF="calAllDet.html#CalBddIdentity" TARGET="MAIN"><CODE>CalBddIdentity()</CODE></A>
+ <DD> Returns the duplicate BDD of the argument BDD.
+
+ <DT> <A HREF="calAllDet.html#BddIntersectsStep" TARGET="MAIN"><CODE>BddIntersectsStep()</CODE></A>
+ <DD> Recursive routine to returns a BDD that implies conjunction of
+  argument BDDs
+
+</DL>
+<HR>
+<A NAME="calApplyReduce.c"><H1>calApplyReduce.c</H1></A>
+Generic routines for processing temporary nodes during
+  "apply" and "reduce" phases. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalHashTableApply" TARGET="MAIN"><CODE>CalHashTableApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableReduce" TARGET="MAIN"><CODE>CalHashTableReduce()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calAssociation.c"><H1>calAssociation.c</H1></A>
+Contains the routines related to the variable association. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi  (sanghavi@eecs.berkeley.edu)</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_AssociationInit" TARGET="MAIN"><CODE>Cal_AssociationInit()</CODE></A>
+ <DD> Creates or finds a variable association.
+
+ <DT> <A HREF="calAllDet.html#Cal_AssociationQuit" TARGET="MAIN"><CODE>Cal_AssociationQuit()</CODE></A>
+ <DD> Deletes the variable association given by id
+
+ <DT> <A HREF="calAllDet.html#Cal_AssociationSetCurrent" TARGET="MAIN"><CODE>Cal_AssociationSetCurrent()</CODE></A>
+ <DD> Sets the current variable association to the one given by id and
+  returns the ID of the old association.
+
+ <DT> <A HREF="calAllDet.html#Cal_TempAssociationAugment" TARGET="MAIN"><CODE>Cal_TempAssociationAugment()</CODE></A>
+ <DD> Adds to the temporary variable association.
+
+ <DT> <A HREF="calAllDet.html#Cal_TempAssociationInit" TARGET="MAIN"><CODE>Cal_TempAssociationInit()</CODE></A>
+ <DD> Sets the temporary variable association.
+
+ <DT> <A HREF="calAllDet.html#Cal_TempAssociationQuit" TARGET="MAIN"><CODE>Cal_TempAssociationQuit()</CODE></A>
+ <DD> Cleans up temporary association
+
+ <DT> <A HREF="calAllDet.html#CalAssociationListFree" TARGET="MAIN"><CODE>CalAssociationListFree()</CODE></A>
+ <DD> Frees the variable associations
+
+ <DT> <A HREF="calAllDet.html#CalVarAssociationRepackUpdate" TARGET="MAIN"><CODE>CalVarAssociationRepackUpdate()</CODE></A>
+ <DD> Need to be called after repacking.
+
+ <DT> <A HREF="calAllDet.html#CalCheckAssociationValidity" TARGET="MAIN"><CODE>CalCheckAssociationValidity()</CODE></A>
+ <DD> Checks the validity of association.
+
+ <DT> <A HREF="calAllDet.html#CalReorderAssociationFix" TARGET="MAIN"><CODE>CalReorderAssociationFix()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#AssociationIsEqual" TARGET="MAIN"><CODE>AssociationIsEqual()</CODE></A>
+ <DD> Checks for equality of two associations
+
+ <DT> <A HREF="calAllDet.html#CheckAssoc" TARGET="MAIN"><CODE>CheckAssoc()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBddCompose.c"><H1>calBddCompose.c</H1></A>
+Routine for composing one BDD into another. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddCompose" TARGET="MAIN"><CODE>Cal_BddCompose()</CODE></A>
+ <DD> composition - substitute a BDD variable by a function
+
+ <DT> <A HREF="calAllDet.html#CalRequestNodeListCompose" TARGET="MAIN"><CODE>CalRequestNodeListCompose()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableComposeApply" TARGET="MAIN"><CODE>CalHashTableComposeApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalComposeRequestCreate" TARGET="MAIN"><CODE>CalComposeRequestCreate()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBddITE.c"><H1>calBddITE.c</H1></A>
+Routine for computing ITE of 3 BDD operands. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddITE" TARGET="MAIN"><CODE>Cal_BddITE()</CODE></A>
+ <DD> Returns the BDD for logical If-Then-Else
+
+  Description [Returns the BDD for the logical operation IF f THEN g ELSE h
+  - f g + f' h
+
+ <DT> <A HREF="calAllDet.html#CalRequestNodeListArrayITE" TARGET="MAIN"><CODE>CalRequestNodeListArrayITE()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddOpITEBF" TARGET="MAIN"><CODE>CalBddOpITEBF()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableITEApply" TARGET="MAIN"><CODE>CalHashTableITEApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddITE" TARGET="MAIN"><CODE>CalBddITE()</CODE></A>
+ <DD> Returns the BDD for logical If-Then-Else
+ 
+   Description [Returns the BDD for the logical operation IF f THEN g ELSE h
+   - f g + f' h
+
+</DL>
+<HR>
+<A NAME="calBddManager.c"><H1>calBddManager.c</H1></A>
+Routines for maintaing the manager and creating
+  variables etc. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerInit" TARGET="MAIN"><CODE>Cal_BddManagerInit()</CODE></A>
+ <DD> Creates and initializes a new BDD manager.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerQuit" TARGET="MAIN"><CODE>Cal_BddManagerQuit()</CODE></A>
+ <DD> Frees the BDD manager and all the associated allocations
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerSetParameters" TARGET="MAIN"><CODE>Cal_BddManagerSetParameters()</CODE></A>
+ <DD> Sets appropriate fields of BDD Manager.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerGetNumNodes" TARGET="MAIN"><CODE>Cal_BddManagerGetNumNodes()</CODE></A>
+ <DD> Returns the number of BDD nodes
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerCreateNewVarFirst" TARGET="MAIN"><CODE>Cal_BddManagerCreateNewVarFirst()</CODE></A>
+ <DD> Creates and returns a new variable at the start of the variable
+  order.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerCreateNewVarLast" TARGET="MAIN"><CODE>Cal_BddManagerCreateNewVarLast()</CODE></A>
+ <DD> Creates and returns a new variable at the end of the variable
+  order.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerCreateNewVarBefore" TARGET="MAIN"><CODE>Cal_BddManagerCreateNewVarBefore()</CODE></A>
+ <DD> Creates and returns a new variable before the specified one in
+  the variable order.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerCreateNewVarAfter" TARGET="MAIN"><CODE>Cal_BddManagerCreateNewVarAfter()</CODE></A>
+ <DD> Creates and returns a new variable after the specified one in
+  the variable  order.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerGetVarWithIndex" TARGET="MAIN"><CODE>Cal_BddManagerGetVarWithIndex()</CODE></A>
+ <DD> Returns the variable with the specified index, null if no
+  such variable exists
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerGetVarWithId" TARGET="MAIN"><CODE>Cal_BddManagerGetVarWithId()</CODE></A>
+ <DD> Returns the variable with the specified id, null if no
+  such variable exists
+
+ <DT> <A HREF="calAllDet.html#CalBddManagerCreateNewVar" TARGET="MAIN"><CODE>CalBddManagerCreateNewVar()</CODE></A>
+ <DD> This function creates and returns a new variable with given
+  index value.
+
+ <DT> <A HREF="calAllDet.html#BddDefaultTransformFn" TARGET="MAIN"><CODE>BddDefaultTransformFn()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddManagerPrint" TARGET="MAIN"><CODE>CalBddManagerPrint()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBddOp.c"><H1>calBddOp.c</H1></A>
+Routines for performing simple boolean operations on a
+  pair of BDDs or on an array of pair of BDDs or on an array of BDDs. <P>
+<B>By: Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+The "cal" specific routines are "Cal_BddPairwiseAnd/Or",
+  "Cal_BddMultiwayAnd/Or". <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddAnd" TARGET="MAIN"><CODE>Cal_BddAnd()</CODE></A>
+ <DD> Returns the BDD for logical AND of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddNand" TARGET="MAIN"><CODE>Cal_BddNand()</CODE></A>
+ <DD> Returns the BDD for logical NAND of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddOr" TARGET="MAIN"><CODE>Cal_BddOr()</CODE></A>
+ <DD> Returns the BDD for logical OR of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddNor" TARGET="MAIN"><CODE>Cal_BddNor()</CODE></A>
+ <DD> Returns the BDD for logical NOR of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddXor" TARGET="MAIN"><CODE>Cal_BddXor()</CODE></A>
+ <DD> Returns the BDD for logical exclusive OR of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddXnor" TARGET="MAIN"><CODE>Cal_BddXnor()</CODE></A>
+ <DD> Returns the BDD for logical exclusive NOR of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddPairwiseAnd" TARGET="MAIN"><CODE>Cal_BddPairwiseAnd()</CODE></A>
+ <DD> Returns an array of BDDs obtained by logical AND of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+
+ <DT> <A HREF="calAllDet.html#Cal_BddPairwiseOr" TARGET="MAIN"><CODE>Cal_BddPairwiseOr()</CODE></A>
+ <DD> Returns an array of BDDs obtained by logical OR of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+
+ <DT> <A HREF="calAllDet.html#Cal_BddPairwiseXor" TARGET="MAIN"><CODE>Cal_BddPairwiseXor()</CODE></A>
+ <DD> Returns an array of BDDs obtained by logical XOR of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+
+ <DT> <A HREF="calAllDet.html#Cal_BddMultiwayAnd" TARGET="MAIN"><CODE>Cal_BddMultiwayAnd()</CODE></A>
+ <DD> Returns the BDD for logical AND of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddMultiwayOr" TARGET="MAIN"><CODE>Cal_BddMultiwayOr()</CODE></A>
+ <DD> Returns the BDD for logical OR of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddMultiwayXor" TARGET="MAIN"><CODE>Cal_BddMultiwayXor()</CODE></A>
+ <DD> Returns the BDD for logical XOR of argument BDDs
+
+ <DT> <A HREF="calAllDet.html#CalRequestNodeListArrayOp" TARGET="MAIN"><CODE>CalRequestNodeListArrayOp()</CODE></A>
+ <DD> Computes result BDDs for an array of lists, each entry of which 
+  is pair of pointers, each of which points to a operand BDD or an entry in
+  another list with a smaller array index
+
+ <DT> <A HREF="calAllDet.html#CalBddOpBF" TARGET="MAIN"><CODE>CalBddOpBF()</CODE></A>
+ <DD> Internal routine to compute a logical operation on a pair of BDDs
+
+ <DT> <A HREF="calAllDet.html#BddArrayOpBF" TARGET="MAIN"><CODE>BddArrayOpBF()</CODE></A>
+ <DD> Internal common routine for Cal_BddPairwiseAnd and Cal_BddPairwiseOr
+
+ <DT> <A HREF="calAllDet.html#BddMultiwayOp" TARGET="MAIN"><CODE>BddMultiwayOp()</CODE></A>
+ <DD> Internal routine for multiway operations
+
+ <DT> <A HREF="calAllDet.html#BddArrayToRequestNodeListArray" TARGET="MAIN"><CODE>BddArrayToRequestNodeListArray()</CODE></A>
+ <DD> Converts an array of BDDs to a list of requests representing BDD
+  pairs
+
+ <DT> <A HREF="calAllDet.html#CeilLog2" TARGET="MAIN"><CODE>CeilLog2()</CODE></A>
+ <DD> Returns the smallest integer greater than or equal to log2 of a
+  number
+
+</DL>
+<HR>
+<A NAME="calBddReorderTest.c"><H1>calBddReorderTest.c</H1></A>
+A test routine for checking the functionality of
+  dynamic reordering. <P>
+<B>By: Wilsin Gosti    (wilsin@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#main" TARGET="MAIN"><CODE>main()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#cpuTime" TARGET="MAIN"><CODE>cpuTime()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#elapsedTime" TARGET="MAIN"><CODE>elapsedTime()</CODE></A>
+ <DD> Computes the time.
+
+</DL>
+<HR>
+<A NAME="calBddSatisfy.c"><H1>calBddSatisfy.c</H1></A>
+Routines for BDD satisfying valuation. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddSatisfy" TARGET="MAIN"><CODE>Cal_BddSatisfy()</CODE></A>
+ <DD> Returns a BDD which implies f, true for
+               some valuation on which f is true, and which has at most
+               one node at each level
+
+ <DT> <A HREF="calAllDet.html#Cal_BddSatisfySupport" TARGET="MAIN"><CODE>Cal_BddSatisfySupport()</CODE></A>
+ <DD> Returns a special cube contained in f.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddSatisfyingFraction" TARGET="MAIN"><CODE>Cal_BddSatisfyingFraction()</CODE></A>
+ <DD> Returns the fraction of valuations which make f true. (Note that
+  this fraction is independent of whatever set of variables f is supposed to be
+  a function of)
+
+ <DT> <A HREF="calAllDet.html#BddSatisfyStep" TARGET="MAIN"><CODE>BddSatisfyStep()</CODE></A>
+ <DD> Returns a BDD which implies f, is true for some valuation
+  on which f is true, and which has at most one node at each level
+
+ <DT> <A HREF="calAllDet.html#BddSatisfySupportStep" TARGET="MAIN"><CODE>BddSatisfySupportStep()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#IndexCmp" TARGET="MAIN"><CODE>IndexCmp()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddSatisfyingFractionStep" TARGET="MAIN"><CODE>BddSatisfyingFractionStep()</CODE></A>
+ <DD> 
+
+</DL>
+<HR>
+<A NAME="calBddSize.c"><H1>calBddSize.c</H1></A>
+BDD size and profile routines <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Originally written by David Long.</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddSize" TARGET="MAIN"><CODE>Cal_BddSize()</CODE></A>
+ <DD> Returns the number of nodes in f when negout is nonzero. If
+  negout is zero, we pretend that the BDDs don't have negative-output pointers.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddSizeMultiple" TARGET="MAIN"><CODE>Cal_BddSizeMultiple()</CODE></A>
+ <DD> The routine is like Cal_BddSize, but takes a null-terminated
+               array of BDDs and accounts for sharing of nodes.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddProfile" TARGET="MAIN"><CODE>Cal_BddProfile()</CODE></A>
+ <DD> Returns a "node profile" of f, i.e., the number of nodes at each
+  level in f.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddProfileMultiple" TARGET="MAIN"><CODE>Cal_BddProfileMultiple()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#Cal_BddFunctionProfile" TARGET="MAIN"><CODE>Cal_BddFunctionProfile()</CODE></A>
+ <DD> Returns a "function profile" for f.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddFunctionProfileMultiple" TARGET="MAIN"><CODE>Cal_BddFunctionProfileMultiple()</CODE></A>
+ <DD> Returns a "function profile" for fArray.
+
+ <DT> <A HREF="calAllDet.html#BddMarkBdd" TARGET="MAIN"><CODE>BddMarkBdd()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddCountNoNodes" TARGET="MAIN"><CODE>BddCountNoNodes()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddCountNodes" TARGET="MAIN"><CODE>BddCountNodes()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddSizeStep" TARGET="MAIN"><CODE>BddSizeStep()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddProfileStep" TARGET="MAIN"><CODE>BddProfileStep()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddHighestRefStep" TARGET="MAIN"><CODE>BddHighestRefStep()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddDominatedStep" TARGET="MAIN"><CODE>BddDominatedStep()</CODE></A>
+ <DD> 
+
+</DL>
+<HR>
+<A NAME="calBddSubstitute.c"><H1>calBddSubstitute.c</H1></A>
+Routine for simultaneous substitution of an array of
+  variables with an array of functions. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+Routine for simultaneous substitution of an array of
+  variables with an array of functions. <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddSubstitute" TARGET="MAIN"><CODE>Cal_BddSubstitute()</CODE></A>
+ <DD> Substitute a set of variables by functions
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSubstituteApply" TARGET="MAIN"><CODE>CalHashTableSubstituteApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSubstituteReduce" TARGET="MAIN"><CODE>CalHashTableSubstituteReduce()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBddSupport.c"><H1>calBddSupport.c</H1></A>
+Routines related to the support of a BDD. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Originally written by David Long.</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddSupport" TARGET="MAIN"><CODE>Cal_BddSupport()</CODE></A>
+ <DD> returns the support of f as a null-terminated array of variables
+
+ <DT> <A HREF="calAllDet.html#Cal_BddDependsOn" TARGET="MAIN"><CODE>Cal_BddDependsOn()</CODE></A>
+ <DD> Returns 1 if f depends on var and returns 0 otherwise.
+
+ <DT> <A HREF="calAllDet.html#CalBddSupportStep" TARGET="MAIN"><CODE>CalBddSupportStep()</CODE></A>
+ <DD> returns the support of f as a null-terminated array of variables
+
+ <DT> <A HREF="calAllDet.html#CalBddUnmarkNodes" TARGET="MAIN"><CODE>CalBddUnmarkNodes()</CODE></A>
+ <DD> recursively unmarks the nodes
+
+ <DT> <A HREF="calAllDet.html#CalBddDependsOnStep" TARGET="MAIN"><CODE>CalBddDependsOnStep()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBddSwapVars.c"><H1>calBddSwapVars.c</H1></A>
+Routine for swapping two variables. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+Routine for swapping two variables. <P>
+<P><B>See Also</B><A HREF="#None"><CODE>None</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddSwapVars" TARGET="MAIN"><CODE>Cal_BddSwapVars()</CODE></A>
+ <DD> Return a function obtained by swapping two variables
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSwapVarsApply" TARGET="MAIN"><CODE>CalHashTableSwapVarsApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSwapVarsPlusApply" TARGET="MAIN"><CODE>CalHashTableSwapVarsPlusApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSwapVarsMinusApply" TARGET="MAIN"><CODE>CalHashTableSwapVarsMinusApply()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBddVarSubstitute.c"><H1>calBddVarSubstitute.c</H1></A>
+Routine for simultaneous substitution of an array of
+  variables with another array of variables. <P>
+<B>By: Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddVarSubstitute" TARGET="MAIN"><CODE>Cal_BddVarSubstitute()</CODE></A>
+ <DD> Substitute a set of variables by set of another variables.
+
+ <DT> <A HREF="calAllDet.html#CalBddVarSubstitute" TARGET="MAIN"><CODE>CalBddVarSubstitute()</CODE></A>
+ <DD> Substitute a set of variables by functions
+
+ <DT> <A HREF="calAllDet.html#CalOpBddVarSubstitute" TARGET="MAIN"><CODE>CalOpBddVarSubstitute()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSubstituteApply" TARGET="MAIN"><CODE>CalHashTableSubstituteApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableSubstituteReduce" TARGET="MAIN"><CODE>CalHashTableSubstituteReduce()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calBlk.c"><H1>calBlk.c</H1></A>
+Routines for manipulating blocks of variables. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu). Modelled on the BDD package
+  developed by David Long.</B><P>
+Routines for manipulating blocks of variables. <P>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddNewVarBlock" TARGET="MAIN"><CODE>Cal_BddNewVarBlock()</CODE></A>
+ <DD> Creates and returns a variable block used for
+  controlling dynamic reordering.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddVarBlockReorderable" TARGET="MAIN"><CODE>Cal_BddVarBlockReorderable()</CODE></A>
+ <DD> Sets the reoderability of a particular block.
+
+ <DT> <A HREF="calAllDet.html#CalBddFindBlock" TARGET="MAIN"><CODE>CalBddFindBlock()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddBlockDelta" TARGET="MAIN"><CODE>CalBddBlockDelta()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddShiftBlock" TARGET="MAIN"><CODE>CalBddShiftBlock()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBlockMemoryConsumption" TARGET="MAIN"><CODE>CalBlockMemoryConsumption()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalFreeBlockRecursively" TARGET="MAIN"><CODE>CalFreeBlockRecursively()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#AddBlock" TARGET="MAIN"><CODE>AddBlock()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calCacheTableTwo.c"><H1>calCacheTableTwo.c</H1></A>
+Functions to manage the Cache tables. <P>
+<B>By: Rajeev K. Ranjan   (rajeev@eecs.berkeley.edu)
+                Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoInit" TARGET="MAIN"><CODE>CalCacheTableTwoInit()</CODE></A>
+ <DD> Initialize a Cache table using default parameters.
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoQuit" TARGET="MAIN"><CODE>CalCacheTableTwoQuit()</CODE></A>
+ <DD> Free a Cache table along with the associated storage.
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoInsert" TARGET="MAIN"><CODE>CalCacheTableTwoInsert()</CODE></A>
+ <DD> Directly insert a BDD node in the Cache table.
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoLookup" TARGET="MAIN"><CODE>CalCacheTableTwoLookup()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoFlush" TARGET="MAIN"><CODE>CalCacheTableTwoFlush()</CODE></A>
+ <DD> Free a Cache table along with the associated storage.
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoFlushAll" TARGET="MAIN"><CODE>CalCacheTableTwoFlushAll()</CODE></A>
+ <DD> Free a Cache table along with the associated storage.
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoGCFlush" TARGET="MAIN"><CODE>CalCacheTableTwoGCFlush()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoRepackUpdate" TARGET="MAIN"><CODE>CalCacheTableTwoRepackUpdate()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckCacheTableValidity" TARGET="MAIN"><CODE>CalCheckCacheTableValidity()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoFixResultPointers" TARGET="MAIN"><CODE>CalCacheTableTwoFixResultPointers()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCacheTablePrint" TARGET="MAIN"><CODE>CalCacheTablePrint()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddManagerGetCacheTableData" TARGET="MAIN"><CODE>CalBddManagerGetCacheTableData()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableRehash" TARGET="MAIN"><CODE>CalCacheTableRehash()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableTwoFlushAssociationId" TARGET="MAIN"><CODE>CalCacheTableTwoFlushAssociationId()</CODE></A>
+ <DD> Flushes the entries from the cache which
+                      correspond to the given associationId.
+
+ <DT> <A HREF="calAllDet.html#CalCacheTableMemoryConsumption" TARGET="MAIN"><CODE>CalCacheTableMemoryConsumption()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CacheTableTwoRehash" TARGET="MAIN"><CODE>CacheTableTwoRehash()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CacheTablePrint" TARGET="MAIN"><CODE>CacheTablePrint()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calDump.c"><H1>calDump.c</H1></A>
+BDD library dump/undump routines <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Originally written by David Long.</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddUndumpBdd" TARGET="MAIN"><CODE>Cal_BddUndumpBdd()</CODE></A>
+ <DD> Reads a BDD from a file
+
+ <DT> <A HREF="calAllDet.html#Cal_BddDumpBdd" TARGET="MAIN"><CODE>Cal_BddDumpBdd()</CODE></A>
+ <DD> Write a BDD to a file
+
+ <DT> <A HREF="calAllDet.html#Write" TARGET="MAIN"><CODE>Write()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddDumpBddStep" TARGET="MAIN"><CODE>BddDumpBddStep()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#Read" TARGET="MAIN"><CODE>Read()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BddUndumpBddStep" TARGET="MAIN"><CODE>BddUndumpBddStep()</CODE></A>
+ <DD> 
+
+ <DT> <A HREF="calAllDet.html#BytesNeeded" TARGET="MAIN"><CODE>BytesNeeded()</CODE></A>
+ <DD> 
+
+</DL>
+<HR>
+<A NAME="calGC.c"><H1>calGC.c</H1></A>
+Garbage collection routines <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan (rajeev@eecs.berkeley.edu)</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddSetGCMode" TARGET="MAIN"><CODE>Cal_BddSetGCMode()</CODE></A>
+ <DD> Sets the garbage collection mode, 0 means the garbage
+  collection should be turned off, 1 means garbage collection should
+  be on.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerGC" TARGET="MAIN"><CODE>Cal_BddManagerGC()</CODE></A>
+ <DD> Invokes the garbage collection at the manager level.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddManagerSetGCLimit" TARGET="MAIN"><CODE>Cal_BddManagerSetGCLimit()</CODE></A>
+ <DD> Sets the limit of the garbage collection.
+
+ <DT> <A HREF="calAllDet.html#CalBddManagerGCCheck" TARGET="MAIN"><CODE>CalBddManagerGCCheck()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableGC" TARGET="MAIN"><CODE>CalHashTableGC()</CODE></A>
+ <DD> This function performs the garbage collection operation
+  for a particular index.
+
+ <DT> <A HREF="calAllDet.html#CalRepackNodesAfterGC" TARGET="MAIN"><CODE>CalRepackNodesAfterGC()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CeilLog2" TARGET="MAIN"><CODE>CeilLog2()</CODE></A>
+ <DD> Returns the smallest integer greater than or equal to log2 of a
+  number
+
+</DL>
+<HR>
+<A NAME="calHashTable.c"><H1>calHashTable.c</H1></A>
+Functions to manage the hash tables that are a part of
+                  1. unique table
+                  2. request queue <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalHashTableInit" TARGET="MAIN"><CODE>CalHashTableInit()</CODE></A>
+ <DD> Initialize a hash table using default parameters.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableQuit" TARGET="MAIN"><CODE>CalHashTableQuit()</CODE></A>
+ <DD> Free a hash table along with the associated storage.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableAddDirect" TARGET="MAIN"><CODE>CalHashTableAddDirect()</CODE></A>
+ <DD> Directly insert a BDD node in the hash table.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableFindOrAdd" TARGET="MAIN"><CODE>CalHashTableFindOrAdd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableAddDirectAux" TARGET="MAIN"><CODE>CalHashTableAddDirectAux()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableCleanUp" TARGET="MAIN"><CODE>CalHashTableCleanUp()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableLookup" TARGET="MAIN"><CODE>CalHashTableLookup()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableDelete" TARGET="MAIN"><CODE>CalHashTableDelete()</CODE></A>
+ <DD> Deletes a BDD node in the hash table.
+
+ <DT> <A HREF="calAllDet.html#CalUniqueTableForIdLookup" TARGET="MAIN"><CODE>CalUniqueTableForIdLookup()</CODE></A>
+ <DD> Lookup unique table for id.
+
+ <DT> <A HREF="calAllDet.html#CalUniqueTableForIdFindOrAdd" TARGET="MAIN"><CODE>CalUniqueTableForIdFindOrAdd()</CODE></A>
+ <DD> find or add in the unique table for id.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableRehash" TARGET="MAIN"><CODE>CalHashTableRehash()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalUniqueTableForIdRehashNode" TARGET="MAIN"><CODE>CalUniqueTableForIdRehashNode()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddUniqueTableNumLockedNodes" TARGET="MAIN"><CODE>CalBddUniqueTableNumLockedNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalPackNodes" TARGET="MAIN"><CODE>CalPackNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddPackNodesForSingleId" TARGET="MAIN"><CODE>CalBddPackNodesForSingleId()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddPackNodesAfterReorderForSingleId" TARGET="MAIN"><CODE>CalBddPackNodesAfterReorderForSingleId()</CODE></A>
+ <DD> Packs the nodes if the variables which has just
+  been sifted.
+
+ <DT> <A HREF="calAllDet.html#CalBddPackNodesForMultipleIds" TARGET="MAIN"><CODE>CalBddPackNodesForMultipleIds()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CeilLog2" TARGET="MAIN"><CODE>CeilLog2()</CODE></A>
+ <DD> Returns the smallest integer greater than or equal to log2 of a
+  number
+
+</DL>
+<HR>
+<A NAME="calHashTableOne.c"><H1>calHashTableOne.c</H1></A>
+Routines for managing hash table with Bdd is a key and
+               int, long, or double as a value <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalHashTableOneInit" TARGET="MAIN"><CODE>CalHashTableOneInit()</CODE></A>
+ <DD> Initialize a hash table using default parameters.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableOneQuit" TARGET="MAIN"><CODE>CalHashTableOneQuit()</CODE></A>
+ <DD> Free a hash table along with the associated storage.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableOneInsert" TARGET="MAIN"><CODE>CalHashTableOneInsert()</CODE></A>
+ <DD> Directly insert a BDD node in the hash table.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableOneLookup" TARGET="MAIN"><CODE>CalHashTableOneLookup()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#HashTableOneRehash" TARGET="MAIN"><CODE>HashTableOneRehash()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calHashTableThree.c"><H1>calHashTableThree.c</H1></A>
+Functions to manage the hash tables that are a part of
+                  ITE operation <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+CalHashTableThreeFindOrAdd <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalHashTableThreeFindOrAdd" TARGET="MAIN"><CODE>CalHashTableThreeFindOrAdd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTableThreeRehash" TARGET="MAIN"><CODE>CalHashTableThreeRehash()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calInteract.c"><H1>calInteract.c</H1></A>
+Functions to manipulate the variable interaction matrix. <P>
+<B>By: Original author:Fabio Somenzi. Modified for CAL package
+  by Rajeev K. Ranjan</B><P>
+The interaction matrix tells whether two variables are
+  both in the support of some function of the DD. The main use of the
+  interaction matrix is in the in-place swapping. Indeed, if two
+  variables do not interact, there is no arc connecting the two layers;
+  therefore, the swap can be performed in constant time, without
+  scanning the subtables. Another use of the interaction matrix is in
+  the computation of the lower bounds for sifting. Finally, the
+  interaction matrix can be used to speed up aggregation checks in
+  symmetric and group sifting.<p>
+  The computation of the interaction matrix is done with a series of
+  depth-first searches. The searches start from those nodes that have
+  only external references. The matrix is stored as a packed array of bits;
+  since it is symmetric, only the upper triangle is kept in memory.
+  As a final remark, we note that there may be variables that do
+  intercat, but that for a given variable order have no arc connecting
+  their layers when they are adjacent. <P>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalSetInteract" TARGET="MAIN"><CODE>CalSetInteract()</CODE></A>
+ <DD> Set interaction matrix entries.
+
+ <DT> <A HREF="calAllDet.html#CalTestInteract" TARGET="MAIN"><CODE>CalTestInteract()</CODE></A>
+ <DD> Test interaction matrix entries.
+
+ <DT> <A HREF="calAllDet.html#CalInitInteract" TARGET="MAIN"><CODE>CalInitInteract()</CODE></A>
+ <DD> Initializes the interaction matrix.
+
+ <DT> <A HREF="calAllDet.html#ddSuppInteract" TARGET="MAIN"><CODE>ddSuppInteract()</CODE></A>
+ <DD> Find the support of f.
+
+ <DT> <A HREF="calAllDet.html#ddClearLocal" TARGET="MAIN"><CODE>ddClearLocal()</CODE></A>
+ <DD> Performs a DFS from f, clearing the LSB of the then pointers.
+
+ <DT> <A HREF="calAllDet.html#ddUpdateInteract" TARGET="MAIN"><CODE>ddUpdateInteract()</CODE></A>
+ <DD> Marks as interacting all pairs of variables that appear in
+  support.
+
+</DL>
+<HR>
+<A NAME="calMem.c"><H1>calMem.c</H1></A>
+Routines for memory management. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu). Originally
+  written by David Long.</B><P>
+Contains allocation, free, resize routines. Also has
+  routines for managing records of fixed size. <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_MemFatal" TARGET="MAIN"><CODE>Cal_MemFatal()</CODE></A>
+ <DD> Prints an error message and exits.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemAllocation" TARGET="MAIN"><CODE>Cal_MemAllocation()</CODE></A>
+ <DD> Returns the memory allocated.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemGetBlock" TARGET="MAIN"><CODE>Cal_MemGetBlock()</CODE></A>
+ <DD> Allocates a new block of the specified size.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemFreeBlock" TARGET="MAIN"><CODE>Cal_MemFreeBlock()</CODE></A>
+ <DD> Frees the block.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemResizeBlock" TARGET="MAIN"><CODE>Cal_MemResizeBlock()</CODE></A>
+ <DD> Expands or contracts the block to a new size.
+  We try to avoid moving the block if possible.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemNewRec" TARGET="MAIN"><CODE>Cal_MemNewRec()</CODE></A>
+ <DD> Allocates a record from the specified record manager.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemFreeRec" TARGET="MAIN"><CODE>Cal_MemFreeRec()</CODE></A>
+ <DD> Frees a record managed by the indicated record manager.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemNewRecMgr" TARGET="MAIN"><CODE>Cal_MemNewRecMgr()</CODE></A>
+ <DD> Creates a new record manager with the given  record size.
+
+ <DT> <A HREF="calAllDet.html#Cal_MemFreeRecMgr" TARGET="MAIN"><CODE>Cal_MemFreeRecMgr()</CODE></A>
+ <DD> Frees all the storage associated with the specified record manager.
+
+ <DT> <A HREF="calAllDet.html#CeilingLog2" TARGET="MAIN"><CODE>CeilingLog2()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BlockSizeIndex" TARGET="MAIN"><CODE>BlockSizeIndex()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#AddToFreeList" TARGET="MAIN"><CODE>AddToFreeList()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#RemoveFromFreeList" TARGET="MAIN"><CODE>RemoveFromFreeList()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#Buddy" TARGET="MAIN"><CODE>Buddy()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TrimToSize" TARGET="MAIN"><CODE>TrimToSize()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#MergeAndFree" TARGET="MAIN"><CODE>MergeAndFree()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calMemoryManagement.c"><H1>calMemoryManagement.c</H1></A>
+Special memory management routines specific to CAL. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+Functions for managing the system memory using a set of 
+              nodeManagers. Each nodeManager manages a set of fixed size
+              nodes obtained from a set of pages. When additional memory
+              is required, nodeManager obtains a new page from the pageManager.
+              The new page is divided into ( PAGE_SIZE/NODE_SIZE ) number of
+              nodes. <P>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalPageManagerInit" TARGET="MAIN"><CODE>CalPageManagerInit()</CODE></A>
+ <DD> Initializes a pageManager.
+
+ <DT> <A HREF="calAllDet.html#CalPageManagerQuit" TARGET="MAIN"><CODE>CalPageManagerQuit()</CODE></A>
+ <DD> Frees pageManager and associated pages.
+
+ <DT> <A HREF="calAllDet.html#CalPageManagerPrint" TARGET="MAIN"><CODE>CalPageManagerPrint()</CODE></A>
+ <DD> Prints address of each memory segment and address of each page.
+
+ <DT> <A HREF="calAllDet.html#CalNodeManagerInit" TARGET="MAIN"><CODE>CalNodeManagerInit()</CODE></A>
+ <DD> Initializes a node manager.
+
+ <DT> <A HREF="calAllDet.html#CalNodeManagerQuit" TARGET="MAIN"><CODE>CalNodeManagerQuit()</CODE></A>
+ <DD> Frees a node manager.
+
+ <DT> <A HREF="calAllDet.html#CalNodeManagerPrint" TARGET="MAIN"><CODE>CalNodeManagerPrint()</CODE></A>
+ <DD> Prints address of each free node.
+
+ <DT> <A HREF="calAllDet.html#CalPageManagerAllocPage" TARGET="MAIN"><CODE>CalPageManagerAllocPage()</CODE></A>
+ <DD> Allocs a new page.
+
+ <DT> <A HREF="calAllDet.html#CalPageManagerFreePage" TARGET="MAIN"><CODE>CalPageManagerFreePage()</CODE></A>
+ <DD> Free a page.
+
+ <DT> <A HREF="calAllDet.html#PageManagerExpandStorage" TARGET="MAIN"><CODE>PageManagerExpandStorage()</CODE></A>
+ <DD> Allocates a segment of memory to expand the storage managed by
+              pageManager. The allocated segment is divided into free pages
+              which are linked as a freePageList.
+
+ <DT> <A HREF="calAllDet.html#PageAlign" TARGET="MAIN"><CODE>PageAlign()</CODE></A>
+ <DD> Return page aligned address greater than or equal to
+  the pointer.
+
+ <DT> <A HREF="calAllDet.html#SegmentToPageList" TARGET="MAIN"><CODE>SegmentToPageList()</CODE></A>
+ <DD> Converts a memory segment into a linked list of pages.
+              if p is a pointer to a page, *p contains address of the next page
+              if p is a pointer to the last page, *p contains lastPointer.
+
+</DL>
+<HR>
+<A NAME="calPerformanceTest.c"><H1>calPerformanceTest.c</H1></A>
+This file contains the performance test routines for
+  the CAL package. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi  (sanghavi@eecs.berkeley.edu)</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_PerformanceTest" TARGET="MAIN"><CODE>Cal_PerformanceTest()</CODE></A>
+ <DD> Main routine for testing performances of various routines.
+
+ <DT> <A HREF="calAllDet.html#CalIncreasingOrderCompare" TARGET="MAIN"><CODE>CalIncreasingOrderCompare()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalDecreasingOrderCompare" TARGET="MAIN"><CODE>CalDecreasingOrderCompare()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestAnd" TARGET="MAIN"><CODE>CalPerformanceTestAnd()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceMemoryOverhead" TARGET="MAIN"><CODE>CalPerformanceMemoryOverhead()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformaceTestSuperscalar" TARGET="MAIN"><CODE>CalPerformaceTestSuperscalar()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestNonSuperscalar" TARGET="MAIN"><CODE>CalPerformanceTestNonSuperscalar()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestMultiway" TARGET="MAIN"><CODE>CalPerformanceTestMultiway()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestOneway" TARGET="MAIN"><CODE>CalPerformanceTestOneway()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestCompose" TARGET="MAIN"><CODE>CalPerformanceTestCompose()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestQuantifyAllTogether" TARGET="MAIN"><CODE>CalPerformanceTestQuantifyAllTogether()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalQuantifySanityCheck" TARGET="MAIN"><CODE>CalQuantifySanityCheck()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestRelProd" TARGET="MAIN"><CODE>CalPerformanceTestRelProd()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestSubstitute" TARGET="MAIN"><CODE>CalPerformanceTestSubstitute()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#CalPerformanceTestSwapVars" TARGET="MAIN"><CODE>CalPerformanceTestSwapVars()</CODE></A>
+ <DD> Performance test routine for quantify (all variables at the same
+  time).
+
+ <DT> <A HREF="calAllDet.html#elapsedTime" TARGET="MAIN"><CODE>elapsedTime()</CODE></A>
+ <DD> Computes the time.
+
+ <DT> <A HREF="calAllDet.html#cpuTime" TARGET="MAIN"><CODE>cpuTime()</CODE></A>
+ <DD> Computes the number of page faults.
+
+ <DT> <A HREF="calAllDet.html#pageFaults" TARGET="MAIN"><CODE>pageFaults()</CODE></A>
+ <DD> Computes the number of page faults.
+
+ <DT> <A HREF="calAllDet.html#GetRandomNumbers" TARGET="MAIN"><CODE>GetRandomNumbers()</CODE></A>
+ <DD> Generates "count" many random numbers ranging between
+  "lowerBound" and "upperBound".
+
+</DL>
+<HR>
+<A NAME="calPipeline.c"><H1>calPipeline.c</H1></A>
+Routines for creating and managing the pipelined BDD
+  operations. <P>
+<B>By: Rajeev K. Ranjan   (rajeev@eecs.berkeley.edu)
+                Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+Eventually we would like to have this feature
+  transparent to the user. <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_PipelineSetDepth" TARGET="MAIN"><CODE>Cal_PipelineSetDepth()</CODE></A>
+ <DD> Set depth of a BDD pipeline.
+
+ <DT> <A HREF="calAllDet.html#Cal_PipelineInit" TARGET="MAIN"><CODE>Cal_PipelineInit()</CODE></A>
+ <DD> Initialize a BDD pipeline.
+
+ <DT> <A HREF="calAllDet.html#Cal_PipelineCreateProvisionalBdd" TARGET="MAIN"><CODE>Cal_PipelineCreateProvisionalBdd()</CODE></A>
+ <DD> Create a provisional BDD in the pipeline.
+
+ <DT> <A HREF="calAllDet.html#Cal_PipelineExecute" TARGET="MAIN"><CODE>Cal_PipelineExecute()</CODE></A>
+ <DD> Executes a pipeline.
+
+ <DT> <A HREF="calAllDet.html#Cal_PipelineUpdateProvisionalBdd" TARGET="MAIN"><CODE>Cal_PipelineUpdateProvisionalBdd()</CODE></A>
+ <DD> Update a provisional Bdd obtained during pipelining.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddIsProvisional" TARGET="MAIN"><CODE>Cal_BddIsProvisional()</CODE></A>
+ <DD> Returns 1, if the given user BDD contains
+  provisional BDD node.
+
+ <DT> <A HREF="calAllDet.html#Cal_PipelineQuit" TARGET="MAIN"><CODE>Cal_PipelineQuit()</CODE></A>
+ <DD> Resets the pipeline freeing all resources.
+
+ <DT> <A HREF="calAllDet.html#CalBddReorderFixProvisionalNodes" TARGET="MAIN"><CODE>CalBddReorderFixProvisionalNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckPipelineValidity" TARGET="MAIN"><CODE>CalCheckPipelineValidity()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calPrint.c"><H1>calPrint.c</H1></A>
+Routine for printing a BDD. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu) and
+               Jagesh V. Sanghavi (sanghavi@eecs.berkeley.edu)
+               Originally written by David Long.</B><P>
+<P><B>See Also</B><A HREF="#None"><CODE>None</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddPrintBdd" TARGET="MAIN"><CODE>Cal_BddPrintBdd()</CODE></A>
+ <DD> Prints a BDD in the human readable form.
+
+ <DT> <A HREF="calAllDet.html#CalBddVarName" TARGET="MAIN"><CODE>CalBddVarName()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddNumberSharedNodes" TARGET="MAIN"><CODE>CalBddNumberSharedNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddMarkSharedNodes" TARGET="MAIN"><CODE>CalBddMarkSharedNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#Chars" TARGET="MAIN"><CODE>Chars()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddPrintTopVar" TARGET="MAIN"><CODE>BddPrintTopVar()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddPrintBddStep" TARGET="MAIN"><CODE>BddPrintBddStep()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddTerminalId" TARGET="MAIN"><CODE>BddTerminalId()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddTerminalValueAux" TARGET="MAIN"><CODE>BddTerminalValueAux()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calPrintProfile.c"><H1>calPrintProfile.c</H1></A>
+Routines for printing various profiles for a BDD. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
+               Originally written by David Long.</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddPrintProfile" TARGET="MAIN"><CODE>Cal_BddPrintProfile()</CODE></A>
+ <DD> Displays the node profile for f on fp. lineLength specifies 
+               the maximum line length.  varNamingFn is as in
+               Cal_BddPrintBdd.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddPrintProfileMultiple" TARGET="MAIN"><CODE>Cal_BddPrintProfileMultiple()</CODE></A>
+ <DD> Cal_BddPrintProfileMultiple is like Cal_BddPrintProfile except
+               it displays the profile for a set of BDDs
+
+ <DT> <A HREF="calAllDet.html#Cal_BddPrintFunctionProfile" TARGET="MAIN"><CODE>Cal_BddPrintFunctionProfile()</CODE></A>
+ <DD> Cal_BddPrintFunctionProfile is like Cal_BddPrintProfile except
+               it displays a function profile for f
+
+ <DT> <A HREF="calAllDet.html#Cal_BddPrintFunctionProfileMultiple" TARGET="MAIN"><CODE>Cal_BddPrintFunctionProfileMultiple()</CODE></A>
+ <DD> Cal_BddPrintFunctionProfileMultiple is like
+               Cal_BddPrintFunctionProfile except for multiple BDDs
+
+ <DT> <A HREF="calAllDet.html#CalBddPrintProfileAux" TARGET="MAIN"><CODE>CalBddPrintProfileAux()</CODE></A>
+ <DD> Prints a profile to the file given by fp.  The varNamingProc
+               is as in Cal_BddPrintBdd. lineLength gives the line width to scale
+               the profile to.
+
+ <DT> <A HREF="calAllDet.html#chars" TARGET="MAIN"><CODE>chars()</CODE></A>
+ <DD> 
+
+</DL>
+<HR>
+<A NAME="calQuant.c"><H1>calQuant.c</H1></A>
+Routines for existential/universal quantification and
+  relational product. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu) and
+               Jagesh V. Sanghavi (sanghavi@eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#None"><CODE>None</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddExists" TARGET="MAIN"><CODE>Cal_BddExists()</CODE></A>
+ <DD> Returns the result of existentially quantifying some
+  variables from the given BDD.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddRelProd" TARGET="MAIN"><CODE>Cal_BddRelProd()</CODE></A>
+ <DD> Returns the result of taking the logical AND of the
+  argument BDDs and existentially quantifying some variables from the
+  product.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddForAll" TARGET="MAIN"><CODE>Cal_BddForAll()</CODE></A>
+ <DD> Returns the result of universally quantifying some
+  variables from the given BDD.
+
+ <DT> <A HREF="calAllDet.html#CalOpExists" TARGET="MAIN"><CODE>CalOpExists()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalOpRelProd" TARGET="MAIN"><CODE>CalOpRelProd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExistsStep" TARGET="MAIN"><CODE>BddExistsStep()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddRelProdStep" TARGET="MAIN"><CODE>BddRelProdStep()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddDFStep" TARGET="MAIN"><CODE>BddDFStep()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#HashTableApply" TARGET="MAIN"><CODE>HashTableApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#HashTableReduce" TARGET="MAIN"><CODE>HashTableReduce()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExistsApply" TARGET="MAIN"><CODE>BddExistsApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExistsBFAux" TARGET="MAIN"><CODE>BddExistsBFAux()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExistsReduce" TARGET="MAIN"><CODE>BddExistsReduce()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExistsBFPlusDF" TARGET="MAIN"><CODE>BddExistsBFPlusDF()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddRelProdApply" TARGET="MAIN"><CODE>BddRelProdApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddRelProdReduce" TARGET="MAIN"><CODE>BddRelProdReduce()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddRelProdBFAux" TARGET="MAIN"><CODE>BddRelProdBFAux()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddRelProdBFPlusDF" TARGET="MAIN"><CODE>BddRelProdBFPlusDF()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calReduce.c"><H1>calReduce.c</H1></A>
+Routines for optimizing a BDD with respect to a don't
+  care set (cofactor and restrict). <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu) and
+               Jagesh V. Sanghavi (sanghavi@eecs.berkeley.edu</B><P>
+<P><B>See Also</B><A HREF="#None"><CODE>None</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddCofactor" TARGET="MAIN"><CODE>Cal_BddCofactor()</CODE></A>
+ <DD> Returns the generalized cofactor of BDD f with respect
+  to BDD c.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddReduce" TARGET="MAIN"><CODE>Cal_BddReduce()</CODE></A>
+ <DD> Returns a BDD which agrees with f for all valuations
+  which satisfy c.
+
+ <DT> <A HREF="calAllDet.html#Cal_BddBetween" TARGET="MAIN"><CODE>Cal_BddBetween()</CODE></A>
+ <DD> Returns a minimal BDD whose function contains fMin and is
+  contained in fMax.
+
+ <DT> <A HREF="calAllDet.html#CalOpCofactor" TARGET="MAIN"><CODE>CalOpCofactor()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReduceBF" TARGET="MAIN"><CODE>BddReduceBF()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddCofactorBF" TARGET="MAIN"><CODE>BddCofactorBF()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#HashTableReduceApply" TARGET="MAIN"><CODE>HashTableReduceApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#HashTableCofactorApply" TARGET="MAIN"><CODE>HashTableCofactorApply()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#HashTableCofactorReduce" TARGET="MAIN"><CODE>HashTableCofactorReduce()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calReorderBF.c"><H1>calReorderBF.c</H1></A>
+Routines for dynamic reordering of variables. <P>
+<B>By: Rajeev K. Ranjan   (rajeev@ic.eecs.berkeley.edu)
+               Wilsin Gosti (wilsin@ic.eecs.berkeley.edu)</B><P>
+This method dynamically reorders variables while
+  preserving their locality. This entails both memory and
+  computational overheads.  Conceptually and experimentally it has
+  been observed that these overheads lead to poorer performance
+  compared to the traditional reordering methods. For details, please
+  refer to the work by Rajeev K. Ranjan et al - "Dynamic variable
+  reordering in a breadth-first manipulation based package: Challenges
+  and Solutions"- Proceedings of ICCD'97. <P>
+<P><B>See Also</B><A HREF="#calReorderDF.c"><CODE>calReorderDF.c</CODE></A>
+<A HREF="#calReorderUtil.c"><CODE>calReorderUtil.c</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalBddReorderAuxBF" TARGET="MAIN"><CODE>CalBddReorderAuxBF()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderFixForwardingNodes" TARGET="MAIN"><CODE>BddReorderFixForwardingNodes()</CODE></A>
+ <DD> Fixes the forwarding nodes in a unique table.
+
+ <DT> <A HREF="calAllDet.html#BddReorderFixAndFreeForwardingNodes" TARGET="MAIN"><CODE>BddReorderFixAndFreeForwardingNodes()</CODE></A>
+ <DD> Traverses the forwarding node lists of index,
+  index+1 .. up to index+level. Frees the intermediate forwarding nodes.
+
+ <DT> <A HREF="calAllDet.html#BddReorderSwapVarIndex" TARGET="MAIN"><CODE>BddReorderSwapVarIndex()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CofactorFixAndReclaimForwardedNodes" TARGET="MAIN"><CODE>CofactorFixAndReclaimForwardedNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderFreeNodes" TARGET="MAIN"><CODE>BddReorderFreeNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#PrintBddProfileAfterReorder" TARGET="MAIN"><CODE>PrintBddProfileAfterReorder()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderVarSift" TARGET="MAIN"><CODE>BddReorderVarSift()</CODE></A>
+ <DD> Reorder variables using "sift" algorithm.
+
+ <DT> <A HREF="calAllDet.html#BddReorderSiftToBestPos" TARGET="MAIN"><CODE>BddReorderSiftToBestPos()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddSiftPerfromPhaseIV" TARGET="MAIN"><CODE>BddSiftPerfromPhaseIV()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderVarWindow" TARGET="MAIN"><CODE>BddReorderVarWindow()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderWindow2" TARGET="MAIN"><CODE>BddReorderWindow2()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderWindow3" TARGET="MAIN"><CODE>BddReorderWindow3()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calReorderDF.c"><H1>calReorderDF.c</H1></A>
+Routines for dynamic reordering of variables. <P>
+<B>By: Rajeev K. Ranjan   (rajeev@@ic. eecs.berkeley.edu)</B><P>
+This method is based on traditional dynamic reordering
+  technique found in depth-first based packages. The data structure is
+  first converted to conform to traditional one and then reordering is
+  performed. At the end the nodes are arranged back on the pages. The
+  computational overheads are in terms of converting the data
+  structure back and forth and the memory overhead due to the extra
+  space needed to arrange the nodes. This overhead can be eliminated
+  by proper implementation. For details, please refer to the work by
+  Rajeev K. Ranjan et al - "Dynamic variable reordering in a
+  breadth-first manipulation based package: Challenges and Solutions"-
+  Proceedings of ICCD'97. <P>
+<P><B>See Also</B><A HREF="#calReorderBF.c"><CODE>calReorderBF.c</CODE></A>
+<A HREF="#calReorderUtil.c"><CODE>calReorderUtil.c</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalBddReorderAuxDF" TARGET="MAIN"><CODE>CalBddReorderAuxDF()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#UniqueTableForIdFindOrAdd" TARGET="MAIN"><CODE>UniqueTableForIdFindOrAdd()</CODE></A>
+ <DD> find or add in the unique table for id.
+
+ <DT> <A HREF="calAllDet.html#HashTableAddDirect" TARGET="MAIN"><CODE>HashTableAddDirect()</CODE></A>
+ <DD> Directly insert a BDD node in the hash table.
+
+ <DT> <A HREF="calAllDet.html#HashTableFindOrAdd" TARGET="MAIN"><CODE>HashTableFindOrAdd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddConvertDataStruct" TARGET="MAIN"><CODE>BddConvertDataStruct()</CODE></A>
+ <DD> Changes the data structure of the bdd nodes.
+
+ <DT> <A HREF="calAllDet.html#BddConvertDataStructBack" TARGET="MAIN"><CODE>BddConvertDataStructBack()</CODE></A>
+ <DD> Changes the data structure of the bdd nodes to
+  the original one.
+
+ <DT> <A HREF="calAllDet.html#BddReallocateNodesInPlace" TARGET="MAIN"><CODE>BddReallocateNodesInPlace()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalAlignCollisionChains" TARGET="MAIN"><CODE>CalAlignCollisionChains()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReallocateNodes" TARGET="MAIN"><CODE>BddReallocateNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExchangeAux" TARGET="MAIN"><CODE>BddExchangeAux()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CheckValidityOfNodes" TARGET="MAIN"><CODE>CheckValidityOfNodes()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#SweepVarTable" TARGET="MAIN"><CODE>SweepVarTable()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExchange" TARGET="MAIN"><CODE>BddExchange()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddExchangeVarBlocks" TARGET="MAIN"><CODE>BddExchangeVarBlocks()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderWindow2" TARGET="MAIN"><CODE>BddReorderWindow2()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderWindow3" TARGET="MAIN"><CODE>BddReorderWindow3()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderStableWindow3Aux" TARGET="MAIN"><CODE>BddReorderStableWindow3Aux()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderStableWindow3" TARGET="MAIN"><CODE>BddReorderStableWindow3()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddSiftBlock" TARGET="MAIN"><CODE>BddSiftBlock()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddReorderSiftAux" TARGET="MAIN"><CODE>BddReorderSiftAux()</CODE></A>
+ <DD> Reorder variables using "sift" algorithm.
+
+ <DT> <A HREF="calAllDet.html#BddReorderSift" TARGET="MAIN"><CODE>BddReorderSift()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddAddInternalReferences" TARGET="MAIN"><CODE>BddAddInternalReferences()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#BddNukeInternalReferences" TARGET="MAIN"><CODE>BddNukeInternalReferences()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CeilLog2" TARGET="MAIN"><CODE>CeilLog2()</CODE></A>
+ <DD> Returns the smallest integer greater than or equal to log2 of a
+  number
+
+</DL>
+<HR>
+<A NAME="calReorderUtil.c"><H1>calReorderUtil.c</H1></A>
+Some utility routines used by both breadth-first and
+  depth-first reordering techniques. <P>
+<B>By: Rajeev K. Ranjan   (rajeev@ic.eecs.berkeley.edu)
+               Wilsin Gosti (wilsin@ic.eecs.berkeley.edu)</B><P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalBddReorderFixUserBddPtrs" TARGET="MAIN"><CODE>CalBddReorderFixUserBddPtrs()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckAllValidity" TARGET="MAIN"><CODE>CalCheckAllValidity()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckValidityOfNodesForId" TARGET="MAIN"><CODE>CalCheckValidityOfNodesForId()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckValidityOfNodesForWindow" TARGET="MAIN"><CODE>CalCheckValidityOfNodesForWindow()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckValidityOfANode" TARGET="MAIN"><CODE>CalCheckValidityOfANode()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckRefCountValidity" TARGET="MAIN"><CODE>CalCheckRefCountValidity()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalCheckAssoc" TARGET="MAIN"><CODE>CalCheckAssoc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalFixupAssoc" TARGET="MAIN"><CODE>CalFixupAssoc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddReorderFixCofactors" TARGET="MAIN"><CODE>CalBddReorderFixCofactors()</CODE></A>
+ <DD> Fixes the cofactors of the nodes belonging to
+  the given index.
+
+ <DT> <A HREF="calAllDet.html#CalBddReorderReclaimForwardedNodes" TARGET="MAIN"><CODE>CalBddReorderReclaimForwardedNodes()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calTerminal.c"><H1>calTerminal.c</H1></A>
+Contains the terminal function for various BDD operations. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu) and
+               Jagesh V. Sanghavi (sanghavi@eecs.berkeley.edu</B><P>
+<DL>
+ <DT> <A HREF="calAllDet.html#CalOpAnd" TARGET="MAIN"><CODE>CalOpAnd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalOpNand" TARGET="MAIN"><CODE>CalOpNand()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalOpOr" TARGET="MAIN"><CODE>CalOpOr()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalOpXor" TARGET="MAIN"><CODE>CalOpXor()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalOpITE" TARGET="MAIN"><CODE>CalOpITE()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calTest.c"><H1>calTest.c</H1></A>
+This file contains the test routines for the CAL package. <P>
+<B>By: Rajeev K. Ranjan (rajeev@eecs.berkeley.edu)
+               Jagesh Sanghavi  (sanghavi@eecs.berkeley.edu)
+               Modified and extended from the original version written
+               by David Long.</B><P>
+optional <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#main" TARGET="MAIN"><CODE>main()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#asDouble" TARGET="MAIN"><CODE>asDouble()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#asAddress" TARGET="MAIN"><CODE>asAddress()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#terminalIdFn" TARGET="MAIN"><CODE>terminalIdFn()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#PrintBdd" TARGET="MAIN"><CODE>PrintBdd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#Error" TARGET="MAIN"><CODE>Error()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#Cofactor" TARGET="MAIN"><CODE>Cofactor()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#Decode" TARGET="MAIN"><CODE>Decode()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestAnd" TARGET="MAIN"><CODE>TestAnd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestNand" TARGET="MAIN"><CODE>TestNand()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestOr" TARGET="MAIN"><CODE>TestOr()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestITE" TARGET="MAIN"><CODE>TestITE()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestXor" TARGET="MAIN"><CODE>TestXor()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestIdNot" TARGET="MAIN"><CODE>TestIdNot()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestCompose" TARGET="MAIN"><CODE>TestCompose()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestSubstitute" TARGET="MAIN"><CODE>TestSubstitute()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestVarSubstitute" TARGET="MAIN"><CODE>TestVarSubstitute()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestSwapVars" TARGET="MAIN"><CODE>TestSwapVars()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestMultiwayAnd" TARGET="MAIN"><CODE>TestMultiwayAnd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestMultiwayOr" TARGET="MAIN"><CODE>TestMultiwayOr()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestMultiwayLarge" TARGET="MAIN"><CODE>TestMultiwayLarge()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestArrayOp" TARGET="MAIN"><CODE>TestArrayOp()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestInterImpl" TARGET="MAIN"><CODE>TestInterImpl()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestQnt" TARGET="MAIN"><CODE>TestQnt()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestAssoc" TARGET="MAIN"><CODE>TestAssoc()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestRelProd" TARGET="MAIN"><CODE>TestRelProd()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestReduce" TARGET="MAIN"><CODE>TestReduce()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestGenCof" TARGET="MAIN"><CODE>TestGenCof()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestSize" TARGET="MAIN"><CODE>TestSize()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestSatisfy" TARGET="MAIN"><CODE>TestSatisfy()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestPipeline" TARGET="MAIN"><CODE>TestPipeline()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestDump" TARGET="MAIN"><CODE>TestDump()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestReorderBlock" TARGET="MAIN"><CODE>TestReorderBlock()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#TestReorder" TARGET="MAIN"><CODE>TestReorder()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#handler" TARGET="MAIN"><CODE>handler()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#RandomTests" TARGET="MAIN"><CODE>RandomTests()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+<A NAME="calUtil.c"><H1>calUtil.c</H1></A>
+Utility functions for the Cal package. <P>
+<B>By: Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
+               Rajeev K. Ranjan   (rajeev@eecs.berkeley.edu)</B><P>
+Utility functions used in the Cal package. <P>
+<P><B>See Also</B><A HREF="#optional"><CODE>optional</CODE></A>
+<DL>
+ <DT> <A HREF="calAllDet.html#Cal_BddFunctionPrint" TARGET="MAIN"><CODE>Cal_BddFunctionPrint()</CODE></A>
+ <DD> Prints the function implemented by the argument BDD
+
+ <DT> <A HREF="calAllDet.html#CalUniqueTablePrint" TARGET="MAIN"><CODE>CalUniqueTablePrint()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddFunctionPrint" TARGET="MAIN"><CODE>CalBddFunctionPrint()</CODE></A>
+ <DD> Prints the function implemented by the argument BDD
+
+ <DT> <A HREF="calAllDet.html#CalBddPreProcessing" TARGET="MAIN"><CODE>CalBddPreProcessing()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddPostProcessing" TARGET="MAIN"><CODE>CalBddPostProcessing()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddArrayPreProcessing" TARGET="MAIN"><CODE>CalBddArrayPreProcessing()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddGetInternalBdd" TARGET="MAIN"><CODE>CalBddGetInternalBdd()</CODE></A>
+ <DD> Prints fatal message and exits.
+
+ <DT> <A HREF="calAllDet.html#CalBddGetExternalBdd" TARGET="MAIN"><CODE>CalBddGetExternalBdd()</CODE></A>
+ <DD> Prints fatal message and exits.
+
+ <DT> <A HREF="calAllDet.html#CalBddFatalMessage" TARGET="MAIN"><CODE>CalBddFatalMessage()</CODE></A>
+ <DD> Prints fatal message and exits.
+
+ <DT> <A HREF="calAllDet.html#CalBddWarningMessage" TARGET="MAIN"><CODE>CalBddWarningMessage()</CODE></A>
+ <DD> Prints warning message.
+
+ <DT> <A HREF="calAllDet.html#CalBddNodePrint" TARGET="MAIN"><CODE>CalBddNodePrint()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalBddPrint" TARGET="MAIN"><CODE>CalBddPrint()</CODE></A>
+ <DD> required
+
+ <DT> <A HREF="calAllDet.html#CalHashTablePrint" TARGET="MAIN"><CODE>CalHashTablePrint()</CODE></A>
+ <DD> Prints a hash table.
+
+ <DT> <A HREF="calAllDet.html#CalHashTableOnePrint" TARGET="MAIN"><CODE>CalHashTableOnePrint()</CODE></A>
+ <DD> required
+
+</DL>
+<HR>
+Last updated on 970711 20h11
+</BODY></HTML>

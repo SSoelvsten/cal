@@ -1,0 +1,1482 @@
+The cal package
+
+Header CAL file for exported data structures and functions.
+
+Rajeev K. Ranjan (rajeev@eecs.berkeley.edu)                Jagesh V. Sanghavi
+(sanghavi@eecs.berkeley.edu)
+
+**********************************************************************
+
+Cal_AssociationInit()          Creates or finds a variable association.
+
+Cal_AssociationQuit()          Deletes the variable association given by id
+
+Cal_AssociationSetCurrent()    Sets the current variable association to the
+                               one given by id and   returns the ID of the old
+                               association.
+
+Cal_BddAnd()                   Returns the BDD for logical AND of argument
+                               BDDs
+
+Cal_BddBetween()               Returns a minimal BDD whose function contains
+                               fMin and is   contained in fMax.
+
+Cal_BddCofactor()              Returns the generalized cofactor of BDD f with
+                               respect   to BDD c.
+
+Cal_BddCompose()               composition - substitute a BDD variable by a
+                               function
+
+Cal_BddDependsOn()             Returns 1 if f depends on var and returns 0
+                               otherwise.
+
+Cal_BddDumpBdd()               Write a BDD to a file
+
+Cal_BddDynamicReordering()     Specify dynamic reordering technique.
+
+Cal_BddElse()                  Returns the negative cofactor of the argument
+                               BDD with   respect to the top variable of the
+                               BDD.
+
+Cal_BddExists()                Returns the result of existentially quantifying
+                               some   variables from the given BDD.
+
+Cal_BddForAll()                Returns the result of universally quantifying
+                               some   variables from the given BDD.
+
+Cal_BddFree()                  Frees the argument BDD.
+
+Cal_BddFunctionPrint()         Prints the function implemented by the argument
+                               BDD
+
+Cal_BddFunctionProfileMultiple()
+                               Returns a "function profile" for fArray.
+
+Cal_BddFunctionProfile()       Returns a "function profile" for f.
+
+Cal_BddGetIfId()               Returns the id of the top variable of the
+                               argument BDD.
+
+Cal_BddGetIfIndex()            Returns the index of the top variable of the
+                               argument BDD.
+
+Cal_BddGetRegular()            Returns a BDD with positive from a given BDD
+                               with arbitrary phase
+
+Cal_BddITE()                   Returns the BDD for logical If-Then-Else
+                               Description [Returns the BDD for the logical
+                               operation IF f THEN g ELSE h   - f g + f' h
+
+Cal_BddIdentity()              Returns the duplicate BDD of the argument BDD.
+
+Cal_BddIf()                    Returns the BDD corresponding to the top
+                               variable of   the argument BDD.
+
+Cal_BddImplies()               Computes a BDD that implies conjunction of f
+                               and Cal_BddNot(g)
+
+Cal_BddIntersects()            Computes a BDD that implies conjunction of f
+                               and g.
+
+Cal_BddIsBddConst()            Returns 1 if the argument BDD is a constant, 0
+                               otherwise.
+
+Cal_BddIsBddNull()             Returns 1 if the argument BDD is NULL, 0
+                               otherwise.
+
+Cal_BddIsBddOne()              Returns 1 if the argument BDD is constant one,
+                               0 otherwise.
+
+Cal_BddIsBddZero()             Returns 1 if the argument BDD is constant zero,
+                               0 otherwise.
+
+Cal_BddIsCube()                Returns 1 if the argument BDD is a cube, 0
+                               otherwise
+
+Cal_BddIsEqual()               Returns 1 if argument BDDs are equal, 0
+                               otherwise.
+
+Cal_BddIsProvisional()         Returns 1, if the given user BDD contains
+                               provisional BDD node.
+
+Cal_BddManagerCreateNewVarAfter()
+                               Creates and returns a new variable after the
+                               specified one in   the variable  order.
+
+Cal_BddManagerCreateNewVarBefore()
+                               Creates and returns a new variable before the
+                               specified one in   the variable order.
+
+Cal_BddManagerCreateNewVarFirst()
+                               Creates and returns a new variable at the start
+                               of the variable   order.
+
+Cal_BddManagerCreateNewVarLast()
+                               Creates and returns a new variable at the end
+                               of the variable   order.
+
+Cal_BddManagerGC()             Invokes the garbage collection at the manager
+                               level.
+
+Cal_BddManagerGetHooks()       Returns the hooks field of the manager.
+
+Cal_BddManagerGetNumNodes()    Returns the number of BDD nodes
+
+Cal_BddManagerGetVarWithId()   Returns the variable with the specified id,
+                               null if no   such variable exists
+
+Cal_BddManagerGetVarWithIndex()
+                               Returns the variable with the specified index,
+                               null if no   such variable exists
+
+Cal_BddManagerInit()           Creates and initializes a new BDD manager.
+
+Cal_BddManagerQuit()           Frees the BDD manager and all the associated
+                               allocations
+
+Cal_BddManagerSetGCLimit()     Sets the limit of the garbage collection.
+
+Cal_BddManagerSetHooks()       Sets the hooks field of the manager.
+
+Cal_BddManagerSetParameters()  Sets appropriate fields of BDD Manager.
+
+Cal_BddMultiwayAnd()           Returns the BDD for logical AND of argument
+                               BDDs
+
+Cal_BddMultiwayOr()            Returns the BDD for logical OR of argument BDDs
+
+Cal_BddMultiwayXor()           Returns the BDD for logical XOR of argument
+                               BDDs
+
+Cal_BddNand()                  Returns the BDD for logical NAND of argument
+                               BDDs
+
+Cal_BddNewVarBlock()           Creates and returns a variable block used for
+                               controlling dynamic reordering.
+
+Cal_BddNodeLimit()             Sets the node limit to new_limit and returns
+                               the old limit.
+
+Cal_BddNor()                   Returns the BDD for logical NOR of argument
+                               BDDs
+
+Cal_BddNot()                   Returns the complement of the argument BDD.
+
+Cal_BddOne()                   Returns the BDD for the constant one
+
+Cal_BddOr()                    Returns the BDD for logical OR of argument BDDs
+
+Cal_BddOverflow()              Returns 1 if the node limit has been exceeded,
+                               0 otherwise. The   overflow flag is cleared.
+
+Cal_BddPairwiseAnd()           Returns an array of BDDs obtained by logical
+                               AND of BDD pairs   specified by an BDD array in
+                               which a BDD at an even location is paired with
+                               a BDD at an odd location of the array
+
+Cal_BddPairwiseOr()            Returns an array of BDDs obtained by logical OR
+                               of BDD pairs   specified by an BDD array in
+                               which a BDD at an even location is paired with
+                               a BDD at an odd location of the array
+
+Cal_BddPairwiseXor()           Returns an array of BDDs obtained by logical
+                               XOR of BDD pairs   specified by an BDD array in
+                               which a BDD at an even location is paired with
+                               a BDD at an odd location of the array
+
+Cal_BddPrintBdd()              Prints a BDD in the human readable form.
+
+Cal_BddPrintFunctionProfileMultiple()
+                               Cal_BddPrintFunctionProfileMultiple is like
+                               Cal_BddPrintFunctionProfile except for multiple
+                               BDDs
+
+Cal_BddPrintFunctionProfile()  Cal_BddPrintFunctionProfile is like
+                               Cal_BddPrintProfile except                it
+                               displays a function profile for f
+
+Cal_BddPrintProfileMultiple()  Cal_BddPrintProfileMultiple is like
+                               Cal_BddPrintProfile except                it
+                               displays the profile for a set of BDDs
+
+Cal_BddPrintProfile()          Displays the node profile for f on fp.
+                               lineLength specifies                 the
+                               maximum line length.  varNamingFn is as in
+                               Cal_BddPrintBdd.
+
+Cal_BddProfileMultiple()
+
+Cal_BddProfile()               Returns a "node profile" of f, i.e., the number
+                               of nodes at each   level in f.
+
+Cal_BddReduce()                Returns a BDD which agrees with f for all
+                               valuations   which satisfy c.
+
+Cal_BddRelProd()               Returns the result of taking the logical AND of
+                               the   argument BDDs and existentially
+                               quantifying some variables from the   product.
+
+Cal_BddReorder()               Invoke the current dynamic reodering method.
+
+Cal_BddSatisfySupport()        Returns a special cube contained in f.
+
+Cal_BddSatisfyingFraction()    Returns the fraction of valuations which make f
+                               true. (Note that   this fraction is independent
+                               of whatever set of variables f is supposed to
+                               be   a function of)
+
+Cal_BddSatisfy()               Returns a BDD which implies f, true for
+                               some valuation on which f is true, and which
+                               has at most                one node at each
+                               level
+
+Cal_BddSetGCMode()             Sets the garbage collection mode, 0 means the
+                               garbage   collection should be turned off, 1
+                               means garbage collection should   be on.
+
+Cal_BddSizeMultiple()          The routine is like Cal_BddSize, but takes a
+                               null-terminated                array of BDDs
+                               and accounts for sharing of nodes.
+
+Cal_BddSize()                  Returns the number of nodes in f when negout is
+                               nonzero. If   negout is zero, we pretend that
+                               the BDDs don't have negative-output pointers.
+
+Cal_BddStats()                 Prints miscellaneous BDD statistics
+
+Cal_BddSubstitute()            Substitute a set of variables by functions
+
+Cal_BddSupport()               returns the support of f as a null-terminated
+                               array of variables
+
+Cal_BddSwapVars()              Return a function obtained by swapping two
+                               variables
+
+Cal_BddThen()                  Returns the positive cofactor of the argument
+                               BDD with   respect to the top variable of the
+                               BDD.
+
+Cal_BddTotalSize()             Returns the number of nodes in the Unique table
+
+Cal_BddType()                  Returns type of a BDD ( 0, 1, +var, -var,
+                               ovrflow, nonterminal)
+
+Cal_BddUnFree()                Unfrees the argument BDD.
+
+Cal_BddUndumpBdd()             Reads a BDD from a file
+
+Cal_BddVarBlockReorderable()   Sets the reoderability of a particular block.
+
+Cal_BddVarSubstitute()         Substitute a set of variables by set of another
+                               variables.
+
+Cal_BddVars()                  Returns the number of BDD variables
+
+Cal_BddXnor()                  Returns the BDD for logical exclusive NOR of
+                               argument BDDs
+
+Cal_BddXor()                   Returns the BDD for logical exclusive OR of
+                               argument BDDs
+
+Cal_BddZero()                  Returns the BDD for the constant zero
+
+Cal_MemAllocation()            Returns the memory allocated.
+
+Cal_MemFatal()                 Prints an error message and exits.
+
+Cal_MemFreeBlock()             Frees the block.
+
+Cal_MemFreeRecMgr()            Frees all the storage associated with the
+                               specified record manager.
+
+Cal_MemFreeRec()               Frees a record managed by the indicated record
+                               manager.
+
+Cal_MemGetBlock()              Allocates a new block of the specified size.
+
+Cal_MemNewRecMgr()             Creates a new record manager with the given
+                               record size.
+
+Cal_MemNewRec()                Allocates a record from the specified record
+                               manager.
+
+Cal_MemResizeBlock()           Expands or contracts the block to a new size.
+                               We try to avoid moving the block if possible.
+
+Cal_PerformanceTest()          Main routine for testing performances of
+                               various routines.
+
+Cal_PipelineCreateProvisionalBdd()
+                               Create a provisional BDD in the pipeline.
+
+Cal_PipelineExecute()          Executes a pipeline.
+
+Cal_PipelineInit()             Initialize a BDD pipeline.
+
+Cal_PipelineQuit()             Resets the pipeline freeing all resources.
+
+Cal_PipelineSetDepth()         Set depth of a BDD pipeline.
+
+Cal_PipelineUpdateProvisionalBdd()
+                               Update a provisional Bdd obtained during
+                               pipelining.
+
+Cal_TempAssociationAugment()   Adds to the temporary variable association.
+
+Cal_TempAssociationInit()      Sets the temporary variable association.
+
+Cal_TempAssociationQuit()      Cleans up temporary association
+
+**********************************************************************
+
+
+
+int
+Cal_AssociationInit(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         associationInfoU
+  int               pairs
+)
+  Creates or finds a variable association. The association is specified by
+  associationInfo, which is a an array of BDD with Cal_BddNull(bddManager) as
+  the end marker. If pairs is 0, the array is assumed to be an array of
+  variables. In this case, each variable is paired with constant BDD one. Such
+  an association may viewed as specifying a set of variables for use with
+  routines such as Cal_BddExists. If pair is not 0, then the even numbered
+  array elements should be variables and the odd numbered elements should be
+  the BDDs which they are mapped to. In both cases, the return value is an
+  integer identifier for this association. If the given association is
+  equivalent to one which already exists, the same identifier is used for
+  both, and the reference count of the association is increased by one.
+
+  Side Effects: None
+
+void
+Cal_AssociationQuit(
+  Cal_BddManager    bddManager,
+  int               associationId
+)
+  Decrements the reference count of the variable association with identifier
+  id, and frees it if the reference count becomes zero.
+
+  Side Effects: None
+
+int
+Cal_AssociationSetCurrent(
+  Cal_BddManager    bddManager,
+  int               associationId
+)
+  Sets the current variable association to the one given by id and returns the
+  ID of the old association. An id of -1 indicates the temporary association
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddAnd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for logical AND of f and g
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddBetween(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fMinUserBdd,
+  Cal_Bdd           fMaxUserBdd
+)
+  Returns a minimal BDD f which is contains fMin and is contained in fMax (
+  fMin <= f <= fMax). This operation is typically used in state space searches
+  to simplify the representation for the set of states wich will be expanded
+  at each step (Rk Rk-1' <= f <= Rk).
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddCofactor(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           cUserBdd
+)
+  Returns the generalized cofactor of BDD f with respect to BDD c. The
+  constrain operator given by Coudert et al (ICCAD90) is used to find the
+  generalized cofactor.
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_BddCompose(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd,
+  Cal_Bdd           hUserBdd
+)
+  Returns the BDD obtained by substituting a variable by a function
+
+  Side Effects: None
+
+int
+Cal_BddDependsOn(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           varUserBdd
+)
+  Returns 1 if f depends on var and returns 0 otherwise.
+
+  Side Effects: None
+
+int
+Cal_BddDumpBdd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd *         userVars,
+  FILE *            fp
+)
+  Writes an encoded description of the BDD to the file given by fp. The
+  argument vars should be a null-terminated array of variables that include
+  the support of f . These variables need not be in order of increasing index.
+  The function returns a nonzero value if f was written to the file
+  successfully.
+
+  Side Effects: required
+
+void
+Cal_BddDynamicReordering(
+  Cal_BddManager    bddManager,
+  int               technique
+)
+  Selects the method for dynamic reordering.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddElse(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the negative cofactor of the argument BDD with respect to the top
+  variable of the BDD.
+
+  Side Effects: The reference count of the returned BDD is increased by 1.
+
+Cal_Bdd
+Cal_BddExists(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  Returns the BDD for f with all the variables that are paired with something
+  in the current variable association existentially quantified out.
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_BddForAll(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  Returns the BDD for f with all the variables that are paired with something
+  in the current variable association universally quantified out.
+
+  Side Effects: None.
+
+void
+Cal_BddFree(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Frees the argument BDD. It is an error to free a BDD more than once.
+
+  Side Effects: The reference count of the argument BDD is decreased by 1.
+
+void
+Cal_BddFunctionPrint(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd,
+  char *            name
+)
+  Prints the function implemented by the argument BDD
+
+  Side Effects: None
+
+void
+Cal_BddFunctionProfileMultiple(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         fUserBddArray,
+  long *            funcCounts
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddFunctionProfile(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  long *            funcCounts
+)
+  The nth entry of the function profile array is the number of subfunctions of
+  f which may be obtained by restricting the variables whose index is less
+  than n. An entry of zero indicates that f is independent of the variable
+  with the corresponding index.
+
+
+Cal_BddId_t
+Cal_BddGetIfId(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the id of the top variable of the argument BDD.
+
+  Side Effects: None
+
+Cal_BddId_t
+Cal_BddGetIfIndex(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the index of the top variable of the argument BDD.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddGetRegular(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns a BDD with positive from a given BDD with arbitrary phase
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_BddITE(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd,
+  Cal_Bdd           hUserBdd
+)
+  Returns the BDD for logical If-Then-Else Description [Returns the BDD for
+  the logical operation IF f THEN g ELSE h - f g + f' h
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddIdentity(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the duplicate BDD of the argument BDD.
+
+  Side Effects: The reference count of the BDD is increased by 1.
+
+Cal_Bdd
+Cal_BddIf(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the BDD corresponding to the top variable of the argument BDD.
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_BddImplies(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Computes a BDD that implies conjunction of f and Cal_BddNot(g)
+
+  Side Effects: none
+
+Cal_Bdd
+Cal_BddIntersects(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Computes a BDD that implies conjunction of f and g.
+
+  Side Effects: None
+
+int
+Cal_BddIsBddConst(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns 1 if the argument BDD is either constant one or constant zero,
+  otherwise returns 0.
+
+  Side Effects: None.
+
+int
+Cal_BddIsBddNull(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns 1 if the argument BDD is NULL, 0 otherwise.
+
+  Side Effects: None.
+
+int
+Cal_BddIsBddOne(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns 1 if the argument BDD is constant one, 0 otherwise.
+
+  Side Effects: None.
+
+int
+Cal_BddIsBddZero(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns 1 if the argument BDD is constant zero, 0 otherwise.
+
+  Side Effects: None.
+
+int
+Cal_BddIsCube(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  Returns 1 if the argument BDD is a cube, 0 otherwise
+
+  Side Effects: None
+
+int
+Cal_BddIsEqual(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd1,
+  Cal_Bdd           userBdd2
+)
+  Returns 1 if argument BDDs are equal, 0 otherwise.
+
+  Side Effects: None.
+
+int
+Cal_BddIsProvisional(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns 1, if the given user BDD contains provisional BDD node.
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_BddManagerCreateNewVarAfter(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Creates and returns a new variable after the specified one in the variable
+  order.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddManagerCreateNewVarBefore(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Creates and returns a new variable before the specified one in the variable
+  order.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddManagerCreateNewVarFirst(
+  Cal_BddManager    bddManager
+)
+  Creates and returns a new variable at the start of the variable order.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddManagerCreateNewVarLast(
+  Cal_BddManager    bddManager
+)
+  Creates and returns a new variable at the end of the variable order.
+
+  Side Effects: None
+
+int
+Cal_BddManagerGC(
+  Cal_BddManager    bddManager
+)
+  For each variable in the increasing id free nodes with reference count equal
+  to zero freeing a node results in decrementing reference count of then and
+  else nodes by one.
+
+  Side Effects: None.
+
+void *
+Cal_BddManagerGetHooks(
+  Cal_BddManager    bddManager
+)
+  Returns the hooks field of the manager.
+
+  Side Effects: None
+
+unsigned long
+Cal_BddManagerGetNumNodes(
+  Cal_BddManager    bddManager
+)
+  Returns the number of BDD nodes
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddManagerGetVarWithId(
+  Cal_BddManager    bddManager,
+  Cal_BddId_t       id
+)
+  Returns the variable with the specified id, null if no such variable exists
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddManagerGetVarWithIndex(
+  Cal_BddManager    bddManager,
+  Cal_BddIndex_t    index
+)
+  Returns the variable with the specified index, null if no such variable
+  exists
+
+  Side Effects: None
+
+Cal_BddManager
+Cal_BddManagerInit(
+
+)
+  Initializes and allocates fields of the BDD manager. Some of the fields are
+  initialized for maxNumVars+1 or numVars+1, whereas some of them are
+  initialized for maxNumVars or numVars. The first kind of fields are
+  associated with the id of a variable and the second ones are with the index
+  of the variable.
+
+  Side Effects: None
+
+int
+Cal_BddManagerQuit(
+  Cal_BddManager    bddManager
+)
+  Frees the BDD manager and all the associated allocations
+
+  Side Effects: None
+
+void
+Cal_BddManagerSetGCLimit(
+  Cal_BddManager    manager
+)
+  It tries to set the limit at twice the number of nodes in the manager at the
+  current point. However, the limit is not allowed to fall below the
+  MIN_GC_LIMIT or to exceed the value of node limit (if one exists).
+
+  Side Effects: None.
+
+void
+Cal_BddManagerSetHooks(
+  Cal_BddManager    bddManager,
+  void *            hooks
+)
+  Sets the hooks field of the manager.
+
+  Side Effects: Hooks field changes.
+
+void
+Cal_BddManagerSetParameters(
+  Cal_BddManager    bddManager,
+  long              reorderingThresh
+  long              maxForwardedNode
+  double            repackAfterGCThr
+  double            tableRepackThres
+)
+  This function is used to set the parameters which are used to control the
+  reordering process. "reorderingThreshold" determines the number of nodes
+  below which reordering will NOT be invoked, "maxForwardedNodes" determines
+  the maximum number of forwarded nodes which are allowed (at that point the
+  cleanup must be done), and "repackingThreshold" determines the fraction of
+  the page utilized below which repacking has to be invoked. These parameters
+  have different affect on the computational and memory usage aspects of
+  reordeing. For instance, higher value of "maxForwardedNodes" will result in
+  process consuming more memory, and a lower value on the other hand would
+  invoke the cleanup process repeatedly resulting in increased computation.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddMultiwayAnd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBddArray
+)
+  Returns the BDD for logical AND of set of BDDs in the bddArray
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddMultiwayOr(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBddArray
+)
+  Returns the BDD for logical OR of set of BDDs in the bddArray
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddMultiwayXor(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBddArray
+)
+  Returns the BDD for logical XOR of set of BDDs in the bddArray
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddNand(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for logical NAND of f and g
+
+  Side Effects: None
+
+Cal_Block
+Cal_BddNewVarBlock(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           variable,
+  long              length
+)
+  The block is specified by passing the first variable and the length of the
+  block. The "length" number of consecutive variables starting from "variable"
+  are put in the block.
+
+  Side Effects: A new block is created.
+
+long
+Cal_BddNodeLimit(
+  Cal_BddManager    bddManager,
+  long              newLimit
+)
+  Sets the node limit to new_limit and returns the old limit.
+
+  Side Effects: Threshold for garbage collection may change
+
+Cal_Bdd
+Cal_BddNor(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for logical NOR of f and g
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddNot(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the complement of the argument BDD.
+
+  Side Effects: The reference count of the argument BDD is increased by 1.
+
+Cal_Bdd
+Cal_BddOne(
+  Cal_BddManager    bddManager
+)
+  Returns the BDD for the constant one
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddOr(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for logical OR of f and g
+
+  Side Effects: None
+
+int
+Cal_BddOverflow(
+  Cal_BddManager    bddManager
+)
+  Returns 1 if the node limit has been exceeded, 0 otherwise. The overflow
+  flag is cleared.
+
+  Side Effects: None
+
+Cal_Bdd *
+Cal_BddPairwiseAnd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBddArray
+)
+  Returns an array of BDDs obtained by logical AND of BDD pairs specified by
+  an BDD array in which a BDD at an even location is paired with a BDD at an
+  odd location of the array
+
+  Side Effects: None
+
+Cal_Bdd *
+Cal_BddPairwiseOr(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBddArray
+)
+  Returns an array of BDDs obtained by logical OR of BDD pairs specified by an
+  BDD array in which a BDD at an even location is paired with a BDD at an odd
+  location of the array
+
+  Side Effects: None
+
+Cal_Bdd *
+Cal_BddPairwiseXor(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBddArray
+)
+  Returns an array of BDDs obtained by logical XOR of BDD pairs specified by
+  an BDD array in which a BDD at an even location is paired with a BDD at an
+  odd location of the array
+
+  Side Effects: None
+
+void
+Cal_BddPrintBdd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_VarNamingFn_t VarNamingFn,
+  Cal_TerminalIdFn_ TerminalIdFn,
+  Cal_Pointer_t     env,
+  FILE *            fp
+)
+  Prints a human-readable representation of the BDD f to the file given by fp.
+  The namingFn should be a pointer to a function taking a bddManager, a BDD
+  and the pointer given by env. This function should return either a null
+  pointer or a srting that is the name of the supplied variable. If it returns
+  a null pointer, a default name is generated based on the index of the
+  variable. It is also legal for naminFN to e null; in this case, default
+  names are generated for all variables. The macro bddNamingFnNone is a null
+  pointer of suitable type. terminalIdFn should be apointer to a function
+  taking a bddManager and two longs. plus the pointer given by the env. It
+  should return either a null pointer. If it returns a null pointer, or if
+  terminalIdFn is null, then default names are generated for the terminals.
+  The macro bddTerminalIdFnNone is a null pointer of suitable type.
+
+  Side Effects: None.
+
+void
+Cal_BddPrintFunctionProfileMultiple(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBdds,
+  Cal_VarNamingFn_t varNamingProc,
+  char *            env,
+  int               lineLength,
+  FILE *            fp
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddPrintFunctionProfile(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           f,
+  Cal_VarNamingFn_t varNamingProc,
+  char *            env,
+  int               lineLength,
+  FILE *            fp
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddPrintProfileMultiple(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userBdds,
+  Cal_VarNamingFn_t varNamingProc,
+  char *            env,
+  int               lineLength,
+  FILE *            fp
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddPrintProfile(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_VarNamingFn_t varNamingProc,
+  char *            env,
+  int               lineLength,
+  FILE *            fp
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddProfileMultiple(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         fUserBddArray,
+  long *            levelCounts,
+  int               negout
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddProfile(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  long *            levelCounts,
+  int               negout
+)
+  negout is as in Cal_BddSize. levelCounts should be an array of size
+  Cal_BddVars(bddManager)+1 to hold the profile.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddReduce(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           cUserBdd
+)
+  Returns a BDD which agrees with f for all valuations which satisfy c. The
+  result is usually smaller in terms of number of BDD nodes than f. This
+  operation is typically used in state space searches to simplify the
+  representation for the set of states wich will be expanded at each step.
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddRelProd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for the logical AND of f and g with all the variables that
+  are paired with something in the current variable association existentially
+  quantified out.
+
+  Side Effects: None.
+
+void
+Cal_BddReorder(
+  Cal_BddManager    bddManager
+)
+  Invoke the current dynamic reodering method.
+
+  Side Effects: Index of a variable may change due to reodering
+
+Cal_Bdd
+Cal_BddSatisfySupport(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  The returned BDD which implies f, is true for some valuation on which f is
+  true, which has at most one node at each level, and which has exactly one
+  node corresponding to each variable which is associated with something in
+  the current variable association.
+
+  Side Effects: required
+
+double
+Cal_BddSatisfyingFraction(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  optional
+
+  Side Effects: required
+
+Cal_Bdd
+Cal_BddSatisfy(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  optional
+
+  Side Effects: required
+
+void
+Cal_BddSetGCMode(
+  Cal_BddManager    bddManager,
+  int               gcMode
+)
+  Sets the garbage collection mode, 0 means the garbage collection should be
+  turned off, 1 means garbage collection should be on.
+
+  Side Effects: None.
+
+long
+Cal_BddSizeMultiple(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         fUserBddArray,
+  int               negout
+)
+  optional
+
+  Side Effects: None
+
+long
+Cal_BddSize(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  int               negout
+)
+  optional
+
+  Side Effects: None
+
+void
+Cal_BddStats(
+  Cal_BddManager    bddManager,
+  FILE *            fp
+)
+  Prints miscellaneous BDD statistics
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddSubstitute(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  Returns a BDD for f using the substitution defined by current variable
+  association. Each variable is replaced by its associated BDDs. The
+  substitution is effective simultaneously
+
+  Side Effects: None
+
+void
+Cal_BddSupport(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd *         support
+)
+  optional
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddSwapVars(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd,
+  Cal_Bdd           hUserBdd
+)
+  Returns the BDD obtained by simultaneously substituting variable g by
+  variable h and variable h and variable g in the BDD f
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddThen(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Returns the positive cofactor of the argument BDD with respect to the top
+  variable of the BDD.
+
+  Side Effects: The reference count of the returned BDD is increased by 1.
+
+unsigned long
+Cal_BddTotalSize(
+  Cal_BddManager    bddManager
+)
+  Returns the number of nodes in the Unique table
+
+  Side Effects: None
+
+int
+Cal_BddType(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  Returns BDD_TYPE_ZERO if f is false, BDD_TYPE_ONE if f is true,
+  BDD_TYPE_POSVAR is f is an unnegated variable, BDD_TYPE_NEGVAR if f is a
+  negated variable, BDD_TYPE_OVERFLOW if f is null, and BDD_TYPE_NONTERMINAL
+  otherwise.
+
+  Side Effects: None
+
+void
+Cal_BddUnFree(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           userBdd
+)
+  Unfrees the argument BDD. It is an error to pass a BDD with reference count
+  of zero to be unfreed.
+
+  Side Effects: The reference count of the argument BDD is increased by 1.
+
+Cal_Bdd
+Cal_BddUndumpBdd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         userVars,
+  FILE *            fp,
+  int *             error
+)
+  Loads an encoded description of a BDD from the file given by fp. The
+  argument vars should be a null terminated array of variables that will
+  become the support of the BDD. As in Cal_BddDumpBdd, these need not be in
+  the order of increasing index. If the same array of variables in used in
+  dumping and undumping, the BDD returned will be equal to the one that was
+  dumped. More generally, if array v1 is used when dumping, and the array v2
+  is used when undumping, the BDD returned will be equal to the original BDD
+  with the ith variable in v2 substituted for the ith variable in v1 for all
+  i. Null BDD is returned in the operation fails for reason (node limit
+  reached, I/O error, invalid file format, etc.). In this case, an error code
+  is stored in error. the code will be one of the following.
+  CAL_BDD_UNDUMP_FORMAT Invalid file format CAL_BDD_UNDUMP_OVERFLOW Node limit
+  exceeded CAL_BDD_UNDUMP_IOERROR File I/O error CAL_BDD_UNDUMP_EOF Unexpected
+  EOF
+
+  Side Effects: required
+
+void
+Cal_BddVarBlockReorderable(
+  Cal_BddManager    bddManager,
+  Cal_Block         block,
+  int               reorderable
+)
+  If a block is reorderable, the child blocks are recursively involved in
+  swapping.
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_BddVarSubstitute(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd
+)
+  Returns a BDD for f using the substitution defined by current variable
+  association. It is assumed that each variable is replaced by another
+  variable. For the substitution of a variable by a function, use
+  Cal_BddSubstitute instead.
+
+  Side Effects: None
+
+long
+Cal_BddVars(
+  Cal_BddManager    bddManager
+)
+  Returns the number of BDD variables
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddXnor(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for logical exclusive NOR of f and g
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddXor(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  Returns the BDD for logical exclusive OR of f and g
+
+  Side Effects: None
+
+Cal_Bdd
+Cal_BddZero(
+  Cal_BddManager    bddManager
+)
+  Returns the BDD for the constant zero
+
+  Side Effects: None
+
+Cal_Address_t
+Cal_MemAllocation(
+
+)
+  Returns the memory allocated.
+
+  Side Effects: required
+
+void
+Cal_MemFatal(
+  char *            message
+)
+  Prints an error message and exits.
+
+  Side Effects: required
+
+void
+Cal_MemFreeBlock(
+  Cal_Pointer_t     p
+)
+  Frees the block.
+
+  Side Effects: required
+
+void
+Cal_MemFreeRecMgr(
+  Cal_RecMgr        mgr
+)
+  Frees all the storage associated with the specified record manager.
+
+  Side Effects: required
+
+void
+Cal_MemFreeRec(
+  Cal_RecMgr        mgr,
+  Cal_Pointer_t     rec
+)
+  Frees a record managed by the indicated record manager.
+
+  Side Effects: required
+
+Cal_Pointer_t
+Cal_MemGetBlock(
+  Cal_Address_t     size
+)
+  Allocates a new block of the specified size.
+
+  Side Effects: required
+
+Cal_RecMgr
+Cal_MemNewRecMgr(
+  int               size
+)
+  Creates a new record manager with the given record size.
+
+  Side Effects: required
+
+Cal_Pointer_t
+Cal_MemNewRec(
+  Cal_RecMgr        mgr
+)
+  Allocates a record from the specified record manager.
+
+  Side Effects: required
+
+Cal_Pointer_t
+Cal_MemResizeBlock(
+  Cal_Pointer_t     p,
+  Cal_Address_t     newSize
+)
+  Expands or contracts the block to a new size. We try to avoid moving the
+  block if possible.
+
+  Side Effects: required
+
+int
+Cal_PerformanceTest(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         outputBddArray,
+  int               numFunctions,
+  int               iteration,
+  int               seed,
+  int               andPerformanceFl
+  int               multiwayPerforma
+  int               onewayPerformanc
+  int               quantifyPerforma
+  int               composePerforman
+  int               relprodPerforman
+  int               swapPerformanceF
+  int               substitutePerfor
+  int               sanityCheckFlag,
+  int               computeMemoryOve
+  int               superscalarFlag
+)
+  optional
+
+  Side Effects: required
+
+Cal_Bdd
+Cal_PipelineCreateProvisionalBdd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           fUserBdd,
+  Cal_Bdd           gUserBdd
+)
+  The provisional BDD is automatically freed once the pipeline is quitted.
+
+
+int
+Cal_PipelineExecute(
+  Cal_BddManager    bddManager
+)
+  All the results are computed. User should update the BDDs of interest.
+  Eventually this feature would become transparent.
+
+  Side Effects: required
+
+int
+Cal_PipelineInit(
+  Cal_BddManager    bddManager,
+  Cal_BddOp_t       bddOp
+)
+  All the operations for this pipeline must be of the same kind.
+
+  Side Effects: None.
+
+void
+Cal_PipelineQuit(
+  Cal_BddManager    bddManager
+)
+  The user must make sure to update all provisional BDDs of interest before
+  calling this routine.
+
+
+void
+Cal_PipelineSetDepth(
+  Cal_BddManager    bddManager,
+  int               depth
+)
+  The "depth" determines the amount of dependency we would allow in pipelined
+  computation.
+
+  Side Effects: None.
+
+Cal_Bdd
+Cal_PipelineUpdateProvisionalBdd(
+  Cal_BddManager    bddManager,
+  Cal_Bdd           provisionalBdd
+)
+  The provisional BDD is automatically freed after quitting pipeline.
+
+
+void
+Cal_TempAssociationAugment(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         associationInfoU
+  int               pairs
+)
+  Pairs is 0 if the information represents only a list of variables rather
+  than a full association.
+
+  Side Effects: None
+
+void
+Cal_TempAssociationInit(
+  Cal_BddManager    bddManager,
+  Cal_Bdd *         associationInfoU
+  int               pairs
+)
+  Pairs is 0 if the information represents only a list of variables rather
+  than a full association.
+
+  Side Effects: None
+
+void
+Cal_TempAssociationQuit(
+  Cal_BddManager    bddManager
+)
+  Cleans up temporary associationoptional
+
+  Side Effects: None
+

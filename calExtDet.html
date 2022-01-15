@@ -1,0 +1,1924 @@
+<HTML>
+<HEAD><TITLE>The cal package</TITLE></HEAD>
+<BODY>
+
+<DL>
+<dt><pre>
+<A NAME="Cal_AssociationInit"></A>
+int <I></I>
+<B>Cal_AssociationInit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>associationInfoUserBdds</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> Creates or finds a variable association. The association is
+  specified by associationInfo, which is a an array of BDD with 
+  Cal_BddNull(bddManager) as the end marker. If pairs is 0, the array is
+  assumed to be an array of variables. In this case, each variable is paired
+  with constant BDD one. Such an association may viewed as specifying a set
+  of variables for use with routines such as Cal_BddExists. If pair is not 0,
+  then the even numbered array elements should be variables and the odd numbered
+  elements should be the BDDs which they are mapped to. In both cases, the 
+  return value is an integer identifier for this association. If the given
+  association is equivalent to one which already exists, the same identifier
+  is used for both, and the reference count of the association is increased by
+  one.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_AssociationQuit">Cal_AssociationQuit</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_AssociationQuit"></A>
+void <I></I>
+<B>Cal_AssociationQuit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>associationId</b> <i></i>
+)
+</pre>
+<dd> Decrements the reference count of the variable association with
+  identifier id, and frees it if the reference count becomes zero.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_AssociationInit">Cal_AssociationInit</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_AssociationSetCurrent"></A>
+int <I></I>
+<B>Cal_AssociationSetCurrent</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>associationId</b> <i></i>
+)
+</pre>
+<dd> Sets the current variable association to the one given by id and
+  returns the ID of the old association.  An id of -1 indicates the temporary
+  association
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddAnd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical AND of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddBetween"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddBetween</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fMinUserBdd</b>, <i></i>
+  Cal_Bdd  <b>fMaxUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a minimal BDD f which is contains fMin and is
+  contained in fMax ( fMin <= f <= fMax).
+  This operation is typically used in state space searches to simplify
+  the representation for the set of states wich will be expanded at
+  each step (Rk Rk-1' <= f <= Rk).
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddReduce">Cal_BddReduce</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddCofactor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddCofactor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>cUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the generalized cofactor of BDD f with respect
+  to BDD c. The constrain operator given by Coudert et al (ICCAD90) is
+  used to find the generalized cofactor.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddReduce">Cal_BddReduce</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddCompose"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddCompose</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b>, <i></i>
+  Cal_Bdd  <b>hUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD obtained by substituting a variable by a function
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddDependsOn"></A>
+int <I></I>
+<B>Cal_BddDependsOn</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>varUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if f depends on var and returns 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddDumpBdd"></A>
+int <I></I>
+<B>Cal_BddDumpBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd * <b>userVars</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Writes an encoded description of the BDD to the file given by fp.
+  The argument vars should be a null-terminated array of variables that include
+  the support of f .  These variables need not be in order of increasing index.
+  The function returns a nonzero value if f was written to the file successfully.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddDynamicReordering"></A>
+void <I></I>
+<B>Cal_BddDynamicReordering</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>technique</b> <i></i>
+)
+</pre>
+<dd> Selects the method for dynamic reordering.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddReorder">Cal_BddReorder</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddElse"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddElse</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the negative cofactor of the argument BDD with
+  respect to the top variable of the BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the returned BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddThen">Cal_BddThen</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddExists"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddExists</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for f with all the variables that are
+  paired with something in the current variable association
+  existentially quantified out.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddRelProd">Cal_BddRelProd</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddForAll"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddForAll</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for f with all the variables that are
+  paired with something in the current variable association
+  universally quantified out.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddFree"></A>
+void <I></I>
+<B>Cal_BddFree</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Frees the argument BDD. It is an error to free a BDD
+  more than once.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the argument BDD is decreased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddUnFree">Cal_BddUnFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddFunctionPrint"></A>
+void <I></I>
+<B>Cal_BddFunctionPrint</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b>, <i></i>
+  char * <b>name</b> <i></i>
+)
+</pre>
+<dd> Prints the function implemented by the argument BDD
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddFunctionProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddFunctionProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>fUserBddArray</b>, <i></i>
+  long * <b>funcCounts</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddFunctionProfile"></A>
+void <I></I>
+<B>Cal_BddFunctionProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  long * <b>funcCounts</b> <i></i>
+)
+</pre>
+<dd> The nth entry of the function
+  profile array is the number of subfunctions of f which may be obtained by 
+  restricting the variables whose index is less than n.  An entry of zero 
+  indicates that f is independent of the variable with the corresponding index.
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddGetIfId"></A>
+Cal_BddId_t <I></I>
+<B>Cal_BddGetIfId</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the id of the top variable of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddGetIfIndex">Cal_BddGetIfIndex</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddGetIfIndex"></A>
+Cal_BddId_t <I></I>
+<B>Cal_BddGetIfIndex</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the index of the top variable of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddGetIfId">Cal_BddGetIfId</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddGetRegular"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddGetRegular</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD with positive from a given BDD with arbitrary phase
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddITE"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddITE</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b>, <i></i>
+  Cal_Bdd  <b>hUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical If-Then-Else
+
+  Description [Returns the BDD for the logical operation IF f THEN g ELSE h
+  - f g + f' h
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddAnd">Cal_BddAnd</a>
+<a href="#Cal_BddNand">Cal_BddNand</a>
+<a href="#Cal_BddOr">Cal_BddOr</a>
+<a href="#Cal_BddNor">Cal_BddNor</a>
+<a href="#Cal_BddXor">Cal_BddXor</a>
+<a href="#Cal_BddXnor">Cal_BddXnor</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIdentity"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddIdentity</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the duplicate BDD of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddNot">Cal_BddNot</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIf"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddIf</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD corresponding to the top variable of
+  the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddImplies"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddImplies</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Computes a BDD that implies conjunction of f and Cal_BddNot(g)
+<p>
+
+<dd> <b>Side Effects</b> none
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIntersects">Cal_BddIntersects</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIntersects"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddIntersects</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Computes a BDD that implies conjunction of f and g.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddImplies">Cal_BddImplies</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddConst"></A>
+int <I></I>
+<B>Cal_BddIsBddConst</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is either constant one or
+  constant zero, otherwise returns 0.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIsBddOne">Cal_BddIsBddOne</a>
+<a href="#Cal_BddIsBddZero">Cal_BddIsBddZero</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddNull"></A>
+int <I></I>
+<B>Cal_BddIsBddNull</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is NULL, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddOne"></A>
+int <I></I>
+<B>Cal_BddIsBddOne</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is constant one, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIsBddZero">Cal_BddIsBddZero</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIsBddZero"></A>
+int <I></I>
+<B>Cal_BddIsBddZero</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is constant zero, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIsBddOne">Cal_BddIsBddOne</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddIsCube"></A>
+int <I></I>
+<B>Cal_BddIsCube</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the argument BDD is a cube, 0 otherwise
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddIsEqual"></A>
+int <I></I>
+<B>Cal_BddIsEqual</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd1</b>, <i></i>
+  Cal_Bdd  <b>userBdd2</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if argument BDDs are equal, 0 otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddIsProvisional"></A>
+int <I></I>
+<B>Cal_BddIsProvisional</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns 1, if the given user BDD contains
+  provisional BDD node.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarAfter"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarAfter</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable after the specified one in
+  the variable  order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarBefore"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarBefore</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable before the specified one in
+  the variable order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarFirst"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarFirst</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable at the start of the
+  variable order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerCreateNewVarLast"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerCreateNewVarLast</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Creates and returns a new variable at the end of the variable
+  order.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGC"></A>
+int <I></I>
+<B>Cal_BddManagerGC</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> For each variable in the increasing id free nodes with reference
+  count equal to zero freeing a node results in decrementing reference count of
+  then and else nodes by one.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetHooks"></A>
+void * <I></I>
+<B>Cal_BddManagerGetHooks</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the hooks field of the manager.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetNumNodes"></A>
+unsigned long <I></I>
+<B>Cal_BddManagerGetNumNodes</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the number of BDD nodes
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddTotalSize">Cal_BddTotalSize</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetVarWithId"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerGetVarWithId</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddId_t  <b>id</b> <i></i>
+)
+</pre>
+<dd> Returns the variable with the specified id, null if no
+  such variable exists
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddManagerGetVarWithIndex"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddManagerGetVarWithIndex</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddIndex_t  <b>index</b> <i></i>
+)
+</pre>
+<dd> Returns the variable with the specified index, null if no
+  such variable exists
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerInit"></A>
+Cal_BddManager <I></I>
+<B>Cal_BddManagerInit</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Initializes and allocates fields of the BDD manager. Some of the
+  fields are initialized for maxNumVars+1 or numVars+1, whereas some of them are
+  initialized for maxNumVars or numVars. The first kind of fields are associated
+  with the id of a variable and the second ones are with the index of the
+  variable.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerQuit">Cal_BddManagerQuit</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddManagerQuit"></A>
+int <I></I>
+<B>Cal_BddManagerQuit</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Frees the BDD manager and all the associated allocations
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerInit">Cal_BddManagerInit</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddManagerSetGCLimit"></A>
+void <I></I>
+<B>Cal_BddManagerSetGCLimit</B>(
+  Cal_BddManager  <b>manager</b> <i></i>
+)
+</pre>
+<dd> It tries to set the limit at twice the number of nodes
+  in the manager at the current point. However, the limit is not
+  allowed to fall below the MIN_GC_LIMIT or to exceed the value of
+  node limit (if one exists).
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerSetHooks"></A>
+void <I></I>
+<B>Cal_BddManagerSetHooks</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  void * <b>hooks</b> <i></i>
+)
+</pre>
+<dd> Sets the hooks field of the manager.
+<p>
+
+<dd> <b>Side Effects</b> Hooks field changes.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddManagerSetParameters"></A>
+void <I></I>
+<B>Cal_BddManagerSetParameters</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  long  <b>reorderingThreshold</b>, <i></i>
+  long  <b>maxForwardedNodes</b>, <i></i>
+  double  <b>repackAfterGCThreshold</b>, <i></i>
+  double  <b>tableRepackThreshold</b> <i></i>
+)
+</pre>
+<dd> This function is used to set the parameters which are
+  used to control the reordering process. "reorderingThreshold"
+  determines the number of nodes below which reordering will NOT be
+  invoked, "maxForwardedNodes" determines the maximum number of
+  forwarded nodes which are allowed (at that point the cleanup must be
+  done), and "repackingThreshold" determines the fraction of the page
+  utilized below which repacking has to be invoked. These parameters
+  have different affect on the computational and memory usage aspects
+  of reordeing. For instance, higher value of "maxForwardedNodes" will
+  result in process consuming more memory, and a lower value on the
+  other hand would invoke the cleanup process repeatedly resulting in
+  increased computation.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddMultiwayAnd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddMultiwayAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical AND of set of BDDs in the bddArray
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddMultiwayOr"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddMultiwayOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical OR of set of BDDs in the bddArray
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddMultiwayXor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddMultiwayXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical XOR of set of BDDs in the bddArray
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddNand"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddNand</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical NAND of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddNewVarBlock"></A>
+Cal_Block <I></I>
+<B>Cal_BddNewVarBlock</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>variable</b>, <i></i>
+  long  <b>length</b> <i></i>
+)
+</pre>
+<dd> The block is specified by passing the first
+  variable and the length of the block. The "length" number of
+  consecutive variables starting from "variable" are put in the
+  block.
+<p>
+
+<dd> <b>Side Effects</b> A new block is created.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddNodeLimit"></A>
+long <I></I>
+<B>Cal_BddNodeLimit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  long  <b>newLimit</b> <i></i>
+)
+</pre>
+<dd> Sets the node limit to new_limit and returns the old limit.
+<p>
+
+<dd> <b>Side Effects</b> Threshold for garbage collection may change
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerGC">Cal_BddManagerGC</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddNor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddNor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical NOR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddNot"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddNot</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the complement of the argument BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the argument BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddIdentity">Cal_BddIdentity</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddOne"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddOne</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for the constant one
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddZero">Cal_BddZero</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddOr"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical OR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddOverflow"></A>
+int <I></I>
+<B>Cal_BddOverflow</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns 1 if the node limit has been exceeded, 0 otherwise. The
+  overflow flag is cleared.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddNodeLimit">Cal_BddNodeLimit</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPairwiseAnd"></A>
+Cal_Bdd * <I></I>
+<B>Cal_BddPairwiseAnd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns an array of BDDs obtained by logical AND of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddPairwiseOr">Cal_BddPairwiseOr</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPairwiseOr"></A>
+Cal_Bdd * <I></I>
+<B>Cal_BddPairwiseOr</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns an array of BDDs obtained by logical OR of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddPairwiseAnd">Cal_BddPairwiseAnd</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPairwiseXor"></A>
+Cal_Bdd * <I></I>
+<B>Cal_BddPairwiseXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBddArray</b> <i></i>
+)
+</pre>
+<dd> Returns an array of BDDs obtained by logical XOR of BDD pairs
+  specified by an BDD array in which a BDD at an even location is paired with
+  a BDD at an odd location of the array
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddPairwiseAnd">Cal_BddPairwiseAnd</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPrintBdd"></A>
+void <I></I>
+<B>Cal_BddPrintBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_VarNamingFn_t  <b>VarNamingFn</b>, <i></i>
+  Cal_TerminalIdFn_t  <b>TerminalIdFn</b>, <i></i>
+  Cal_Pointer_t  <b>env</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints a human-readable representation of the BDD f to
+  the file given by fp. The namingFn should be a pointer to a function
+  taking a bddManager, a BDD and the pointer given by env. This
+  function should return either a null pointer or a srting that is the
+  name of the supplied variable. If it returns a null pointer, a
+  default name is generated based on the index of the variable. It is
+  also legal for naminFN to e null; in this case, default names are
+  generated for all variables. The macro bddNamingFnNone is a null
+  pointer of suitable type. terminalIdFn should be apointer to a
+  function taking a bddManager and two longs. plus the pointer given
+  by the env. It should return either a null pointer. If it returns a
+  null pointer, or if terminalIdFn is null, then default names are
+  generated for the terminals. The macro bddTerminalIdFnNone is a null
+  pointer of suitable type.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddPrintFunctionProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddPrintFunctionProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBdds</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPrintFunctionProfile"></A>
+void <I></I>
+<B>Cal_BddPrintFunctionProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>f</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPrintProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddPrintProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userBdds</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddPrintProfile"></A>
+void <I></I>
+<B>Cal_BddPrintProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_VarNamingFn_t  <b>varNamingProc</b>, <i></i>
+  char * <b>env</b>, <i></i>
+  int  <b>lineLength</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddProfileMultiple"></A>
+void <I></I>
+<B>Cal_BddProfileMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>fUserBddArray</b>, <i></i>
+  long * <b>levelCounts</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddProfile"></A>
+void <I></I>
+<B>Cal_BddProfile</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  long * <b>levelCounts</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> negout is as in Cal_BddSize. levelCounts should be an array of
+  size Cal_BddVars(bddManager)+1 to hold the profile.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddReduce"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddReduce</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>cUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD which agrees with f for all valuations
+  which satisfy c. The result is usually smaller in terms of number of
+  BDD nodes than f. This operation is typically used in state space
+  searches to simplify the representation for the set of states wich
+  will be expanded at each step.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddCofactor">Cal_BddCofactor</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddRelProd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddRelProd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for the logical AND of f and g with all
+  the variables that are paired with something in the current variable
+  association existentially quantified out.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddReorder"></A>
+void <I></I>
+<B>Cal_BddReorder</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Invoke the current dynamic reodering method.
+<p>
+
+<dd> <b>Side Effects</b> Index of a variable may change due to reodering
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddDynamicReordering">Cal_BddDynamicReordering</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSatisfySupport"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSatisfySupport</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> The returned BDD which implies f, is true for some valuation on
+               which f is true, which has at most one node at each level,
+               and which has exactly one node corresponding to each variable
+               which is associated with something in the current variable
+               association.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSatisfyingFraction"></A>
+double <I></I>
+<B>Cal_BddSatisfyingFraction</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSatisfy"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSatisfy</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSetGCMode"></A>
+void <I></I>
+<B>Cal_BddSetGCMode</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>gcMode</b> <i></i>
+)
+</pre>
+<dd> Sets the garbage collection mode, 0 means the garbage
+  collection should be turned off, 1 means garbage collection should
+  be on.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddSizeMultiple"></A>
+long <I></I>
+<B>Cal_BddSizeMultiple</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>fUserBddArray</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSize"></A>
+long <I></I>
+<B>Cal_BddSize</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  int  <b>negout</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddStats"></A>
+void <I></I>
+<B>Cal_BddStats</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  FILE * <b>fp</b> <i></i>
+)
+</pre>
+<dd> Prints miscellaneous BDD statistics
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddSubstitute"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD for f using the substitution defined by current
+  variable association. Each variable is replaced by its associated BDDs. The 
+  substitution is effective simultaneously
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddCompose">Cal_BddCompose</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSupport"></A>
+void <I></I>
+<B>Cal_BddSupport</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd * <b>support</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddSwapVars"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddSwapVars</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b>, <i></i>
+  Cal_Bdd  <b>hUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD obtained by simultaneously substituting variable
+  g by variable h and variable h and variable g in the BDD f
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddSubstitute">Cal_BddSubstitute</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddThen"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddThen</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the positive cofactor of the argument BDD with
+  respect to the top variable of the BDD.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the returned BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddElse">Cal_BddElse</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddTotalSize"></A>
+unsigned long <I></I>
+<B>Cal_BddTotalSize</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the number of nodes in the Unique table
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddManagerGetNumNodes">Cal_BddManagerGetNumNodes</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddType"></A>
+int <I></I>
+<B>Cal_BddType</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns BDD_TYPE_ZERO if f is false, BDD_TYPE_ONE 
+  if f is true, BDD_TYPE_POSVAR is f is an unnegated variable,
+  BDD_TYPE_NEGVAR if f is a negated variable, BDD_TYPE_OVERFLOW if f
+  is null, and BDD_TYPE_NONTERMINAL otherwise.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddUnFree"></A>
+void <I></I>
+<B>Cal_BddUnFree</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>userBdd</b> <i></i>
+)
+</pre>
+<dd> Unfrees the argument BDD. It is an error to pass a BDD
+  with reference count of zero to be unfreed.
+<p>
+
+<dd> <b>Side Effects</b> The reference count of the argument BDD is increased by 1.
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddFree">Cal_BddFree</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddUndumpBdd"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddUndumpBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>userVars</b>, <i></i>
+  FILE * <b>fp</b>, <i></i>
+  int * <b>error</b> <i></i>
+)
+</pre>
+<dd> Loads an encoded description of a BDD from the file given by
+  fp. The argument vars should be a null terminated array of variables that will
+  become the support of the BDD. As in Cal_BddDumpBdd, these need not be in
+  the order of increasing index. If the same array of variables in used in 
+  dumping and undumping, the BDD returned will be equal to the one that was 
+  dumped. More generally, if array v1 is used when dumping, and the array v2
+  is used when undumping, the BDD returned will be equal to the original BDD
+  with the ith variable in v2 substituted for the ith variable in v1 for all i.
+  Null BDD is returned in the operation fails for reason (node limit reached,
+  I/O error, invalid file format, etc.). In this case, an error code is stored
+  in error. the code will be one of the following. 
+  CAL_BDD_UNDUMP_FORMAT Invalid file format
+  CAL_BDD_UNDUMP_OVERFLOW Node limit exceeded
+  CAL_BDD_UNDUMP_IOERROR File I/O error
+  CAL_BDD_UNDUMP_EOF Unexpected EOF
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddVarBlockReorderable"></A>
+void <I></I>
+<B>Cal_BddVarBlockReorderable</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Block  <b>block</b>, <i></i>
+  int  <b>reorderable</b> <i></i>
+)
+</pre>
+<dd> If a block is reorderable, the child blocks are
+  recursively involved in swapping.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddVarSubstitute"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddVarSubstitute</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns a BDD for f using the substitution defined by current
+  variable association. It is assumed that each variable is replaced
+  by another variable. For the substitution of a variable by a
+  function, use Cal_BddSubstitute instead.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddSubstitute">Cal_BddSubstitute</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_BddVars"></A>
+long <I></I>
+<B>Cal_BddVars</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the number of BDD variables
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddXnor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddXnor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical exclusive NOR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddXor"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddXor</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for logical exclusive OR of f and g
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_BddZero"></A>
+Cal_Bdd <I></I>
+<B>Cal_BddZero</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Returns the BDD for the constant zero
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dd> <b>See Also</b> <code><a href="#Cal_BddOne">Cal_BddOne</a>
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemAllocation"></A>
+Cal_Address_t <I></I>
+<B>Cal_MemAllocation</B>(
+   <b></b> <i></i>
+)
+</pre>
+<dd> Returns the memory allocated.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemFatal"></A>
+void <I></I>
+<B>Cal_MemFatal</B>(
+  char * <b>message</b> <i></i>
+)
+</pre>
+<dd> Prints an error message and exits.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemFreeBlock"></A>
+void <I></I>
+<B>Cal_MemFreeBlock</B>(
+  Cal_Pointer_t  <b>p</b> <i></i>
+)
+</pre>
+<dd> Frees the block.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemFreeRecMgr"></A>
+void <I></I>
+<B>Cal_MemFreeRecMgr</B>(
+  Cal_RecMgr  <b>mgr</b> <i></i>
+)
+</pre>
+<dd> Frees all the storage associated with the specified record manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemFreeRec"></A>
+void <I></I>
+<B>Cal_MemFreeRec</B>(
+  Cal_RecMgr  <b>mgr</b>, <i></i>
+  Cal_Pointer_t  <b>rec</b> <i></i>
+)
+</pre>
+<dd> Frees a record managed by the indicated record manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemGetBlock"></A>
+Cal_Pointer_t <I></I>
+<B>Cal_MemGetBlock</B>(
+  Cal_Address_t  <b>size</b> <i></i>
+)
+</pre>
+<dd> Allocates a new block of the specified size.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemNewRecMgr"></A>
+Cal_RecMgr <I></I>
+<B>Cal_MemNewRecMgr</B>(
+  int  <b>size</b> <i></i>
+)
+</pre>
+<dd> Creates a new record manager with the given  record size.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemNewRec"></A>
+Cal_Pointer_t <I></I>
+<B>Cal_MemNewRec</B>(
+  Cal_RecMgr  <b>mgr</b> <i></i>
+)
+</pre>
+<dd> Allocates a record from the specified record manager.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_MemResizeBlock"></A>
+Cal_Pointer_t <I></I>
+<B>Cal_MemResizeBlock</B>(
+  Cal_Pointer_t  <b>p</b>, <i></i>
+  Cal_Address_t  <b>newSize</b> <i></i>
+)
+</pre>
+<dd> Expands or contracts the block to a new size.
+  We try to avoid moving the block if possible.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_PerformanceTest"></A>
+int <I></I>
+<B>Cal_PerformanceTest</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>outputBddArray</b>, <i></i>
+  int  <b>numFunctions</b>, <i></i>
+  int  <b>iteration</b>, <i></i>
+  int  <b>seed</b>, <i></i>
+  int  <b>andPerformanceFlag</b>, <i></i>
+  int  <b>multiwayPerformanceFlag</b>, <i></i>
+  int  <b>onewayPerformanceFlag</b>, <i></i>
+  int  <b>quantifyPerformanceFlag</b>, <i></i>
+  int  <b>composePerformanceFlag</b>, <i></i>
+  int  <b>relprodPerformanceFlag</b>, <i></i>
+  int  <b>swapPerformanceFlag</b>, <i></i>
+  int  <b>substitutePerformanceFlag</b>, <i></i>
+  int  <b>sanityCheckFlag</b>, <i></i>
+  int  <b>computeMemoryOverheadFlag</b>, <i></i>
+  int  <b>superscalarFlag</b> <i></i>
+)
+</pre>
+<dd> optional
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_PipelineCreateProvisionalBdd"></A>
+Cal_Bdd <I></I>
+<B>Cal_PipelineCreateProvisionalBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>fUserBdd</b>, <i></i>
+  Cal_Bdd  <b>gUserBdd</b> <i></i>
+)
+</pre>
+<dd> The provisional BDD is automatically freed once the
+  pipeline is quitted.
+<p>
+
+<dt><pre>
+<A NAME="Cal_PipelineExecute"></A>
+int <I></I>
+<B>Cal_PipelineExecute</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> All the results are computed. User should update the
+  BDDs of interest. Eventually this feature would become transparent.
+<p>
+
+<dd> <b>Side Effects</b> required
+<p>
+
+<dd> <b>See Also</b> <code>optional
+</code>
+
+<dt><pre>
+<A NAME="Cal_PipelineInit"></A>
+int <I></I>
+<B>Cal_PipelineInit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_BddOp_t  <b>bddOp</b> <i></i>
+)
+</pre>
+<dd> All the operations for this pipeline must be of the
+  same kind.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_PipelineQuit"></A>
+void <I></I>
+<B>Cal_PipelineQuit</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> The user must make sure to update all provisional BDDs
+  of interest before calling this routine.
+<p>
+
+<dt><pre>
+<A NAME="Cal_PipelineSetDepth"></A>
+void <I></I>
+<B>Cal_PipelineSetDepth</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  int  <b>depth</b> <i></i>
+)
+</pre>
+<dd> The "depth" determines the amount of dependency we
+  would allow in pipelined computation.
+<p>
+
+<dd> <b>Side Effects</b> None.
+<p>
+
+<dt><pre>
+<A NAME="Cal_PipelineUpdateProvisionalBdd"></A>
+Cal_Bdd <I></I>
+<B>Cal_PipelineUpdateProvisionalBdd</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd  <b>provisionalBdd</b> <i></i>
+)
+</pre>
+<dd> The provisional BDD is automatically freed after
+  quitting pipeline.
+<p>
+
+<dt><pre>
+<A NAME="Cal_TempAssociationAugment"></A>
+void <I></I>
+<B>Cal_TempAssociationAugment</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>associationInfoUserBdds</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> Pairs is 0 if the information represents only a list of
+  variables rather than a full association.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_TempAssociationInit"></A>
+void <I></I>
+<B>Cal_TempAssociationInit</B>(
+  Cal_BddManager  <b>bddManager</b>, <i></i>
+  Cal_Bdd * <b>associationInfoUserBdds</b>, <i></i>
+  int  <b>pairs</b> <i></i>
+)
+</pre>
+<dd> Pairs is 0 if the information represents only a list of
+  variables rather than a full association.
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+<dt><pre>
+<A NAME="Cal_TempAssociationQuit"></A>
+void <I></I>
+<B>Cal_TempAssociationQuit</B>(
+  Cal_BddManager  <b>bddManager</b> <i></i>
+)
+</pre>
+<dd> Cleans up temporary associationoptional
+<p>
+
+<dd> <b>Side Effects</b> None
+<p>
+
+
+</DL>
+<HR>
+Last updated on 970711 20h11
+</BODY></HTML>

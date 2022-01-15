@@ -1,0 +1,391 @@
+dnl	Run autoconf on this file to produce the system configuration
+dnl	script "configure"
+
+# FileName	[ configure.in ]
+#
+# PackageName	[ glu ]
+#
+# Synopsis	[ System configuration script for autoconf ]
+#
+# SeeAlso	[ Makefile.in ]
+#
+# Author	[ Stephen Edwards <sedwards@eecs.berkeley.edu> ]
+#
+# Copyright	[
+#  Copyright (c) 1994-1996 The Regents of the Univ. of California.
+#  All rights reserved.
+#
+#  Permission is hereby granted, without written agreement and without license
+#  or royalty fees, to use, copy, modify, and distribute this software and its
+#  documentation for any purpose, provided that the above copyright notice and
+#  the following two paragraphs appear in all copies of this software.
+#
+#  IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR
+#  DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
+#  OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF
+#  CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#  THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
+#  INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+#  FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS ON AN
+#  "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE
+#  MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+#  ]
+#
+# Revision	[$Id: configure.in,v 1.31 1998/09/25 03:47:09 kumtheka Exp $]
+
+# Require version 2.11 or above -- it checks to see if the C compiler
+# actually works!
+
+AC_PREREQ(2.11)
+
+AC_INIT(cal.c)
+
+AC_CONFIG_AUX_DIR(.)
+
+AC_ARG_ENABLE(times-resolution, [  --enable-times-resolution=<hertz>
+			  Set the resolution of the times() function (only
+			  necessary for non-POSIX systems).],
+	[AC_DEFINE_UNQUOTED(CLOCK_RESOLUTION,$enableval)],
+	[AC_DEFINE_UNQUOTED(CLOCK_RESOLUTION,60)])
+
+#----------------------------------------------------------------------
+# Set local_srcdir
+#----------------------------------------------------------------------
+# Give the configurer a chance to set a different location for the GLU
+# source.  When specified, "srcdir" points to "master" source, and
+# "local_srcdir" points to the source under local development.
+
+AC_SUBST(local_srcdir)
+AC_ARG_WITH(local-srcdir,
+[  --with-local-srcdir=<srcdir> Specify the root directory to search for
+                          source for packages (the PKGS list).
+                          Expects to find, e.g., <srcdir>/array/array.c],
+[local_srcdir=$withval],
+[local_srcdir=$srcdir])
+
+AC_ARG_WITH(datasize,
+[  --with-datasize=<size>  (Default: 16777216.) Specify maximum datasize in 
+                          bytes for systems without working getrlimit.
+                          The application may use this value to size some
+                          data structures, but may still try to exceed it.],
+[datasize=$withval],
+[datasize=16777216])
+AC_DEFINE_UNQUOTED(RLIMIT_DATA_DEFAULT,$datasize)
+
+#----------------------------------------------------------------------
+# Checks for programs we need
+#----------------------------------------------------------------------
+
+AC_PATH_PROG(AR, ar, ar)
+AC_PROG_RANLIB
+
+AC_CANONICAL_SYSTEM
+AC_SUBST(target)
+
+# Determine the name of the C compiler we're going to use
+
+AC_ARG_ENABLE(gcc,
+  [  --enable-gcc            Allow use of gcc if available],
+  [gcc_ok=$enableval], [gcc_ok=no])
+
+if test "$gcc_ok" = "yes"; then
+  CC=gcc
+else 
+# Balakrishna Kumthekar <kumtheka@colorado.edu>
+# As we do not support cc on RS6000, Cygwin and SunOS.
+   case "$target" in
+     rs6000-ibm-aix* | *-pc-cygwin32 | sparc-sun-sunos*)
+       CC=gcc ;;
+     *)
+       CC=cc ;;
+   esac
+fi
+AC_PROG_CC
+
+AC_ARG_ENABLE(64,
+  [  --enable-64             Use 64-bit pointers on 64-bit Alpha machines],
+  [use_sixty_four=$enableval], [use_sixty_four=no])
+
+if test "$gcc_ok" = "yes"; then
+  use_sixty_four="yes"
+fi
+
+
+# Determine the compiler flags to use
+
+# Balakrisha Kumthekar (kumtheka@colorado.edu): making a special case for ultrix install,
+# since its annoying about setting groupids.
+case "$target" in
+  mips-dec-ultrix*)
+    INSTALL="helpers/install-sh -c"
+    INSTALL_PROGRAM="\${INSTALL}"
+    INSTALL_DATA="\${INSTALL} -m 644";;
+
+  *)
+  AC_PROG_INSTALL ;;
+esac
+
+
+DEBUG_CFLAGS="-g"
+DEBUG_LDFLAGS=""
+
+case "$target" in
+
+  sparc-sun-solaris*)
+	# Sparc Solaris:
+	# -xO5: Highest level of optimization
+	# -native: Optimize for the native processor
+	# -dalign: Generate double-word load/store for performance
+	OPTIMIZE_CFLAGS="-xO5 -native -dalign" ;;
+
+  mips-dec-ultrix*)
+	# MIPS-based DECstations running Ultrix:
+	# -std1: Produce non-ANSI code warnings, and define __STDC__
+	# -O: Use the global "ucode" optimizer
+	# -Olimit 5000: Don't optimize routines bigger than 5000 basic blocks
+	OPTIMIZE_CFLAGS="-std1 -O -Olimit 5000" ;;
+   
+  alpha-dec-osf*)
+	# DEC Alpha running OSF:
+
+	# 64-bit mode:
+	# -g3: Produce symbol table information for optimized code
+	# -O4: Enable every optimization
+	# -std: Enforce the ANSI standard with extensions, define __STDC__
+	# -ieee_with_no_inexact: Disable (potentially slow) signaling
+	#   for inexact floating-point results
+	# -tune host: Tune instructions for the compilation host machine
+
+	OPTIMIZE_CFLAGS="-g3 -O4 -std -ieee_with_no_inexact -tune host"
+	DEBUG_CFLAGS="-g -std -ieee_with_no_inexact"
+
+	# -non_shared: Do not use shared libraries
+	# -om: Generate an OMAGIC file for the om optimizer
+	OPTIMIZE_LDFLAGS="-non_shared -om"
+
+	if test "$use_sixty_four" = "no"; then
+	  # 32-bit mode:
+	  # -xtaso: Make the compiler respond to #pragma pointer_size directives
+          OPTIMIZE_CFLAGS="$OPTIMIZE_CFLAGS -xtaso"
+          DEBUG_CFLAGS="$DEBUG_CFLAGS -xtaso"
+
+	  # -taso: Load the executable into the lower 31-bit address space
+	  OPTIMIZE_LDFLAGS="$OPTIMIZE_LDFLAGS -taso"
+	  DEBUG_LDFLAGS="$DEBUG_LDFLAGS -taso"
+
+	  AC_DEFINE(SIZEOF_VOID_P, 4)
+          ac_sizeof_voidp=4
+        fi
+	;;
+
+  hppa*-*-hpux*)
+	# HP running HPUX
+	# -Aa: Behave as an ANSI compiler
+	# -D_HPUX_SOURCE: Include "HP-specific" symbols in the header
+	#   files (e.g., this means sys/resource.h has struct rusage)
+	OPTIMIZE_CFLAGS="-O -Aa -D_HPUX_SOURCE"
+	DEBUG_CFLAGS="-g -Aa -D_HPUX_SOURCE" ;;
+
+     *)
+	# Other systems:
+	OPTIMIZE_CFLAGS="-O" ;;
+
+esac
+
+if test "$CC" = "gcc" ; then
+  OPTIMIZE_CFLAGS="-g -O3"
+  OPTIMIZE_LDFLAGS=""
+  DEBUG_CFLAGS="-g"
+  DEBUG_LDFLAGS=""
+fi
+
+AC_ARG_WITH(comp-mode,
+[  --with-comp-mode=<mode> Specify a special compilation mode:
+			  optimize (the default): Produce optimized
+				code, with symbol table information
+				if supported on the platform/compiler,
+				and without asserts.
+			  debug: Produce unoptimized code with symbol table
+				information and asserts enabled
+			  purify: Unoptimized code linked with purify
+			  quantify: Optimized code without asserts
+				linked with quantify],
+[comp_mode=$withval],
+[comp_mode=optimize])
+AC_SUBST(LINKER)
+AC_SUBST(PLINKER)
+
+LINKER="$CC"
+
+case "$comp_mode" in
+  debug)
+       CFLAGS="$DEBUG_CFLAGS"
+       LDFLAGS="$DEBUG_LDFLAGS" ;;
+  purify)
+       CFLAGS="$DEBUG_CFLAGS"
+       LDFLAGS="$DEBUG_LDFLAGS"
+       AC_DEFINE(PURIFY)
+       LINKER="purify -cache-dir=/tmp $CC"
+       PLINKER="purify -log-file=./purify.log -cachedir=/tmp $CC" ;;
+  quantify)
+       CFLAGS="$OPTIMIZE_CFLAGS"
+       LDFLAGS="$OPTIMIZE_LDFLAGS"
+       AC_DEFINE(QUANTIFY)
+       AC_DEFINE(NDEBUG)
+       LINKER="quantify $CC" ;;
+  optimize | *)
+       CFLAGS="$OPTIMIZE_CFLAGS"
+       LDFLAGS="$OPTIMIZE_LDFLAGS"
+       AC_DEFINE(NDEBUG) ;;
+esac
+
+#----------------------------------------------------------------------
+# Checks for libraries
+#----------------------------------------------------------------------
+
+# Define STDC_HEADERS if the system has ANSI C header files
+AC_HEADER_STDC
+
+# Define HAVE_SYS_WAIT_H if sys/wait.h exists and is POSIX-compliant
+AC_HEADER_SYS_WAIT
+
+# Check for these system header files
+AC_CHECK_HEADERS(sys/file.h sys/stat.h unistd.h errno.h assert.h sys/wait.h pwd.h sys/types.h sys/times.h sys/time.h sys/resource.h)
+
+# Check how the compiler handles functions with variable argument lists
+#
+# If there's a <stdarg.h>, this is probably an ANSI compiler and the "..."
+# notation will probably work.  If not, there may be another version
+# called <varargs.h>, that uses an argument of the type "va_alist"
+# (see, e.g., Ultrix, Digital Unix)
+AC_CHECK_HEADERS(stdarg.h varargs.h)
+
+#----------------------------------------------------------------------
+# Checks for typedefs, structures, and compiler characteristics.
+#----------------------------------------------------------------------
+
+# Check to see if the compiler understands "const"
+# #define it empty otherwise
+AC_C_CONST
+
+# Check the size of pointers and ints
+
+if test -z "$ac_sizeof_voidp"; then
+  AC_CHECK_SIZEOF(void *)
+fi
+AC_CHECK_SIZEOF(int)
+
+# Check for a working implementation of IEEE 754 floating point
+# Specifically, check for correct treatment of +Infinity
+AC_MSG_CHECKING([for +Infinity (IEEE 754 floating point)])
+AC_CACHE_VAL(ac_cv_have_ieee_754,
+[ AC_TRY_RUN([
+#include <math.h>
+main()
+{
+    if (HUGE_VAL != HUGE_VAL * 3 || HUGE_VAL != HUGE_VAL / 3) exit(1);
+    exit(0);
+}
+],ac_cv_have_ieee_754=yes,ac_cv_have_ieee_754=no,ac_cv_have_ieee_754=no)])
+if test $ac_cv_have_ieee_754 = yes ; then
+  AC_MSG_RESULT(working)
+  AC_DEFINE(HAVE_IEEE_754)
+else
+  AC_MSG_RESULT(broken)
+fi
+
+# Check the size of the virtual memory page
+#
+# The Cal BDD package uses this
+#
+# This compiles and runs a small program that gets the pagesize from
+# the "getpagesize()" UNIX system function.
+
+AC_MSG_CHECKING([the size of the virtual memory system's page])
+AC_CACHE_VAL(ac_cv_sys_pagesize,
+[ AC_TRY_RUN([
+
+#include <stdio.h>
+#ifdef HAVE_UNISTD_H
+#  include <unistd.h>
+#endif
+
+main() {
+  FILE * f = fopen( "conftestval", "w" );
+  if ( f == NULL ) exit(1);
+  fprintf( f, "%d\n", (int) getpagesize() );
+  exit(0);
+}
+], ac_cv_sys_pagesize=`cat conftestval`, ac_cv_sys_pagesize=unknown)])
+case "$ac_cv_sys_pagesize" in
+   512)
+     AC_MSG_RESULT(512)
+     PAGE_SIZE=512
+     LG_PAGE_SIZE=9 ;;
+   1024)
+     AC_MSG_RESULT(1K)
+     PAGE_SIZE=1024
+     LG_PAGE_SIZE=10 ;;
+   2048)
+     AC_MSG_RESULT(2K)
+     PAGE_SIZE=2048
+     LG_PAGE_SIZE=11 ;;
+   4096)
+     AC_MSG_RESULT(4K)
+     PAGE_SIZE=4096
+     LG_PAGE_SIZE=12 ;;
+   8192)
+     AC_MSG_RESULT(8K)
+     PAGE_SIZE=8192
+     LG_PAGE_SIZE=13 ;;
+   16384)
+     AC_MSG_RESULT(16K)
+     PAGE_SIZE=16384
+     LG_PAGE_SIZE=14 ;;
+   32768)
+     AC_MSG_RESULT(32K)
+     PAGE_SIZE=32768
+     LG_PAGE_SIZE=15 ;;
+   65536)
+     AC_MSG_RESULT(64K)
+     PAGE_SIZE=65536
+     LG_PAGE_SIZE=16 ;;
+   unknown)
+     AC_MSG_RESULT([could not determine -- assuming 4K])
+     PAGE_SIZE=4096
+     LG_PAGE_SIZE=12 ;;
+   *)
+     AC_MSG_RESULT(Invalid page size $ac_cv_sys_pagesize -- assuming 4K)
+     PAGE_SIZE=4096
+     LG_PAGE_SIZE=12 ;;
+esac
+AC_DEFINE_UNQUOTED(PAGE_SIZE, $PAGE_SIZE)
+AC_DEFINE_UNQUOTED(LG_PAGE_SIZE, $LG_PAGE_SIZE)
+
+#----------------------------------------------------------------------
+# Checks for library functions.
+#----------------------------------------------------------------------
+
+# Add memcmp.o to LIBOBJS if the memcmp() function is unavailable or broken
+AC_FUNC_MEMCMP
+
+# Define RETSIGTYPE to be void or int depending on the expected return type of
+# a signal handler
+AC_TYPE_SIGNAL
+
+# Define HAVE_STRCOLL if the strcoll function exists and works
+AC_FUNC_STRCOLL
+
+# Define HAVE_VFORK_H if vfork.h is present, otherwise define "vfork" to be
+# "fork"
+AC_FUNC_VFORK
+
+# Look for these functions and define HAVE_... for each if present
+AC_CHECK_FUNCS(sysconf gethostname strcspn strerror strspn strstr getenv strchr getrlimit getrusage valloc)
+
+#----------------------------------------------------------------------
+# Create the Makefile from Makefile.in
+#----------------------------------------------------------------------
+AC_OUTPUT(Makefile)
+
