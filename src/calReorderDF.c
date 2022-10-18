@@ -882,6 +882,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
   
   /* Free the page manager related stuff*/
   for(i = 0; i < numSegments; i++){
+    // BUG: double free!
     free(pageSegmentArray[i]);
   }
   Cal_MemFree(pageSegmentArray);

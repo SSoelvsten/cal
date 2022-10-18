@@ -38,7 +38,9 @@
 
 ******************************************************************************/
 
-#include "calInt.h"
+#include <calInt.h>
+#include "sys/resource.h" // <-- rusage
+#include <sys/time.h>     // <-- timeval, timezone
 
 /*---------------------------------------------------------------------------*/
 /* Constant declarations                                                     */
@@ -205,7 +207,7 @@ cpuTime()
 {
   static double timeNew, timeOld;
   struct rusage rusage;
-  static flag = 0;
+  static int flag = 0;
 
   getrusage(RUSAGE_SELF, &rusage);
   if (flag == 0){
@@ -238,7 +240,7 @@ elapsedTime()
   static long time_new, time_old;
   struct timeval t;
   struct timezone tz;
-  static flag = 0;
+  static int flag = 0;
   
   gettimeofday(&t, &tz);
   if (flag == 0){

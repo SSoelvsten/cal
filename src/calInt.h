@@ -42,17 +42,7 @@
 #include "cal.h"
 
 /* Make sure variable argument lists work */
-#if HAVE_STDARG_H
-#  include <stdarg.h>
-#else
-#  if HAVE_VARARGS_H
-#    include <varargs.h>
-#  else
-#    error "Need to have HAVE_STDARG_H or HAVE_VARARGS_H defined for variable arguments"
-#  endif
-#endif
-
-
+#include <stdarg.h>
 
 /*---------------------------------------------------------------------------*/
 /* Constant declarations                                                     */
@@ -1433,11 +1423,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
                                (table)->numBins)
 #endif
 
-#if HAVE_STDARG_H
 EXTERN int CalBddPreProcessing(Cal_BddManager_t *bddManager, int count, ...);
-#else
-EXTERN int CalBddPreProcessing();
-#endif
 
 /**AutomaticStart*************************************************************/
 
@@ -1465,7 +1451,6 @@ EXTERN Cal_Bdd_t CalBddITE(Cal_BddManager_t *bddManager, Cal_Bdd_t F, Cal_Bdd_t 
 EXTERN Cal_Bdd_t CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t index);
 EXTERN void CalRequestNodeListArrayOp(Cal_BddManager_t * bddManager, CalRequestNode_t ** requestNodeListArray, CalOpProc_t calOpProc);
 EXTERN Cal_Bdd_t CalBddOpBF(Cal_BddManager_t * bddManager, CalOpProc_t calOpProc, Cal_Bdd_t F, Cal_Bdd_t G);
-EXTERN int main(int argc, char **argv);
 EXTERN Cal_Bdd_t CalBddVarSubstitute(Cal_BddManager bddManager, Cal_Bdd_t f, unsigned short opCode, CalAssociation_t *assoc);
 EXTERN int CalOpBddVarSubstitute(Cal_BddManager_t * bddManager, Cal_Bdd_t f, Cal_Bdd_t * resultBddPtr);
 EXTERN long CalBddFindBlock(Cal_Block block, long index);

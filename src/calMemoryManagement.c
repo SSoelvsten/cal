@@ -154,6 +154,7 @@ CalPageManagerQuit(
     return 1;
   }
   for(i = 0; i < pageManager->numSegments; i++){
+    // BUG: double free!
     free(pageManager->pageSegmentArray[i]);
   }
   Cal_MemFree(pageManager->pageSegmentArray);
