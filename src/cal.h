@@ -220,7 +220,6 @@ EXTERN Cal_Pointer_t Cal_MemNewRec(Cal_RecMgr mgr);
 EXTERN void Cal_MemFreeRec(Cal_RecMgr mgr, Cal_Pointer_t rec);
 EXTERN Cal_RecMgr Cal_MemNewRecMgr(int size);
 EXTERN void Cal_MemFreeRecMgr(Cal_RecMgr mgr);
-EXTERN int Cal_PerformanceTest(Cal_BddManager bddManager, Cal_Bdd *outputBddArray, int numFunctions, int iteration, int seed, int andPerformanceFlag, int multiwayPerformanceFlag, int onewayPerformanceFlag, int quantifyPerformanceFlag, int composePerformanceFlag, int relprodPerformanceFlag, int swapPerformanceFlag, int substitutePerformanceFlag, int sanityCheckFlag, int computeMemoryOverheadFlag, int superscalarFlag);
 EXTERN void Cal_PipelineSetDepth(Cal_BddManager bddManager, int depth);
 EXTERN int Cal_PipelineInit(Cal_BddManager bddManager, Cal_BddOp_t bddOp);
 EXTERN Cal_Bdd Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);

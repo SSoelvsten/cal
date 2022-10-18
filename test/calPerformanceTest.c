@@ -39,8 +39,12 @@
 ******************************************************************************/
 
 #include "calInt.h"
+
 #include <unistd.h>
+
 #include <sys/types.h>
+#include "sys/resource.h" // <-- rusage
+#include <sys/time.h>     // <-- timeval, timezone
 
 
 /*---------------------------------------------------------------------------*/
@@ -60,8 +64,6 @@
 /* Variable declarations                                                     */
 /*---------------------------------------------------------------------------*/
 static int ITERATION;
-
-                        
 
 /*---------------------------------------------------------------------------*/
 /* Macro declarations                                                        */
@@ -111,16 +113,19 @@ static void GetRandomNumbers(int lowerBound, int upperBound, int count, int *res
 
 ******************************************************************************/
 int
-Cal_PerformanceTest(Cal_BddManager bddManager, Cal_Bdd
-                   *outputBddArray, int numFunctions, int iteration, int seed,
-                    int andPerformanceFlag, int
-                    multiwayPerformanceFlag, int
-                    onewayPerformanceFlag,  int
-                    quantifyPerformanceFlag, 
-                    int composePerformanceFlag, int relprodPerformanceFlag,
+Cal_PerformanceTest(Cal_BddManager bddManager,
+                    Cal_Bdd *outputBddArray,
+                    int numFunctions, int iteration, int seed,
+                    int andPerformanceFlag,
+                    int multiwayPerformanceFlag,
+                    int onewayPerformanceFlag,
+                    int quantifyPerformanceFlag, 
+                    int composePerformanceFlag,
+                    int relprodPerformanceFlag,
                     int swapPerformanceFlag,
-                    int substitutePerformanceFlag, int
-                    sanityCheckFlag, int computeMemoryOverheadFlag,
+                    int substitutePerformanceFlag,
+                    int sanityCheckFlag,
+                    int computeMemoryOverheadFlag,
                     int superscalarFlag) 
 {
   
@@ -206,6 +211,34 @@ Cal_PerformanceTest(Cal_BddManager bddManager, Cal_Bdd
   Cal_BddSetGCMode(bddManager, 1);
   return 0;
 }
+
+int main(int argc, char ** argv)
+{
+  Cal_BddManager bddManager = Cal_BddManagerInit();
+  int output_size = 42;
+  Cal_Bdd outputBddArray[42];
+
+  Cal_PerformanceTest(bddManager, outputBddArray, output_size,
+                      /*iteration: */ 0, /*seed: */ 42,
+                      1, // andPerformanceFlag,
+                      1, // multiwayPerformanceFlag,
+                      1, // onewayPerformanceFlag,
+                      1, // quantifyPerformanceFlag,
+                      1, // composePerformanceFlag,
+                      1, // relprodPerformanceFlag,
+                      1, // swapPerformanceFlag,
+                      1, // substitutePerformanceFlag,
+                      1, // sanityCheckFlag,
+                      1, // computeMemoryOverheadFlag,
+                      1 // superscalarFlag
+                      );
+
+  Cal_BddManagerGC(bddManager);
+  Cal_BddStats(bddManager, stdout);
+  /*CalUniqueTablePrint(bddManager);*/
+  Cal_BddManagerQuit(bddManager);
+}
+
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/

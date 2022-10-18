@@ -4,7 +4,7 @@
 &nbsp;
 [![Documentation](https://img.shields.io/website?down_message=not%20available&label=docs&up_message=available&url=https%3A%2F%2Fssoelvsten.github.io%2Fcal)](https://ssoelvsten.github.io/cal)
 &nbsp;
-[![test](https://img.shields.io/github/workflow/status/ssoelvsten/cal/check/main?label=test&logo=github&logoColor=white)](https://github.com/SSoelvsten/cal/actions/workflows/check.yml)
+[![test](https://img.shields.io/github/workflow/status/ssoelvsten/cal/test/main?label=test&logo=github&logoColor=white)](https://github.com/SSoelvsten/cal/actions/workflows/test.yml)
 &nbsp;
 
 CAL is a BDD package [[Bryant86](#references)] that uses breadt-first
@@ -30,23 +30,49 @@ An overview of all functions can be found as simple text file in
 [*calDoc.txt*](calDoc) or as an easier to navigate HTML page in
 [*docs/index.html*](docs/index.html).
 
-## Usage
+## Build
 
-The *configure.in* file has not been updated for modern systems.
-So, just run the premade *configure* script already present to
-create a *Makefile* with the desired targets.
+CAL can be built with CMake with the following set of commands.
 
 ```bash
-./configure
+mkdir build && cd build
+cmake ..
+make cal
 ```
 
-The *Makefile* provides the following targets for your to run
+### Page Size
 
-| Target       | Function                        |
-|--------------|---------------------------------|
-| `all`        | Build *libcal.a*                |
-| `check`      | Run all unit tests              |
-| `check-code` | Run a linter on the source code |
+By default CAL is set to use a page size of *4096*. To get the page size of your
+machine, please compile and run the following small C program and set the CMake
+option `CAL_PAGE_SIZE` to the value printed. One should also set
+`CAL_LG_PAGE_SIZE` to the base-2 logarithm of `CAL_PAGE_SIZE`.
+
+```c
+#include <stdio.h>
+#ifdef HAVE_UNISTD_H
+#  include <unistd.h>
+#endif
+
+main() {
+  FILE * f = fopen( "conftestval", "w" );
+  if ( f == NULL ) exit(1);
+  fprintf( f, "%d\n", (int) getpagesize() );
+  exit(0);
+}
+```
+
+## Tests
+
+The unit tests in *tests/* can are also built with CMake
+
+```bash
+mkdir build && cd build
+cmake ..
+make test_performance test_reorder test_unit
+```
+
+Then run the *build/test/test_performance*, *build/test/test_reorder*, and
+*build/test/test_unit* executables.
 
 ## License
 

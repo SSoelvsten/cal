@@ -209,7 +209,6 @@ CalBddFunctionPrint(Cal_BddManager_t * bddManager,
   SeeAlso     [optional]
   
 ******************************************************************************/
-#if HAVE_STDARG_H
 int
 CalBddPreProcessing(Cal_BddManager_t *bddManager, int count, ...)
 {
@@ -217,26 +216,7 @@ CalBddPreProcessing(Cal_BddManager_t *bddManager, int count, ...)
   va_list ap;
   Cal_Bdd fUserBdd;
   Cal_Bdd_t f;
-  
   va_start(ap, count);
-#else
-#  if HAVE_VARARGS_H
-int
-CalBddPreProcessing(va_alist)
-va_dcl
-{
-  int allValid;
-  va_list ap;
-  Cal_Bdd *fUserBdd;
-  int count;
-  Cal_BddManager_t *bddManager;
-  Cal_Bdd_t f;
-  
-  va_start(ap);
-  bddManager = va_arg(ap, Cal_BddManager_t *);
-  count = va_arg(ap, int);
-#  endif
-#endif  
 
   allValid=1;
   while (count){

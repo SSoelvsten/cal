@@ -39,7 +39,7 @@
 
 ******************************************************************************/
 
-#include "calInt.h"
+#include <calInt.h>
 #include "time.h"
 #include <signal.h>
 
@@ -88,11 +88,7 @@ static char filename[1024];
 /*---------------------------------------------------------------------------*/
 #define EncodingToBdd(table) (Decode(0, (table)))
 
-#if HAVE_STDARG_H
 static void Error(char *op, Cal_BddManager bddManager, Cal_Bdd result, Cal_Bdd expected, ...);
-#else
-static void Error();
-#endif
 
 /**AutomaticStart*************************************************************/
 
@@ -142,7 +138,6 @@ static void RandomTests(int numVars, int iterations);
 /*---------------------------------------------------------------------------*/
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
-#ifdef TEST
 /**Function********************************************************************
 
   Synopsis    [required]
@@ -176,7 +171,7 @@ main(int  argc, char ** argv)
   RandomTests(numVars, iterations);
   return 0;
 }
-#endif
+
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
@@ -282,7 +277,6 @@ PrintBdd(
   SeeAlso     [optional]
 
 ******************************************************************************/
-#if HAVE_STDARG_H
 static void
 Error(char *op, Cal_BddManager bddManager, Cal_Bdd result,
       Cal_Bdd expected, ...)
@@ -293,25 +287,6 @@ Error(char *op, Cal_BddManager bddManager, Cal_Bdd result,
   Cal_Bdd_t f;
 
   va_start(ap, expected);
-#else
-static void
-Error(va_alist)
-va_dcl
-{
-  va_list ap;
-  Cal_BddRefCount_t refCount;
-  Cal_BddManager_t *bddManager;
-  Cal_Bdd result, expected;
-  Cal_Bdd userBdd;
-  char *op;
-  int i;
-  
-  va_start(ap);
-  op   = va_arg(ap, char *);
-  bddManager = va_arg(ap, Cal_BddManager_t *);
-  result = va_arg(ap, Cal_Bdd);
-  expected = va_arg(ap, Cal_Bdd);
-#endif
 
   fprintf(stderr, "\nError: operation %s:\n", op);
   i=0;

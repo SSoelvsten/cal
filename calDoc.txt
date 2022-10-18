@@ -303,9 +303,6 @@ Cal_MemNewRec()                Allocates a record from the specified record
 Cal_MemResizeBlock()           Expands or contracts the block to a new size.
                                We try to avoid moving the block if possible.
 
-Cal_PerformanceTest()          Main routine for testing performances of
-                               various routines.
-
 Cal_PipelineCreateProvisionalBdd()
                                Create a provisional BDD in the pipeline.
 
@@ -1371,29 +1368,6 @@ Cal_MemResizeBlock(
 )
   Expands or contracts the block to a new size. We try to avoid moving the
   block if possible.
-
-  Side Effects: required
-
-int
-Cal_PerformanceTest(
-  Cal_BddManager    bddManager,
-  Cal_Bdd *         outputBddArray,
-  int               numFunctions,
-  int               iteration,
-  int               seed,
-  int               andPerformanceFl
-  int               multiwayPerforma
-  int               onewayPerformanc
-  int               quantifyPerforma
-  int               composePerforman
-  int               relprodPerforman
-  int               swapPerformanceF
-  int               substitutePerfor
-  int               sanityCheckFlag,
-  int               computeMemoryOve
-  int               superscalarFlag
-)
-  optional
 
   Side Effects: required
 

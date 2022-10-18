@@ -1,0 +1,29 @@
+name: 'tests'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: 'Run Unit Tests'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: git clone
+      uses: actions/checkout@v2
+
+    - name: cmake
+      run: |
+        cmake -E make_directory build
+        cd build
+        cmake -D CMAKE_BUILD_TYPE=Debug ..
+        cmake --build . --target test_unit
+
+    - name: test/test_unit
+      run: |
+        cd build/test
+        ./test_unit
+
