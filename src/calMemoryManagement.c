@@ -154,8 +154,10 @@ CalPageManagerQuit(
     return 1;
   }
   for(i = 0; i < pageManager->numSegments; i++){
-    // BUG: double free!
-    free(pageManager->pageSegmentArray[i]);
+    // HOTFIX against 'free(): invalid pointer'
+    if(pageManager->pageSegmentArray[i] == NULL) {
+      free(pageManager->pageSegmentArray[i]);
+    }
   }
   Cal_MemFree(pageManager->pageSegmentArray);
   Cal_MemFree(pageManager->numPagesArray);
