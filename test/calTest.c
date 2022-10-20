@@ -1614,11 +1614,11 @@ TestReorder(Cal_BddManager bddManager, TruthTable_t table, Cal_Bdd f)
     fprintf(stdout, "Using Sift\n");
     Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT);
   }
-  if (CalUtilRandom()&0x1){
+  if (1) { // (CalUtilRandom()&0x1){
     bddManager->reorderMethod = CAL_REORDER_METHOD_BF;
   }
   else{
-    bddManager->reorderMethod = CAL_REORDER_METHOD_DF;
+    // bddManager->reorderMethod = CAL_REORDER_METHOD_DF;
   }
   Cal_BddReorder(bddManager);
   newFunction = EncodingToBdd(table);
