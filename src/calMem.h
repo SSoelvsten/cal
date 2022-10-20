@@ -71,20 +71,11 @@ typedef size_t Cal_Address_t;
 #define EXTERN extern
 #endif
 #define Cal_Nil(obj) ((obj *)0)
-#define USE_OS_MEMORY_MANAGEMENT
-#ifdef USE_OS_MEMORY_MANAGEMENT
 #define Cal_MemAlloc(type, num) ((type *) malloc(sizeof(type) * (num)))
-#define Cal_MemRealloc(type, obj, num)	\
-    (obj) ? ((type *) realloc((char *) obj, sizeof(type) * (num))) : \
-    ((type *) malloc(sizeof(type) * (num)))
+#define Cal_MemRealloc(type, obj, num)                              \
+  (obj) ? ((type *) realloc((char *) obj, sizeof(type) * (num))) :  \
+       ((type *) malloc(sizeof(type) * (num)))
 #define Cal_MemFree(obj) ((obj) ? (free((char *) (obj)), (obj) = 0) : 0)
-#else
-#define Cal_MemAlloc(type, num) ((type *) Cal_MemGetBlock(sizeof(type) * (num)))
-#define Cal_MemRealloc(type, obj, num)	\
-    (obj) ? ((type *) Cal_MemResizeBlock((Cal_Pointer_t) obj, sizeof(type) * (num))) : \
-    ((type *) Cal_MemGetBlock(sizeof(type) * (num)))
-#define Cal_MemFree(obj) ((obj) ? (Cal_MemFreeBlock((Cal_Pointer_t) (obj)), (obj) = 0) : 0)
-#endif
 #define Cal_MemCopy(dest, src, size)  ((void *) memcpy((void *)dest, (const void *)src, (size_t)size));
 #define Cal_MemZero(ptr, size) ((void)memset((void *)(ptr), 0, (Cal_Address_t)(size)))
 
