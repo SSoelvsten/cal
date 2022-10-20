@@ -57,7 +57,7 @@ generate_export_header(cal
   EXPORT_MACRO_NAME CAL_API
 )
 
-target_compile_definitions(cal PRIVATE PAGE_SIZE=${CAL_PAGE_SIZE} LG_PAGE_SIZE=${CAL_LG_PAGE_SIZE})
+target_compile_definitions(cal PRIVATE PAGE_SIZE=${CAL_PAGE_SIZE})
 
 target_include_directories(cal PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
                                       ${CMAKE_CURRENT_SOURCE_DIR})

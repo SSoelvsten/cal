@@ -97,13 +97,79 @@
 #ifndef PAGE_SIZE
 #  define PAGE_SIZE 4096	/* size of a virtual memory page */
 #endif
-#ifndef LG_PAGE_SIZE
-#  define LG_PAGE_SIZE 12	/* log2 of the page size */
+
+#if (1 << 32) <= PAGE_SIZE
+#  error "PAGE_SIZE must be a number that fits into a 32-bit integer"
+#endif
+#if PAGE_SIZE & (1 << 31)   /* 2 GiB  */
+#define LG_PAGE_SIZE 31
+#elif PAGE_SIZE & (1 << 30) /* 1 GiB */
+#define LG_PAGE_SIZE 30
+#elif PAGE_SIZE & (1 << 29)
+#define LG_PAGE_SIZE 29
+#elif PAGE_SIZE & (1 << 28)
+#define LG_PAGE_SIZE 28
+#elif PAGE_SIZE & (1 << 27)
+#define LG_PAGE_SIZE 27
+#elif PAGE_SIZE & (1 << 26)
+#define LG_PAGE_SIZE 26
+#elif PAGE_SIZE & (1 << 25)
+#define LG_PAGE_SIZE 25
+#elif PAGE_SIZE & (1 << 24)
+#define LG_PAGE_SIZE 24
+#elif PAGE_SIZE & (1 << 23)
+#define LG_PAGE_SIZE 23
+#elif PAGE_SIZE & (1 << 22) /* 4 MiB */
+#define LG_PAGE_SIZE 22
+#elif PAGE_SIZE & (1 << 21) /* 2 MiB */
+#define LG_PAGE_SIZE 21
+#elif PAGE_SIZE & (1 << 20)
+#define LG_PAGE_SIZE 20
+#elif PAGE_SIZE & (1 << 19)
+#define LG_PAGE_SIZE 19
+#elif PAGE_SIZE & (1 << 18)
+#define LG_PAGE_SIZE 18
+#elif PAGE_SIZE & (1 << 17)
+#define LG_PAGE_SIZE 17
+#elif PAGE_SIZE & (1 << 16)
+#define LG_PAGE_SIZE 16
+#elif PAGE_SIZE & (1 << 15)
+#define LG_PAGE_SIZE 15
+#elif PAGE_SIZE & (1 << 14)
+#define LG_PAGE_SIZE 14
+#elif PAGE_SIZE & (1 << 13)
+#define LG_PAGE_SIZE 13
+#elif PAGE_SIZE & (1 << 12) /* 4 KiB = 4096 bytes (default) */
+#define LG_PAGE_SIZE 12
+#elif PAGE_SIZE & (1 << 11) /* 2 KiB */
+#define LG_PAGE_SIZE 11
+#elif PAGE_SIZE & (1 << 10) /* 1 KiB */
+#define LG_PAGE_SIZE 10
+#elif PAGE_SIZE & (1 << 9)
+#define LG_PAGE_SIZE 9
+#elif PAGE_SIZE & (1 << 8)
+#define LG_PAGE_SIZE 8
+#elif PAGE_SIZE & (1 << 7)
+#define LG_PAGE_SIZE 7
+#elif PAGE_SIZE & (1 << 6)
+#define LG_PAGE_SIZE 6
+#elif PAGE_SIZE & (1 << 5)
+#define LG_PAGE_SIZE 5
+#elif PAGE_SIZE & (1 << 4)
+#define LG_PAGE_SIZE 4
+#elif PAGE_SIZE & (1 << 3)
+#define LG_PAGE_SIZE 3
+#elif PAGE_SIZE & (1 << 2)
+#define LG_PAGE_SIZE 2
+#elif PAGE_SIZE & (1 << 1)
+#define LG_PAGE_SIZE 1
+#elif PAGE_SIZE & (1 << 0)
+#define LG_PAGE_SIZE 0
 #endif
 
 #define NUM_NODES_PER_PAGE (PAGE_SIZE/NODE_SIZE)
 
-#define MAX_NUM_SEGMENTS 32 
+#define MAX_NUM_SEGMENTS 32
 #define NUM_PAGES_PER_SEGMENT 64 /* We start with grabbing 64 pages at a time */
 #define MIN_NUM_PAGES_PER_SEGMENT 4
 #define MAX_NUM_PAGES 10
