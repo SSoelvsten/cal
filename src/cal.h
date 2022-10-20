@@ -116,11 +116,7 @@ typedef enum Cal_BddOpEnum Cal_BddOp_t;
 /*---------------------------------------------------------------------------*/
 #define Cal_BddNamingFnNone ((char *(*)(Cal_BddManager, Cal_Bdd, Cal_Pointer_t))0)
 #define Cal_BddTerminalIdFnNone ((char *(*)(Cal_BddManager, Cal_Address_t, Cal_Address_t, Cal_Pointer_t))0)
-#ifdef _CAL_DEBUG_
 #define Cal_Assert(valid) assert(valid)
-#else
-#define Cal_Assert(ignore) ((void)0)
-#endif
 
 
 

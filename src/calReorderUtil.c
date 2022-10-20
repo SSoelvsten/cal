@@ -247,7 +247,7 @@ CalCheckValidityOfNodesForWindow(Cal_BddManager bddManager,
 }
 
 
-  
+
 /**Function********************************************************************
 
   Synopsis           [required]
@@ -260,15 +260,14 @@ CalCheckValidityOfNodesForWindow(Cal_BddManager bddManager,
 
 ******************************************************************************/
 int
-CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t
-                     *bddNode, int id) 
+CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t *bddNode, int id)
 {
   Cal_Bdd_t thenBdd, elseBdd, thenBdd_, elseBdd_;
   if (id != 0){
     /* id = 0 corresponds to the constants and the user BDDs */
     Cal_Assert(bddManager->idToIndex[id] <
-               bddManager->idToIndex[bddNode->thenBddId]);   
-    Cal_Assert(bddManager->idToIndex[id] < 
+               bddManager->idToIndex[bddNode->thenBddId]);
+    Cal_Assert(bddManager->idToIndex[id] <
                bddManager->idToIndex[bddNode->elseBddId]);
   }
   Cal_Assert(!CalBddNodeIsForwarded(bddNode));
@@ -286,8 +285,8 @@ CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t
     CalBddGetElseBdd(thenBdd, elseBdd_);
     Cal_Assert(
       CalUniqueTableForIdLookup(bddManager,
-                                bddManager->uniqueTable[bddNode->thenBddId],  
-                                thenBdd_, elseBdd_, &bdd));
+                                bddManager->uniqueTable[bddNode->thenBddId],
+                                thenBdd_, elseBdd_, &bddNode));
   }
   if (bddNode->elseBddId != 0){
     CalBddGetThenBdd(elseBdd, thenBdd_);
@@ -295,7 +294,7 @@ CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t
     Cal_Assert(
       CalUniqueTableForIdLookup(bddManager,
                                 bddManager->uniqueTable[bddNode->elseBddId],
-                                thenBdd_, elseBdd_, &bdd));
+                                thenBdd_, elseBdd_, &bddNode));
   }
   return 1;
 }
