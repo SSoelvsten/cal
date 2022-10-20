@@ -27,8 +27,9 @@ This project was developed in the late 90's at
 ## Documentation
 
 An overview of all functions can be found as simple text file in
-[*calDoc.txt*](calDoc) or as an easier to navigate HTML page in
-[*docs/index.html*](docs/index.html).
+[*calDoc.txt*](/calDoc.txt) or as an easier to navigate HTML page in
+the [*docs/*](/docs/) folder which is hosted on
+[GitHub Pages](https://ssoelvsten.github.io/cal/).
 
 ## Build
 
