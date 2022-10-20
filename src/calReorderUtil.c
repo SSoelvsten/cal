@@ -278,23 +278,28 @@ CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t *bddNode, int
   Cal_Assert(CalBddIsForwarded(elseBdd) == 0);
   Cal_Assert(!CalBddIsRefCountZero(thenBdd));
   Cal_Assert(!CalBddIsRefCountZero(elseBdd));
+
   /* Make sure that the then and else bdd nodes are part of the
      respective unique tables */
   if (bddNode->thenBddId != 0){
     CalBddGetThenBdd(thenBdd, thenBdd_);
     CalBddGetElseBdd(thenBdd, elseBdd_);
+    /* TODO: what is the variable 'bdd' supposed to be?
     Cal_Assert(
       CalUniqueTableForIdLookup(bddManager,
                                 bddManager->uniqueTable[bddNode->thenBddId],
-                                thenBdd_, elseBdd_, &bddNode));
+                                thenBdd_, elseBdd_, &bdd));
+    */
   }
   if (bddNode->elseBddId != 0){
     CalBddGetThenBdd(elseBdd, thenBdd_);
     CalBddGetElseBdd(elseBdd, elseBdd_);
+    /* TODO: what is the variable 'bdd' supposed to be?
     Cal_Assert(
       CalUniqueTableForIdLookup(bddManager,
                                 bddManager->uniqueTable[bddNode->elseBddId],
-                                thenBdd_, elseBdd_, &bddNode));
+                                thenBdd_, elseBdd_, &bdd));
+    */
   }
   return 1;
 }
