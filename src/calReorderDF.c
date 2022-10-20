@@ -882,10 +882,8 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
   
   /* Free the page manager related stuff*/
   for(i = 0; i < numSegments; i++){
-    // HOTFIX against 'free(): invalid pointer'
-    if(pageSegmentArray[i] == NULL) {
-      free(pageSegmentArray[i]);
-    }
+    // BUG: double free!
+    free(pageSegmentArray[i]);
   }
   Cal_MemFree(pageSegmentArray);
 }
