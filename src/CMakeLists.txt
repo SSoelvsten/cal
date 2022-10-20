@@ -72,7 +72,7 @@ set_target_properties(cal PROPERTIES
 #  CXX_VISIBILITY_PRESET hidden
 
   # Linkage?
-  FOLDER cal
+#  FOLDER cal
 
   # Other
   VERSION ${PROJECT_VERSION}
