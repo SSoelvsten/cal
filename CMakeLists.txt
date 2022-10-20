@@ -23,11 +23,6 @@ message(STATUS "    EXE Linker Flags: ${CMAKE_EXE_LINKER_FLAGS}")
 option(CAL_SHARED "Build CAL as a shared library" OFF)
 message(STATUS "  Shared: ${CAL_SHARED}")
 
-message(STATUS "  Constants:")
-
-set(CAL_PAGE_SIZE "4096")
-message(STATUS "    Page Size: ${CAL_PAGE_SIZE}")
-
 message(STATUS "")
 
 # ============================================================================ #

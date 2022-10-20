@@ -57,6 +57,18 @@ generate_export_header(cal
   EXPORT_MACRO_NAME CAL_API
 )
 
+if (UNIX)
+  execute_process(COMMAND "getconf" "PAGESIZE"
+    RESULT_VARIABLE UNIX_PS_CODE
+    OUTPUT_VARIABLE UNIX_PS_STDOUT)
+  if (UNIX_PS_CODE EQUAL 0)
+    set (CAL_PAGE_SIZE "${UNIX_PS_STDOUT}")
+  endif ()
+endif (UNIX)
+if (NOT DEFINED CAL_PAGE_SIZE)
+  set (CAL_PAGE_SIZE "4096")
+endif()
+
 target_compile_definitions(cal PRIVATE PAGE_SIZE=${CAL_PAGE_SIZE})
 
 target_include_directories(cal PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
