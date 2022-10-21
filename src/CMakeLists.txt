@@ -10,7 +10,8 @@ set(CAL_C_HEADERS
 )
 
 set(CAL_C_SOURCES
-  cal.c calBddOp.c
+  cal.c
+  calBddOp.c
   calBddManager.c
   calMemoryManagement.c
 	calHashTable.c
@@ -44,12 +45,16 @@ set(CAL_C_SOURCES
   calMem.c
 )
 
+set(CAL_CPP_HEADERS
+  calObj.hh
+)
+
 # ============================================================================ #
 # Setup as library
 if (CAL_SHARED)
-  add_library(cal SHARED ${CAL_C_HEADERS} ${CAL_C_SOURCES})
+  add_library(cal SHARED ${CAL_C_HEADERS} ${CAL_CPP_HEADERS} ${CAL_C_SOURCES})
 else()
-  add_library(cal STATIC ${CAL_C_HEADERS} ${CAL_C_SOURCES})
+  add_library(cal STATIC ${CAL_C_HEADERS} ${CAL_CPP_HEADERS} ${CAL_C_SOURCES})
 endif()
 
 include(GenerateExportHeader)
@@ -76,7 +81,7 @@ target_include_directories(cal PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
 
 set_target_properties(cal PROPERTIES
   # Language settings
-  LINKER_LANGUAGE C
+  LINKER_LANGUAGE CXX
 #  C_STANDARD 17
 #  C_STANDARD_REQUIRED ON
 #  CXX_STANDARD 17
@@ -84,7 +89,7 @@ set_target_properties(cal PROPERTIES
 #  CXX_VISIBILITY_PRESET hidden
 
   # Linkage?
-#  FOLDER cal
+  FOLDER cal
 
   # Other
   VERSION ${PROJECT_VERSION}
