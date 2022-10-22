@@ -41,27 +41,6 @@ cmake ..
 make cal
 ```
 
-### Page Size
-
-By default CAL is set to use a page size of *4096*. To get the page size of your
-machine, please compile and run the following small C program and set the CMake
-option `CAL_PAGE_SIZE` to the value printed. One should also set
-`CAL_LG_PAGE_SIZE` to the base-2 logarithm of `CAL_PAGE_SIZE`.
-
-```c
-#include <stdio.h>
-#ifdef HAVE_UNISTD_H
-#  include <unistd.h>
-#endif
-
-main() {
-  FILE * f = fopen( "conftestval", "w" );
-  if ( f == NULL ) exit(1);
-  fprintf( f, "%d\n", (int) getpagesize() );
-  exit(0);
-}
-```
-
 ## Tests
 
 The unit tests in *tests/* can are also built with CMake
