@@ -367,9 +367,9 @@ Cal_BddManagerQuit(Cal_BddManager bddManager)
 
 ******************************************************************************/
 void
-Cal_BddManagerSetParameters(Cal_BddManager bddManager, long
-                            reorderingThreshold, long
-                            maxForwardedNodes,
+Cal_BddManagerSetParameters(Cal_BddManager bddManager,
+                            long reorderingThreshold,
+                            long maxForwardedNodes,
                             double repackAfterGCThreshold,
                             double tableRepackThreshold)
 {
