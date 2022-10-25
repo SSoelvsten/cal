@@ -11,11 +11,14 @@ CAL is a BDD package [[Bryant86](#references)] that uses breadt-first
 algorithms [[Ochi93](#references), [Ashar94](#references),
 [Sanghavi96](#references)] to exploit a locality of BDD nodes on disk.
 This allows one to obtain a high performance when manipulating Binary
-Decision Diagrams, even when they outgrow he memory limit of the given
+Decision Diagrams, even when they outgrow the memory limit of the given
 machine.
 
 This project was developed in the late 90's at
-[EECS at UC Berkeley](https://eecs.berkeley.edu/).
+[EECS at UC Berkeley](https://eecs.berkeley.edu/). In 2022, the
+[Logic and Semantics](https://logsem.github.io/) group at [Aarhus University](https://cs.au.dk)
+have brought this project back from the grave by upgrading it to be
+built with CMake and by adding a clean C++ API.
 
 **Table of Contents**
 
@@ -31,28 +34,30 @@ An overview of all functions can be found as simple text file in
 the [*docs/*](/docs/) folder which is hosted on
 [GitHub Pages](https://ssoelvsten.github.io/cal/).
 
-## Build
+## Usage
 
-CAL can be built with CMake with the following set of commands.
-
+To get started with CAL, you need to place the repository somewhere on
+your machine. The simplest way to do so is to add it as a submodule
+inside the Git repository of your project.
 ```bash
-mkdir build && cd build
-cmake ..
-make cal
+git submodule add https://github.com/SSoelvsten/cal external/cal
+git submodule update
 ```
 
-## Tests
-
-The unit tests in *tests/* can are also built with CMake
-
+Then include the following line in your project's CMakeLists.txt.
 ```bash
-mkdir build && cd build
-cmake ..
-make test_performance test_reorder test_unit
+add_subdirectory (external/cal cal)
 ```
 
-Then run the *build/test/test_performance*, *build/test/test_reorder*, and
-*build/test/test_unit* executables.
+Finally, every single executable target is linked to CAL in the
+CMakeLists.txt file with the following lines.
+```bash
+add_executable(<target> <source>)
+target_link_libraries(<target> cal)
+```
+
+At this point, you may include the C header `<cal.h>` or the C++ header
+`<calObj.hh>` and get started on programming.
 
 ## License
 
