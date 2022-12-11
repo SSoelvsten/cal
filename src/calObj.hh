@@ -141,7 +141,10 @@ public:
   // TODO: Move Constructor?
 
   ~BDD()
-  { Cal_BddFree(_bddManager, _bdd); }
+  {
+    if (_bdd != NIL)
+      Cal_BddFree(_bddManager, _bdd);
+  }
 
   // ---------------------------------------------------------------------------
   // TODO: Operators functions as member functions?
@@ -151,9 +154,11 @@ public:
 
   BDD& operator= (const BDD &other)
   {
-    Cal_BddFree(this->_bddManager, this->_bdd);
+    if (this->_bdd != NIL)
+      Cal_BddFree(this->_bddManager, this->_bdd);
     this->_bdd = other._bdd;
-    Cal_BddUnFree(this->_bddManager, this->_bdd);
+    if (this->_bdd != NIL)
+      Cal_BddUnFree(this->_bddManager, this->_bdd);
     return *this;
   }
 
