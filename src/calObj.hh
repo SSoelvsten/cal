@@ -168,7 +168,7 @@ public:
   { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
   bool  operator!= (const BDD &other) const
-  { return !Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
+  { return !(*this == other); }
 
   BDD  operator~ () const
   { return BDD(this->_bddManager, Cal_BddNot(this->_bddManager, this->_bdd)); }
