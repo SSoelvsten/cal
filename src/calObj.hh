@@ -138,8 +138,7 @@ public:
   BDD(const BDD &other)
     : _bdd(other._bdd), _bddManager(other._bddManager)
   {
-    if (this->_bdd != NIL)
-      Cal_BddUnFree(_bddManager, _bdd);
+    if (this->_bdd != NIL) { Cal_BddUnFree(_bddManager, _bdd); }
   }
 
   BDD(BDD &&other)
@@ -162,11 +161,9 @@ public:
 
   BDD& operator= (const BDD &other)
   {
-    if (this->_bdd != NIL)
-      Cal_BddFree(this->_bddManager, this->_bdd);
+    if (this->_bdd != NIL) { Cal_BddFree(this->_bddManager, this->_bdd); }
     this->_bdd = other._bdd;
-    if (this->_bdd != NIL)
-      Cal_BddUnFree(this->_bddManager, this->_bdd);
+    if (this->_bdd != NIL) { Cal_BddUnFree(this->_bddManager, this->_bdd); }
     return *this;
   }
 
