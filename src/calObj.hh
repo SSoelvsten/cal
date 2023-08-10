@@ -138,7 +138,8 @@ public:
   BDD(const BDD &other)
     : _bdd(other._bdd), _bddManager(other._bddManager)
   {
-    Cal_BddUnFree(_bddManager, _bdd);
+    if (this->_bdd != NIL)
+      Cal_BddUnFree(_bddManager, _bdd);
   }
 
   BDD(BDD &&other)
