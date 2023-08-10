@@ -135,10 +135,17 @@ public:
   BDD()
   { }
 
-  BDD(const BDD &o) : _bdd(o._bdd), _bddManager(o._bddManager)
-  { Cal_BddUnFree(_bddManager, _bdd); }
+  BDD(const BDD &other)
+    : _bdd(other._bdd), _bddManager(other._bddManager)
+  {
+    Cal_BddUnFree(_bddManager, _bdd);
+  }
 
-  // TODO: Move Constructor?
+  BDD(BDD &&other)
+    : _bdd(other._bdd), _bddManager(other._bddManager)
+  {
+    other._bdd = NIL;
+  }
 
   ~BDD()
   {
@@ -162,7 +169,12 @@ public:
     return *this;
   }
 
-  // TODO: Move Assignment?
+  BDD& operator= (BDD &&other)
+  {
+    this->_bdd = other._bdd;
+    other._bdd = NIL;
+    return *this;
+  }
 
   bool operator== (const BDD &other) const
   { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
