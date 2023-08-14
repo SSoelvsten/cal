@@ -120,8 +120,8 @@ class BDD {
   friend Cal;
 
 private:
-  Cal_BddManager _bddManager = NULL;
-  Cal_Bdd _bdd = Cal_BddNull(_bddManager);
+  Cal_BddManager _bddManager;
+  Cal_Bdd _bdd;
 
 protected:
   BDD(Cal_BddManager bddManager, Cal_Bdd bdd)
@@ -133,6 +133,7 @@ protected:
 
 public:
   BDD()
+    : _bddManager(NULL), _bdd(Cal_BddNull(NULL))
   { }
 
   BDD(const BDD &other)
