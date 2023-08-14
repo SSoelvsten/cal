@@ -86,6 +86,7 @@ public:
   // Declaration of BDD Constructors
   BDD One();
   BDD Zero();
+  BDD Null();
 
   BDD Id(Cal_BddId_t id);
   BDD Index(Cal_BddIndex_t idx);
@@ -226,6 +227,9 @@ BDD Cal::One()
 
 BDD Cal::Zero()
 { return BDD(_bddManager, Cal_BddZero(_bddManager)); }
+
+BDD Cal::Null()
+{ return BDD(_bddManager, Cal_BddNull(_bddManager)); }
 
 BDD Cal::Id(Cal_BddId_t id)
 { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, id)); }
