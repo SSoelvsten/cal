@@ -134,6 +134,7 @@ EXTERN int Cal_BddIsBddConst(Cal_BddManager bddManager, Cal_Bdd userBdd);
 EXTERN Cal_Bdd Cal_BddIdentity(Cal_BddManager bddManager, Cal_Bdd userBdd);
 EXTERN Cal_Bdd Cal_BddOne(Cal_BddManager bddManager);
 EXTERN Cal_Bdd Cal_BddZero(Cal_BddManager bddManager);
+EXTERN Cal_Bdd Cal_BddNull(Cal_BddManager bddManager);
 EXTERN Cal_Bdd Cal_BddNot(Cal_BddManager bddManager, Cal_Bdd userBdd);
 EXTERN Cal_BddId_t Cal_BddGetIfIndex(Cal_BddManager bddManager, Cal_Bdd userBdd);
 EXTERN Cal_BddId_t Cal_BddGetIfId(Cal_BddManager bddManager, Cal_Bdd userBdd);
