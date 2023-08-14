@@ -108,7 +108,7 @@ Cal_BddAnd(
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }
@@ -137,13 +137,13 @@ Cal_BddNand(
     result = CalBddOpBF(bddManager, CalOpNand, F, G);
   }
   else{
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   userResult =  CalBddGetExternalBdd(bddManager, result);
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }
@@ -171,13 +171,13 @@ Cal_BddOr(Cal_BddManager bddManager,
     result = CalBddOpBF(bddManager, CalOpOr, F, G);
   }
   else{
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   userResult =  CalBddGetExternalBdd(bddManager, result);
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }
@@ -206,13 +206,13 @@ Cal_BddNor(Cal_BddManager bddManager,
     CalBddNot(result, result);
   }
   else{
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   userResult =  CalBddGetExternalBdd(bddManager, result);
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }
@@ -240,13 +240,13 @@ Cal_BddXor(Cal_BddManager bddManager,
     result = CalBddOpBF(bddManager, CalOpXor, F, G);
   }
   else{
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   userResult =  CalBddGetExternalBdd(bddManager, result);
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }
@@ -273,13 +273,13 @@ Cal_BddXnor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
     CalBddNot(result, result);
   }
   else{
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   userResult =  CalBddGetExternalBdd(bddManager, result);
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }
@@ -331,7 +331,7 @@ Cal_BddPairwiseAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   if (CalBddPostProcessing(bddManager)  == CAL_BDD_OVERFLOWED){
     for (i=0; i<num/2; i++){
       Cal_BddFree(bddManager, userResultArray[i]);
-      userResultArray[i] = (Cal_Bdd) 0;
+      userResultArray[i] = Cal_BddNull(bddManager);
     }
     Cal_BddManagerGC(bddManager);
     return userResultArray;
@@ -454,13 +454,13 @@ Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
 
   for (numBdds  = 0; (userBdd = userBddArray[numBdds]); numBdds++){
     if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
   }
   
   if (numBdds == 0){
     CalBddWarningMessage("Multiway AND called with 0 length array");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   else if (numBdds == 1){
     return Cal_BddIdentity(bddManager, userBddArray[0]);
@@ -495,13 +495,13 @@ Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
 
   for (numBdds = 0; (userBdd = userBddArray[numBdds]); numBdds++){
     if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
   }
   
   if (numBdds == 0){
     CalBddWarningMessage("Multiway OR called with 0 length array");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   else if (numBdds == 1){
     return Cal_BddIdentity(bddManager, userBddArray[0]);
@@ -536,13 +536,13 @@ Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
 
   for (numBdds = 0; (userBdd = userBddArray[numBdds]); numBdds++){
     if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
   }
   
   if (numBdds == 0){
     CalBddWarningMessage("Multiway OR called with 0 length array");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   else if (numBdds == 1){
     return Cal_BddIdentity(bddManager, userBddArray[0]);

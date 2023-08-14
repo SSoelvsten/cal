@@ -101,7 +101,7 @@ Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
   Cal_Bdd_t f;
   
   if (CalBddPreProcessing(bddManager, 1, fUserBdd) == 0){
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   f = CalBddGetInternalBdd(bddManager, fUserBdd);  
   if(CalBddIsBddConst(f)){

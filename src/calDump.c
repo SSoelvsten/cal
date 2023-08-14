@@ -139,7 +139,7 @@ Cal_BddUndumpBdd(
   for(i = 0; userVars[i]; ++i){
     if(Cal_BddType(bddManager, userVars[i]) !=  CAL_BDD_TYPE_POSVAR){
       CalBddWarningMessage("Cal_BddUndumpBdd: support is not all positive variables"); 
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
   }
   vars = Cal_MemAlloc(Cal_Bdd_t, i);
@@ -152,29 +152,29 @@ Cal_BddUndumpBdd(
       *error = CAL_BDD_UNDUMP_FORMAT;
     }
     Cal_MemFree(vars);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   numberVars = Read(error, sizeof(Cal_BddIndex_t), fp);
   if(*error){
     Cal_MemFree(vars);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   if(numberVars !=  i){
     *error = CAL_BDD_UNDUMP_FORMAT;
     Cal_MemFree(vars);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   numberShared = Read(error, sizeof(long), fp);
   if(*error){
     Cal_MemFree(vars);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   indexSize = BytesNeeded(numberVars+1);
   nodeNumberSize = BytesNeeded(numberShared);
   if(numberShared < 0){
     *error = CAL_BDD_UNDUMP_FORMAT;
     Cal_MemFree(vars);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   shared = Cal_MemAlloc(Cal_Bdd_t, numberShared);
   for(i = 0; i < numberShared; ++i){
@@ -199,7 +199,7 @@ Cal_BddUndumpBdd(
     if(!CalBddIsBddNull(bddManager, result)){
       CalBddFree(result);
     }
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   /*
    * Decrement the reference count of result by 1. Since it has

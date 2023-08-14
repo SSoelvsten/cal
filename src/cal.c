@@ -132,7 +132,7 @@ Cal_BddIsBddZero(
 {
   return (userBdd == bddManager->userZeroBdd);
 }
-  
+
 /**Function********************************************************************
 
   Synopsis    [Returns 1 if the argument BDD is NULL, 0 otherwise.]
@@ -147,7 +147,6 @@ Cal_BddIsBddNull(Cal_BddManager bddManager, Cal_Bdd userBdd)
 {
   return (userBdd == 0);
 }
-
 
 /**Function********************************************************************
 
@@ -326,7 +325,7 @@ Cal_BddIf(Cal_BddManager bddManager, Cal_Bdd userBdd)
 {
   Cal_Bdd_t F;
   if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
-    return (Cal_Bdd)0;
+    return Cal_BddNull(bddManager);
   }
   F = CalBddGetInternalBdd(bddManager, userBdd);
   if (CalBddIsBddConst(F)){
@@ -355,7 +354,7 @@ Cal_BddThen(Cal_BddManager bddManager, Cal_Bdd userBdd)
   Cal_Bdd_t thenBdd;
   Cal_Bdd_t F;
   if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
-    return (Cal_Bdd)0;
+    return Cal_BddNull(bddManager);
   }
   F = CalBddGetInternalBdd(bddManager, userBdd);
   CalBddGetThenBdd(F, thenBdd);
@@ -381,7 +380,7 @@ Cal_BddElse(Cal_BddManager bddManager, Cal_Bdd userBdd)
   Cal_Bdd_t elseBdd;
   Cal_Bdd_t F;
   if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   F = CalBddGetInternalBdd(bddManager, userBdd);
   CalBddGetElseBdd(F, elseBdd);
@@ -462,7 +461,7 @@ Cal_BddIntersects(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd
   Cal_Bdd_t result;
   Cal_Bdd_t f, g;
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd) == 0){
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   f = CalBddGetInternalBdd(bddManager, fUserBdd);
   g = CalBddGetInternalBdd(bddManager, gUserBdd);
@@ -494,7 +493,7 @@ Cal_BddImplies(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
     result = BddIntersectsStep(bddManager,f, gNot);
   }
   else{
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return CalBddGetExternalBdd(bddManager, result);
 }

@@ -110,11 +110,11 @@ Cal_BddCofactor(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
     if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
       Cal_BddFree(bddManager, userResult);
       Cal_BddManagerGC(bddManager);
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
     return userResult;
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 
@@ -146,7 +146,7 @@ Cal_BddReduce(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
     if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
       Cal_BddFree(bddManager, userResult);
       Cal_BddManagerGC(bddManager);
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
 	if (Cal_BddSize(bddManager, userResult, 1) <
         Cal_BddSize(bddManager, fUserBdd, 1)){
@@ -157,7 +157,7 @@ Cal_BddReduce(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
       return Cal_BddIdentity(bddManager, fUserBdd);
     }
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 
@@ -195,7 +195,7 @@ Cal_BddBetween(Cal_BddManager  bddManager, Cal_Bdd fMinUserBdd,
     if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
       Cal_BddFree(bddManager, resultUserBdd);
       Cal_BddManagerGC(bddManager);
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
     fMinSize = Cal_BddSize(bddManager, fMinUserBdd, 1);
     fMaxSize = Cal_BddSize(bddManager, fMaxUserBdd, 1);
@@ -217,7 +217,7 @@ Cal_BddBetween(Cal_BddManager  bddManager, Cal_Bdd fMinUserBdd,
       return Cal_BddIdentity(bddManager, fMaxUserBdd);
     }
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 

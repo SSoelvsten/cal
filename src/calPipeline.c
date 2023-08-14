@@ -182,7 +182,7 @@ Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
   g = CalBddGetInternalBdd(bddManager, gUserBdd);
   if(bddManager->pipelineState != CREATE){
     CalBddWarningMessage("Provisional Bdd not created: Pipeline is not initialized");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   if(CalBddIsMarked(f)){
     CalBddGetDepth(f, operandDepth);
@@ -202,7 +202,7 @@ Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
   if (insertDepth >= MAX_INSERT_DEPTH){
     CalBddWarningMessage("Provisional Bdd not created");
     CalBddWarningMessage("Maximum pipeline depth is reached");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
 
   CalNodeManagerAllocNode(bddManager->nodeManagerArray[0], requestNode);
@@ -321,7 +321,7 @@ Cal_PipelineUpdateProvisionalBdd(Cal_BddManager bddManager,
   Cal_Bdd_t calBdd = CalBddGetInternalBdd(bddManager, provisionalBdd);
   if(bddManager->pipelineState != UPDATE){
     CalBddWarningMessage("Provisional Bdd cannot be updated");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   CalBddGetThenBdd(calBdd, calBdd);
   return CalBddGetExternalBdd(bddManager, calBdd);
