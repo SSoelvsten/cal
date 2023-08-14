@@ -98,13 +98,13 @@ Cal_BddITE(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd,
     result = CalBddOpITEBF(bddManager, F, G, H);
   }
   else {
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   userResult =  CalBddGetExternalBdd(bddManager, result);
   if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
     Cal_BddFree(bddManager, userResult);
     Cal_BddManagerGC(bddManager);
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return userResult;
 }

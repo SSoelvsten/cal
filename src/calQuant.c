@@ -134,11 +134,11 @@ Cal_BddExists(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
     if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
       Cal_BddFree(bddManager, userResult);
       Cal_BddManagerGC(bddManager);
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
     return userResult;
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 
@@ -185,11 +185,11 @@ Cal_BddRelProd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
     if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
       Cal_BddFree(bddManager, userResult);
       Cal_BddManagerGC(bddManager);
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
     return userResult;
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 /**Function********************************************************************
@@ -234,11 +234,11 @@ Cal_BddForAll(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
     if (CalBddPostProcessing(bddManager) == CAL_BDD_OVERFLOWED){
       Cal_BddFree(bddManager, userResult);
       Cal_BddManagerGC(bddManager);
-      return (Cal_Bdd) 0;
+      return Cal_BddNull(bddManager);
     }
     return userResult;
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 /*---------------------------------------------------------------------------*/

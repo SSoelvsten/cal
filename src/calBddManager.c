@@ -187,13 +187,13 @@ Cal_BddManagerInit( )
   /* Constant Zero */
   CalBddNot(bddManager->bddOne, bddManager->bddZero);
 
-  /* Create a user BDD */
+  /* Create a user BDD for both One and Zero */
   CalHashTableAddDirectAux(bddManager->uniqueTable[0], bddManager->bddOne,
                            bddManager->bddOne, &resultBdd);
   CalBddPutRefCount(resultBdd, CAL_MAX_REF_COUNT);
   bddManager->userOneBdd =  CalBddGetBddNode(resultBdd);
   bddManager->userZeroBdd = CalBddNodeNot(bddManager->userOneBdd);
-  
+
   /* Null BDD */
   CalBddPutBddId(bddManager->bddNull, CAL_BDD_NULL_ID);
   CalNodeManagerAllocNode(bddManager->nodeManagerArray[0], bddNode);
@@ -519,7 +519,7 @@ Cal_BddManagerGetVarWithIndex(Cal_BddManager bddManager, Cal_BddIndex_t  index)
 {
   if (index >= bddManager->numVars){
     CalBddWarningMessage("Index out of range");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return CalBddGetExternalBdd(bddManager,
                               bddManager->varBdds[bddManager->indexToId[index]]); 
@@ -543,7 +543,7 @@ Cal_BddManagerGetVarWithId(Cal_BddManager bddManager,  Cal_BddId_t  id)
 {
   if (id <= 0 || id > bddManager->numVars){
     CalBddWarningMessage("Id out of range");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   return CalBddGetExternalBdd(bddManager, bddManager->varBdds[id]);
 }

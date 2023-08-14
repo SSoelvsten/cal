@@ -404,7 +404,7 @@ TestAnd(Cal_BddManager bddManager, Cal_Bdd  f1, TruthTable_t  table1,
   resulttable = table1 & table2;
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("AND", bddManager, result, expected, f1, f2, (Cal_Bdd) 0);
+    Error("AND", bddManager, result, expected, f1, f2, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -434,7 +434,7 @@ TestNand(Cal_BddManager bddManager, Cal_Bdd  f1, TruthTable_t  table1,
   resulttable = ~(table1 & table2);
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("NAND", bddManager, result, expected, f1, f2, (Cal_Bdd) 0);
+    Error("NAND", bddManager, result, expected, f1, f2, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -466,7 +466,7 @@ TestOr(
   resulttable = table1 | table2;
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("OR", bddManager,result, expected, f1, f2, (Cal_Bdd) 0);
+    Error("OR", bddManager,result, expected, f1, f2, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -501,7 +501,7 @@ TestITE(
   expected = EncodingToBdd(resultTable);
   if(Cal_BddIsEqual(bddManager, result, expected) == 0){
     Error("ITE", bddManager, result, expected, f1, f2, f3,
-          (Cal_Bdd) 0);
+          Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -533,7 +533,7 @@ TestXor(
   resulttable = table1 ^ table2;
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("XOR", bddManager, result, expected, (Cal_Bdd) 0);
+    Error("XOR", bddManager, result, expected, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -565,7 +565,7 @@ TestIdNot(
   resulttable = ~table;
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("Not", bddManager, result, expected, (Cal_Bdd) 0);
+    Error("Not", bddManager, result, expected, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -573,7 +573,7 @@ TestIdNot(
   resulttable = table;
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("Identity", bddManager, result, expected, (Cal_Bdd) 0);
+    Error("Identity", bddManager, result, expected, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -622,7 +622,7 @@ TestCompose(
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result,expected)){
     Error("Restrict 1", bddManager, result, expected, f1, vars[var],
-          (Cal_Bdd) 0);
+          Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -632,7 +632,7 @@ TestCompose(
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
     Error("Restrict 0", bddManager, result, expected, f1, vars[var],
-          (Cal_Bdd) 0);
+          Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -643,7 +643,7 @@ TestCompose(
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
     Error("Compose", bddManager, result, expected, f1, vars[var],
-          f2, (Cal_Bdd) 0);
+          f2, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -687,8 +687,8 @@ TestSubstitute(
   associationInfo[1] = f2;
   associationInfo[2] = vars[var2];
   associationInfo[3] = f3;
-  associationInfo[4] = (Cal_Bdd) 0;
-  associationInfo[5] = (Cal_Bdd) 0;
+  associationInfo[4] = Cal_BddNull(bddManager);
+  associationInfo[5] = Cal_BddNull(bddManager);
 
   assocId = Cal_AssociationInit(bddManager, associationInfo, 1);
   Cal_AssociationSetCurrent(bddManager, assocId);
@@ -705,7 +705,7 @@ TestSubstitute(
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
     Error("substitute", bddManager, result, expected,
-        f1, vars[var1], f2, vars[var2], f3, (Cal_Bdd) 0);
+        f1, vars[var1], f2, vars[var2], f3, Cal_BddNull(bddManager));
   }
   /*Cal_AssociationQuit(bddManager, assocId);*/
   Cal_BddFree(bddManager, result);
@@ -759,8 +759,8 @@ TestVarSubstitute(
   associationInfo[1] = vars[var3];
   associationInfo[2] = vars[var2];
   associationInfo[3] = vars[var4];
-  associationInfo[4] = (Cal_Bdd) 0;
-  associationInfo[5] = (Cal_Bdd) 0;
+  associationInfo[4] = Cal_BddNull(bddManager);
+  associationInfo[5] = Cal_BddNull(bddManager);
 
   assocId = Cal_AssociationInit(bddManager, associationInfo, 1);
   Cal_AssociationSetCurrent(bddManager, assocId);
@@ -779,12 +779,12 @@ TestVarSubstitute(
   if(!Cal_BddIsEqual(bddManager, result1, result2)){
     Error("var substitute and substitute differ", bddManager, result1, result2,
         f1, vars[var1], vars[var3], vars[var2], vars[var4],
-          (Cal_Bdd) 0); 
+          Cal_BddNull(bddManager)); 
   }
   if(!Cal_BddIsEqual(bddManager, result1, expected)){
     Error("var substitute", bddManager, result1, expected,
         f1, vars[var1], vars[var3], vars[var2], vars[var4],
-          (Cal_Bdd) 0); 
+          Cal_BddNull(bddManager)); 
   }
   /*Cal_AssociationQuit(bddManager, assocId);*/
   Cal_BddFree(bddManager, result1);
@@ -829,7 +829,7 @@ TestSwapVars(
   expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
     Error("swap variables", bddManager, result, expected, 
-        f, vars[var1], vars[var2], (Cal_Bdd) 0);
+        f, vars[var1], vars[var2], Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -865,13 +865,13 @@ TestMultiwayAnd(
     calBddArray[0] = f1;
     calBddArray[1] = f2;
     calBddArray[2] = f3;
-    calBddArray[3] = (Cal_Bdd) 0;
+    calBddArray[3] = Cal_BddNull(bddManager);
 	result = Cal_BddMultiwayAnd(bddManager, calBddArray);
 	resulttable = table1 & table2 & table3;
 	expected = EncodingToBdd(resulttable);
     if(!Cal_BddIsEqual(bddManager, result, expected)){
       Error("Multiway And", bddManager, result, expected,
-            (Cal_Bdd) 0);
+            Cal_BddNull(bddManager));
     }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -908,12 +908,12 @@ TestMultiwayOr(
   calBddArray[0] = f1;
   calBddArray[1] = f2;
   calBddArray[2] = f3;
-  calBddArray[3] = (Cal_Bdd) 0;
+  calBddArray[3] = Cal_BddNull(bddManager);
   result = Cal_BddMultiwayOr(bddManager, calBddArray);
   resulttable = table1 | table2 | table3;
 	expected = EncodingToBdd(resulttable);
   if(!Cal_BddIsEqual(bddManager, result, expected)){
-    Error("Multiway Or", bddManager, result, expected, (Cal_Bdd) 0);
+    Error("Multiway Or", bddManager, result, expected, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -951,18 +951,18 @@ TestMultiwayLarge(
     andResulttable &= table;
     orResulttable |= table;
   }
-  calBddArray[numBdds] = (Cal_Bdd) 0;
+  calBddArray[numBdds] = Cal_BddNull(bddManager);
   andResult = Cal_BddMultiwayAnd(bddManager, calBddArray);
   orResult = Cal_BddMultiwayOr(bddManager, calBddArray);
   andExpected = EncodingToBdd(andResulttable);
   orExpected = EncodingToBdd(orResulttable);
   if(!Cal_BddIsEqual(bddManager, andResult, andExpected)){
     Error("Multiway And", bddManager, andResult, andExpected,
-          (Cal_Bdd) 0);
+          Cal_BddNull(bddManager));
   }
   if(!Cal_BddIsEqual(bddManager, orResult, orExpected)){
     Error("Multiway Or", bddManager, andResult, andExpected,
-          (Cal_Bdd) 0);
+          Cal_BddNull(bddManager));
   }
   for (i=0; i<numBdds; i++) Cal_BddFree(bddManager, calBddArray[i]);
   Cal_MemFree(calBddArray);
@@ -993,7 +993,7 @@ TestArrayOp(Cal_BddManager bddManager,  int  numBdds)
   calBddArray = Cal_MemAlloc(Cal_Bdd, 2*numBdds+1);
   andExpectedArray = Cal_MemAlloc(Cal_Bdd, numBdds);
   orExpectedArray = Cal_MemAlloc(Cal_Bdd, numBdds);
-  calBddArray[numBdds<<1] = (Cal_Bdd) 0;
+  calBddArray[numBdds<<1] = Cal_BddNull(bddManager);
 
   for (i=0; i<numBdds; i++){
     fTable = (TruthTable_t)CalUtilRandom();
@@ -1012,7 +1012,7 @@ TestArrayOp(Cal_BddManager bddManager,  int  numBdds)
   for (i=0; i<numBdds; i++){
     if(!Cal_BddIsEqual(bddManager, andResultArray[i], andExpectedArray[i])){
       Error("Array OR", bddManager, andResultArray[i], andExpectedArray[i],
-            (Cal_Bdd) 0);
+            Cal_BddNull(bddManager));
       break;
     }
   }
@@ -1020,7 +1020,7 @@ TestArrayOp(Cal_BddManager bddManager,  int  numBdds)
   for (i=0; i<numBdds; i++){
     if(!Cal_BddIsEqual(bddManager, orResultArray[i], orExpectedArray[i])){
       Error("Array OR", bddManager, orResultArray[i], orExpectedArray[i],
-            (Cal_Bdd) 0);
+            Cal_BddNull(bddManager));
       break;
     }
   }
@@ -1068,7 +1068,7 @@ TestInterImpl(
   impliesResult = Cal_BddImplies(bddManager, result, expected);
   if(Cal_BddIsBddZero(bddManager, impliesResult) == 0){
     Error("intersection test", bddManager, result, expected, f1, f2,
-          (Cal_Bdd) 0); 
+          Cal_BddNull(bddManager)); 
   }
   Cal_BddFree(bddManager, impliesResult);
   Cal_BddFree(bddManager, result);
@@ -1101,7 +1101,7 @@ TestQnt(Cal_BddManager bddManager, Cal_Bdd  f, TruthTable_t  table, int
   while (var1 == var2);
   assoc[0] = vars[var1];
   assoc[1] = vars[var2];
-  assoc[2] = (Cal_Bdd) 0;
+  assoc[2] = Cal_BddNull(bddManager);
   associationId = Cal_AssociationInit(bddManager, assoc, 0);
   Cal_AssociationSetCurrent(bddManager, associationId);
   result = Cal_BddExists(bddManager, f);
@@ -1111,7 +1111,7 @@ TestQnt(Cal_BddManager bddManager, Cal_Bdd  f, TruthTable_t  table, int
   expected = EncodingToBdd(resultTable);
   if(Cal_BddIsEqual(bddManager, result, expected) == 0){
     Error("quantification", bddManager, result, expected, f, vars[var1],
-          vars[var2], (Cal_Bdd) 0);
+          vars[var2], Cal_BddNull(bddManager));
   }
   /*Cal_AssociationQuit(bddManager, associationId);*/
   Cal_BddFree(bddManager, result);
@@ -1138,13 +1138,13 @@ TestAssoc(Cal_BddManager bddManager, Cal_Bdd  f, TruthTable_t  table)
   TruthTable_t  resultTable;
   int associationId;
   
-  assoc[0] = (Cal_Bdd) 0;
+  assoc[0] = Cal_BddNull(bddManager);
   associationId = Cal_AssociationInit(bddManager, assoc, 0);
   Cal_AssociationSetCurrent(bddManager, associationId);
   result = Cal_BddExists(bddManager, f);
   expected = Cal_BddIdentity(bddManager, f);
   if(Cal_BddIsEqual(bddManager, result, expected) == 0){
-    Error("quantification", bddManager, result, expected, (Cal_Bdd) 0);
+    Error("quantification", bddManager, result, expected, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -1180,7 +1180,7 @@ TestRelProd(Cal_BddManager bddManager, Cal_Bdd  f1, TruthTable_t
   while (var1 == var2);
   assoc[0] = vars[var1];
   assoc[1] = vars[var2];
-  assoc[2] = (Cal_Bdd) 0;
+  assoc[2] = Cal_BddNull(bddManager);
   assocId = Cal_AssociationInit(bddManager, assoc, 0);
   Cal_AssociationSetCurrent(bddManager, assocId);
   result = Cal_BddRelProd(bddManager, f1, f2);
@@ -1190,7 +1190,7 @@ TestRelProd(Cal_BddManager bddManager, Cal_Bdd  f1, TruthTable_t
   expected = EncodingToBdd(resultTable);
   if(Cal_BddIsEqual(bddManager, result, expected) == 0){
     Error("relational product", bddManager, result, expected, f1, f2,
-          vars[var1], vars[var2], (Cal_Bdd) 0);
+          vars[var1], vars[var2], Cal_BddNull(bddManager));
   }
   /*Cal_AssociationQuit(bddManager, assocId);*/
   Cal_BddFree(bddManager, result);
@@ -1225,7 +1225,7 @@ TestReduce(
   temp3 = Cal_BddOr(bddManager, temp1, temp2);
   if(Cal_BddIsBddOne(bddManager, temp3) == 0){
     Error("d.c. comparison of reduce", bddManager, temp3,
-          Cal_BddOne(bddManager), f1, f2, (Cal_Bdd) 0);
+          Cal_BddOne(bddManager), f1, f2, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, temp1);
@@ -1262,7 +1262,7 @@ TestGenCof(
   temp3 = Cal_BddOr(bddManager, temp1, temp2);
   if (Cal_BddIsBddOne(bddManager, temp3) == 0){
     Error("d.c. comparison of generalized cofactor", bddManager,
-          temp3, Cal_BddOne(bddManager), f1, f2, (Cal_Bdd) 0);
+          temp3, Cal_BddOne(bddManager), f1, f2, Cal_BddNull(bddManager));
   }
 
   Cal_BddFree(bddManager, result);
@@ -1281,7 +1281,7 @@ TestGenCof(
   expected = EncodingToBdd(resultTable);
   if (Cal_BddIsEqual(bddManager, result, expected) == 0){
     Error("generalized cofactor", bddManager, result, expected, f1,
-          temp2, (Cal_Bdd) 0);
+          temp2, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -1336,7 +1336,7 @@ TestSize(
 
   fs[0] = f1;
   fs[1] = f2;
-  fs[2] = (Cal_Bdd) 0;
+  fs[2] = Cal_BddNull(bddManager);
 
   size = Cal_BddSizeMultiple(bddManager, fs, 1);
   Cal_BddProfileMultiple(bddManager, fs, profile, 1);
@@ -1396,7 +1396,7 @@ TestSatisfy(
   temp2 = Cal_BddIntersects(bddManager, temp1, result);
   if(!Cal_BddIsBddZero(bddManager, temp2)){
     Error("intersection of satisfy result with negated argument",
-        bddManager, temp2, Cal_BddZero(bddManager), f, (Cal_Bdd) 0);
+        bddManager, temp2, Cal_BddZero(bddManager), f, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, temp1);
   Cal_BddFree(bddManager, temp2);
@@ -1407,7 +1407,7 @@ TestSatisfy(
   }while (var1 == var2);
   assoc[0] = vars[var1];
   assoc[1] = vars[var2];
-  assoc[2] = (Cal_Bdd) 0;
+  assoc[2] = Cal_BddNull(bddManager);
   assocId = Cal_AssociationInit(bddManager, assoc, 0);
   Cal_AssociationSetCurrent(bddManager, assocId);
   temp1 = Cal_BddSatisfySupport(bddManager, result);
@@ -1416,7 +1416,7 @@ TestSatisfy(
   if(!Cal_BddIsBddZero(bddManager, temp3)){
     Error("intersection of satisfy support result with negated argument",
         bddManager, temp3, Cal_BddZero(bddManager), result,
-        (Cal_Bdd) 0);
+        Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, temp1);
@@ -1477,7 +1477,7 @@ TestPipeline(Cal_BddManager bddManager,
   expected = EncodingToBdd(table);
 
   if (Cal_BddIsEqual(bddManager, result, expected) == 0){
-    Error("pipeline", bddManager, result, expected, (Cal_Bdd) 0);
+    Error("pipeline", bddManager, result, expected, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, result);
   Cal_BddFree(bddManager, expected);
@@ -1512,7 +1512,7 @@ TestDump(Cal_BddManager bddManager, Cal_Bdd f)
   unlink(filename);
   for (i=0; i < TT_VARS; ++i)
     dumpVars[i]=vars[i];
-  dumpVars[i]= (Cal_Bdd) 0;
+  dumpVars[i]= Cal_BddNull(bddManager);
   for (i=0; i < TT_VARS-1; ++i)
     {
       j=i+(int)(((long)CalUtilRandom())%(TT_VARS-i));
@@ -1539,7 +1539,7 @@ TestDump(Cal_BddManager bddManager, Cal_Bdd f)
     }
   fclose(fp);
   if (result != f)
-    Error("dump/undump", bddManager, result, f, f, (Cal_Bdd) 0);
+    Error("dump/undump", bddManager, result, f, f, Cal_BddNull(bddManager));
   Cal_BddFree(bddManager, result);
 }
 
@@ -1585,7 +1585,7 @@ TestReorderBlock(Cal_BddManager bddManager, TruthTable_t table, Cal_Bdd f)
   Cal_BddReorder(bddManager);
   newFunction = EncodingToBdd(table);
   if (Cal_BddIsEqual(bddManager, f, newFunction) == 0){
-    Error("Reordering (window)", bddManager, newFunction, f, (Cal_Bdd) 0);
+    Error("Reordering (window)", bddManager, newFunction, f, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, newFunction);
 }
@@ -1623,7 +1623,7 @@ TestReorder(Cal_BddManager bddManager, TruthTable_t table, Cal_Bdd f)
   Cal_BddReorder(bddManager);
   newFunction = EncodingToBdd(table);
   if (Cal_BddIsEqual(bddManager, f, newFunction) == 0){
-    Error("Reordering (window)", bddManager, newFunction, f, (Cal_Bdd) 0);
+    Error("Reordering (window)", bddManager, newFunction, f, Cal_BddNull(bddManager));
   }
   Cal_BddFree(bddManager, newFunction);
 }

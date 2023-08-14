@@ -106,7 +106,7 @@ Cal_BddSwapVars(Cal_BddManager  bddManager, Cal_Bdd  fUserBdd,
   CalHashTable_t **reqQueForITE = bddManager->reqQue[4]; 
   
   if (CalBddPreProcessing(bddManager, 3, fUserBdd, gUserBdd, hUserBdd) == 0){
-	return (Cal_Bdd) 0;
+	return Cal_BddNull(bddManager);
   }
   f = CalBddGetInternalBdd(bddManager, fUserBdd);
   g = CalBddGetInternalBdd(bddManager, gUserBdd);
@@ -114,7 +114,7 @@ Cal_BddSwapVars(Cal_BddManager  bddManager, Cal_Bdd  fUserBdd,
 
   if(CalBddIsBddConst(g) || CalBddIsBddConst(h)){
     CalBddWarningMessage("Unacceptable arguments for Cal_BddSwapVars");
-    return (Cal_Bdd) 0;
+    return Cal_BddNull(bddManager);
   }
   if(CalBddIsEqual(g, h)){
     /*

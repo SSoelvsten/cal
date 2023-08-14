@@ -106,7 +106,7 @@ Cal_BddSatisfy(Cal_BddManager bddManager, Cal_Bdd  fUserBdd)
     f = BddSatisfyStep(bddManager, f);
     return CalBddGetExternalBdd(bddManager, f);
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 
@@ -159,7 +159,7 @@ Cal_BddSatisfySupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
     Cal_MemFree(support);
     return CalBddGetExternalBdd(bddManager, result);
   }
-  return (Cal_Bdd) 0;
+  return Cal_BddNull(bddManager);
 }
 
 /**Function********************************************************************

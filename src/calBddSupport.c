@@ -107,7 +107,7 @@ Cal_BddSupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
     }
     Cal_MemFree(internalSupport);
   }
-  *support = (Cal_Bdd) 0;
+  *support = Cal_BddNull(bddManager);
 }
 
 /**Function********************************************************************

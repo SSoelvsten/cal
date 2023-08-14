@@ -420,7 +420,7 @@ CalPerformaceTestSuperscalar(Cal_BddManager bddManager, Cal_Bdd
   if (num > 100) num = 100;
   varIdArray = Cal_MemAlloc(int, num);
   bddArray = Cal_MemAlloc(Cal_Bdd, num+1);
-  bddArray[num] = (Cal_Bdd) 0;
+  bddArray[num] = Cal_BddNull(bddManager);
   
   
   (void) elapsedTime();
@@ -471,7 +471,7 @@ CalPerformanceTestNonSuperscalar(Cal_BddManager bddManager, Cal_Bdd
 
   varIdArray = Cal_MemAlloc(int, num);
   bddArray = Cal_MemAlloc(Cal_Bdd, num+1);
-  bddArray[num] = (Cal_Bdd) 0;
+  bddArray[num] = Cal_BddNull(bddManager);
   resultArray = Cal_MemAlloc(Cal_Bdd, num/2);
   
   (void) elapsedTime();
@@ -525,7 +525,7 @@ CalPerformanceTestMultiway(Cal_BddManager bddManager, Cal_Bdd
     if (num > numFunctions) return;
     varIdArray = Cal_MemAlloc(int, num);
     bddArray = Cal_MemAlloc(Cal_Bdd, num+1);
-    bddArray[num] = (Cal_Bdd) 0;
+    bddArray[num] = Cal_BddNull(bddManager);
     (void) elapsedTime();
     cpuTime();
     pageFaults();
@@ -659,7 +659,7 @@ CalPerformanceTestQuantifyAllTogether(Cal_BddManager bddManager, Cal_Bdd
   int assocId;
   
   for (i=0; i <= numQuantifyVars; i++){
-    assoc[i] = (Cal_Bdd) 0;
+    assoc[i] = Cal_BddNull(bddManager);
   }
   
   (void) elapsedTime();
@@ -711,7 +711,7 @@ CalQuantifySanityCheck(Cal_BddManager bddManager, Cal_Bdd
   
   
   for (i=0; i <= numQuantifyVars; i++){
-    assoc[i] = (Cal_Bdd) 0;
+    assoc[i] = Cal_BddNull(bddManager);
   }
   
   (void) elapsedTime();
@@ -731,7 +731,7 @@ CalQuantifySanityCheck(Cal_BddManager bddManager, Cal_Bdd
     for (j=0; j<numQuantifyVars; j++){
       assoc[0] =
           Cal_BddManagerGetVarWithId(bddManager,varIdArray[j]); 
-      assoc[1] = (Cal_Bdd) 0;
+      assoc[1] = Cal_BddNull(bddManager);
       Cal_TempAssociationAugment(bddManager, assoc, 0);
       tempResult = Cal_BddExists(bddManager, oneAtATimeResult);
       Cal_BddFree(bddManager, oneAtATimeResult);
@@ -779,7 +779,7 @@ CalPerformanceTestRelProd(Cal_BddManager bddManager, Cal_Bdd
   int assocId;
   
   for (i=0; i <= numQuantifyVars; i++){
-    assoc[i] = (Cal_Bdd) 0;
+    assoc[i] = Cal_BddNull(bddManager);
   }
   
   elapsedTime();
@@ -830,7 +830,7 @@ CalPerformanceTestSubstitute(Cal_BddManager bddManager, Cal_Bdd
   Cal_Bdd function, result;
   
   for (i=0; i <= 2*numQuantifyVars; i++){
-    assoc[i] = (Cal_Bdd) 0;
+    assoc[i] = Cal_BddNull(bddManager);
   }
   (void) elapsedTime();
   cpuTime();
