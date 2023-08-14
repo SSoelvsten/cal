@@ -183,6 +183,8 @@ Cal_BddManagerInit( )
   CalBddPutThenBddNode(bddManager->bddOne, (CalBddNode_t *)~0x0);
   CalBddPutElseBddNode(bddManager->bddOne, (CalBddNode_t *)~0x0);
   CalBddPutRefCount(bddManager->bddOne, CAL_MAX_REF_COUNT);
+
+  /* Constant Zero */
   CalBddNot(bddManager->bddOne, bddManager->bddZero);
 
   /* Create a user BDD */
