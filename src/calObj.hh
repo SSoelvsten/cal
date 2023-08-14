@@ -119,13 +119,12 @@ class BDD {
   friend Cal;
 
 private:
-  static constexpr Cal_Bdd NIL = (Cal_Bdd) 0;
-
-  Cal_Bdd _bdd = NIL;
   Cal_BddManager _bddManager = NULL;
+  Cal_Bdd _bdd = Cal_BddNull(_bddManager);
 
 protected:
-  BDD(Cal_BddManager bddManager, Cal_Bdd bdd) : _bdd(bdd), _bddManager(bddManager)
+  BDD(Cal_BddManager bddManager, Cal_Bdd bdd)
+    : _bddManager(bddManager), _bdd(bdd)
   {
     // No need to call Cal_BddUnFree, since it already is reference counted on
     // the return from one of Cal's operations.
@@ -136,21 +135,23 @@ public:
   { }
 
   BDD(const BDD &other)
-    : _bdd(other._bdd), _bddManager(other._bddManager)
+    : _bddManager(other._bddManager), _bdd(other._bdd)
   {
-    if (this->_bdd != NIL) { Cal_BddUnFree(_bddManager, _bdd); }
+    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0) {
+      Cal_BddUnFree(this->_bddManager, this->_bdd);
+    }
   }
 
   BDD(BDD &&other)
-    : _bdd(other._bdd), _bddManager(other._bddManager)
+    : _bddManager(other._bddManager), _bdd(other._bdd)
   {
-    other._bdd = NIL;
+    other._bdd = Cal_BddNull(other._bddManager);
   }
 
   ~BDD()
   {
-    if (_bdd != NIL)
-      Cal_BddFree(_bddManager, _bdd);
+    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0)
+      Cal_BddFree(this->_bddManager, this->_bdd);
   }
 
   // ---------------------------------------------------------------------------
@@ -161,12 +162,16 @@ public:
 
   BDD& operator= (const BDD &other)
   {
-    if (this->_bdd != NIL) { Cal_BddFree(this->_bddManager, this->_bdd); }
+    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0) {
+      Cal_BddFree(this->_bddManager, this->_bdd);
+    }
 
     this->_bdd = other._bdd;
     this->_bddManager = other._bddManager;
 
-    if (this->_bdd != NIL) { Cal_BddUnFree(this->_bddManager, this->_bdd); }
+    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0) {
+      Cal_BddUnFree(this->_bddManager, this->_bdd);
+    }
 
     return *this;
   }
@@ -176,7 +181,7 @@ public:
     this->_bdd = other._bdd;
     this->_bddManager = other._bddManager;
 
-    other._bdd = NIL;
+    other._bdd = Cal_BddNull(other._bddManager);
 
     return *this;
   }
@@ -214,7 +219,7 @@ public:
 //
 // TODO: Sanity check on wrappers
 //  - Use the same manager? Otherwise, throw 'not-same-manager' error.
-//  - inner Cal_Bdd is not BDD::NIL. Otherwise, throw 'out-of-memory' error.
+//  - inner Cal_Bdd is not NULL. Otherwise, throw 'out-of-memory' error.
 
 BDD Cal::One()
 { return BDD(_bddManager, Cal_BddOne(_bddManager)); }
