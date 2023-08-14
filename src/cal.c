@@ -224,6 +224,20 @@ Cal_BddZero(Cal_BddManager bddManager)
   return bddManager->userZeroBdd;
 }
 
+/**Function********************************************************************
+
+   Synopsis    [Returns the NULL BDD.]
+
+   Description [Returns the NULL BDD.]
+
+   SideEffects [None.]
+
+******************************************************************************/
+Cal_Bdd
+Cal_BddNull(Cal_BddManager bddManager)
+{
+  return (Cal_Bdd) 0;
+}
 
 /**Function********************************************************************
 
