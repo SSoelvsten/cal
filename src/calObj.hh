@@ -83,18 +83,29 @@ public:
   { Cal_BddStats(_bddManager, fp); }
 
   // ---------------------------------------------------------------------------
+  // Declaration of Association List
+  template<typename BDD_IT>
+  int AssociationInit(BDD_IT begin, const BDD_IT end, const bool pairs = false);
+
+  void AssociationQuit(int i);
+
+  int AssociationSetCurrent(int i);
+
+  // ---------------------------------------------------------------------------
   // Declaration of BDD Constructors
+  BDD Null();
   BDD One();
   BDD Zero();
-  BDD Null();
 
   BDD Id(Cal_BddId_t id);
   BDD Index(Cal_BddIndex_t idx);
 
   // Declaration of BDD Operations
+  BDD Else(BDD f);
   BDD Not(BDD f);
   BDD Implies(BDD f, BDD g);
   BDD Compose(BDD f, BDD g, BDD h);
+  BDD If(BDD f, BDD g, BDD h);
   BDD ITE(BDD f, BDD g, BDD h);
   BDD And(BDD f, BDD g);
   BDD Nand(BDD f, BDD g);
@@ -102,16 +113,18 @@ public:
   BDD Nor(BDD f, BDD g);
   BDD Xor(BDD f, BDD g);
   BDD Xnor(BDD f, BDD g);
-  // BDD Exists(BDD f);
+  BDD Exists(BDD f);
   // BDD RelProd(BDD f, BDD g);
-  // BDD ForAll(BDD f);
+  BDD ForAll(BDD f);
   BDD Cofactor(BDD f, BDD c);
   BDD Between(BDD fMin, BDD fMax);
   BDD Reduce(BDD f, BDD c);
-
-  // Declaration of other BDD functions
+  BDD Regular(BDD f);
+  BDD SatisfySupport(BDD f);
   double SatisfyingFraction(BDD f);
+  BDD Satisfy(BDD f);
   unsigned long Size(BDD f);
+  BDD Then(BDD f);
 };
 
 // -----------------------------------------------------------------------------
@@ -158,6 +171,23 @@ public:
 
   // ---------------------------------------------------------------------------
   // TODO: Operators functions as member functions?
+
+  // ---------------------------------------------------------------------------
+  // Node traversal
+  Cal_BddId_t Id() const
+  { return Cal_BddGetIfId(this->_bddManager, this->_bdd); }
+
+  Cal_BddIndex_t Index() const
+  { return Cal_BddGetIfIndex(this->_bddManager, this->_bdd); }
+
+  BDD If() const
+  { return BDD(this->_bddManager, Cal_BddIf(this->_bddManager, this->_bdd)); }
+
+  BDD Then() const
+  { return BDD(this->_bddManager, Cal_BddThen(this->_bddManager, this->_bdd)); }
+
+  BDD Else() const
+  { return BDD(this->_bddManager, Cal_BddElse(this->_bddManager, this->_bdd)); }
 
   // ---------------------------------------------------------------------------
   // Declaration of Operation overloads
@@ -223,20 +253,65 @@ public:
 //  - Use the same manager? Otherwise, throw 'not-same-manager' error.
 //  - inner Cal_Bdd is not NULL. Otherwise, throw 'out-of-memory' error.
 
+// -----------------------------------------------------------------------------
+template<typename BDD_IT>
+int Cal::AssociationInit(BDD_IT begin, const BDD_IT end, const bool pairs)
+{
+  std::vector<Cal_Bdd> c_arg;
+  c_arg.reserve(std::distance(begin, end));
+
+  if constexpr(std::is_same_v<typename BDD_IT::value_type, BDD>) {
+    while (begin != end) {
+      const Cal_Bdd c_bdd = (begin++)->_bdd;
+      Cal_BddUnFree(_bddManager, c_bdd);
+      c_arg.push_back(c_bdd);
+    }
+  } else if constexpr (std::is_same_v<typename BDD_IT::value_type, int>) {
+    while (begin != end) {
+      c_arg.push_back(Cal_BddManagerGetVarWithId(_bddManager, *(begin++)));
+    }
+  } else {
+    static_assert(false, "This type cannot be handled by Cal");
+  }
+
+  const BDD end_marker = Null();
+  c_arg.push_back(end_marker._bdd);
+
+  const int res = Cal_AssociationInit(_bddManager, c_arg.data(), pairs);
+
+  for (const Cal_Bdd& arg : c_arg) {
+    if (Cal_BddIsBddNull(_bddManager, arg) == 0)
+      Cal_BddFree(_bddManager, arg);
+  }
+
+  return res;
+}
+
+void Cal::AssociationQuit(int i)
+{ Cal_AssociationQuit(_bddManager, i); }
+
+int Cal::AssociationSetCurrent(int i)
+{ return Cal_AssociationSetCurrent(_bddManager, i); }
+
+// -----------------------------------------------------------------------------
+BDD Cal::Null()
+{ return BDD(_bddManager, Cal_BddNull(_bddManager)); }
+
 BDD Cal::One()
 { return BDD(_bddManager, Cal_BddOne(_bddManager)); }
 
 BDD Cal::Zero()
 { return BDD(_bddManager, Cal_BddZero(_bddManager)); }
 
-BDD Cal::Null()
-{ return BDD(_bddManager, Cal_BddNull(_bddManager)); }
-
 BDD Cal::Id(Cal_BddId_t id)
 { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, id)); }
 
 BDD Cal::Index(Cal_BddIndex_t idx)
 { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, idx)); }
+
+// -----------------------------------------------------------------------------
+BDD Cal::Else(BDD f)
+{ return BDD(_bddManager, Cal_BddElse(_bddManager, f._bdd)); }
 
 BDD Cal::Not(BDD f)
 { return BDD(_bddManager, Cal_BddNot(_bddManager, f._bdd)); }
@@ -246,6 +321,9 @@ BDD Cal::Implies(BDD f, BDD g)
 
 BDD Cal::Compose(BDD f, BDD g, BDD h)
 { return BDD(_bddManager, Cal_BddCompose(_bddManager, f._bdd, g._bdd, h._bdd)); }
+
+BDD Cal::If(BDD f, BDD g, BDD h)
+{ return BDD(_bddManager, Cal_BddIf(_bddManager, f._bdd)); }
 
 BDD Cal::ITE(BDD f, BDD g, BDD h)
 { return BDD(_bddManager, Cal_BddITE(_bddManager, f._bdd, g._bdd, h._bdd)); }
@@ -268,6 +346,14 @@ BDD Cal::Xor(BDD f, BDD g)
 BDD Cal::Xnor(BDD f, BDD g)
 { return BDD(_bddManager, Cal_BddXnor(_bddManager, f._bdd, g._bdd)); }
 
+BDD Cal::Exists(BDD f)
+{ return BDD(_bddManager, Cal_BddExists(_bddManager, f._bdd)); }
+
+// BDD Cal::RelProd(BDD f, BDD g) { TODO }
+
+BDD Cal::ForAll(BDD f)
+{ return BDD(_bddManager, Cal_BddForAll(_bddManager, f._bdd)); }
+
 BDD Cal::Cofactor(BDD f, BDD c)
 { return BDD(_bddManager, Cal_BddCofactor(_bddManager, f._bdd, c._bdd)); }
 
@@ -277,10 +363,22 @@ BDD Cal::Between(BDD fMin, BDD fMax)
 BDD Cal::Reduce(BDD f, BDD c)
 { return BDD(_bddManager, Cal_BddReduce(_bddManager, f._bdd, c._bdd)); }
 
+BDD Cal::Regular(BDD f)
+{ return BDD(_bddManager, Cal_BddGetRegular(_bddManager, f._bdd)); }
+
+BDD Cal::SatisfySupport(BDD f)
+{ return BDD(_bddManager, Cal_BddSatisfySupport(_bddManager, f._bdd)); }
+
 double Cal::SatisfyingFraction(BDD f)
 { return Cal_BddSatisfyingFraction(_bddManager, f._bdd); }
 
+BDD Cal::Satisfy(BDD f)
+{ return BDD(_bddManager, Cal_BddSatisfy(_bddManager, f._bdd)); }
+
 unsigned long Cal::Size(BDD f)
 { return Cal_BddSize(_bddManager, f._bdd, 0); }
+
+BDD Cal::Then(BDD f)
+{ return BDD(_bddManager, Cal_BddThen(_bddManager, f._bdd)); }
 
 #endif // _CALOBJ
