@@ -551,7 +551,7 @@ Cal_BddStats(Cal_BddManager bddManager, FILE * fp)
   fprintf(fp, "Maximum growth while sifting a variable: %2.2f\n",
           bddManager->maxSiftingGrowth);
   fprintf(fp, "Dynamic reordering of BDDs enabled: %s\n", 
-          ((bddManager->dynamicReorderingEnableFlag) ? "yes" : "no"));
+          ((bddManager->reorderTechnique != CAL_REORDER_NONE) ? "yes" : "no"));
   fprintf(fp, "Repacking after GC Threshold: %f\n", 
           bddManager->repackAfterGCThreshold);
   fprintf(fp, "**** CAL statistics ****\n");
@@ -653,7 +653,6 @@ void
 Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique)
 {
   bddManager->reorderTechnique = technique;
-  bddManager->dynamicReorderingEnableFlag = 1;
 }
 
 /**Function********************************************************************
@@ -670,8 +669,7 @@ Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique)
 void
 Cal_BddReorder(Cal_BddManager bddManager)
 {
-  if ((bddManager->dynamicReorderingEnableFlag == 0) ||
-      (bddManager->reorderTechnique == CAL_REORDER_NONE)){
+  if (bddManager->reorderTechnique == CAL_REORDER_NONE){
     return;
   }
   CalCacheTableTwoFlush(bddManager->cacheTable);

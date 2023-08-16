@@ -261,7 +261,6 @@ CalBddPostProcessing(Cal_BddManager_t *bddManager)
     Cal_BddManagerGC(bddManager);
     if ((bddManager->numNodes > bddManager->reorderingThreshold) &&
         (3*bddManager->numNodes > 2* bddManager->uniqueTableGCLimit) &&
-        (bddManager->dynamicReorderingEnableFlag) &&
         (bddManager->reorderTechnique != CAL_REORDER_NONE)){
       CalCacheTableTwoFlush(bddManager->cacheTable);
       if (bddManager->reorderMethod == CAL_REORDER_METHOD_BF){

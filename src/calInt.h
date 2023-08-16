@@ -437,7 +437,6 @@ struct Cal_BddManagerStruct {
   
   /* Variable reordering related stuff */
   long *interact; /* Interaction matrix */
-  int dynamicReorderingEnableFlag;
   int reorderMethod;
   int reorderTechnique;
   long numForwardedNodes;

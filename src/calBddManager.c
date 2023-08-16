@@ -266,7 +266,6 @@ Cal_BddManagerInit( )
   bddManager->currentAssociation = bddManager->tempAssociation;
 
   /* BDD reordering related information */
-  bddManager->dynamicReorderingEnableFlag = 1;
   bddManager->reorderMethod = CAL_REORDER_METHOD_BF;
   bddManager->reorderTechnique = CAL_REORDER_NONE;
   bddManager->numForwardedNodes = 0;
