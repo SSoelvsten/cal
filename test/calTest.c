@@ -165,7 +165,7 @@ main(int  argc, char ** argv)
   else {
     TT_VARS = atoi(argv[2]);
   }
-  
+
   CalUtilSRandom((long)1);
   numVars = TT_VARS;
   RandomTests(numVars, iterations);
@@ -1607,18 +1607,18 @@ TestReorder(Cal_BddManager bddManager, TruthTable_t table, Cal_Bdd f)
   Cal_Bdd newFunction;
   
   if (CalUtilRandom()&0x1){
-    fprintf(stdout, "Using Window\n");
+    fprintf(stdout, "Using Window");
     Cal_BddDynamicReordering(bddManager, CAL_REORDER_WINDOW);
-  }
-  else{
-    fprintf(stdout, "Using Sift\n");
+  } else {
+    fprintf(stdout, "Using Sift");
     Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT);
   }
-  if (1) { // (CalUtilRandom()&0x1){
+  if (CalUtilRandom()&0x1) {
+    fprintf(stdout, " (BF)\n");
     bddManager->reorderMethod = CAL_REORDER_METHOD_BF;
-  }
-  else{
-    // bddManager->reorderMethod = CAL_REORDER_METHOD_DF;
+  } else {
+    fprintf(stdout, " (DF)\n");
+    bddManager->reorderMethod = CAL_REORDER_METHOD_DF;
   }
   Cal_BddReorder(bddManager);
   newFunction = EncodingToBdd(table);
