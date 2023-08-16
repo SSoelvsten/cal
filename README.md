@@ -4,7 +4,7 @@
 &nbsp;
 [![Documentation](https://img.shields.io/website?down_message=not%20available&label=docs&up_message=available&url=https%3A%2F%2Fssoelvsten.github.io%2Fcal)](https://ssoelvsten.github.io/cal)
 &nbsp;
-[![test](https://img.shields.io/github/workflow/status/ssoelvsten/cal/test/main?label=test&logo=github&logoColor=white)](https://github.com/SSoelvsten/cal/actions/workflows/test.yml)
+[![test](https://img.shields.io/github/actions/workflow/status/ssoelvsten/cal/test.yml?branch=main&label=test&logo=github&logoColor=white)](https://github.com/SSoelvsten/cal/actions/workflows/test.yml)
 &nbsp;
 
 CAL is a BDD package [[Bryant86](#references)] that uses breadt-first
