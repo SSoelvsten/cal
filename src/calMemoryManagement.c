@@ -155,7 +155,7 @@ CalPageManagerQuit(
   }
   for(i = 0; i < pageManager->numSegments; i++){
     // BUG: double free!
-    free(pageManager->pageSegmentArray[i]);
+    Cal_MemFree(pageManager->pageSegmentArray[i]);
   }
   Cal_MemFree(pageManager->pageSegmentArray);
   Cal_MemFree(pageManager->numPagesArray);
@@ -379,14 +379,11 @@ PageManagerExpandStorage(CalPageManager_t * pageManager)
 
   int numPagesPerSegment = pageManager->numPagesPerSegment;
 
-#ifdef __NOVALLOC__
-  p = (CalAddress_t *) malloc(numPagesPerSegment*PAGE_SIZE);
-#else
-  p = (CalAddress_t *) valloc(numPagesPerSegment*PAGE_SIZE);
-#endif
+  p = (CalAddress_t *) aligned_alloc(PAGE_SIZE, numPagesPerSegment*PAGE_SIZE);
+
   /* Just check the page boundary correctness */
-  // TODO: This check fails!
-  // Cal_Assert(((CalAddress_t)p & ((1 << LG_PAGE_SIZE)-1)) == 0);
+  Cal_Assert(((CalAddress_t)p & ((1 << LG_PAGE_SIZE)-1)) == 0);
+
   if(p == Cal_Nil(CalAddress_t)){
     numPagesPerSegment = numPagesPerSegment / 2;
     if(numPagesPerSegment < MIN_NUM_PAGES_PER_SEGMENT){
@@ -396,24 +393,8 @@ PageManagerExpandStorage(CalPageManager_t * pageManager)
     return PageManagerExpandStorage(pageManager);
   }
 
-#ifdef __NOVALLOC__
-  /* No need to do it anymore, since I am using valloc */
-  /* align the memory segment to a page boundary */
-  segment = PageAlign(p);
-
-  /* if memory segment is already page aligned, all pages in the memory
-   * segment are useful, otherwise, one page is wasted
-   */
-  if(segment == p){
-    numUsefulPages = numPagesPerSegment;
-  }
-  else{
-    numUsefulPages = numPagesPerSegment - 1;
-  }
-#else
   segment = p;
   numUsefulPages = numPagesPerSegment;
-#endif
 
   /* Initialize the pages  */
   memset((char *)segment, 0, numUsefulPages*PAGE_SIZE);
@@ -422,7 +403,7 @@ PageManagerExpandStorage(CalPageManager_t * pageManager)
   pageManager->totalNumPages += numUsefulPages;
 
   /* increase the size of the allocation list if neccessary */
-  if(pageManager->numSegments == pageManager->maxNumSegments){
+  if (pageManager->numSegments == pageManager->maxNumSegments) {
     pageManager->maxNumSegments = pageManager->maxNumSegments * 2;
     pageManager->pageSegmentArray = Cal_MemRealloc(CalAddress_t *,
                                                    pageManager->pageSegmentArray,
@@ -436,7 +417,7 @@ PageManagerExpandStorage(CalPageManager_t * pageManager)
   pageManager->pageSegmentArray[pageManager->numSegments] = segment;
   pageManager->numPagesArray[pageManager->numSegments++] =
       numUsefulPages;
-  
+
   SegmentToPageList(segment, numUsefulPages, pageManager->freePageList);
   pageManager->freePageList = segment;
   return TRUE;
