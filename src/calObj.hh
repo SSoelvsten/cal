@@ -570,6 +570,10 @@ public:
     return res;
   }
 
+  template<typename Container>
+  unsigned long Size(Container c, bool negout)
+  { return Size(std::begin(c), std::end(c), negout); }
+
   // container_t<BDD> Support(BDD f);
 
   // ---------------------------------------------------------------------------
@@ -612,6 +616,10 @@ public:
     return res;
   }
 
+  template<typename Container>
+  BDD And(Container c)
+  { return And(std::begin(c), std::end(c)); }
+
   BDD Nand(const BDD &f, const BDD &g)
   { return f.Nand(g); }
 
@@ -631,6 +639,10 @@ public:
     return res;
   }
 
+  template<typename Container>
+  BDD Or(Container c)
+  { return Or(std::begin(c), std::end(c)); }
+
   BDD Nor(const BDD &f, const BDD &g)
   { return f.Nor(g); }
 
@@ -649,6 +661,10 @@ public:
 
     return res;
   }
+
+  template<typename Container>
+  BDD Xor(Container c)
+  { return Xor(std::begin(c), std::end(c)); }
 
   BDD Xnor(const BDD &f, const BDD &g)
   { return f.Xnor(g); }
