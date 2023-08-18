@@ -77,6 +77,9 @@ public:
   bool IsEqualTo(const BDD &other) const
   { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
+  bool DependsOn(BDD var) const
+  { return Cal_BddDependsOn(this->_bddManager, this->_bdd, var._bdd); }
+
   // ---------------------------------------------------------------------------
   // Node traversal and Information
 
@@ -115,6 +118,9 @@ public:
   // ---------------------------------------------------------------------------
   // Operations
 
+  BDD Identity() const
+  { return BDD(this->_bddManager, Cal_BddIdentity(this->_bddManager, this->_bdd)); }
+
   BDD Regular() const
   { return BDD(this->_bddManager, Cal_BddGetRegular(this->_bddManager, this->_bdd)); }
 
@@ -123,6 +129,9 @@ public:
 
   BDD Compose(BDD g, BDD h) const
   { return BDD(this->_bddManager, Cal_BddCompose(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
+
+  BDD Intersects(BDD g) const
+  { return BDD(this->_bddManager, Cal_BddIntersects(this->_bddManager, this->_bdd, g._bdd)); }
 
   BDD Implies(BDD g) const
   { return BDD(this->_bddManager, Cal_BddImplies(this->_bddManager, this->_bdd, g._bdd)); }
@@ -154,7 +163,8 @@ public:
   BDD SatisfySupport() const
   { return BDD(this->_bddManager, Cal_BddSatisfySupport(this->_bddManager, this->_bdd)); }
 
-  // BDD SwapVars(BDD x, BDD y) const
+  BDD SwapVars(BDD g, BDD h) const
+  { return BDD(this->_bddManager, Cal_BddSwapVars(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
   // BDD RelProd(BDD g) const
 
@@ -472,7 +482,8 @@ public:
   bool IsEqual(BDD f, BDD g) const
   { return f.IsEqualTo(g); }
 
-  // bool DependsOn(BDD f, BDD vars) const;
+  bool DependsOn(BDD f, BDD var) const
+  { return f.DependsOn(var); }
 
   // ---------------------------------------------------------------------------
   // BDD Information
@@ -489,7 +500,8 @@ public:
   // ---------------------------------------------------------------------------
   // Manipulation
 
-  // BDD Identity(BDD f) const
+  BDD Identity(BDD f)
+  { return f.Identity(); }
 
   BDD Regular(BDD f)
   { return f.Regular(); }
@@ -500,7 +512,8 @@ public:
   BDD Compose(BDD f, BDD g, BDD h)
   { return f.Compose(g, h); }
 
-  // BDD Intersects(BDD f, BDD g)
+  BDD Intersects(BDD f, BDD g)
+  { return f.Intersects(g); }
 
   BDD Implies(BDD f, BDD g)
   { return f.Implies(g); }
@@ -546,7 +559,8 @@ public:
 
   // BDD VarSubstitute(BDD f)
 
-  // BDD SwapVars(BDD f, BDD x, BDD y)
+  BDD SwapVars(BDD f, BDD g, BDD h)
+  { return f.SwapVars(g, h); }
 
   BDD Exists(BDD f)
   { return BDD(this->_bddManager, Cal_BddExists(this->_bddManager, f._bdd)); }
