@@ -1561,20 +1561,20 @@ TestReorderBlock(Cal_BddManager bddManager, TruthTable_t table, Cal_Bdd f)
   Cal_Bdd newFunction;
   Cal_Block block1, block2, block3, block4;
   int i;
-  
+
   /*if (CalUtilRandom()&0x1){*/
   if (1){
     fprintf(stdout, "Using Window\n");
-    Cal_BddDynamicReordering(bddManager, CAL_REORDER_WINDOW);
+    Cal_BddDynamicReordering(bddManager, CAL_REORDER_WINDOW, CAL_REORDER_METHOD_DF);
   }
   else{
     fprintf(stdout, "Using Sift\n");
-    Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT);
+    Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT, CAL_REORDER_METHOD_DF);
   }
   /* Create some blocks */
   block1 = Cal_BddNewVarBlock(bddManager,
                               vars[bddManager->indexToId[0]-1],
-                              4); 
+                              4);
   block2 = Cal_BddNewVarBlock(bddManager,
                               vars[bddManager->indexToId[4]-1],
                               4);
@@ -1605,21 +1605,26 @@ static void
 TestReorder(Cal_BddManager bddManager, TruthTable_t table, Cal_Bdd f)
 {
   Cal_Bdd newFunction;
-  
+
+  int technique, method;
+
   if (CalUtilRandom()&0x1){
     fprintf(stdout, "Using Window");
-    Cal_BddDynamicReordering(bddManager, CAL_REORDER_WINDOW);
+    technique = CAL_REORDER_WINDOW;
   } else {
     fprintf(stdout, "Using Sift");
-    Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT);
+    technique = CAL_REORDER_SIFT;
   }
   if (CalUtilRandom()&0x1) {
     fprintf(stdout, " (BF)\n");
-    bddManager->reorderMethod = CAL_REORDER_METHOD_BF;
+    method = CAL_REORDER_METHOD_BF;
   } else {
     fprintf(stdout, " (DF)\n");
-    bddManager->reorderMethod = CAL_REORDER_METHOD_DF;
+    method = CAL_REORDER_METHOD_DF;
   }
+
+  Cal_BddDynamicReordering(bddManager, technique, method);
+
   Cal_BddReorder(bddManager);
   newFunction = EncodingToBdd(table);
   if (Cal_BddIsEqual(bddManager, f, newFunction) == 0){
