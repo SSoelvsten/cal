@@ -554,7 +554,21 @@ public:
   unsigned long Size(BDD f)
   { return f.Size(); }
 
-  // unsigned long Size(IT begin, IT end, bool negout); (using MultipleSize)
+  template<typename IT>
+  unsigned long Size(IT begin, IT end, bool negout)
+  {
+    static_assert(std::is_same_v<typename IT::value_type, BDD>,
+                  "Must be called with iterator for BDD");
+
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    const unsigned long res = Cal_BddSizeMultiple(this->_bddManager, c_arg.data(), negout);
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
 
   // container_t<BDD> Support(BDD f);
 
@@ -585,7 +599,18 @@ public:
   BDD And(const BDD &f, const BDD &g)
   { return f.And(g); }
 
-  // BDD And(IT begin, IT end); (using MultiwayAnd)
+  template<typename IT>
+  BDD And(IT begin, IT end)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    const BDD res = Cal_BddMultiwayAnd(this->_bddManager, c_arg.data());
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
 
   BDD Nand(const BDD &f, const BDD &g)
   { return f.Nand(g); }
@@ -593,7 +618,18 @@ public:
   BDD Or(const BDD &f, const BDD &g)
   { return f.Or(g); }
 
-  // BDD Or(IT begin, IT end); (using MultiwayOr)
+  template<typename IT>
+  BDD Or(IT begin, IT end)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    const BDD res = Cal_BddMultiwayOr(this->_bddManager, c_arg.data());
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
 
   BDD Nor(const BDD &f, const BDD &g)
   { return f.Nor(g); }
@@ -601,7 +637,18 @@ public:
   BDD Xor(const BDD &f, const BDD &g)
   { return f.Xor(g); }
 
-  // BDD Xor(IT begin, IT end); (using MuliwayXor)
+  template<typename IT>
+  BDD Xor(IT begin, IT end)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    const BDD res = Cal_BddMultiwayXor(this->_bddManager, c_arg.data());
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
 
   BDD Xnor(const BDD &f, const BDD &g)
   { return f.Xnor(g); }
