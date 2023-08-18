@@ -332,7 +332,7 @@ protected:
 
     out.push_back(Cal_BddNull(bddManager));
 
-    return out;
+    return std::move(out);
   }
 };
 
