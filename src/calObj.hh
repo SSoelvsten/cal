@@ -127,34 +127,34 @@ public:
   BDD Not() const
   { return BDD(this->_bddManager, Cal_BddNot(this->_bddManager, this->_bdd)); }
 
-  BDD Compose(BDD g, BDD h) const
+  BDD Compose(const BDD &g, const BDD &h) const
   { return BDD(this->_bddManager, Cal_BddCompose(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
-  BDD Intersects(BDD g) const
+  BDD Intersects(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddIntersects(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD Implies(BDD g) const
+  BDD Implies(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddImplies(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD ITE(BDD g, BDD h) const
+  BDD ITE(const BDD &g, const BDD &h) const
   { return BDD(this->_bddManager, Cal_BddITE(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
-  BDD And(BDD g) const
+  BDD And(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddAnd(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD Nand(BDD g) const
+  BDD Nand(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddNand(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD Or(BDD g) const
+  BDD Or(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddOr(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD Nor(BDD g) const
+  BDD Nor(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddNor(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD Xor(BDD g) const
+  BDD Xor(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddXor(this->_bddManager, this->_bdd, g._bdd)); }
 
-  BDD Xnor(BDD g) const
+  BDD Xnor(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddXnor(this->_bddManager, this->_bdd, g._bdd)); }
 
   BDD Satisfy() const
@@ -163,15 +163,15 @@ public:
   BDD SatisfySupport() const
   { return BDD(this->_bddManager, Cal_BddSatisfySupport(this->_bddManager, this->_bdd)); }
 
-  BDD SwapVars(BDD g, BDD h) const
+  BDD SwapVars(const BDD &g, const BDD &h) const
   { return BDD(this->_bddManager, Cal_BddSwapVars(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
-  // BDD RelProd(BDD g) const
+  // BDD RelProd(const BDD &g) const
 
-  BDD Cofactor(BDD c) const
+  BDD Cofactor(const BDD &c) const
   { return BDD(this->_bddManager, Cal_BddCofactor(this->_bddManager, this->_bdd, c._bdd)); }
 
-  BDD Reduce(BDD c) const
+  BDD Reduce(const BDD &c) const
   { return BDD(this->_bddManager, Cal_BddReduce(this->_bddManager, this->_bdd, c._bdd)); }
 
   // ---------------------------------------------------------------------------
@@ -500,101 +500,101 @@ public:
   // ---------------------------------------------------------------------------
   // Manipulation
 
-  BDD Identity(BDD f)
+  BDD Identity(const BDD &f)
   { return f.Identity(); }
 
-  BDD Regular(BDD f)
+  BDD Regular(const BDD &f)
   { return f.Regular(); }
 
-  BDD Not(BDD f)
+  BDD Not(const BDD &f)
   { return f.Not(); }
 
-  BDD Compose(BDD f, BDD g, BDD h)
+  BDD Compose(const BDD &f, const BDD &g, const BDD &h)
   { return f.Compose(g, h); }
 
-  BDD Intersects(BDD f, BDD g)
+  BDD Intersects(const BDD &f, const BDD &g)
   { return f.Intersects(g); }
 
-  BDD Implies(BDD f, BDD g)
+  BDD Implies(const BDD &f, const BDD &g)
   { return f.Implies(g); }
 
-  BDD ITE(BDD f, BDD g, BDD h)
+  BDD ITE(const BDD &f, const BDD &g, const BDD &h)
   { return f.ITE(g, h); }
 
-  BDD And(BDD f, BDD g)
+  BDD And(const BDD &f, const BDD &g)
   { return f.And(g); }
 
   // BDD And(IT begin, IT end); (using MultiwayAnd)
 
-  BDD Nand(BDD f, BDD g)
+  BDD Nand(const BDD &f, const BDD &g)
   { return f.Nand(g); }
 
-  BDD Or(BDD f, BDD g)
+  BDD Or(const BDD &f, const BDD &g)
   { return f.Or(g); }
 
   // BDD Or(IT begin, IT end); (using MultiwayOr)
 
-  BDD Nor(BDD f, BDD g)
+  BDD Nor(const BDD &f, const BDD &g)
   { return f.Nor(g); }
 
-  BDD Xor(BDD f, BDD g)
+  BDD Xor(const BDD &f, const BDD &g)
   { return f.Xor(g); }
 
   // BDD Xor(IT begin, IT end); (using MuliwayXor)
 
-  BDD Xnor(BDD f, BDD g)
+  BDD Xnor(const BDD &f, const BDD &g)
   { return f.Xnor(g); }
 
   // container_t<BDD> PairwiseAnd(IT begin, IT end)
   // container_t<BDD> PairwiseOr(IT begin, IT end)
   // container_t<BDD> PairwiseXor(IT begin, IT end)
 
-  BDD Satisfy(BDD f)
+  BDD Satisfy(const BDD &f)
   { return f.Satisfy(); }
 
-  BDD SatisfySupport(BDD f)
+  BDD SatisfySupport(const BDD &f)
   { return f.SatisfySupport(); }
 
   // BDD Substitute(BDD f)
 
   // BDD VarSubstitute(BDD f)
 
-  BDD SwapVars(BDD f, BDD g, BDD h)
+  BDD SwapVars(const BDD &f, const BDD &g, const BDD &h)
   { return f.SwapVars(g, h); }
 
-  BDD Exists(BDD f)
+  BDD Exists(const BDD &f)
   { return BDD(this->_bddManager, Cal_BddExists(this->_bddManager, f._bdd)); }
 
-  BDD ForAll(BDD f)
+  BDD ForAll(const BDD &f)
   { return BDD(this->_bddManager, Cal_BddForAll(this->_bddManager, f._bdd)); }
 
   // BDD RelProd(BDD f, BDD g)
 
-  BDD Cofactor(BDD f, BDD c)
+  BDD Cofactor(const BDD &f, const BDD &c)
   { return f.Cofactor(c); }
 
-  BDD Reduce(BDD f, BDD c)
+  BDD Reduce(const BDD &f, const BDD &c)
   { return f.Reduce(c); }
 
-  BDD Between(BDD fMin, BDD fMax)
+  BDD Between(const BDD &fMin, const BDD &fMax)
   { return BDD(this->_bddManager, Cal_BddBetween(this->_bddManager, fMin._bdd, fMax._bdd)); }
 
   // ---------------------------------------------------------------------------
   // BDD Node Access / Traversal
 
-  BDD If(BDD f)
+  BDD If(const BDD &f) const
   { return f.If(); }
 
-  Id_t IfId(BDD f) const
+  Id_t IfId(const BDD &f) const
   { return f.Id(); }
 
-  Index_t IfIndex(BDD f) const
+  Index_t IfIndex(const BDD &f) const
   { return f.Index(); }
 
-  BDD Then(BDD f)
+  BDD Then(const BDD &f)
   { return f.Then(); }
 
-  BDD Else(BDD f)
+  BDD Else(const BDD &f)
   { return f.Else(); }
 
   // ---------------------------------------------------------------------------
