@@ -251,10 +251,11 @@ public:
     // TODO: Cal_BddManagerSetParameters
   }
 
-  // TODO: allow multiple copies to access Cal (requires reference counting)
+  // TODO: copy constructor (requires reference counting)
   Cal(const Cal &o) = delete;
 
   // TODO: move constructor
+  Cal(Cal &&o) = delete;
 
   ~Cal()
   {
