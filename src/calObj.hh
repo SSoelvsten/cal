@@ -629,7 +629,8 @@ public:
   BDD ForAll(const BDD &f)
   { return BDD(this->_bddManager, Cal_BddForAll(this->_bddManager, f._bdd)); }
 
-  // BDD RelProd(BDD f, BDD g)
+  BDD RelProd(BDD f, BDD g)
+  { return BDD(this->_bddManager, Cal_BddRelProd(this->_bddManager, f._bdd, g._bdd)); }
 
   BDD Cofactor(const BDD &f, const BDD &c)
   { return f.Cofactor(c); }
