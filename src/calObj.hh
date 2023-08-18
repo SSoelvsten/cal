@@ -122,7 +122,7 @@ public:
   }
 
   bool operator== (const BDD &other) const
-  { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
+  { return IsEqualTo(other); }
 
   bool  operator!= (const BDD &other) const
   { return !(*this == other); }
@@ -367,22 +367,22 @@ public:
   // ---------------------------------------------------------------------------
   // BDD Predicates
   bool IsNull(BDD f) const
-  { return Cal_BddIsBddNull(_bddManager, f._bdd) == 1; }
+  { return f.IsNull(); }
 
   bool IsOne(BDD f) const
-  { return Cal_BddIsBddOne(_bddManager, f._bdd) == 1; }
+  { return f.IsOne(); }
 
   bool IsZero(BDD f) const
-  { return Cal_BddIsBddZero(_bddManager, f._bdd) == 1; }
+  { return f.IsZero(); }
 
   bool IsConst(BDD f) const
-  { return Cal_BddIsBddConst(_bddManager, f._bdd) == 1; }
+  { return f.IsConst(); }
 
   bool IsCube(BDD f) const
-  { return Cal_BddIsCube(_bddManager, f._bdd) == 1; }
+  { return f.IsCube(); }
 
   bool IsEqual(BDD f, BDD g) const
-  { return Cal_BddIsEqual(_bddManager, f._bdd, g._bdd) == 1; }
+  { return f.IsEqualTo(g); }
 
   // bool DependsOn(BDD f, BDD vars) const;
 
@@ -480,16 +480,18 @@ public:
   // ---------------------------------------------------------------------------
   // BDD Node Access / Traversal
 
-  // Cal_BddId_t IfIndex(BDD f) const;
-  // Cal_BddId_t IfId(BDD f) const;
   BDD If(BDD f)
   { return BDD(_bddManager, Cal_BddIf(_bddManager, f._bdd)); }
 
-  BDD Else(BDD f)
-  { return BDD(_bddManager, Cal_BddElse(_bddManager, f._bdd)); }
+  // Cal_BddId_t IfIndex(BDD f) const
+
+  // Cal_BddId_t IfId(BDD f) const
 
   BDD Then(BDD f)
-  { return BDD(_bddManager, Cal_BddThen(_bddManager, f._bdd)); }
+  { return f.Then(); }
+
+  BDD Else(BDD f)
+  { return f.Else(); }
 
   // ---------------------------------------------------------------------------
   // BDD Pipelining
