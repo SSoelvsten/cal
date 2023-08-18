@@ -202,9 +202,6 @@ public:
   Cal_BddIndex_t Index() const
   { return Cal_BddGetIfIndex(this->_bddManager, this->_bdd); }
 
-  BDD If() const
-  { return BDD(this->_bddManager, Cal_BddIf(this->_bddManager, this->_bdd)); }
-
   BDD Then() const
   { return BDD(this->_bddManager, Cal_BddThen(this->_bddManager, this->_bdd)); }
 
