@@ -227,7 +227,7 @@ public:
   {
     // Create variables
     for (Id_t i = 0; i < numVars; ++i){
-      Cal_BddManagerCreateNewVarLast(_bddManager);
+      Cal_BddManagerCreateNewVarLast(this->_bddManager);
     }
 
     // TODO: Cal_BddManagerSetParameters
@@ -240,41 +240,41 @@ public:
 
   ~Cal()
   {
-    Cal_BddManagerQuit(_bddManager);
+    Cal_BddManagerQuit(this->_bddManager);
   }
 
   // ---------------------------------------------------------------------------
   // Settings + Statistics
 
   unsigned long GetNumNodes()
-  { return Cal_BddManagerGetNumNodes(_bddManager); }
+  { return Cal_BddManagerGetNumNodes(this->_bddManager); }
 
   long Vars()
-  { return Cal_BddVars(_bddManager); }
+  { return Cal_BddVars(this->_bddManager); }
 
   bool Overflow()
-  { return Cal_BddOverflow(_bddManager); }
+  { return Cal_BddOverflow(this->_bddManager); }
 
   unsigned long TotalSize()
-  { return Cal_BddTotalSize(_bddManager); }
+  { return Cal_BddTotalSize(this->_bddManager); }
 
   void Stats(FILE* fp = stdout)
-  { Cal_BddStats(_bddManager, fp); }
+  { Cal_BddStats(this->_bddManager, fp); }
 
   // ---------------------------------------------------------------------------
   // Memory and Garbage Collection
 
   long NodeLimit(long newLimit)
-  { return Cal_BddNodeLimit(_bddManager, newLimit); }
+  { return Cal_BddNodeLimit(this->_bddManager, newLimit); }
 
   void SetGCMode(bool enableGC)
-  { Cal_BddSetGCMode(_bddManager, enableGC); }
+  { Cal_BddSetGCMode(this->_bddManager, enableGC); }
 
   void SetGCLimit()
-  { Cal_BddManagerSetGCLimit(_bddManager); }
+  { Cal_BddManagerSetGCLimit(this->_bddManager); }
 
   void GC()
-  { Cal_BddManagerGC(_bddManager); }
+  { Cal_BddManagerGC(this->_bddManager); }
 
   // ---------------------------------------------------------------------------
   // Reordering
@@ -357,19 +357,19 @@ public:
   // ---------------------------------------------------------------------------
   // BDD Constructors
   BDD Null() const
-  { return BDD(_bddManager, Cal_BddNull(_bddManager)); }
+  { return BDD(this->_bddManager, Cal_BddNull(this->_bddManager)); }
 
   BDD One() const
-  { return BDD(_bddManager, Cal_BddOne(_bddManager)); }
+  { return BDD(this->_bddManager, Cal_BddOne(this->_bddManager)); }
 
   BDD Zero() const
-  { return BDD(_bddManager, Cal_BddZero(_bddManager)); }
+  { return BDD(this->_bddManager, Cal_BddZero(this->_bddManager)); }
 
   BDD Id(Id_t id) const
-  { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, id)); }
+  { return BDD(this->_bddManager, Cal_BddManagerGetVarWithId(this->_bddManager, id)); }
 
   BDD Index(Index_t idx) const
-  { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, idx)); }
+  { return BDD(this->_bddManager, Cal_BddManagerGetVarWithId(this->_bddManager, idx)); }
 
   // BDD CreateNewVarFirst();
   // BDD CreateNewVarFirst();
@@ -403,7 +403,7 @@ public:
   // ---------------------------------------------------------------------------
   // BDD Information
   double SatisfyingFraction(BDD f)
-  { return Cal_BddSatisfyingFraction(_bddManager, f._bdd); }
+  { return Cal_BddSatisfyingFraction(this->_bddManager, f._bdd); }
 
   unsigned long Size(BDD f)
   { return Cal_BddSize(_bddManager, f._bdd, 0); }
@@ -418,55 +418,55 @@ public:
   // BDD Identity(BDD f) const
 
   BDD Regular(BDD f)
-  { return BDD(_bddManager, Cal_BddGetRegular(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddGetRegular(this->_bddManager, f._bdd)); }
 
   BDD Not(BDD f)
-  { return BDD(_bddManager, Cal_BddNot(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddNot(this->_bddManager, f._bdd)); }
 
   BDD Compose(BDD f, BDD g, BDD h)
-  { return BDD(_bddManager, Cal_BddCompose(_bddManager, f._bdd, g._bdd, h._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddCompose(this->_bddManager, f._bdd, g._bdd, h._bdd)); }
 
   // BDD Intersects(BDD f, BDD g)
 
   BDD Implies(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddImplies(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddImplies(this->_bddManager, f._bdd, g._bdd)); }
 
   BDD ITE(BDD f, BDD g, BDD h)
-  { return BDD(_bddManager, Cal_BddITE(_bddManager, f._bdd, g._bdd, h._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddITE(this->_bddManager, f._bdd, g._bdd, h._bdd)); }
 
   BDD And(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddAnd(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddAnd(this->_bddManager, f._bdd, g._bdd)); }
 
   // BDD And(IT begin, IT end); (using MultiwayAnd)
 
   BDD Nand(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddNand(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddNand(this->_bddManager, f._bdd, g._bdd)); }
 
   BDD Or(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddOr(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddOr(this->_bddManager, f._bdd, g._bdd)); }
 
   // BDD Or(IT begin, IT end); (using MultiwayOr)
 
   BDD Nor(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddNor(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddNor(this->_bddManager, f._bdd, g._bdd)); }
 
   BDD Xor(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddXor(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddXor(this->_bddManager, f._bdd, g._bdd)); }
 
   // BDD Xor(IT begin, IT end); (using MuliwayXor)
 
   BDD Xnor(BDD f, BDD g)
-  { return BDD(_bddManager, Cal_BddXnor(_bddManager, f._bdd, g._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddXnor(this->_bddManager, f._bdd, g._bdd)); }
 
   // container_t<BDD> PairwiseAnd(IT begin, IT end)
   // container_t<BDD> PairwiseOr(IT begin, IT end)
   // container_t<BDD> PairwiseXor(IT begin, IT end)
 
   BDD Satisfy(BDD f)
-  { return BDD(_bddManager, Cal_BddSatisfy(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddSatisfy(this->_bddManager, f._bdd)); }
 
   BDD SatisfySupport(BDD f)
-  { return BDD(_bddManager, Cal_BddSatisfySupport(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddSatisfySupport(this->_bddManager, f._bdd)); }
 
   // BDD Substitute(BDD f)
 
@@ -475,27 +475,27 @@ public:
   // BDD SwapVars(BDD f, BDD x, BDD y)
 
   BDD Exists(BDD f)
-  { return BDD(_bddManager, Cal_BddExists(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddExists(this->_bddManager, f._bdd)); }
 
   BDD ForAll(BDD f)
-  { return BDD(_bddManager, Cal_BddForAll(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddForAll(this->_bddManager, f._bdd)); }
 
   // BDD RelProd(BDD f, BDD g)
 
   BDD Cofactor(BDD f, BDD c)
-  { return BDD(_bddManager, Cal_BddCofactor(_bddManager, f._bdd, c._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddCofactor(this->_bddManager, f._bdd, c._bdd)); }
 
   BDD Reduce(BDD f, BDD c)
-  { return BDD(_bddManager, Cal_BddReduce(_bddManager, f._bdd, c._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddReduce(this->_bddManager, f._bdd, c._bdd)); }
 
   BDD Between(BDD fMin, BDD fMax)
-  { return BDD(_bddManager, Cal_BddBetween(_bddManager, fMin._bdd, fMax._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddBetween(this->_bddManager, fMin._bdd, fMax._bdd)); }
 
   // ---------------------------------------------------------------------------
   // BDD Node Access / Traversal
 
   BDD If(BDD f)
-  { return BDD(_bddManager, Cal_BddIf(_bddManager, f._bdd)); }
+  { return BDD(this->_bddManager, Cal_BddIf(this->_bddManager, f._bdd)); }
 
   // Id_t IfId(BDD f) const
 
