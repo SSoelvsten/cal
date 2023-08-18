@@ -143,8 +143,8 @@ protected:
   BDD(Cal_BddManager bddManager, Cal_Bdd bdd)
     : _bddManager(bddManager), _bdd(bdd)
   {
-    // No need to call Cal_BddUnFree, since it already is reference counted on
-    // the return from one of Cal's operations.
+    // No need to UnFree(), since it already is reference counted on the return
+    // from one of Cal's operations.
   }
 
 public:
@@ -155,9 +155,7 @@ public:
   BDD(const BDD &other)
     : _bddManager(other._bddManager), _bdd(other._bdd)
   {
-    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0) {
-      Cal_BddUnFree(this->_bddManager, this->_bdd);
-    }
+    this->UnFree();
   }
 
   BDD(BDD &&other)
@@ -213,16 +211,12 @@ public:
 
   BDD& operator= (const BDD &other)
   {
-    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0) {
-      Cal_BddFree(this->_bddManager, this->_bdd);
-    }
+    this->Free();
 
     this->_bdd = other._bdd;
     this->_bddManager = other._bddManager;
 
-    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0) {
-      Cal_BddUnFree(this->_bddManager, this->_bdd);
-    }
+    this->UnFree();
 
     return *this;
   }
@@ -263,6 +257,18 @@ public:
 
   BDD& operator^= (const BDD &other)
   { return (*this = (*this) ^ other); }
+
+private:
+  // ---------------------------------------------------------------------------
+  // Memory Management
+
+  inline void
+  Free()
+  { if (!this->IsNull()) Cal_BddFree(this->_bddManager, this->_bdd); }
+
+  inline void
+  UnFree()
+  { if (!this->IsNull()) Cal_BddUnFree(this->_bddManager, this->_bdd); }
 };
 
 // -----------------------------------------------------------------------------
