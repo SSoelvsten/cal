@@ -16,6 +16,10 @@ class Cal;
 class BDD {
   friend Cal;
 
+public:
+  using Id_t = Cal_BddId_t;
+  using Index_t = Cal_BddIndex_t;
+
 private:
   Cal_BddManager _bddManager;
   Cal_Bdd _bdd;
@@ -75,10 +79,10 @@ public:
 
   // ---------------------------------------------------------------------------
   // Node traversal and Information
-  Cal_BddId_t Id() const
+  Id_t Id() const
   { return Cal_BddGetIfId(this->_bddManager, this->_bdd); }
 
-  Cal_BddIndex_t Index() const
+  Index_t Index() const
   { return Cal_BddGetIfIndex(this->_bddManager, this->_bdd); }
 
   BDD Then() const
@@ -201,6 +205,9 @@ class Cal {
 
   // ---------------------------------------------------------------------------
   // Types
+  using Bdd_t = BDD;
+  using Id_t = BDD::Id_t;
+  using Index_t = BDD::Index_t;
 
   // TODO:
 
@@ -219,7 +226,7 @@ public:
   Cal(unsigned int numVars) : _bddManager(Cal_BddManagerInit())
   {
     // Create variables
-    for (Cal_BddId_t i = 0; i < numVars; ++i){
+    for (Id_t i = 0; i < numVars; ++i){
       Cal_BddManagerCreateNewVarLast(_bddManager);
     }
 
@@ -351,18 +358,18 @@ public:
   BDD Zero() const
   { return BDD(_bddManager, Cal_BddZero(_bddManager)); }
 
-  BDD Id(Cal_BddId_t id) const
+  BDD Id(Id_t id) const
   { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, id)); }
 
-  BDD Index(Cal_BddIndex_t idx) const
+  BDD Index(Index_t idx) const
   { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, idx)); }
 
   // BDD CreateNewVarFirst();
   // BDD CreateNewVarFirst();
   // BDD CreateNewVarBefore(BDD x);
   // BDD CreateNewVarAfter(BDD x);
-  // BDD CreateNewVarWithIndex(BDD x, Cal_BddIndex_t index);
-  // BDD CreateNewVarWithId(Cal_BddId_t id);
+  // BDD CreateNewVarWithIndex(BDD x, Index_t index);
+  // BDD CreateNewVarWithId(Id_t id);
 
   // ---------------------------------------------------------------------------
   // BDD Predicates
@@ -483,9 +490,9 @@ public:
   BDD If(BDD f)
   { return BDD(_bddManager, Cal_BddIf(_bddManager, f._bdd)); }
 
-  // Cal_BddId_t IfIndex(BDD f) const
+  // Id_t IfId(BDD f) const
 
-  // Cal_BddId_t IfId(BDD f) const
+  // Index_t IfIndex(BDD f) const
 
   BDD Then(BDD f)
   { return f.Then(); }
