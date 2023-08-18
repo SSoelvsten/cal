@@ -168,12 +168,31 @@ public:
 
   ~BDD()
   {
-    if (Cal_BddIsBddNull(this->_bddManager, this->_bdd) == 0)
-      Cal_BddFree(this->_bddManager, this->_bdd);
+    this->Free();
   }
 
   // ---------------------------------------------------------------------------
   // TODO: Operators functions as member functions?
+
+  // ---------------------------------------------------------------------------
+  // Predicates
+  bool IsNull() const
+  { return Cal_BddIsBddNull(this->_bddManager, this->_bdd); }
+
+  bool IsOne() const
+  { return Cal_BddIsBddOne(this->_bddManager, this->_bdd); }
+
+  bool IsZero() const
+  { return Cal_BddIsBddZero(this->_bddManager, this->_bdd); }
+
+  bool IsConst() const
+  { return Cal_BddIsBddConst(this->_bddManager, this->_bdd); }
+
+  bool IsCube() const
+  { return Cal_BddIsCube(this->_bddManager, this->_bdd); }
+
+  bool IsEqual(const BDD &other) const
+  { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
   // ---------------------------------------------------------------------------
   // Node traversal
