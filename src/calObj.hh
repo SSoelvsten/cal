@@ -109,10 +109,10 @@ public:
     CONSTANT = 6
   };
 
-  Type_t Type()
+  Type_t Type() const
   { return static_cast<Type_t>(Cal_BddType(this->_bddManager, this->_bdd)); }
 
-  unsigned long Size(bool negout = false)
+  unsigned long Size(bool negout = false) const
   { return Cal_BddSize(_bddManager, this->_bdd, 0); }
 
   double SatisfyingFraction() const
@@ -569,7 +569,7 @@ public:
   double SatisfyingFraction(const BDD &f)
   { return f.SatisfyingFraction(); }
 
-  unsigned long Size(BDD f, bool negout = false)
+  unsigned long Size(const BDD &f, bool negout = false)
   { return f.Size(negout); }
 
   template<typename IT>
