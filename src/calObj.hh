@@ -54,7 +54,41 @@ public:
   }
 
   // ---------------------------------------------------------------------------
-  // Definition of Operations
+  // Settings + Statistics
+
+  unsigned long GetNumNodes()
+  { return Cal_BddManagerGetNumNodes(_bddManager); }
+
+  long Vars()
+  { return Cal_BddVars(_bddManager); }
+
+  bool Overflow()
+  { return Cal_BddOverflow(_bddManager); }
+
+  unsigned long TotalSize()
+  { return Cal_BddTotalSize(_bddManager); }
+
+  void Stats(FILE* fp = stdout)
+  { Cal_BddStats(_bddManager, fp); }
+
+  // ---------------------------------------------------------------------------
+  // Memory and Garbage Collection
+
+  long NodeLimit(long newLimit)
+  { return Cal_BddNodeLimit(_bddManager, newLimit); }
+
+  void SetGCMode(bool enableGC)
+  { Cal_BddSetGCMode(_bddManager, enableGC); }
+
+  void SetGCLimit()
+  { Cal_BddManagerSetGCLimit(_bddManager); }
+
+  void GC()
+  { Cal_BddManagerGC(_bddManager); }
+
+  // ---------------------------------------------------------------------------
+  // Reordering
+
   enum ReorderTechnique {
     NONE = CAL_REORDER_NONE,
     SIFT = CAL_REORDER_SIFT,
@@ -67,72 +101,110 @@ public:
   void Reorder()
   { Cal_BddReorder(_bddManager); }
 
-  void SetGCMode(bool enableGC)
-  { Cal_BddSetGCMode(_bddManager, enableGC); }
-
-  void GC()
-  { Cal_BddManagerGC(_bddManager); }
-
-  unsigned long GetNumNodes()
-  { return Cal_BddManagerGetNumNodes(_bddManager); }
-
-  long Vars()
-  { return Cal_BddVars(_bddManager); }
-
-  void Stats(FILE* fp = stdout)
-  { Cal_BddStats(_bddManager, fp); }
+  // SwapVars(BDD x, BDD y);
 
   // ---------------------------------------------------------------------------
   // Declaration of Association List
+
   template<typename BDD_IT>
   int AssociationInit(BDD_IT begin, const BDD_IT end, const bool pairs = false);
-
   void AssociationQuit(int i);
-
   int AssociationSetCurrent(int i);
+  // void TempAssociationInit(BDD_IT begin, const BDD_IT end, const bool pairs = false);
+  // void TempAssociationAugment(BDD_IT begin, const BDD_IT end, const bool pairs = false);
+  // void TempAssociationQuit();
 
   // ---------------------------------------------------------------------------
-  // Declaration of BDD Constructors
+  // Save / Load BDDs
+
+  // BDD UndumpBdd(IT vars_begin, IT vars_end, FILE *f, int &error)
+  // BDD DumpBdd(BDD f, IT vars_begin, IT vars_end, FILE *f, int &error)
+
+  // ---------------------------------------------------------------------------
+  // BDD Constructors
   BDD Null() const;
   BDD One() const;
   BDD Zero() const;
   BDD Id(Cal_BddId_t id) const;
   BDD Index(Cal_BddIndex_t idx) const;
 
-  // Declaration of BDD Predicates
+  // BDD CreateNewVarFirst();
+  // BDD CreateNewVarFirst();
+  // BDD CreateNewVarBefore(BDD x);
+  // BDD CreateNewVarAfter(BDD x);
+  // BDD CreateNewVarWithIndex(BDD x, Cal_BddIndex_t index);
+  // BDD CreateNewVarWithId(Cal_BddId_t id);
+
+  // ---------------------------------------------------------------------------
+  // BDD Predicates
   bool IsNull(BDD f) const;
-  bool IsNotNull(BDD f) const;
   bool IsOne(BDD f) const;
   bool IsZero(BDD f) const;
   bool IsConst(BDD f) const;
   bool IsCube(BDD f) const;
   bool IsEqual(BDD f, BDD g) const;
+  // bool DependsOn(BDD f, BDD vars) const;
 
-  // Declaration of BDD Operations
-  BDD Else(BDD f);
+  // ---------------------------------------------------------------------------
+  // BDD Information
+  double SatisfyingFraction(BDD f);
+  unsigned long Size(BDD f);
+  // unsigned long Size(IT begin, IT end, bool negout); (using MultipleSize)
+  // container_t<BDD> Support(BDD f);
+
+  // ---------------------------------------------------------------------------
+  // Manipulation
+
+  // BDD Identity(BDD f) const;
+  BDD Regular(BDD f);
   BDD Not(BDD f);
-  BDD Implies(BDD f, BDD g);
   BDD Compose(BDD f, BDD g, BDD h);
-  BDD If(BDD f, BDD g, BDD h);
+  // BDD Intersects(BDD f, BDD g);
+  BDD Implies(BDD f, BDD g);
   BDD ITE(BDD f, BDD g, BDD h);
   BDD And(BDD f, BDD g);
+  // BDD And(IT begin, IT end); (using MultiwayAnd)
   BDD Nand(BDD f, BDD g);
   BDD Or(BDD f, BDD g);
+  // BDD Or(IT begin, IT end); (using MultiwayOr)
   BDD Nor(BDD f, BDD g);
   BDD Xor(BDD f, BDD g);
+  // BDD Xor(IT begin, IT end); (using MuliwayXor)
   BDD Xnor(BDD f, BDD g);
-  BDD Exists(BDD f);
-  // BDD RelProd(BDD f, BDD g);
-  BDD ForAll(BDD f);
-  BDD Cofactor(BDD f, BDD c);
-  BDD Between(BDD fMin, BDD fMax);
-  BDD Reduce(BDD f, BDD c);
-  BDD Regular(BDD f);
-  BDD SatisfySupport(BDD f);
-  double SatisfyingFraction(BDD f);
+  // container_t<BDD> PairwiseAnd(IT begin, IT end);
+  // container_t<BDD> PairwiseOr(IT begin, IT end);
+  // container_t<BDD> PairwiseXor(IT begin, IT end);
   BDD Satisfy(BDD f);
-  unsigned long Size(BDD f);
+  BDD SatisfySupport(BDD f);
+  // BDD Substitute(BDD f);
+  // BDD VarSubstitute(BDD f);
+  // BDD SwapVars(BDD f, BDD x, BDD y);
+  BDD Exists(BDD f);
+  BDD ForAll(BDD f);
+  // BDD RelProd(BDD f, BDD g);
+  BDD Cofactor(BDD f, BDD c);
+  BDD Reduce(BDD f, BDD c);
+  BDD Between(BDD fMin, BDD fMax);
+
+  // ---------------------------------------------------------------------------
+  // BDD Node Access / Traversal
+
+  // Cal_BddId_t IfIndex(BDD f) const;
+  // Cal_BddId_t IfId(BDD f) const;
+  BDD If(BDD f);
+  BDD Else(BDD f);
   BDD Then(BDD f);
+
+  // ---------------------------------------------------------------------------
+  // BDD Pipelining
+
+  // TODO: class Pipeline
+
+  // ---------------------------------------------------------------------------
+  // NOTE: These should never be exposed (the responsibility of BDD class)
+
+  // void Free();
+  // void UnFree();
 };
 
 // -----------------------------------------------------------------------------
@@ -179,8 +251,8 @@ public:
 
   // ---------------------------------------------------------------------------
   // Predicates
-  bool IsNull() const
-  { return Cal_BddIsBddNull(this->_bddManager, this->_bdd); }
+  bool IsEqual(const BDD &other) const
+  { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
   bool IsOne() const
   { return Cal_BddIsBddOne(this->_bddManager, this->_bdd); }
@@ -188,17 +260,17 @@ public:
   bool IsZero() const
   { return Cal_BddIsBddZero(this->_bddManager, this->_bdd); }
 
+  bool IsNull() const
+  { return Cal_BddIsBddNull(this->_bddManager, this->_bdd); }
+
   bool IsConst() const
   { return Cal_BddIsBddConst(this->_bddManager, this->_bdd); }
 
   bool IsCube() const
   { return Cal_BddIsCube(this->_bddManager, this->_bdd); }
 
-  bool IsEqual(const BDD &other) const
-  { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
-
   // ---------------------------------------------------------------------------
-  // Node traversal
+  // Node traversal and Information
   Cal_BddId_t Id() const
   { return Cal_BddGetIfId(this->_bddManager, this->_bdd); }
 
@@ -211,8 +283,15 @@ public:
   BDD Else() const
   { return BDD(this->_bddManager, Cal_BddElse(this->_bddManager, this->_bdd)); }
 
+  // Type BddType(BDD f);
+
   // ---------------------------------------------------------------------------
-  // Declaration of Operation overloads
+  // Operations
+
+  // TODO
+
+  // ---------------------------------------------------------------------------
+  // Operation Overloading
 
   BDD& operator= (const BDD &other)
   {
@@ -375,11 +454,8 @@ BDD Cal::Index(Cal_BddIndex_t idx) const
 { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, idx)); }
 
 // -----------------------------------------------------------------------------
-bool Cal::IsNull(BDD f) const
-{ return Cal_BddIsBddNull(_bddManager, f._bdd) == 1; }
-
-bool Cal::IsNotNull(BDD f) const
-{ return Cal_BddIsBddNull(_bddManager, f._bdd) != 1; }
+bool Cal::IsEqual(BDD f, BDD g) const
+{ return Cal_BddIsEqual(_bddManager, f._bdd, g._bdd) == 1; }
 
 bool Cal::IsOne(BDD f) const
 { return Cal_BddIsBddOne(_bddManager, f._bdd) == 1; }
@@ -387,14 +463,14 @@ bool Cal::IsOne(BDD f) const
 bool Cal::IsZero(BDD f) const
 { return Cal_BddIsBddZero(_bddManager, f._bdd) == 1; }
 
+bool Cal::IsNull(BDD f) const
+{ return Cal_BddIsBddNull(_bddManager, f._bdd) == 1; }
+
 bool Cal::IsConst(BDD f) const
 { return Cal_BddIsBddConst(_bddManager, f._bdd) == 1; }
 
 bool Cal::IsCube(BDD f) const
 { return Cal_BddIsCube(_bddManager, f._bdd) == 1; }
-
-bool Cal::IsEqual(BDD f, BDD g) const
-{ return Cal_BddIsEqual(_bddManager, f._bdd, g._bdd) == 1; }
 
 // -----------------------------------------------------------------------------
 BDD Cal::Else(BDD f)
@@ -468,4 +544,4 @@ unsigned long Cal::Size(BDD f)
 BDD Cal::Then(BDD f)
 { return BDD(_bddManager, Cal_BddThen(_bddManager, f._bdd)); }
 
-#endif // _CALOBJ
+#endif /* _CALOBJ */
