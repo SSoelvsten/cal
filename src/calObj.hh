@@ -112,7 +112,7 @@ public:
   Type BddType()
   { return static_cast<Type>(Cal_BddType(this->_bddManager, this->_bdd)); }
 
-  unsigned long Size()
+  unsigned long Size(bool negout = false)
   { return Cal_BddSize(_bddManager, this->_bdd, 0); }
 
   // ---------------------------------------------------------------------------
@@ -551,8 +551,8 @@ public:
   double SatisfyingFraction(BDD f)
   { return Cal_BddSatisfyingFraction(this->_bddManager, f._bdd); }
 
-  unsigned long Size(BDD f)
-  { return f.Size(); }
+  unsigned long Size(BDD f, bool negout = false)
+  { return f.Size(negout); }
 
   template<typename IT>
   unsigned long Size(IT begin, IT end, bool negout)
