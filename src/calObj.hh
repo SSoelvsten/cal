@@ -98,7 +98,7 @@ public:
   BDD Else() const
   { return BDD(this->_bddManager, Cal_BddElse(this->_bddManager, this->_bdd)); }
 
-  enum Type
+  enum Type_t
   {
     NONTERMINAL = 0,
     ZERO = 1,
@@ -109,8 +109,8 @@ public:
     CONSTANT = 6
   };
 
-  Type BddType()
-  { return static_cast<Type>(Cal_BddType(this->_bddManager, this->_bdd)); }
+  Type_t Type()
+  { return static_cast<Type_t>(Cal_BddType(this->_bddManager, this->_bdd)); }
 
   unsigned long Size(bool negout = false)
   { return Cal_BddSize(_bddManager, this->_bdd, 0); }
