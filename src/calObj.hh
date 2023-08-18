@@ -66,7 +66,7 @@ public:
   { return Cal_BddIsBddZero(this->_bddManager, this->_bdd); }
 
   bool IsNull() const
-  { return Cal_BddIsBddNull(this->_bddManager, this->_bdd); }
+  { return BDD::IsNull(this->_bddManager, this->_bdd); }
 
   bool IsConst() const
   { return Cal_BddIsBddConst(this->_bddManager, this->_bdd); }
@@ -232,13 +232,45 @@ private:
   // ---------------------------------------------------------------------------
   // Memory Management
 
+  static inline bool
+  IsNull(Cal_BddManager bddManager, Cal_Bdd f)
+  { return Cal_BddIsBddNull(bddManager, f); }
+
+  static inline void
+  Free(Cal_BddManager bddManager, Cal_Bdd f)
+  { if (!BDD::IsNull(bddManager, f)) Cal_BddFree(bddManager, f); }
+
   inline void
   Free()
-  { if (!this->IsNull()) Cal_BddFree(this->_bddManager, this->_bdd); }
+  { BDD::Free(this->_bddManager, this->_bdd); }
+
+  template<typename IT>
+  static inline void
+  Free(IT begin, IT end)
+  {
+    static_assert(std::is_same_v<typename IT::value_type, BDD>,
+                  "Must be called with iterator for BDD");
+
+    while (begin != end) (begin++)->Free();
+  }
+
+  template<typename IT>
+  static inline void
+  Free(Cal_BddManager bddManager, IT begin, IT end)
+  {
+    static_assert(std::is_same_v<typename IT::value_type, Cal_Bdd>,
+                  "Must be called with iterator for Cal_Bdd");
+
+    while (begin != end) BDD::Free(bddManager, *(begin++));
+  }
+
+  static inline void
+  UnFree(Cal_BddManager bddManager, Cal_Bdd f)
+  { if (!BDD::IsNull(bddManager, f)) Cal_BddUnFree(bddManager, f); }
 
   inline void
   UnFree()
-  { if (!this->IsNull()) Cal_BddUnFree(this->_bddManager, this->_bdd); }
+  { BDD::UnFree(this->_bddManager, this->_bdd); }
 
 public:
   // ---------------------------------------------------------------------------
@@ -271,6 +303,36 @@ public:
        << ")";
 
     return ss.str();
+  }
+
+protected:
+  // ---------------------------------------------------------------------------
+  // C interface helper functions
+  template<typename IT>
+  static std::vector<Cal_Bdd>
+  C_Bdd_vector(Cal_BddManager bddManager, IT begin, IT end)
+  {
+    // TODO: tidy up with template overloading
+
+    std::vector<Cal_Bdd> out;
+    out.reserve(std::distance(begin, end));
+
+    while (begin != end) {
+      const typename IT::value_type &x = *(begin++);
+
+      if constexpr (std::is_same_v<typename IT::value_type, BDD>) {
+        // TODO: assert same 'bddManager'...
+
+        BDD::UnFree(x._bddManager, x._bdd);
+        out.push_back(x._bdd);
+      } else if constexpr (std::is_same_v<typename IT::value_type, int>) {
+        out.push_back(Cal_BddManagerGetVarWithId(bddManager, x));
+      }
+    }
+
+    out.push_back(Cal_BddNull(bddManager));
+
+    return out;
   }
 };
 
@@ -382,35 +444,15 @@ public:
   // ---------------------------------------------------------------------------
   // Declaration of Association List
 
-  template<typename BDD_IT>
-  int AssociationInit(BDD_IT begin, const BDD_IT end, const bool pairs = false)
+  template<typename IT>
+  int AssociationInit(IT begin, IT end, const bool pairs = false)
   {
-    std::vector<Cal_Bdd> c_arg;
-    c_arg.reserve(std::distance(begin, end));
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
 
-    if constexpr(std::is_same_v<typename BDD_IT::value_type, BDD>) {
-      while (begin != end) {
-        const Cal_Bdd c_bdd = (begin++)->_bdd;
-        Cal_BddUnFree(_bddManager, c_bdd);
-        c_arg.push_back(c_bdd);
-      }
-    } else if constexpr (std::is_same_v<typename BDD_IT::value_type, int>) {
-      while (begin != end) {
-        c_arg.push_back(Cal_BddManagerGetVarWithId(_bddManager, *(begin++)));
-      }
-    } else {
-      static_assert(false, "This type cannot be handled by Cal");
-    }
+    const int res = Cal_AssociationInit(this->_bddManager, c_arg.data(), pairs);
 
-    const BDD end_marker = Null();
-    c_arg.push_back(end_marker._bdd);
-
-    const int res = Cal_AssociationInit(_bddManager, c_arg.data(), pairs);
-
-    for (const Cal_Bdd& arg : c_arg) {
-      if (Cal_BddIsBddNull(_bddManager, arg) == 0)
-        Cal_BddFree(_bddManager, arg);
-    }
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
 
     return res;
   }
