@@ -404,7 +404,7 @@ BDD Cal::Implies(BDD f, BDD g)
 BDD Cal::Compose(BDD f, BDD g, BDD h)
 { return BDD(_bddManager, Cal_BddCompose(_bddManager, f._bdd, g._bdd, h._bdd)); }
 
-BDD Cal::If(BDD f, BDD g, BDD h)
+BDD Cal::If(BDD f)
 { return BDD(_bddManager, Cal_BddIf(_bddManager, f._bdd)); }
 
 BDD Cal::ITE(BDD f, BDD g, BDD h)
