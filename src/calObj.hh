@@ -55,9 +55,6 @@ public:
 
   // ---------------------------------------------------------------------------
   // Predicates
-  bool IsEqual(const BDD &other) const
-  { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
-
   bool IsOne() const
   { return Cal_BddIsBddOne(this->_bddManager, this->_bdd); }
 
@@ -72,6 +69,9 @@ public:
 
   bool IsCube() const
   { return Cal_BddIsCube(this->_bddManager, this->_bdd); }
+
+  bool IsEqualTo(const BDD &other) const
+  { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
   // ---------------------------------------------------------------------------
   // Node traversal and Information
