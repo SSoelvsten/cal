@@ -387,7 +387,7 @@ public:
   { return BDD(this->_bddManager, Cal_BddManagerGetVarWithId(this->_bddManager, id)); }
 
   BDD Index(Index_t idx) const
-  { return BDD(this->_bddManager, Cal_BddManagerGetVarWithId(this->_bddManager, idx)); }
+  { return BDD(this->_bddManager, Cal_BddManagerGetVarWithIndex(this->_bddManager, idx)); }
 
   BDD CreateNewVarFirst()
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarFirst(this->_bddManager)); }
