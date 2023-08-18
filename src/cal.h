@@ -246,11 +246,14 @@ EXTERN void Cal_BddFunctionPrint(Cal_BddManager bddManager, Cal_Bdd userBdd, cha
 // Copy
 EXTERN Cal_Bdd Cal_BddIdentity(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
-// Compose
-EXTERN Cal_Bdd Cal_BddCompose(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd, Cal_Bdd hUserBdd);
-
 // Without complementation falg
 EXTERN Cal_Bdd Cal_BddGetRegular(Cal_BddManager bddManager, Cal_Bdd userBdd);
+
+// Not
+EXTERN Cal_Bdd Cal_BddNot(Cal_BddManager bddManager, Cal_Bdd userBdd);
+
+// Compose
+EXTERN Cal_Bdd Cal_BddCompose(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd, Cal_Bdd hUserBdd);
 
 // Intersects
 EXTERN Cal_Bdd Cal_BddIntersects(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
@@ -261,22 +264,25 @@ EXTERN Cal_Bdd Cal_BddImplies(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_B
 // If-Then-Else
 EXTERN Cal_Bdd Cal_BddITE(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd, Cal_Bdd hUserBdd);
 
-// Not
-EXTERN Cal_Bdd Cal_BddNot(Cal_BddManager bddManager, Cal_Bdd userBdd);
-
 // Apply
 EXTERN Cal_Bdd Cal_BddAnd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
+EXTERN Cal_Bdd Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
+
 EXTERN Cal_Bdd Cal_BddNand(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
+
 EXTERN Cal_Bdd Cal_BddOr(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
+EXTERN Cal_Bdd Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
+
 EXTERN Cal_Bdd Cal_BddNor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
+
 EXTERN Cal_Bdd Cal_BddXor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
+EXTERN Cal_Bdd Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
+
 EXTERN Cal_Bdd Cal_BddXnor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd);
+
 EXTERN Cal_Bdd * Cal_BddPairwiseAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
 EXTERN Cal_Bdd * Cal_BddPairwiseOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
 EXTERN Cal_Bdd * Cal_BddPairwiseXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
-EXTERN Cal_Bdd Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
-EXTERN Cal_Bdd Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
-EXTERN Cal_Bdd Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray);
 
 // Sat
 EXTERN Cal_Bdd Cal_BddSatisfy(Cal_BddManager bddManager, Cal_Bdd fUserBdd);
