@@ -88,12 +88,20 @@ public:
 
   // ---------------------------------------------------------------------------
   // Declaration of BDD Constructors
-  BDD Null();
-  BDD One();
-  BDD Zero();
+  BDD Null() const;
+  BDD One() const;
+  BDD Zero() const;
+  BDD Id(Cal_BddId_t id) const;
+  BDD Index(Cal_BddIndex_t idx) const;
 
-  BDD Id(Cal_BddId_t id);
-  BDD Index(Cal_BddIndex_t idx);
+  // Declaration of BDD Predicates
+  bool IsNull(BDD f) const;
+  bool IsNotNull(BDD f) const;
+  bool IsOne(BDD f) const;
+  bool IsZero(BDD f) const;
+  bool IsConst(BDD f) const;
+  bool IsCube(BDD f) const;
+  bool IsEqual(BDD f, BDD g) const;
 
   // Declaration of BDD Operations
   BDD Else(BDD f);
@@ -289,20 +297,42 @@ int Cal::AssociationSetCurrent(int i)
 { return Cal_AssociationSetCurrent(_bddManager, i); }
 
 // -----------------------------------------------------------------------------
-BDD Cal::Null()
+BDD Cal::Null() const
 { return BDD(_bddManager, Cal_BddNull(_bddManager)); }
 
-BDD Cal::One()
+BDD Cal::One() const
 { return BDD(_bddManager, Cal_BddOne(_bddManager)); }
 
-BDD Cal::Zero()
+BDD Cal::Zero() const
 { return BDD(_bddManager, Cal_BddZero(_bddManager)); }
 
-BDD Cal::Id(Cal_BddId_t id)
+BDD Cal::Id(Cal_BddId_t id) const
 { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, id)); }
 
-BDD Cal::Index(Cal_BddIndex_t idx)
+BDD Cal::Index(Cal_BddIndex_t idx) const
 { return BDD(_bddManager, Cal_BddManagerGetVarWithId(_bddManager, idx)); }
+
+// -----------------------------------------------------------------------------
+bool Cal::IsNull(BDD f) const
+{ return Cal_BddIsBddNull(_bddManager, f._bdd) == 1; }
+
+bool Cal::IsNotNull(BDD f) const
+{ return Cal_BddIsBddNull(_bddManager, f._bdd) != 1; }
+
+bool Cal::IsOne(BDD f) const
+{ return Cal_BddIsBddOne(_bddManager, f._bdd) == 1; }
+
+bool Cal::IsZero(BDD f) const
+{ return Cal_BddIsBddZero(_bddManager, f._bdd) == 1; }
+
+bool Cal::IsConst(BDD f) const
+{ return Cal_BddIsBddConst(_bddManager, f._bdd) == 1; }
+
+bool Cal::IsCube(BDD f) const
+{ return Cal_BddIsCube(_bddManager, f._bdd) == 1; }
+
+bool Cal::IsEqual(BDD f, BDD g) const
+{ return Cal_BddIsEqual(_bddManager, f._bdd, g._bdd) == 1; }
 
 // -----------------------------------------------------------------------------
 BDD Cal::Else(BDD f)
