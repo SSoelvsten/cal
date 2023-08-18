@@ -167,7 +167,7 @@ EXTERN void Cal_MemFreeRecMgr(Cal_RecMgr mgr);
 /*---------------------------------------------------------------------------*/
 /* | Variable Reordering                                                     */
 /*---------------------------------------------------------------------------*/
-EXTERN void Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique);
+EXTERN void Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique, int method);
 EXTERN void Cal_BddReorder(Cal_BddManager bddManager);
 EXTERN Cal_Block Cal_BddNewVarBlock(Cal_BddManager bddManager, Cal_Bdd variable, long length);
 EXTERN void Cal_BddVarBlockReorderable(Cal_BddManager bddManager, Cal_Block block, int reorderable);

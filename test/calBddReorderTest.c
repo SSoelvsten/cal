@@ -156,11 +156,11 @@ main(int argc, char **argv)
   printf("%%%%%%%%%%%% Reordering %%%%%%%%%%%%%%%%%%%\n");
   if (siftFlag){
     printf("Using Sift Technique\n");
-    Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT);
+    Cal_BddDynamicReordering(bddManager, CAL_REORDER_SIFT, CAL_REORDER_METHOD_DF);
   }
   else{
     printf("Using Window Technique\n");
-    Cal_BddDynamicReordering(bddManager, CAL_REORDER_WINDOW);
+    Cal_BddDynamicReordering(bddManager, CAL_REORDER_WINDOW, CAL_REORDER_METHOD_DF);
   }
   Cal_BddReorder(bddManager);
   printf("CPU time: %-8.2f\t Elapsed Time = %-10ld\n", cpuTime(), elapsedTime());

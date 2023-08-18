@@ -285,8 +285,15 @@ public:
     WINDOW = CAL_REORDER_WINDOW
   };
 
-  void DynamicReordering(ReorderTechnique technique)
-  { Cal_BddDynamicReordering(_bddManager, technique); }
+  enum ReorderMethod {
+    BF = CAL_REORDER_METHOD_BF,
+    DF = CAL_REORDER_METHOD_DF
+  };
+
+  void DynamicReordering(ReorderTechnique technique, ReorderMethod method = ReorderMethod::DF)
+  {
+    Cal_BddDynamicReordering(_bddManager, technique, method);
+  }
 
   void Reorder()
   { Cal_BddReorder(_bddManager); }

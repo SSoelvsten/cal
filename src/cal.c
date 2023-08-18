@@ -640,9 +640,9 @@ Cal_BddStats(Cal_BddManager bddManager, FILE * fp)
 
 /**Function********************************************************************
 
-  Synopsis    [Specify dynamic reordering technique.]
+  Synopsis    [Specify dynamic reordering technique and method.]
 
-  Description [Selects the method for dynamic reordering.]
+  Description [Selects the technique andmethod for dynamic reordering.]
 
   SideEffects [None]
 
@@ -650,9 +650,10 @@ Cal_BddStats(Cal_BddManager bddManager, FILE * fp)
 
 ******************************************************************************/
 void
-Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique)
+Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique, int method)
 {
   bddManager->reorderTechnique = technique;
+  bddManager->reorderMethod = method;
 }
 
 /**Function********************************************************************
