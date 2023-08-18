@@ -91,7 +91,23 @@ public:
   BDD Else() const
   { return BDD(this->_bddManager, Cal_BddElse(this->_bddManager, this->_bdd)); }
 
-  // Type BddType(BDD f);
+
+  enum Type
+  {
+    NONTERMINAL = 0,
+    ZERO = 1,
+    ONE = 2,
+    POSVAR = 3,
+    NEGVAR = 4,
+    OVERFLOW = 5,
+    CONSTANT = 6
+  };
+
+  Type BddType()
+  { return static_cast<Type>(Cal_BddType(this->_bddManager, this->_bdd)); }
+
+  unsigned long Size()
+  { return Cal_BddSize(_bddManager, this->_bdd, 0); }
 
   // ---------------------------------------------------------------------------
   // Operations
@@ -406,7 +422,7 @@ public:
   { return Cal_BddSatisfyingFraction(this->_bddManager, f._bdd); }
 
   unsigned long Size(BDD f)
-  { return Cal_BddSize(_bddManager, f._bdd, 0); }
+  { return f.Size(); }
 
   // unsigned long Size(IT begin, IT end, bool negout); (using MultipleSize)
 
