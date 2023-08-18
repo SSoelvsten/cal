@@ -34,9 +34,6 @@ public:
       Cal_BddManagerCreateNewVarLast(_bddManager);
     }
 
-    // Set reordering method to BF (cannot be set to DF - see Issue #5)
-    _bddManager->reorderMethod = CAL_REORDER_METHOD_BF;
-
     // TODO: Cal_BddManagerSetParameters
   }
 
