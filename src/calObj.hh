@@ -463,11 +463,30 @@ public:
   int AssociationSetCurrent(int i)
   { return Cal_AssociationSetCurrent(_bddManager, i); }
 
-  // void TempAssociationInit(BDD_IT begin, const BDD_IT end, const bool pairs = false)
+  template<typename IT>
+  void TempAssociationInit(IT begin, const IT end, const bool pairs = false)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
 
-  // void TempAssociationAugment(BDD_IT begin, const BDD_IT end, const bool pairs = false)
+    Cal_TempAssociationInit(this->_bddManager, c_arg.data(), pairs);
 
-  // void TempAssociationQuit()
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+  }
+
+  template<typename IT>
+  void TempAssociationAugment(IT begin, const IT end, const bool pairs = false)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    Cal_TempAssociationAugment(this->_bddManager, c_arg.data(), pairs);
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+  }
+
+  void TempAssociationQuit()
+  { Cal_TempAssociationQuit(this->_bddManager); }
 
   // ---------------------------------------------------------------------------
   // Save / Load BDDs
