@@ -589,7 +589,7 @@ public:
   }
 
   template<typename Container>
-  unsigned long Size(Container c, bool negout)
+  unsigned long Size(Container c, bool negout = false)
   { return Size(std::begin(c), std::end(c), negout); }
 
   // container_t<BDD> Support(BDD f);
