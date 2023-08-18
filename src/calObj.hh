@@ -334,6 +334,21 @@ protected:
 
     return std::move(out);
   }
+
+  static std::vector<BDD>
+  From_C_Array(Cal_BddManager bddManager, Cal_Bdd * bddArray)
+  {
+    std::vector<BDD> res;
+
+    for (int i = 0; Cal_BddIsBddNull(bddManager, bddArray[i]) == 0; i++){
+      if (CalBddPreProcessing(bddManager, 1, bddArray[i]) == 0){
+        return std::vector<BDD>();
+      }
+      res.push_back(BDD(bddManager, bddArray[i]));
+    }
+
+    return std::move(res);
+  }
 };
 
 // -----------------------------------------------------------------------------
@@ -669,9 +684,65 @@ public:
   BDD Xnor(const BDD &f, const BDD &g)
   { return f.Xnor(g); }
 
-  // container_t<BDD> PairwiseAnd(IT begin, IT end)
-  // container_t<BDD> PairwiseOr(IT begin, IT end)
-  // container_t<BDD> PairwiseXor(IT begin, IT end)
+  template<typename IT>
+  std::vector<BDD>
+  PairwiseAnd(IT begin, IT end)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    std::vector<BDD> res =
+      BDD::From_C_Array(this->_bddManager, Cal_BddPairwiseAnd(this->_bddManager, c_arg.data()));
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
+
+  template<typename Container>
+  std::vector<BDD>
+  PairwiseAnd(Container c)
+  { return PairwiseAnd(std::begin(c), std::end(c)); }
+
+  template<typename IT>
+  std::vector<BDD>
+  PairwiseOr(IT begin, IT end)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    std::vector<BDD> res =
+      BDD::From_C_Array(this->_bddManager, Cal_BddPairwiseOr(this->_bddManager, c_arg.data()));
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
+
+  template<typename Container>
+  std::vector<BDD>
+  PairwiseOr(Container c)
+  { return PairwiseOr(std::begin(c), std::end(c)); }
+
+  template<typename IT>
+  std::vector<BDD>
+  PairwiseXor(IT begin, IT end)
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    std::vector<BDD> res =
+      BDD::From_C_Array(this->_bddManager, Cal_BddPairwiseXor(this->_bddManager, c_arg.data()));
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return res;
+  }
+
+  template<typename Container>
+  std::vector<BDD>
+  PairwiseXor(Container c)
+  { return PairwiseXor(std::begin(c), std::end(c)); }
 
   BDD Satisfy(const BDD &f)
   { return f.Satisfy(); }
