@@ -271,6 +271,39 @@ private:
   inline void
   UnFree()
   { if (!this->IsNull()) Cal_BddUnFree(this->_bddManager, this->_bdd); }
+
+public:
+  // ---------------------------------------------------------------------------
+  // Debugging
+  int RefCount() const
+  {
+    if (this->IsNull()) {
+      return 255; // <-- Simulate NULL has fixed MAX reference count.
+    }
+
+    CalBddNode_t *internal_node = CAL_BDD_POINTER(this->_bdd);
+
+    int res;
+    CalBddNodeGetRefCount(internal_node, res);
+
+    return res;
+  }
+
+  std::string ToString() const
+  {
+    if (this->IsNull()) { return "NULL"; }
+    if (this->IsZero()) { return "(0)"; }
+    if (this->IsOne())  { return "(1)"; }
+
+    std::stringstream ss;
+    ss << "("
+       << this->Id() << ", "
+       << this->Then()._bdd << ", "
+       << this->Else()._bdd
+       << ")";
+
+    return ss.str();
+  }
 };
 
 // -----------------------------------------------------------------------------
