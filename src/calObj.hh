@@ -236,14 +236,16 @@ private:
   // ---------------------------------------------------------------------------
   // Constructors
 public:
-  // Reenable after adding NewVarLast to API
-  Cal() = delete;
+  Cal()
+    :_bddManager(Cal_BddManagerInit())
+  { }
 
-  Cal(unsigned int numVars) : _bddManager(Cal_BddManagerInit())
+  Cal(unsigned int numVars)
+    : Cal()
   {
     // Create variables
-    for (Id_t i = 0; i < numVars; ++i){
-      Cal_BddManagerCreateNewVarLast(this->_bddManager);
+    for (Id_t i = 0; i < numVars; ++i) {
+      this->CreateNewVarLast();
     }
 
     // TODO: Cal_BddManagerSetParameters
@@ -387,12 +389,17 @@ public:
   BDD Index(Index_t idx) const
   { return BDD(this->_bddManager, Cal_BddManagerGetVarWithId(this->_bddManager, idx)); }
 
-  // BDD CreateNewVarFirst();
-  // BDD CreateNewVarFirst();
-  // BDD CreateNewVarBefore(BDD x);
-  // BDD CreateNewVarAfter(BDD x);
-  // BDD CreateNewVarWithIndex(BDD x, Index_t index);
-  // BDD CreateNewVarWithId(Id_t id);
+  BDD CreateNewVarFirst()
+  { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarFirst(this->_bddManager)); }
+
+  BDD CreateNewVarLast()
+  { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarLast(this->_bddManager)); }
+
+  BDD CreateNewVarBefore(BDD x)
+  { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarBefore(this->_bddManager, x._bdd)); }
+
+  BDD CreateNewVarAfter(BDD x)
+  { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarAfter(this->_bddManager, x._bdd)); }
 
   // ---------------------------------------------------------------------------
   // BDD Predicates
