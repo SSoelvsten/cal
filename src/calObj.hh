@@ -77,7 +77,7 @@ public:
   bool IsEqualTo(const BDD &other) const
   { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
-  bool DependsOn(BDD var) const
+  bool DependsOn(const BDD &var) const
   { return Cal_BddDependsOn(this->_bddManager, this->_bdd, var._bdd); }
 
   // ---------------------------------------------------------------------------
@@ -457,7 +457,7 @@ public:
   void Reorder()
   { Cal_BddReorder(_bddManager); }
 
-  // SwapVars(BDD x, BDD y);
+  // SwapVars(const BDD &x, const BDD &y);
 
   // ---------------------------------------------------------------------------
   // Declaration of Association List
@@ -510,7 +510,7 @@ public:
   // Save / Load BDDs
 
   // BDD UndumpBdd(IT vars_begin, IT vars_end, FILE *f, int &error)
-  // BDD DumpBdd(BDD f, IT vars_begin, IT vars_end, FILE *f, int &error)
+  // BDD DumpBdd(const BDD &f, IT vars_begin, IT vars_end, FILE *f, int &error)
 
   // ---------------------------------------------------------------------------
   // BDD Constructors
@@ -535,33 +535,33 @@ public:
   BDD CreateNewVarLast()
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarLast(this->_bddManager)); }
 
-  BDD CreateNewVarBefore(BDD x)
+  BDD CreateNewVarBefore(const BDD &x)
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarBefore(this->_bddManager, x._bdd)); }
 
-  BDD CreateNewVarAfter(BDD x)
+  BDD CreateNewVarAfter(const BDD &x)
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarAfter(this->_bddManager, x._bdd)); }
 
   // ---------------------------------------------------------------------------
   // BDD Predicates
-  bool IsNull(BDD f) const
+  bool IsNull(const BDD &f) const
   { return f.IsNull(); }
 
-  bool IsOne(BDD f) const
+  bool IsOne(const BDD &f) const
   { return f.IsOne(); }
 
-  bool IsZero(BDD f) const
+  bool IsZero(const BDD &f) const
   { return f.IsZero(); }
 
-  bool IsConst(BDD f) const
+  bool IsConst(const BDD &f) const
   { return f.IsConst(); }
 
-  bool IsCube(BDD f) const
+  bool IsCube(const BDD &f) const
   { return f.IsCube(); }
 
-  bool IsEqual(BDD f, BDD g) const
+  bool IsEqual(const BDD &f, const BDD &g) const
   { return f.IsEqualTo(g); }
 
-  bool DependsOn(BDD f, BDD var) const
+  bool DependsOn(const BDD &f, const BDD &var) const
   { return f.DependsOn(var); }
 
   // ---------------------------------------------------------------------------
@@ -592,7 +592,7 @@ public:
   unsigned long Size(Container c, bool negout = false)
   { return Size(std::begin(c), std::end(c), negout); }
 
-  // container_t<BDD> Support(BDD f);
+  // container_t<BDD> Support(const BDD &f);
 
   // ---------------------------------------------------------------------------
   // Manipulation
@@ -753,9 +753,9 @@ public:
   BDD SatisfySupport(const BDD &f)
   { return f.SatisfySupport(); }
 
-  // BDD Substitute(BDD f)
+  // BDD Substitute(const BDD &f)
 
-  // BDD VarSubstitute(BDD f)
+  // BDD VarSubstitute(const BDD &f)
 
   BDD SwapVars(const BDD &f, const BDD &g, const BDD &h)
   { return f.SwapVars(g, h); }
@@ -766,7 +766,7 @@ public:
   BDD ForAll(const BDD &f)
   { return BDD(this->_bddManager, Cal_BddForAll(this->_bddManager, f._bdd)); }
 
-  BDD RelProd(BDD f, BDD g)
+  BDD RelProd(const BDD &f, const BDD &g)
   { return BDD(this->_bddManager, Cal_BddRelProd(this->_bddManager, f._bdd, g._bdd)); }
 
   BDD Cofactor(const BDD &f, const BDD &c)
