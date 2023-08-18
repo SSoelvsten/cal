@@ -43,11 +43,6 @@ public:
   // TODO: allow multiple copies to access Cal
   Cal(const Cal &o) = delete;
 
-  /*
-  Cal(const Cal &o) : _bddManager(o._bddManager)
-  { }
-  */
-
   ~Cal()
   {
     Cal_BddManagerQuit(_bddManager);
