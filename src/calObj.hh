@@ -115,6 +115,9 @@ public:
   unsigned long Size(bool negout = false)
   { return Cal_BddSize(_bddManager, this->_bdd, 0); }
 
+  double SatisfyingFraction() const
+  { return Cal_BddSatisfyingFraction(this->_bddManager, this->_bdd); }
+
   // ---------------------------------------------------------------------------
   // Operations
 
@@ -563,8 +566,8 @@ public:
 
   // ---------------------------------------------------------------------------
   // BDD Information
-  double SatisfyingFraction(BDD f)
-  { return Cal_BddSatisfyingFraction(this->_bddManager, f._bdd); }
+  double SatisfyingFraction(const BDD &f)
+  { return f.SatisfyingFraction(); }
 
   unsigned long Size(BDD f, bool negout = false)
   { return f.Size(negout); }
