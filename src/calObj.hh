@@ -632,7 +632,7 @@ public:
   }
 
   template<typename Container>
-  BDD And(Container c)
+  BDD And(const Container &c)
   { return And(std::begin(c), std::end(c)); }
 
   BDD Nand(const BDD &f, const BDD &g)
@@ -655,7 +655,7 @@ public:
   }
 
   template<typename Container>
-  BDD Or(Container c)
+  BDD Or(const Container &c)
   { return Or(std::begin(c), std::end(c)); }
 
   BDD Nor(const BDD &f, const BDD &g)
@@ -678,7 +678,7 @@ public:
   }
 
   template<typename Container>
-  BDD Xor(Container c)
+  BDD Xor(const Container &c)
   { return Xor(std::begin(c), std::end(c)); }
 
   BDD Xnor(const BDD &f, const BDD &g)
@@ -701,7 +701,7 @@ public:
 
   template<typename Container>
   std::vector<BDD>
-  PairwiseAnd(Container c)
+  PairwiseAnd(const Container &c)
   { return PairwiseAnd(std::begin(c), std::end(c)); }
 
   template<typename IT>
@@ -721,7 +721,7 @@ public:
 
   template<typename Container>
   std::vector<BDD>
-  PairwiseOr(Container c)
+  PairwiseOr(const Container &c)
   { return PairwiseOr(std::begin(c), std::end(c)); }
 
   template<typename IT>
@@ -741,7 +741,7 @@ public:
 
   template<typename Container>
   std::vector<BDD>
-  PairwiseXor(Container c)
+  PairwiseXor(const Container &c)
   { return PairwiseXor(std::begin(c), std::end(c)); }
 
   BDD Satisfy(const BDD &f)
