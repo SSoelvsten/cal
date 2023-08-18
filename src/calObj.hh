@@ -223,6 +223,8 @@ public:
 
   BDD& operator= (BDD &&other)
   {
+    this->Free();
+
     this->_bdd = other._bdd;
     this->_bddManager = other._bddManager;
 
