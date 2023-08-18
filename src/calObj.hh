@@ -17,6 +17,11 @@ class Cal {
   friend class BDD;
 
   // ---------------------------------------------------------------------------
+  // Types
+
+  // TODO:
+
+  // ---------------------------------------------------------------------------
   // Fields
 private:
   // TODO: std::shared_ptr for reference counting the Cal_BddManager
@@ -25,6 +30,7 @@ private:
   // ---------------------------------------------------------------------------
   // Constructors
 public:
+  // Reenable after adding NewVarLast to API
   Cal() = delete;
 
   Cal(unsigned int numVars) : _bddManager(Cal_BddManagerInit())
@@ -37,8 +43,10 @@ public:
     // TODO: Cal_BddManagerSetParameters
   }
 
-  // TODO: allow multiple copies to access Cal
+  // TODO: allow multiple copies to access Cal (requires reference counting)
   Cal(const Cal &o) = delete;
+
+  // TODO: move constructor
 
   ~Cal()
   {
