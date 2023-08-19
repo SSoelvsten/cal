@@ -103,6 +103,7 @@
 /// \name Type declarations
 ///
 /// \{
+
 typedef struct Cal_BddManagerStruct *Cal_BddManager;
 typedef struct Cal_BddManagerStruct Cal_BddManager_t;
 typedef struct CalBddNodeStruct *Cal_Bdd;
@@ -119,6 +120,7 @@ typedef struct Cal_BlockStruct *Cal_Block;
 /// \name Structure declarations
 ///
 /// \{
+
 enum Cal_BddOpEnum {CAL_AND, CAL_OR, CAL_XOR};
 typedef enum Cal_BddOpEnum Cal_BddOp_t;
 
@@ -133,16 +135,17 @@ typedef enum Cal_BddOpEnum Cal_BddOp_t;
 #define EXTERN extern
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
 /// \brief Default BDD variable naming function
+////////////////////////////////////////////////////////////////////////////////
 #define Cal_BddNamingFnNone ((char *(*)(Cal_BddManager, Cal_Bdd, Cal_Pointer_t))0)
 
+////////////////////////////////////////////////////////////////////////////////
 /// \brief Default BDD terminal naming function
+////////////////////////////////////////////////////////////////////////////////
 #define Cal_BddTerminalIdFnNone ((char *(*)(Cal_BddManager, Cal_Address_t, Cal_Address_t, Cal_Pointer_t))0)
 
 #define Cal_Assert(valid) assert(valid)
-
-/// \}
-////////////////////////////////////////////////////////////////////////////////
 
 /// \}
 ////////////////////////////////////////////////////////////////////////////////
