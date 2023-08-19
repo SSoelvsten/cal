@@ -371,15 +371,6 @@ class Cal
 
   // ---------------------------------------------------------------------------
   // Fields
-private:
-  //           TODO -----------------------------------------------
-  //                             Movable Cal object
-  //             ----------------------------------------------- TODO
-  //
-  //   Use a 'std::unique_ptr' to handle the semantics of single ownership of
-  //   this 'Cal_BddManager' pointer. The 'Cal_BddManagerQuit' function is then
-  //   the managed pointer's deleter.
-  //
   //           TODO -----------------------------------------------
   //              Multiple Cal objects for the same Cal_BddManager
   //             ----------------------------------------------- TODO
@@ -412,15 +403,20 @@ public:
     }
   }
 
-  // TODO: copy constructor (requires reference counting)
+  // TODO: Copy constructor (requires reference counting)
   Cal(const Cal &o) = delete;
 
-  // TODO: move constructor (requires ownership or reference counting)
-  Cal(Cal &&o) = delete;
+  // Move ownership of C object.
+  Cal(Cal &&o)
+    : _bddManager(o._bddManager)
+  {
+    o._bddManager = nullptr;
+  }
 
   ~Cal()
   {
-    Cal_BddManagerQuit(this->_bddManager);
+    if (this->_bddManager)
+      Cal_BddManagerQuit(this->_bddManager);
   }
 
   // ---------------------------------------------------------------------------
