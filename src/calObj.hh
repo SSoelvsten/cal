@@ -13,7 +13,8 @@ class Cal;
 
 // -----------------------------------------------------------------------------
 // BDD Class
-class BDD {
+class BDD
+{
   friend Cal;
 
 public:
@@ -356,7 +357,8 @@ protected:
 
 // -----------------------------------------------------------------------------
 // BDD Manager
-class Cal {
+class Cal
+{
   friend BDD;
 
   // ---------------------------------------------------------------------------
@@ -370,7 +372,28 @@ class Cal {
   // ---------------------------------------------------------------------------
   // Fields
 private:
-  // TODO: std::shared_ptr for reference counting the Cal_BddManager
+  //           TODO -----------------------------------------------
+  //                             Movable Cal object
+  //             ----------------------------------------------- TODO
+  //
+  //   Use a 'std::unique_ptr' to handle the semantics of single ownership of
+  //   this 'Cal_BddManager' pointer. The 'Cal_BddManagerQuit' function is then
+  //   the managed pointer's deleter.
+  //
+  //           TODO -----------------------------------------------
+  //              Multiple Cal objects for the same Cal_BddManager
+  //             ----------------------------------------------- TODO
+  //
+  //   Use a 'std::shared_ptr' for reference counting this 'Cal_BddManager'
+  //   pointer. The 'Cal_BddManagerQuit' function is then the managed pointer's
+  //   deleter.
+  //
+  //           NOTE -------------------------------------------- NOTE
+  //
+  //   If so, should all BDD objects also be part of this reference counting?
+  //   Otherwise, if a BDD object survives for longer than the BDD manager, then
+  //   it will result in Segmentation Faults. Arguably this is already an
+  //   issue...
   Cal_BddManager _bddManager;
 
   // ---------------------------------------------------------------------------
@@ -387,14 +410,12 @@ public:
     for (Id_t i = 0; i < numVars; ++i) {
       this->CreateNewVarLast();
     }
-
-    // TODO: Cal_BddManagerSetParameters
   }
 
   // TODO: copy constructor (requires reference counting)
   Cal(const Cal &o) = delete;
 
-  // TODO: move constructor
+  // TODO: move constructor (requires ownership or reference counting)
   Cal(Cal &&o) = delete;
 
   ~Cal()
