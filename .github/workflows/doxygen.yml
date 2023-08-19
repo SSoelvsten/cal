@@ -1,0 +1,43 @@
+name: doxygen
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  run_doxygen:
+    name: 'Compile Doxygen'
+    runs-on: ubuntu-latest
+
+    steps:
+    # Git repo set up
+    - name: Checkout commit
+      uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+
+    - name: Install Doxygen and Graphviz
+      run: sudo apt install doxygen graphviz
+
+    # CMake build and create docs
+    - name: CMake build
+      working-directory: ${{github.workspace}}
+      run: |
+        cmake -E make_directory ${{github.workspace}}/build
+        cd ${{github.workspace}}/build
+        cmake ..
+
+    - name: Make cal_docs
+      working-directory: ${{github.workspace}}/build
+      run: make cal_docs
+
+    # Deploy on GitHub Pages if pushed to main
+    - uses: JamesIves/github-pages-deploy-action@4.1.4
+      if: ${{ github.event_name == 'push' }}
+      with:
+        branch: gh-pages
+        folder: ${{github.workspace}}/build/docs/html/
