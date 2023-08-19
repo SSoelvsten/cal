@@ -9,8 +9,8 @@ Quick Access
 ========================
 
 1. \ref page__getting_started
-2. \ref module__c module
-3. \ref module__cpp module
+2. \ref module__c
+3. \ref module__cpp
 4. \ref page__cite
 
 About the Project
