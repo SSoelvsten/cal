@@ -972,7 +972,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p>Frees the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
 <p>It is an error to free a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> more than once.</p>
-<dl class="section user"><dt>Side Effects:</dt><dd>The reference count of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is decreased by 1.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>The reference count of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is decreased by 1.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga02490e7365b1f1fe46a8ca9c80f10bbf" title="Unfrees the argument BDD.">Cal_BddUnFree</a> </dd></dl>
 
 </div>
@@ -1172,7 +1172,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Duplicate of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
-<dl class="section user"><dt>Side Effects:</dt><dd>The reference count of the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is increased by 1.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>The reference count of the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is increased by 1.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga7e38ef9078648bf605892d3d6812fbc8" title="Complement of the argument BDD.">Cal_BddNot</a> </dd></dl>
 
 </div>
@@ -1664,7 +1664,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Sets the hooks field of the manager. </p>
-<dl class="section user"><dt>Side Effects:</dt><dd>Hooks field changes.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>Hooks field changes.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#gad9b22a6e06dd0593fb226a50edbecaa6" title="Returns the hooks field of the manager.">Cal_BddManagerGetHooks</a> </dd></dl>
 
 </div>
@@ -1891,7 +1891,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p>Creates and returns a variable block used for controlling dynamic reordering. </p>
 <p>The block is specified by passing the first variable and the length of the block. The "length" number of consecutive variables starting from "variable" are put in the block.</p>
-<dl class="section user"><dt>Side Effects:</dt><dd>A new block is created. </dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>A new block is created. </dd></dl>
 
 </div>
 </div>
@@ -1922,7 +1922,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Sets the node limit to new_limit and returns the old limit. </p>
-<dl class="section user"><dt>Side Effects:</dt><dd>Threshold for garbage collection may change.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>Threshold for garbage collection may change.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga26c0636b829ba9f740f2655177a0fe07" title="Invokes the garbage collection at the manager level.">Cal_BddManagerGC</a> </dd></dl>
 
 </div>
@@ -1991,7 +1991,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Complement of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
-<dl class="section user"><dt>Side Effects:</dt><dd>The reference count of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is increased by 1.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>The reference count of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is increased by 1.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga38b7b7e23e08cc3c313a18d1e6c0e113" title="Duplicate of the argument BDD.">Cal_BddIdentity</a> </dd></dl>
 
 </div>
@@ -2034,7 +2034,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Returns 1 if the node limit has been exceeded, 0 otherwise. </p>
-<dl class="section user"><dt>Side Effects:</dt><dd>The overflow flag is cleared.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>The overflow flag is cleared.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga66da099c0033ebd8f979dc882400c1c9" title="Sets the node limit to new_limit and returns the old limit.">Cal_BddNodeLimit</a> </dd></dl>
 
 </div>
@@ -2609,7 +2609,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Invoke the current dynamic reodering method. </p>
-<dl class="section user"><dt>Side Effects:</dt><dd>Indexes of a variable may change due to reodering.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>Indexes of a variable may change due to reodering.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga65f1251eb922638fe67454d94125d412" title="Specify dynamic reordering technique and method.">Cal_BddDynamicReordering</a> </dd></dl>
 
 </div>
@@ -3021,7 +3021,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p>Unfrees the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
 <p>It is an error to pass a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with reference count of zero to be unfreed.</p>
-<dl class="section user"><dt>Side Effects:</dt><dd>The reference count of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is increased by 1.</dd></dl>
+<dl class="section user"><dt>Side effects:</dt><dd>The reference count of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is increased by 1.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga2c4946d6a3b99991ca5d6040c5f9fbb4" title="Frees the argument BDD.">Cal_BddFree</a> </dd></dl>
 
 </div>
