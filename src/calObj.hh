@@ -261,7 +261,7 @@ public:
   /// \param negout If `false` then counting pretends the BDD does not have
   ///               negative-output pointers (complement edges).
   //////////////////////////////////////////////////////////////////////////////
-  unsigned long Size(bool negout = false) const
+  unsigned long Size(bool negout = true) const
   { return Cal_BddSize(this->_bddManager, this->_bdd, 0); }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -1038,7 +1038,7 @@ public:
   //////////////////////////////////////////////////////////////////////////////
   /// \copydoc BDD::Size
   //////////////////////////////////////////////////////////////////////////////
-  unsigned long Size(const BDD &f, bool negout = false)
+  unsigned long Size(const BDD &f, bool negout = true)
   { return f.Size(negout); }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -1049,7 +1049,7 @@ public:
   ///               negative-output pointers (complement edges).
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
-  unsigned long Size(IT begin, IT end, bool negout)
+  unsigned long Size(IT begin, IT end, bool negout = true)
   {
     static_assert(std::is_same_v<typename IT::value_type, BDD>,
                   "Must be called with iterator for BDD");
@@ -1072,7 +1072,7 @@ public:
   ///               negative-output pointers (complement edges).
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
-  unsigned long Size(Container c, bool negout = false)
+  unsigned long Size(Container c, bool negout = true)
   { return Size(std::begin(c), std::end(c), negout); }
 
   //////////////////////////////////////////////////////////////////////////////
