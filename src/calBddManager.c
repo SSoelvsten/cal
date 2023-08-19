@@ -56,7 +56,7 @@
 /*---------------------------------------------------------------------------*/
 /* Variable declarations                                                     */
 /*---------------------------------------------------------------------------*/
-unsigned long calPrimes[] = 
+unsigned long calPrimes[] =
 {
   1,
   2,
@@ -133,20 +133,8 @@ static int CalBddManagerPrint(Cal_BddManager_t *bddManager);
 /*---------------------------------------------------------------------------*/
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [Creates and initializes a new BDD manager.]
-
-  Description [Initializes and allocates fields of the BDD manager. Some of the
-  fields are initialized for maxNumVars+1 or numVars+1, whereas some of them are
-  initialized for maxNumVars or numVars. The first kind of fields are associated
-  with the id of a variable and the second ones are with the index of the
-  variable.]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddManagerQuit]
-
 ******************************************************************************/
 Cal_BddManager
 Cal_BddManagerInit( )
@@ -155,16 +143,16 @@ Cal_BddManagerInit( )
   int i;
   CalBddNode_t *bddNode;
   Cal_Bdd_t resultBdd;
-  
-    
+
+
   bddManager = Cal_MemAlloc(Cal_BddManager_t, 1);
 
   bddManager->numVars = 0;
 
   bddManager->maxNumVars = 30;
-  
+
   bddManager->varBdds = Cal_MemAlloc(Cal_Bdd_t, bddManager->maxNumVars+1);
-  
+
   bddManager->pageManager1 = CalPageManagerInit(4);
   bddManager->pageManager2 = CalPageManagerInit(NUM_PAGES_PER_SEGMENT);
 
@@ -174,7 +162,7 @@ Cal_BddManagerInit( )
   bddManager->uniqueTable = Cal_MemAlloc(CalHashTable_t *,
                                          bddManager->maxNumVars+1);
   bddManager->uniqueTable[0] = CalHashTableInit(bddManager, 0);
-  
+
   /* Constant One */
   CalBddPutBddId(bddManager->bddOne, CAL_BDD_CONST_ID);
   CalNodeManagerAllocNode(bddManager->nodeManagerArray[0], bddNode);
@@ -220,7 +208,7 @@ Cal_BddManagerInit( )
 
   bddManager->reqQue = Cal_MemAlloc(CalHashTable_t **, bddManager->maxDepth);
   bddManager->cacheTable = CalCacheTableTwoInit(bddManager);
-  
+
   for (i=0; i < bddManager->maxDepth; i++){
     bddManager->reqQue[i] = Cal_MemAlloc(CalHashTable_t *,
                                          bddManager->maxNumVars+1);
@@ -244,7 +232,7 @@ Cal_BddManagerInit( )
   bddManager->nodeLimit = 0;
   bddManager->overflow = 0;
   bddManager->repackAfterGCThreshold = CAL_REPACK_AFTER_GC_THRESHOLD;
-  
+
 
   /* Special functions */
   bddManager->TransformFn = BddDefaultTransformFn;
@@ -278,7 +266,7 @@ Cal_BddManagerInit( )
   bddManager->reorderingThreshold = CAL_BDD_REORDER_THRESHOLD;
   bddManager->maxForwardedNodes = CAL_NUM_FORWARDED_NODES_LIMIT;
   bddManager->tableRepackThreshold = CAL_TABLE_REPACK_THRESHOLD;
-  
+
 
   /*bddManager->superBlock = CAL_BDD_NEW_REC(bddManager, Cal_Block_t);*/
   bddManager->superBlock = Cal_MemAlloc(Cal_Block_t, 1);
@@ -287,22 +275,13 @@ Cal_BddManagerInit( )
   bddManager->superBlock->reorderable=1;
   bddManager->superBlock->firstIndex= -1;
   bddManager->superBlock->lastIndex=0;
-  
+
   bddManager->hooks = Cal_Nil(void);
-  
+
   return bddManager;
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Frees the BDD manager and all the associated allocations]
-
-  Description [Frees the BDD manager and all the associated allocations]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddManagerInit]
-
 ******************************************************************************/
 int
 Cal_BddManagerQuit(Cal_BddManager bddManager)
@@ -317,7 +296,7 @@ Cal_BddManagerQuit(Cal_BddManager bddManager)
     }
     Cal_MemFree(bddManager->reqQue[i]);
   }
-  
+
   for (i=0; i <= bddManager->numVars; i++){
     CalHashTableQuit(bddManager, bddManager->uniqueTable[i]);
     CalNodeManagerQuit(bddManager->nodeManagerArray[i]);
@@ -345,27 +324,6 @@ Cal_BddManagerQuit(Cal_BddManager bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Sets appropriate fields of BDD Manager.]
-
-  Description [This function is used to set the parameters which are
-  used to control the reordering process. "reorderingThreshold"
-  determines the number of nodes below which reordering will NOT be
-  invoked, "maxForwardedNodes" determines the maximum number of
-  forwarded nodes which are allowed (at that point the cleanup must be
-  done), and "repackingThreshold" determines the fraction of the page
-  utilized below which repacking has to be invoked. These parameters
-  have different affect on the computational and memory usage aspects
-  of reordeing. For instance, higher value of "maxForwardedNodes" will
-  result in process consuming more memory, and a lower value on the
-  other hand would invoke the cleanup process repeatedly resulting in
-  increased computation.]
-  Sets appropriate fields of BDD Manager]
-
-  SideEffects [None]
-
-  SeeAlso     []
-
 ******************************************************************************/
 void
 Cal_BddManagerSetParameters(Cal_BddManager bddManager,
@@ -409,15 +367,6 @@ Cal_BddManagerGetNumNodes(Cal_BddManager bddManager)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Creates and returns a new variable at the start of the variable
-  order.]
-
-  Description [Creates and returns a new variable at the start of the
-  variable order.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddManagerCreateNewVarFirst(Cal_BddManager bddManager)
@@ -427,15 +376,6 @@ Cal_BddManagerCreateNewVarFirst(Cal_BddManager bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Creates and returns a new variable at the end of the variable
-  order.]
-
-  Description [Creates and returns a new variable at the end of the variable
-  order.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddManagerCreateNewVarLast(Cal_BddManager bddManager)
@@ -449,15 +389,6 @@ Cal_BddManagerCreateNewVarLast(Cal_BddManager bddManager)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Creates and returns a new variable before the specified one in
-  the variable order.]
-
-  Description [Creates and returns a new variable before the specified one in
-  the variable order.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddManagerCreateNewVarBefore(Cal_BddManager bddManager,
@@ -470,21 +401,12 @@ Cal_BddManagerCreateNewVarBefore(Cal_BddManager bddManager,
   else{
     return CalBddGetExternalBdd(bddManager,
                                 CalBddManagerCreateNewVar(bddManager,
-                                                          CalBddGetBddIndex(bddManager, 
+                                                          CalBddGetBddIndex(bddManager,
                                                   calBdd)));
   }
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Creates and returns a new variable after the specified one in
-  the variable  order.]
-
-  Description [Creates and returns a new variable after the specified one in
-  the variable  order.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddManagerCreateNewVarAfter(Cal_BddManager bddManager,
@@ -503,15 +425,6 @@ Cal_BddManagerCreateNewVarAfter(Cal_BddManager bddManager,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the variable with the specified index, null if no
-  such variable exists]
-
-  Description [Returns the variable with the specified index, null if no
-  such variable exists]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddManagerGetVarWithIndex(Cal_BddManager bddManager, Cal_BddIndex_t  index)
@@ -521,21 +434,10 @@ Cal_BddManagerGetVarWithIndex(Cal_BddManager bddManager, Cal_BddIndex_t  index)
     return Cal_BddNull(bddManager);
   }
   return CalBddGetExternalBdd(bddManager,
-                              bddManager->varBdds[bddManager->indexToId[index]]); 
+                              bddManager->varBdds[bddManager->indexToId[index]]);
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the variable with the specified id, null if no
-  such variable exists]
-
-  Description [Returns the variable with the specified id, null if no
-  such variable exists]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddManagerGetVarWithId(Cal_BddManager bddManager,  Cal_BddId_t  id)
@@ -551,19 +453,15 @@ Cal_BddManagerGetVarWithId(Cal_BddManager bddManager,  Cal_BddId_t  id)
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
+   This function creates and returns a new variable with given index value.
 
-  Synopsis    [This function creates and returns a new variable with given
-  index value.]
+   Right now this function does not handle the case when the package is working
+   in multiprocessor mode. We need to put in the necessary code later.
 
-  Description [Right now this function does not handle the case when the
-  package is working in multiprocessor mode. We need to put in the necessary
-  code later.]
-
-  SideEffects [If the number of variables in the manager exceeds that of value
-  of numMaxVars, then we need to reallocate various fields of the manager. Also
-  depending upon the value of "index", idToIndex and indexToId tables would
-  change.]
-
+   If the number of variables in the manager exceeds that of value of
+   numMaxVars, then we need to reallocate various fields of the manager. Also
+   depending upon the value of "index", idToIndex and indexToId tables would
+   change.
 ******************************************************************************/
 Cal_Bdd_t
 CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
@@ -572,9 +470,9 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
   Cal_BddId_t varId;
   int totalNumVars, maxNumVars, i;
   CalAssociation_t *association;
-  
+
   if (bddManager->numVars == CAL_MAX_VAR_ID){
-    CalBddFatalMessage("Cannot create any new variable, no more Id left."); 
+    CalBddFatalMessage("Cannot create any new variable, no more Id left.");
   }
 
   /*
@@ -582,11 +480,11 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
    * number of variables, then report error.
    */
   totalNumVars = bddManager->numVars;
-  
+
   if (index > totalNumVars){
     CalBddFatalMessage("The variable index out of range");
   }
-  
+
 
   /*
    * Create a new variable in the manager which contains this index.
@@ -601,17 +499,17 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
   if (bddManager->numVars == bddManager->maxNumVars){
     int oldMaxNumVars;
     CalAssociation_t *p;
-    
+
     oldMaxNumVars = bddManager->maxNumVars;
     if ((maxNumVars = 2*oldMaxNumVars) > CAL_MAX_VAR_ID){
       maxNumVars = CAL_MAX_VAR_ID;
     }
     bddManager->maxNumVars = maxNumVars;
     bddManager->varBdds = Cal_MemRealloc(Cal_Bdd_t,
-                                         bddManager->varBdds, maxNumVars+1); 
-    
+                                         bddManager->varBdds, maxNumVars+1);
+
     bddManager->nodeManagerArray = Cal_MemRealloc(CalNodeManager_t *,
-                                                  bddManager->nodeManagerArray, 
+                                                  bddManager->nodeManagerArray,
                                                   maxNumVars+1);
 
     bddManager->idToIndex = Cal_MemRealloc(Cal_BddIndex_t, bddManager->idToIndex,
@@ -622,12 +520,12 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
 
     bddManager->uniqueTable = Cal_MemRealloc(CalHashTable_t *,
                                           bddManager->uniqueTable, maxNumVars+1);
-    
+
     for (i=0; i<bddManager->maxDepth; i++){
       bddManager->reqQue[i] = Cal_MemRealloc(CalHashTable_t *, bddManager->reqQue[i],
                                           maxNumVars+1);
     }
-    bddManager->tempAssociation->varAssociation = 
+    bddManager->tempAssociation->varAssociation =
         Cal_MemRealloc(Cal_Bdd_t, bddManager->tempAssociation->varAssociation,
         maxNumVars+1);
     /* CHECK LOOP INDICES */
@@ -635,7 +533,7 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
       bddManager->tempAssociation->varAssociation[i] = bddManager->bddNull;
     }
     for(p = bddManager->associationList; p; p = p->next){
-      p->varAssociation = 
+      p->varAssociation =
           Cal_MemRealloc(Cal_Bdd_t, p->varAssociation, maxNumVars+1);
       /* CHECK LOOP INDICES */
       for(i = oldMaxNumVars+1; i < maxNumVars+1; i++){
@@ -668,18 +566,18 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
   if (bddManager->tempAssociation->lastBddIndex >= index){
     bddManager->tempAssociation->lastBddIndex++;
   }
-  
+
   bddManager->numVars++;
   varId = bddManager->numVars;
 
   bddManager->idToIndex[varId] = index;
   bddManager->indexToId[index] = varId;
-  
+
   bddManager->nodeManagerArray[varId] =
-      CalNodeManagerInit(bddManager->pageManager2); 
+      CalNodeManagerInit(bddManager->pageManager2);
   bddManager->uniqueTable[varId] =
       CalHashTableInit(bddManager, varId);
-    
+
   /* insert node in the uniqueTableForId */
   CalHashTableAddDirectAux(bddManager->uniqueTable[varId],
                            bddManager->bddOne, bddManager->bddZero, &calBdd);
@@ -687,7 +585,7 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
   bddManager->varBdds[varId] = calBdd;
 
   bddManager->numNodes++;
-  
+
 #ifdef __OLD__
   /* initialize req_que_for_id */
   bddManager->reqQue[varId] = Cal_MemAlloc(CalHashTable_t*, bddManager->maxDepth);
@@ -695,7 +593,7 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
     bddManager->reqQue[varId][i] = CalHashTableInit(bddManager, varId);
   }
 #endif
-  
+
   /* initialize req_que_for_id */
   for (i=0; i<bddManager->maxDepth; i++){
     bddManager->reqQue[i][varId] =
@@ -705,20 +603,11 @@ CalBddManagerCreateNewVar(Cal_BddManager_t * bddManager, Cal_BddIndex_t  index)
   return calBdd;
 }
 
-  
+
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddDefaultTransformFn(
@@ -745,15 +634,6 @@ BddDefaultTransformFn(
 #ifdef CALBDDMANAGER
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 CalBddManagerPrint(Cal_BddManager_t *bddManager)
@@ -774,14 +654,14 @@ main(argc, argv)
 int argc;
 char **argv;
 {
-	Cal_Bdd_t n;
-	Cal_BddManager_t *manager;
+  Cal_Bdd_t n;
+  Cal_BddManager_t *manager;
 
-	manager = CalBddManagerInit(argc, argv);
-	n = CalBddManagerCreateVariable(bddManager);
-	CalBddFunctionPrint(n);
-	n = CalBddManagerGetVariable(bddManager, 0);
-	CalBddFunctionPrint(n);
+  manager = CalBddManagerInit(argc, argv);
+  n = CalBddManagerCreateVariable(bddManager);
+  CalBddFunctionPrint(n);
+  n = CalBddManagerGetVariable(bddManager, 0);
+  CalBddFunctionPrint(n);
 }
 #endif /* CALBDDMANAGER */
 
@@ -795,18 +675,18 @@ char **argv;
   Cal_Bdd_t function, tempFunction;
   int i;
   int numVars;
-  
+
   if (argc >= 2)
         numVars = atoi(argv[1]);
   else
     numVars = 3;
-  
+
   manager = Cal_BddManagerInit();
-  
+
   for (i = 0; i < numVars; i++){
     vars[i] = Cal_BddManagerCreateNewVarLast(bddManager);
   }
-  
+
   function = vars[0];
   for (i = 1; i < numVars - 1; i++){
     tempFunction = Cal_BddITE(bddManager, vars[i], vars[i+1], function);

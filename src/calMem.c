@@ -146,15 +146,6 @@ static void MergeAndFree(Block b);
 
 
 /**Function********************************************************************
-
-  Synopsis           [Prints an error message and exits.]
-
-  Description        [Prints an error message and exits.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 Cal_MemFatal(char *message)
@@ -164,15 +155,6 @@ Cal_MemFatal(char *message)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [Returns the memory allocated.]
-
-  Description        [Returns the memory allocated.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 Cal_Address_t
 Cal_MemAllocation(void)
@@ -181,15 +163,6 @@ Cal_MemAllocation(void)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [Allocates a new block of the specified size.]
-
-  Description        [Allocates a new block of the specified size.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 Cal_Pointer_t
 Cal_MemGetBlock(Cal_Address_t size)
@@ -203,7 +176,7 @@ Cal_MemGetBlock(Cal_Address_t size)
   Block b;
 
   if ((sizeIndex = BlockSizeIndex(size)) < 0) return ((Cal_Pointer_t)0);
-  
+
   /* Find smallest free block which is large enough. */
   for (i = sizeIndex; i <= MAX_SIZEINDEX && !avail[i]; ++i);
   if (i > MAX_SIZEINDEX) {
@@ -212,19 +185,19 @@ Cal_MemGetBlock(Cal_Address_t size)
     if (sizeIndex < MIN_ALLOC_SIZEINDEX) allocSizeIndex=MIN_ALLOC_SIZEINDEX;
     else allocSizeIndex=sizeIndex;
     allocSize=((Cal_Address_t)1 << allocSizeIndex);
-    
+
     /* Pad current segment to be a multiple of 2^allocSizeIndex in */
     /* length. */
     allocSize += ((currSeg->limit + allocSize - 1) &
                   ~(allocSize - 1)) - currSeg->limit;
     if ((sbrkRet=(Cal_Pointer_t)SBRK(0)) !=
-        (Cal_Pointer_t)((Cal_Address_t)currSeg->baseAddress+currSeg->limit) || 
+        (Cal_Pointer_t)((Cal_Address_t)currSeg->baseAddress+currSeg->limit) ||
         allocSize+currSeg->limit > MAX_SEG_SIZE) {
-      
+
       /* Segment is too large or someone else has moved the break. */
       /* Pad to get to appropriate boundary. */
       allocSize=CAL_ROUNDUP((Cal_Address_t)sbrkRet)-(Cal_Address_t)sbrkRet;
-      
+
       /* Pad allocation request with storage for new segment */
       /* information and indicate that a new segment must be */
         /* created. */
@@ -262,15 +235,6 @@ Cal_MemGetBlock(Cal_Address_t size)
 
 
 /**Function********************************************************************
-
-  Synopsis           [Frees the block.]
-
-  Description        [Frees the block.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/void
 Cal_MemFreeBlock(Cal_Pointer_t p)
 {
@@ -286,17 +250,6 @@ Cal_MemFreeBlock(Cal_Pointer_t p)
 
 
 /**Function********************************************************************
-
-  Synopsis           [Expands or contracts the block to a new size.
-  We try to avoid moving the block if possible. ]
-
-  Description        [Expands or contracts the block to a new size.
-  We try to avoid moving the block if possible. ]  
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 Cal_Pointer_t
 Cal_MemResizeBlock(Cal_Pointer_t p, Cal_Address_t newSize)
@@ -339,15 +292,6 @@ Cal_MemResizeBlock(Cal_Pointer_t p, Cal_Address_t newSize)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [Allocates a record from the specified record manager. ]
-
-  Description        [Allocates a record from the specified record manager. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 Cal_Pointer_t
 Cal_MemNewRec(Cal_RecMgr mgr)
@@ -355,7 +299,7 @@ Cal_MemNewRec(Cal_RecMgr mgr)
   int i;
   Cal_Pointer_t p;
   List new;
-  
+
   if (!mgr->free) {
     /* Allocate a new block. */
     new = (List) Cal_MemGetBlock(ALLOC_SIZE);
@@ -396,15 +340,6 @@ Cal_MemNewRec(Cal_RecMgr mgr)
 
 
 /**Function********************************************************************
-
-  Synopsis           [Frees a record managed by the indicated record manager. ]
-
-  Description        [Frees a record managed by the indicated record manager. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 Cal_MemFreeRec(Cal_RecMgr mgr, Cal_Pointer_t rec)
@@ -425,15 +360,6 @@ Cal_MemFreeRec(Cal_RecMgr mgr, Cal_Pointer_t rec)
 
 
 /**Function********************************************************************
-
-  Synopsis           [Creates a new record manager with the given  record size.]
-
-  Description        [Creates a new record manager with the given  record size.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 Cal_RecMgr
 Cal_MemNewRecMgr(int size)
@@ -454,15 +380,6 @@ Cal_MemNewRecMgr(int size)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [Frees all the storage associated with the specified record manager.]
-
-  Description        [Frees all the storage associated with the specified record manager.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 Cal_MemFreeRecMgr(Cal_RecMgr mgr)
@@ -478,27 +395,13 @@ Cal_MemFreeRecMgr(Cal_RecMgr mgr)
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
+
+
 /*---------------------------------------------------------------------------*/
-/* Definition of static functions                                          */
+/* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  Compute the binary logarithm (rounded up).
 ******************************************************************************/
 static int
 CeilingLog2(Cal_Address_t i)
@@ -511,23 +414,7 @@ CeilingLog2(Cal_Address_t i)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [BlockSizeIndex(size) return the coded size for a block. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  BlockSizeIndex(size) return the coded size for a block.
 ******************************************************************************/
 static int
 BlockSizeIndex(Cal_Address_t size)
@@ -543,23 +430,7 @@ BlockSizeIndex(Cal_Address_t size)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [AddToFreeList(b) adds b to the appropriate free list. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  AddToFreeList(b) adds b to the appropriate free list.
 ******************************************************************************/
 static void
 AddToFreeList(Block b)
@@ -583,23 +454,7 @@ AddToFreeList(Block b)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [RemoveFromFreeList(b) removes b from the free list which it is on. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  RemoveFromFreeList(b) removes b from the free list which it is on.
 ******************************************************************************/
 static Block
 RemoveFromFreeList(Block b)
@@ -620,23 +475,7 @@ RemoveFromFreeList(Block b)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [Buddy(b) returns the Buddy block of b, or null if there is no  Buddy. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  Buddy(b) returns the Buddy block of b, or null if there is no  Buddy.
 ******************************************************************************/
 
 static Block
@@ -654,23 +493,8 @@ Buddy(Block b)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [TrimToSize(b, sizeIndex) repeatedly splits b until it has  the indicated size.  Blocks which are split off are added to the appropriate free list. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  TrimToSize(b, sizeIndex) repeatedly splits b until it has the indicated size.
+  Blocks which are split off are added to the appropriate free list.
 ******************************************************************************/
 static void
 TrimToSize(Block b, int sizeIndex)
@@ -688,31 +512,16 @@ TrimToSize(Block b, int sizeIndex)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [MergeAndFree(b) repeatedly merges b its Buddy until b has no Buddy or the Buddy isn't free, then adds the result to the  appropriate free list. ]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
-  CommandName        [optional] 	   
-
-  CommandSynopsis    [optional]  
-
-  CommandArguments   [optional]  
-
-  CommandDescription [optional]  
-
+  MergeAndFree(b) repeatedly merges b its Buddy until b has no Buddy or the
+  Buddy isn't free, then adds the result to the appropriate free list.
 ******************************************************************************/
 static void
 MergeAndFree(Block b)
 {
   Block bb;
-  
+
   for (bb=Buddy(b); bb && !bb->used && bb->sizeIndex == b->sizeIndex;
-       bb=Buddy(b)) { 
+       bb=Buddy(b)) {
     RemoveFromFreeList(bb);
     if ((Cal_Address_t)bb < (Cal_Address_t)b) b=bb;
     b->sizeIndex++;

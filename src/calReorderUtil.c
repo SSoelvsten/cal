@@ -133,15 +133,6 @@ CalBddReorderFixUserBddPtrs(Cal_BddManager bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 int
 CalCheckAllValidity(Cal_BddManager bddManager)
@@ -161,15 +152,6 @@ CalCheckAllValidity(Cal_BddManager bddManager)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 int
 CalCheckValidityOfNodesForId(Cal_BddManager bddManager, int id)
@@ -178,7 +160,7 @@ CalCheckValidityOfNodesForId(Cal_BddManager bddManager, int id)
   CalHashTable_t *uniqueTableForId;
   CalBddNode_t *bddNode, *nextBddNode;
   Cal_Bdd_t thenBdd, elseBdd;
-  
+
   uniqueTableForId = bddManager->uniqueTable[id];
   Cal_Assert(uniqueTableForId->startNode.nextBddNode == NULL);
   numBins = uniqueTableForId->numBins;
@@ -190,7 +172,7 @@ CalCheckValidityOfNodesForId(Cal_BddManager bddManager, int id)
       CalBddNodeGetThenBdd(bddNode, thenBdd);
       CalBddNodeGetElseBdd(bddNode, elseBdd);
       Cal_Assert(CalDoHash2(CalBddGetBddNode(thenBdd),
-                            CalBddGetBddNode(elseBdd), 
+                            CalBddGetBddNode(elseBdd),
                             uniqueTableForId) == i);
     }
   }
@@ -199,15 +181,6 @@ CalCheckValidityOfNodesForId(Cal_BddManager bddManager, int id)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 int
 CalCheckValidityOfNodesForWindow(Cal_BddManager bddManager,
@@ -220,7 +193,7 @@ CalCheckValidityOfNodesForWindow(Cal_BddManager bddManager,
 
   for (i = 0; i < numLevels; i++){
     uniqueTableForId =
-        bddManager->uniqueTable[bddManager->indexToId[index+i]]; 
+        bddManager->uniqueTable[bddManager->indexToId[index+i]];
     numBins = uniqueTableForId->numBins;
     for (j = 0; j < numBins; j++){
       for (bddNode = uniqueTableForId->bins[j]; bddNode;
@@ -232,12 +205,12 @@ CalCheckValidityOfNodesForWindow(Cal_BddManager bddManager,
         Cal_Assert(CalBddIsForwarded(thenBdd) == 0);
         Cal_Assert(CalBddIsForwarded(elseBdd) == 0);
         Cal_Assert(CalDoHash2(CalBddGetBddNode(thenBdd),
-                              CalBddGetBddNode(elseBdd), 
+                              CalBddGetBddNode(elseBdd),
                              uniqueTableForId) == j);
       }
     }
     for (bddNode = uniqueTableForId->startNode.nextBddNode; bddNode;
-         bddNode = nextBddNode){ 
+         bddNode = nextBddNode){
       nextBddNode = CalBddNodeGetNextBddNode(bddNode);
       CalBddNodeGetThenBdd(bddNode, thenBdd);
       Cal_Assert(CalBddIsForwarded(thenBdd) == 0);
@@ -246,18 +219,7 @@ CalCheckValidityOfNodesForWindow(Cal_BddManager bddManager,
   return 1;
 }
 
-
-
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 int
 CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t *bddNode, int id)
@@ -305,15 +267,6 @@ CalCheckValidityOfANode(Cal_BddManager_t *bddManager, CalBddNode_t *bddNode, int
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalCheckRefCountValidity(Cal_BddManager_t *bddManager)
@@ -323,7 +276,7 @@ CalCheckRefCountValidity(Cal_BddManager_t *bddManager)
   CalBddNode_t *bddNode, *nextBddNode;
   Cal_Bdd_t thenBdd, elseBdd, internalBdd;
   CalAssociation_t *assoc, *nextAssoc;
-  
+
   /* First traverse the user BDDs */
   uniqueTableForId = bddManager->uniqueTable[0];
   numBins = uniqueTableForId->numBins;
@@ -336,7 +289,7 @@ CalCheckRefCountValidity(Cal_BddManager_t *bddManager)
     }
   }
       /* Traverse the associations */
-  
+
   for(assoc = bddManager->associationList;
       assoc != Cal_Nil(CalAssociation_t); assoc = nextAssoc){
     nextAssoc = assoc->next;
@@ -354,7 +307,7 @@ CalCheckRefCountValidity(Cal_BddManager_t *bddManager)
       }
   }
 
-  
+
   /* Now traverse all the nodes in order */
   for (index = 0; index < bddManager->numVars; index++){
     uniqueTableForId = bddManager->uniqueTable[bddManager->indexToId[index]];
@@ -437,15 +390,6 @@ CalCheckRefCountValidity(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 int
 CalCheckAssoc(Cal_BddManager_t *bddManager)
@@ -484,15 +428,6 @@ CalCheckAssoc(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalFixupAssoc(Cal_BddManager_t *bddManager, long id1, long id2,
@@ -506,27 +441,19 @@ CalFixupAssoc(Cal_BddManager_t *bddManager, long id1, long id2,
   }
   else if ((CalBddIsBddNull(bddManager, assoc->varAssociation[id1])) &&
            (CalBddIsBddNull(bddManager, assoc->varAssociation[id2]) ==
-            0) && 
+            0) &&
   (assoc->lastBddIndex == bddManager->idToIndex[id2])){
     assoc->lastBddIndex--;
   }
   Cal_Assert((assoc->lastBddIndex >= 0) && (assoc->lastBddIndex <=
                                            CAL_BDD_CONST_INDEX));
-   
+
 }
 /**Function********************************************************************
+  Fixes the cofactors of the nodes belonging to the given index.
 
-  Synopsis           [Fixes the cofactors of the nodes belonging to
-  the given index.]
-
-  Description        [This routine traverses the unique table and for
-  each node, looks at the then and else cofactors. If needed fixes the
-  cofactors.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
+  This routine traverses the unique table and for each node, looks at the then
+  and else cofactors. If needed fixes the cofactors.
 ******************************************************************************/
 void
 CalBddReorderFixCofactors(Cal_BddManager bddManager, Cal_BddId_t id)
@@ -537,7 +464,7 @@ CalBddReorderFixCofactors(Cal_BddManager bddManager, Cal_BddId_t id)
   Cal_Bdd_t f0, f1;
   long numBins;
   int i, rehashFlag;
-  
+
   numBins = uniqueTableForId->numBins;
   bins = uniqueTableForId->bins;
 
@@ -568,7 +495,7 @@ CalBddReorderFixCofactors(Cal_BddManager bddManager, Cal_BddId_t id)
       Cal_Assert(CalBddIsForwarded(f1) == 0);
       if (CalBddIsForwarded(f0)) {
         CalBddForward(f0);
-        CalBddNodePutElseBdd(bddNode, f0); 
+        CalBddNodePutElseBdd(bddNode, f0);
         rehashFlag = 1;
       }
       Cal_Assert(CalBddIsForwarded(f0) == 0);
@@ -582,15 +509,6 @@ CalBddReorderFixCofactors(Cal_BddManager bddManager, Cal_BddId_t id)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalBddReorderReclaimForwardedNodes(Cal_BddManager bddManager, int
@@ -600,7 +518,7 @@ CalBddReorderReclaimForwardedNodes(Cal_BddManager bddManager, int
   Cal_BddId_t id;
   CalHashTable_t *uniqueTableForId;
   CalNodeManager_t *nodeManager;
-  
+
   for(index = startIndex; index <= endIndex; index++){
     id = bddManager->indexToId[index];
     uniqueTableForId = bddManager->uniqueTable[id];
@@ -613,9 +531,6 @@ CalBddReorderReclaimForwardedNodes(Cal_BddManager bddManager, int
   bddManager->numForwardedNodes = 0;
 }
 
-
-
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                          */
 /*---------------------------------------------------------------------------*/
-

@@ -5,7 +5,7 @@
   PackageName [cal]
 
   Synopsis    [BDD library dump/undump routines]
-              
+
 
   Description [ ]
 
@@ -14,7 +14,7 @@
   Author      [Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
                Originally written by David Long.
-              ] 
+              ]
 
   Copyright   [Copyright (c) 1994-1996 The Regents of the Univ. of California.
   All rights reserved.
@@ -93,29 +93,6 @@ static int BytesNeeded(long n);
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Reads a BDD from a file]
-
-  Description [Loads an encoded description of a BDD from the file given by
-  fp. The argument vars should be a null terminated array of variables that will
-  become the support of the BDD. As in Cal_BddDumpBdd, these need not be in
-  the order of increasing index. If the same array of variables in used in 
-  dumping and undumping, the BDD returned will be equal to the one that was 
-  dumped. More generally, if array v1 is used when dumping, and the array v2
-  is used when undumping, the BDD returned will be equal to the original BDD
-  with the ith variable in v2 substituted for the ith variable in v1 for all i.
-  Null BDD is returned in the operation fails for reason (node limit reached,
-  I/O error, invalid file format, etc.). In this case, an error code is stored
-  in error. the code will be one of the following. 
-  CAL_BDD_UNDUMP_FORMAT Invalid file format
-  CAL_BDD_UNDUMP_OVERFLOW Node limit exceeded
-  CAL_BDD_UNDUMP_IOERROR File I/O error
-  CAL_BDD_UNDUMP_EOF Unexpected EOF]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddUndumpBdd(
@@ -138,7 +115,7 @@ Cal_BddUndumpBdd(
   *error = 0;
   for(i = 0; userVars[i]; ++i){
     if(Cal_BddType(bddManager, userVars[i]) !=  CAL_BDD_TYPE_POSVAR){
-      CalBddWarningMessage("Cal_BddUndumpBdd: support is not all positive variables"); 
+      CalBddWarningMessage("Cal_BddUndumpBdd: support is not all positive variables");
       return Cal_BddNull(bddManager);
     }
   }
@@ -184,7 +161,7 @@ Cal_BddUndumpBdd(
   result = BddUndumpBddStep(bddManager, vars, fp, numberVars, shared,
       numberShared, &sharedSoFar, indexSize, nodeNumberSize, error);
   Cal_MemFree(vars);
-  
+
   for(i = 0; i < numberShared; ++i){
     v = shared[i];
     if(!CalBddIsBddNull(bddManager, v)){
@@ -209,21 +186,7 @@ Cal_BddUndumpBdd(
   return CalBddGetExternalBdd(bddManager, result);
 }
 
-
 /**Function********************************************************************
-
-  Synopsis    [Write a BDD to a file]
-
-  Description [Writes an encoded description of the BDD to the file given by fp.
-  The argument vars should be a null-terminated array of variables that include
-  the support of f .  These variables need not be in order of increasing index.
-  The function returns a nonzero value if f was written to the file successfully.
-  ]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 Cal_BddDumpBdd(
@@ -302,15 +265,6 @@ Cal_BddDumpBdd(
 }
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 Write(
@@ -326,17 +280,7 @@ Write(
   }
 }
 
-
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddDumpBddStep(
@@ -374,7 +318,7 @@ BddDumpBddStep(
     break;
   case CAL_BDD_TYPE_NEGVAR:
     Write(bddManager, NEGVAR_ENCODING, indexSize+1, fp);
-    Write(bddManager, 
+    Write(bddManager,
         (unsigned long)normalizedIndexes[CalBddGetBddIndex(bddManager, f)],
         indexSize, fp);
     break;
@@ -389,16 +333,16 @@ BddDumpBddStep(
     }
     CalHashTableOneLookup(h, f, (char **)&number);
     if(number && *number < 0){
-	  if(negated)
-	    Write(bddManager, NEGNODE_ENCODING, indexSize+1, fp);
-	  else
-	    Write(bddManager, POSNODE_ENCODING, indexSize+1, fp);
-	  Write(bddManager, (unsigned long)(-*number-1), nodeNumberSize, fp);
+    if(negated)
+      Write(bddManager, NEGNODE_ENCODING, indexSize+1, fp);
+    else
+      Write(bddManager, POSNODE_ENCODING, indexSize+1, fp);
+    Write(bddManager, (unsigned long)(-*number-1), nodeNumberSize, fp);
     }
     else{
       if(number){
-	      Write(bddManager, NODELABEL_ENCODING, indexSize+1, fp);
-	      *number =  -*number-1;
+        Write(bddManager, NODELABEL_ENCODING, indexSize+1, fp);
+        *number =  -*number-1;
       }
       Write(bddManager,
           (unsigned long)normalizedIndexes[CalBddGetBddIndex(bddManager, f)],
@@ -416,18 +360,7 @@ BddDumpBddStep(
   }
 }
 
-
-
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static unsigned long
 Read(
@@ -455,23 +388,11 @@ Read(
     }
     result = (result << 8)+c;
     --bytes;
-  } 
+  }
   return (result);
 }
 
-
-
-
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddUndumpBddStep(
@@ -586,18 +507,7 @@ BddUndumpBddStep(
   return (result);
 }
 
-
-
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 BytesNeeded(
@@ -614,15 +524,3 @@ BytesNeeded(
   }
   return (4);
 }
-
-
-
-
-
-
-
-
-
-
-
-

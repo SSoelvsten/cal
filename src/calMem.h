@@ -40,6 +40,18 @@
 
 #include <stdio.h>
 
+/// \cond internal
+
+////////////////////////////////////////////////////////////////////////////////
+/// \addtogroup module__c
+///
+/// \{
+
+////////////////////////////////////////////////////////////////////////////////
+/// \name Memory Management
+///
+/// \{
+
 /*---------------------------------------------------------------------------*/
 /* Constant declarations                                                     */
 /*---------------------------------------------------------------------------*/
@@ -49,17 +61,17 @@
 
 #define CAL_ALLOC_ALIGNMENT sizeof(void *)
 
-
-
 /*---------------------------------------------------------------------------*/
 /* Type declarations                                                         */
 /*---------------------------------------------------------------------------*/
 typedef struct Cal_RecMgrStruct * Cal_RecMgr;
 typedef void *Cal_Pointer_t;
 typedef size_t Cal_Address_t;
+
 /*---------------------------------------------------------------------------*/
 /* Stucture declarations                                                     */
 /*---------------------------------------------------------------------------*/
+
 /*---------------------------------------------------------------------------*/
 /* Variable declarations                                                     */
 /*---------------------------------------------------------------------------*/
@@ -70,6 +82,7 @@ typedef size_t Cal_Address_t;
 #ifndef EXTERN
 #define EXTERN extern
 #endif
+
 #define Cal_Nil(obj) ((obj *)0)
 #define Cal_MemAlloc(type, num) ((type *) malloc(sizeof(type) * (num)))
 #define Cal_MemRealloc(type, obj, num)                              \
@@ -83,21 +96,56 @@ typedef size_t Cal_Address_t;
 
 #define CAL_ROUNDUP(size) ((((size)+CAL_ALLOC_ALIGNMENT-1)/CAL_ALLOC_ALIGNMENT)*CAL_ALLOC_ALIGNMENT)
 
-/**AutomaticStart*************************************************************/
-
 /*---------------------------------------------------------------------------*/
 /* Function prototypes                                                       */
 /*---------------------------------------------------------------------------*/
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Prints an error message and exits.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN void Cal_MemFatal(char *message);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Returns the memory allocated.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_Address_t Cal_MemAllocation(void);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Allocates a new block of the specified size.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_Pointer_t Cal_MemGetBlock(Cal_Address_t size);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Frees the block.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN void Cal_MemFreeBlock(Cal_Pointer_t p);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Expands or contracts the block to a new size. We try to avoid
+/// moving the block if possible.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_Pointer_t Cal_MemResizeBlock(Cal_Pointer_t p, Cal_Address_t newSize);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Allocates a record from the specified record manager.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_Pointer_t Cal_MemNewRec(Cal_RecMgr mgr);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Frees a record managed by the indicated record manager.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN void Cal_MemFreeRec(Cal_RecMgr mgr, Cal_Pointer_t rec);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Creates a new record manager with the given  record size.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_RecMgr Cal_MemNewRecMgr(int size);
+
+////////////////////////////////////////////////////////////////////////////////
+/// \brief Frees all the storage associated with the specified record manager.
+////////////////////////////////////////////////////////////////////////////////
 EXTERN void Cal_MemFreeRecMgr(Cal_RecMgr mgr);
 
-/**AutomaticEnd***************************************************************/
+/// \endcond
 
 #endif /* _CAL */

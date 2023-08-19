@@ -6,7 +6,7 @@
 
   Synopsis    [Special memory management routines specific to CAL.]
 
-  Description [Functions for managing the system memory using a set of 
+  Description [Functions for managing the system memory using a set of
               nodeManagers. Each nodeManager manages a set of fixed size
               nodes obtained from a set of pages. When additional memory
               is required, nodeManager obtains a new page from the pageManager.
@@ -17,7 +17,7 @@
 
   Author      [Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
-              ] 
+              ]
   Copyright   [Copyright (c) 1994-1996 The Regents of the Univ. of California.
   All rights reserved.
 
@@ -97,17 +97,7 @@ static int SegmentToPageList(CalAddress_t * segment, int numPages, CalAddress_t 
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Name        [CalPageMangerInit]
-
-  Synopsis    [Initializes a pageManager.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Initializes a pageManager.
 ******************************************************************************/
 CalPageManager_t *
 CalPageManagerInit(int numPagesPerSegment)
@@ -118,9 +108,9 @@ CalPageManagerInit(int numPagesPerSegment)
   pageManager->numSegments = 0;
   pageManager->numPagesPerSegment = numPagesPerSegment;
   pageManager->maxNumSegments = MAX_NUM_SEGMENTS;
-  pageManager->pageSegmentArray 
+  pageManager->pageSegmentArray
       = Cal_MemAlloc(CalAddress_t *, pageManager->maxNumSegments);
-  pageManager->numPagesArray 
+  pageManager->numPagesArray
       = Cal_MemAlloc(int, pageManager->maxNumSegments);
   pageManager->freePageList = Cal_Nil(CalAddress_t);
   if(PageManagerExpandStorage(pageManager) == FALSE){
@@ -133,17 +123,7 @@ CalPageManagerInit(int numPagesPerSegment)
 
 
 /**Function********************************************************************
-
-  Name        [CalPageMangerQuit]
-
-  Synopsis    [Frees pageManager and associated pages.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Frees pageManager and associated pages.
 ******************************************************************************/
 int
 CalPageManagerQuit(
@@ -165,17 +145,7 @@ CalPageManagerQuit(
 
 
 /**Function********************************************************************
-
-  Name        [CalPageMangerPrint]
-
-  Synopsis    [Prints address of each memory segment and address of each page.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Prints address of each memory segment and address of each page.
 ******************************************************************************/
 void
 CalPageManagerPrint(
@@ -203,17 +173,7 @@ CalPageManagerPrint(
 
 
 /**Function********************************************************************
-
-  Name        [CalNodeManagerInit]
-
-  Synopsis    [Initializes a node manager.]
-
-  Description [optional]
-
-  SideEffects []
-
-  SeeAlso     [optional]
-
+  Initializes a node manager.
 ******************************************************************************/
 CalNodeManager_t *
 CalNodeManagerInit(CalPageManager_t * pageManager)
@@ -231,17 +191,7 @@ CalNodeManagerInit(CalPageManager_t * pageManager)
 
 
 /**Function********************************************************************
-
-  Name        [CalNodeManagerQuit]
-
-  Synopsis    [Frees a node manager.]
-
-  Description [optional]
-
-  SideEffects [The associated nodes are lost.]
-
-  SeeAlso     [optional]
-
+  Frees a node manager. As a sideeffect, the associated nodes are lost.
 ******************************************************************************/
 int
 CalNodeManagerQuit(CalNodeManager_t * nodeManager)
@@ -264,17 +214,7 @@ CalNodeManagerQuit(CalNodeManager_t * nodeManager)
 
 
 /**Function********************************************************************
-
-  Name        [CalNodeManagerPrint]
-
-  Synopsis    [Prints address of each free node.]
-
-  Description [optional]
-
-  SideEffects []
-
-  SeeAlso     [optional]
-
+  Prints address of each free node.
 ******************************************************************************/
 void
 CalNodeManagerPrint(
@@ -296,17 +236,7 @@ CalNodeManagerPrint(
 
 
 /**Function********************************************************************
-
-  Name        [PageMangerAllocPage]
-
-  Synopsis    [Allocs a new page.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Allocs a new page.
 ******************************************************************************/
 CalAddress_t *
 CalPageManagerAllocPage(CalPageManager_t * pageManager)
@@ -316,7 +246,7 @@ CalPageManagerAllocPage(CalPageManager_t * pageManager)
   if(pageManager->freePageList == Cal_Nil(CalAddress_t)){
     if(PageManagerExpandStorage(pageManager) == FALSE){
       sprintf(buffer,
-              "out of memory : Number of pages allocated = %d\n", 
+              "out of memory : Number of pages allocated = %d\n",
               pageManager->totalNumPages);
       CalBddFatalMessage(buffer);
     }
@@ -331,17 +261,7 @@ CalPageManagerAllocPage(CalPageManager_t * pageManager)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Name        [PageMangerFreePage]
-
-  Synopsis    [Free a page.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Free a page.
 ******************************************************************************/
 void
 CalPageManagerFreePage(CalPageManager_t * pageManager, CalAddress_t * page)
@@ -352,23 +272,14 @@ CalPageManagerFreePage(CalPageManager_t * pageManager, CalAddress_t * page)
 
 
 /**Function********************************************************************
+  Allocates a segment of memory to expand the storage managed by pageManager.
+  The allocated segment is divided into free pages which are linked as a
+  freePageList.
 
-  Name        [PageManagerExpandStorage]
-
-  Synopsis    [Allocates a segment of memory to expand the storage managed by
-              pageManager. The allocated segment is divided into free pages
-              which are linked as a freePageList.]
-
-  Description [optional]
-
-  SideEffects [The size of the segment is stored in one of the fields
-              of page manager - numPagesPerSegment. If a memory
-              segment of a specific size cannot be allocated, the
-              routine calls itself recursively by reducing
-              numPagesPerSegment by a factor of 2.]
-
-  SeeAlso     [optional]
-
+  As a side effect, the size of the segment is stored in one of the fields of
+  page manager - numPagesPerSegment. If a memory segment of a specific size
+  cannot be allocated, the routine calls itself recursively by reducing
+  numPagesPerSegment by a factor of 2.
 ******************************************************************************/
 static int
 PageManagerExpandStorage(CalPageManager_t * pageManager)
@@ -425,18 +336,7 @@ PageManagerExpandStorage(CalPageManager_t * pageManager)
 
 
 /**Function********************************************************************
-
-  Name        [PageAlign]
-
-  Synopsis    [Return page aligned address greater than or equal to
-  the pointer.]
-
-  Description [optional]
-
-  SideEffects []
-
-  SeeAlso     [optional]
-
+  Return page aligned address greater than or equal to the pointer.
 ******************************************************************************/
 static CalAddress_t *
 PageAlign(
@@ -451,19 +351,9 @@ PageAlign(
 
 
 /**Function********************************************************************
-
-  Name        [SegmentToPageList]
-
-  Synopsis    [Converts a memory segment into a linked list of pages.
-              if p is a pointer to a page, *p contains address of the next page
-              if p is a pointer to the last page, *p contains lastPointer.]
-
-  Description [optional]
-
-  SideEffects []
-
-  SeeAlso     [optional]
-
+  Converts a memory segment into a linked list of pages. if p is a pointer to a
+  page, *p contains address of the next page if p is a pointer to the last page,
+  *p contains lastPointer.
 ******************************************************************************/
 static int
 SegmentToPageList(CalAddress_t * segment,
@@ -491,7 +381,7 @@ SegmentToPageList(CalAddress_t * segment,
 
 
 /*---------------------------------------------------------------------------*/
-/* Module Testing 
+/* Module Testing
 /*---------------------------------------------------------------------------*/
 #ifdef PAGE_MANAGER
 main(argc, argv)
@@ -525,7 +415,7 @@ char **argv;
     PageManagerFreePage(pageManager, pageArray[i] );
     CalPageManagerPrint(pageManager);
     printf("\n");
-  }    
+  }
   printf("\n");
   CalPageManagerQuit(pageManager);
 }
@@ -542,7 +432,7 @@ char **argv;
   int numNodeManagers = 5;
   int numNodes = 10;
   int i,j;
-  
+
 
   pageManager = CalPageManagerInit();
   /*CalNodeManagerPrint(nodeManager);*/
@@ -567,7 +457,7 @@ char **argv;
   for(i = 0; i < numNodeManagers; i++){
     for(j = 0; j < numNodes; j++){
       CalNodeManagerFreeNode(nodeManagerArray[i], nodeArray[i][j] );
-    }    
+    }
     CalNodeManagerQuit(nodeManagerArray[i]);
   }
   CalPageManagerQuit(pageManager);

@@ -81,26 +81,6 @@ static int CheckAssoc(Cal_BddManager_t *bddManager, Cal_Bdd *assocInfo, int pair
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Creates or finds a variable association.]
-
-  Description [Creates or finds a variable association. The association is
-  specified by associationInfo, which is a an array of BDD with 
-  Cal_BddNull(bddManager) as the end marker. If pairs is 0, the array is
-  assumed to be an array of variables. In this case, each variable is paired
-  with constant BDD one. Such an association may viewed as specifying a set
-  of variables for use with routines such as Cal_BddExists. If pair is not 0,
-  then the even numbered array elements should be variables and the odd numbered
-  elements should be the BDDs which they are mapped to. In both cases, the 
-  return value is an integer identifier for this association. If the given
-  association is equivalent to one which already exists, the same identifier
-  is used for both, and the reference count of the association is increased by
-  one.]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_AssociationQuit]
-
 ******************************************************************************/
 int
 Cal_AssociationInit(Cal_BddManager bddManager,
@@ -114,7 +94,7 @@ Cal_AssociationInit(Cal_BddManager bddManager,
   Cal_BddId_t j;
   long last;
   Cal_Bdd_t *associationInfo;
-  
+
   if (!CheckAssoc(bddManager, associationInfoUserBdds, pairs)){
     return (-1);
   }
@@ -131,13 +111,13 @@ Cal_AssociationInit(Cal_BddManager bddManager,
   }
   associationInfo[j] = bddManager->bddNull;
 
-  
+
   varAssociation = Cal_MemAlloc(Cal_Bdd_t, bddManager->maxNumVars+1);
   for(i = 0; i <= bddManager->maxNumVars; i++){
     varAssociation[i] = bddManager->bddNull;
   }
 
-  
+
   if(pairs){
     for(i = 0; i < numAssociations; i++){
       f = associationInfo[(i<<1)];
@@ -153,10 +133,10 @@ Cal_AssociationInit(Cal_BddManager bddManager,
   /* Check for existence. */
   for(p = bddManager->associationList; p; p = p->next){
     if(AssociationIsEqual(bddManager, p->varAssociation, varAssociation)){
-	Cal_MemFree(varAssociation);
+  Cal_MemFree(varAssociation);
     Cal_MemFree(associationInfo);
-	p->refCount++;
-	return (p->id);
+  p->refCount++;
+  return (p->id);
     }
   }
   /* Find the first unused id. */
@@ -176,7 +156,7 @@ Cal_AssociationInit(Cal_BddManager bddManager,
       f = associationInfo[(i<<1)];
       j = CalBddGetBddIndex(bddManager, f);
       if((long)j > last){
-	  last = j;
+    last = j;
       }
     }
   }
@@ -185,7 +165,7 @@ Cal_AssociationInit(Cal_BddManager bddManager,
       f = associationInfo[i];
       j = CalBddGetBddIndex(bddManager, f);
       if((long)j > last){
-	  last = j;
+    last = j;
       }
     }
   }
@@ -204,16 +184,6 @@ Cal_AssociationInit(Cal_BddManager bddManager,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Deletes the variable association given by id]
-
-  Description [Decrements the reference count of the variable association with
-  identifier id, and frees it if the reference count becomes zero.]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_AssociationInit]
-
 ******************************************************************************/
 void
 Cal_AssociationQuit(Cal_BddManager bddManager, int  associationId)
@@ -249,16 +219,6 @@ Cal_AssociationQuit(Cal_BddManager bddManager, int  associationId)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Sets the current variable association to the one given by id and
-  returns the ID of the old association.]
-
-  Description [Sets the current variable association to the one given by id and
-  returns the ID of the old association.  An id of -1 indicates the temporary
-  association]
-
-  SideEffects [None]
-
 ******************************************************************************/
 int
 Cal_AssociationSetCurrent(Cal_BddManager bddManager, int  associationId)
@@ -283,14 +243,6 @@ Cal_AssociationSetCurrent(Cal_BddManager bddManager, int  associationId)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Adds to the temporary variable association.]
-
-  Description [Pairs is 0 if the information represents only a list of
-  variables rather than a full association.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 void
 Cal_TempAssociationAugment(Cal_BddManager bddManager,
@@ -301,7 +253,7 @@ Cal_TempAssociationAugment(Cal_BddManager bddManager,
   Cal_Bdd_t f;
   long last;
   Cal_Bdd_t *associationInfo;
-  
+
   if (CheckAssoc(bddManager, associationInfoUserBdds, pairs) == 0) {
     return;
   }
@@ -316,7 +268,7 @@ Cal_TempAssociationAugment(Cal_BddManager bddManager,
         CalBddGetInternalBdd(bddManager,associationInfoUserBdds[j]);
   }
   associationInfo[j] = bddManager->bddNull;
-  
+
   last = bddManager->tempAssociation->lastBddIndex;
   if(pairs){
     for(i = 0; i < numAssociations; i++){
@@ -347,7 +299,7 @@ Cal_TempAssociationAugment(Cal_BddManager bddManager,
         CalBddDcrRefCount(f);
       }
       bddManager->tempAssociation->varAssociation[j] = CalBddOne(bddManager);
-    } 
+    }
   }
   bddManager->tempAssociation->lastBddIndex = last;
   Cal_MemFree(associationInfo);
@@ -356,14 +308,6 @@ Cal_TempAssociationAugment(Cal_BddManager bddManager,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Sets the temporary variable association.]
-  
-  Description [Pairs is 0 if the information represents only a list of
-  variables rather than a full association.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 void
 Cal_TempAssociationInit(Cal_BddManager bddManager,
@@ -386,13 +330,6 @@ Cal_TempAssociationInit(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Cleans up temporary association]
-
-  Description [Cleans up temporary associationoptional]
-
-  SideEffects [None]
-
 ******************************************************************************/
 void
 Cal_TempAssociationQuit(Cal_BddManager bddManager)
@@ -417,21 +354,13 @@ Cal_TempAssociationQuit(Cal_BddManager bddManager)
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Frees the variable associations]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Frees the variable associations
 ******************************************************************************/
 void
 CalAssociationListFree(Cal_BddManager_t *  bddManager)
 {
   CalAssociation_t *assoc, *nextAssoc;
-  
+
   for(assoc = bddManager->associationList;
       assoc != Cal_Nil(CalAssociation_t); assoc = nextAssoc){
     nextAssoc = assoc->next;
@@ -442,15 +371,7 @@ CalAssociationListFree(Cal_BddManager_t *  bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Need to be called after repacking.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Need to be called after repacking.
 ******************************************************************************/
 void
 CalVarAssociationRepackUpdate(Cal_BddManager_t *  bddManager,
@@ -458,7 +379,7 @@ CalVarAssociationRepackUpdate(Cal_BddManager_t *  bddManager,
 {
   CalAssociation_t *assoc, *nextAssoc;
   int i;
-  
+
   for(assoc = bddManager->associationList;
       assoc != Cal_Nil(CalAssociation_t); assoc = nextAssoc){
     nextAssoc = assoc->next;
@@ -478,22 +399,14 @@ CalVarAssociationRepackUpdate(Cal_BddManager_t *  bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Checks the validity of association.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Checks the validity of association.
 ******************************************************************************/
 void
 CalCheckAssociationValidity(Cal_BddManager_t *  bddManager)
 {
   CalAssociation_t *assoc, *nextAssoc;
   int i;
-  
+
   for(assoc = bddManager->associationList;
       assoc != Cal_Nil(CalAssociation_t); assoc = nextAssoc){
     nextAssoc = assoc->next;
@@ -509,22 +422,13 @@ CalCheckAssociationValidity(Cal_BddManager_t *  bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalReorderAssociationFix(Cal_BddManager_t *bddManager)
 {
   CalAssociation_t *assoc, *nextAssoc;
   int i;
-  
+
   for(assoc = bddManager->associationList;
       assoc != Cal_Nil(CalAssociation_t); assoc = nextAssoc){
     nextAssoc = assoc->next;
@@ -548,13 +452,7 @@ CalReorderAssociationFix(Cal_BddManager_t *bddManager)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Checks for equality of two associations]
-
-  Description [Checks for equality of two associations]
-
-  SideEffects [None]
-
+  Checks for equality of two associations
 ******************************************************************************/
 static int
 AssociationIsEqual(Cal_BddManager_t * bddManager,
@@ -571,15 +469,6 @@ AssociationIsEqual(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 CheckAssoc(Cal_BddManager_t *bddManager, Cal_Bdd *assocInfo, int pairs)
@@ -589,13 +478,12 @@ CheckAssoc(Cal_BddManager_t *bddManager, Cal_Bdd *assocInfo, int pairs)
     while (assocInfo[0] && assocInfo[1]){
       if (CalBddTypeAux(bddManager,
                         CalBddGetInternalBdd(bddManager, assocInfo[0])) !=
-          CAL_BDD_TYPE_POSVAR){  
-	    CalBddWarningMessage("CheckAssoc: first element in pair is not a positive variable"); 
-	    return (0);
-	  }
+          CAL_BDD_TYPE_POSVAR){
+      CalBddWarningMessage("CheckAssoc: first element in pair is not a positive variable");
+      return (0);
+    }
       assocInfo+=2;
     }
   }
   return (1);
 }
-

@@ -5,7 +5,7 @@
   PackageName [cal]
 
   Synopsis    [Routines for BDD satisfying valuation.]
-              
+
 
   Description [ ]
 
@@ -13,7 +13,7 @@
 
   Author      [Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
-              ] 
+              ]
 
   Copyright   [Copyright (c) 1994-1996 The Regents of the Univ. of California.
   All rights reserved.
@@ -79,19 +79,6 @@ static double BddSatisfyingFractionStep(Cal_BddManager_t * bddManager, Cal_Bdd_t
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Name        [Cal_BddSatisfy]
-
-  Synopsis    [Returns a BDD which implies f, true for
-               some valuation on which f is true, and which has at most
-               one node at each level]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddSatisfy(Cal_BddManager bddManager, Cal_Bdd  fUserBdd)
@@ -111,21 +98,6 @@ Cal_BddSatisfy(Cal_BddManager bddManager, Cal_Bdd  fUserBdd)
 
 
 /**Function********************************************************************
-
-  Name        [Cal_BddSatisfySupport]
-
-  Synopsis    [Returns a special cube contained in f.] 
-
-  Description [The returned BDD which implies f, is true for some valuation on
-               which f is true, which has at most one node at each level,
-               and which has exactly one node corresponding to each variable
-               which is associated with something in the current variable
-               association.]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddSatisfySupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
@@ -134,7 +106,7 @@ Cal_BddSatisfySupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
   long i;
   Cal_Bdd_t result;
   Cal_Bdd_t f;
-  
+
   if(CalBddPreProcessing(bddManager, 1, fUserBdd)){
     f = CalBddGetInternalBdd(bddManager, fUserBdd);
     if(CalBddIsBddZero(bddManager, f)){
@@ -163,17 +135,6 @@ Cal_BddSatisfySupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the fraction of valuations which make f true. (Note that
-  this fraction is independent of whatever set of variables f is supposed to be
-  a function of)]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 double
 Cal_BddSatisfyingFraction(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
@@ -200,18 +161,8 @@ Cal_BddSatisfyingFraction(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Name        [BddSatisfyStep]
-
-  Synopsis    [Returns a BDD which implies f, is true for some valuation
-  on which f is true, and which has at most one node at each level]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Returns a BDD which implies f, is true for some valuation on which f is true,
+  and which has at most one node at each level
 ******************************************************************************/
 static Cal_Bdd_t
 BddSatisfyStep(
@@ -247,17 +198,6 @@ BddSatisfyStep(
 
 
 /**Function********************************************************************
-
-  Name        [BddSatisfySupportStep]
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddSatisfySupportStep(
@@ -273,7 +213,7 @@ BddSatisfySupportStep(
   }
   if(CalBddGetBddIndex(bddManager, f) <= bddManager->idToIndex[*support]){
     if(CalBddGetBddId(f) == *support){
-	++support;
+  ++support;
     }
     CalBddGetThenBdd(f, tempBdd);
     if(CalBddIsBddZero(bddManager, tempBdd)){
@@ -307,15 +247,6 @@ BddSatisfySupportStep(
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 IndexCmp(const void * p1, const void * p2)
@@ -334,15 +265,6 @@ IndexCmp(const void * p1, const void * p2)
 }
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static double
 BddSatisfyingFractionStep(
@@ -364,10 +286,9 @@ BddSatisfyingFractionStep(
   }
   CalBddGetThenBdd(f, thenBdd);
   CalBddGetElseBdd(f, elseBdd);
-  result = 
+  result =
       0.5 * BddSatisfyingFractionStep(bddManager, thenBdd, hashTable) +
       0.5 * BddSatisfyingFractionStep(bddManager, elseBdd, hashTable);
   CalHashTableOneInsert(hashTable, f, (char *)&result);
   return (result);
 }
-

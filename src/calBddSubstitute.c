@@ -77,17 +77,6 @@ static void CalHashTableSubstituteReduce(Cal_BddManager_t * bddManager, CalHashT
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Substitute a set of variables by functions]
-
-  Description [Returns a BDD for f using the substitution defined by current
-  variable association. Each variable is replaced by its associated BDDs. The 
-  substitution is effective simultaneously]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddCompose]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
@@ -97,18 +86,18 @@ Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
   CalHashTable_t *hashTable;
   CalHashTable_t *uniqueTableForId;
   CalHashTable_t **reqQueForSubstitute = bddManager->reqQue[0];
-  CalHashTable_t **reqQueForITE = bddManager->reqQue[1]; 
+  CalHashTable_t **reqQueForITE = bddManager->reqQue[1];
   Cal_Bdd_t f;
-  
+
   if (CalBddPreProcessing(bddManager, 1, fUserBdd) == 0){
     return Cal_BddNull(bddManager);
   }
-  f = CalBddGetInternalBdd(bddManager, fUserBdd);  
+  f = CalBddGetInternalBdd(bddManager, fUserBdd);
   if(CalBddIsBddConst(f)){
     return CalBddGetExternalBdd(bddManager, f);
   }
 
-  CalHashTableFindOrAdd(reqQueForSubstitute[CalBddGetBddId(f)], f, 
+  CalHashTableFindOrAdd(reqQueForSubstitute[CalBddGetBddId(f)], f,
     bddManager->bddNull, &result);
 
   /* ReqQueApply */
@@ -117,7 +106,7 @@ Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
     bddId = bddManager->indexToId[bddIndex];
     hashTable = reqQueForSubstitute[bddId];
     if(hashTable->numEntries){
-      CalHashTableSubstituteApply(bddManager, hashTable, lastIndex, 
+      CalHashTableSubstituteApply(bddManager, hashTable, lastIndex,
                                   reqQueForSubstitute);
     }
   }
@@ -152,15 +141,6 @@ Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSubstituteApply(
@@ -189,7 +169,7 @@ CalHashTableSubstituteApply(
       bddId = CalBddGetBddId(calBdd);
       bddIndex = bddManager->idToIndex[bddId];
       if(bddIndex <= lastIndex){
-        CalHashTableFindOrAdd(reqQueForSubstitute[bddId], calBdd, nullBdd, 
+        CalHashTableFindOrAdd(reqQueForSubstitute[bddId], calBdd, nullBdd,
             &calBdd);
       }
       CalBddIcrRefCount(calBdd);
@@ -199,7 +179,7 @@ CalHashTableSubstituteApply(
       bddId = CalBddGetBddId(calBdd);
       bddIndex = bddManager->idToIndex[bddId];
       if(bddIndex <= lastIndex){
-        CalHashTableFindOrAdd(reqQueForSubstitute[bddId], calBdd, nullBdd, 
+        CalHashTableFindOrAdd(reqQueForSubstitute[bddId], calBdd, nullBdd,
             &calBdd);
       }
       CalBddIcrRefCount(calBdd);
@@ -209,15 +189,6 @@ CalHashTableSubstituteApply(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSubstituteReduce(
@@ -369,10 +340,10 @@ CalHashTableSubstituteReduce(
           bddManager->uniqueTable[bddId]);
     }
   }
-    
+
 
   /*last = Cal_Nil(CalRequestNode_t);*/
-  for(requestNode = requestNodeListForITE; 
+  for(requestNode = requestNodeListForITE;
       requestNode != Cal_Nil(CalRequestNode_t);
       /*last = requestNode, */
       requestNode = CalRequestNodeGetNextRequestNode(requestNode)){
@@ -386,22 +357,9 @@ CalHashTableSubstituteReduce(
   /*CalBddNodePutNextBddNode(endNode, requestNodeListForITE);*/
   endNode->nextBddNode = requestNodeListForITE;
   hashTable->endNode = endNode;
-  
+
   /* ITE Cleanup */
   for(bddId = 1; bddId <= bddManager->numVars; bddId++){
     CalHashTableCleanUp(reqQueForITE[bddId]);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

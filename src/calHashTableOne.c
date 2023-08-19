@@ -13,7 +13,7 @@
 
   Author      [Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
-              ] 
+              ]
 
   Copyright   [Copyright (c) 1994-1996 The Regents of the Univ. of California.
   All rights reserved.
@@ -84,15 +84,7 @@ static void HashTableOneRehash(CalHashTable_t * hashTable, int grow);
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Initialize a hash table using default parameters.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Initialize a hash table using default parameters.
 ******************************************************************************/
 CalHashTable_t *
 CalHashTableOneInit(Cal_BddManager_t * bddManager, int  itemSize)
@@ -126,15 +118,7 @@ CalHashTableOneInit(Cal_BddManager_t * bddManager, int  itemSize)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Free a hash table along with the associated storage.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Free a hash table along with the associated storage.
 ******************************************************************************/
 void
 CalHashTableOneQuit(
@@ -159,15 +143,7 @@ CalHashTableOneQuit(
 
 
 /**Function********************************************************************
-
-  Synopsis    [Directly insert a BDD node in the hash table.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Directly insert a BDD node in the hash table.
 ******************************************************************************/
 void
 CalHashTableOneInsert(CalHashTable_t * hashTable, Cal_Bdd_t  keyBdd,
@@ -192,15 +168,6 @@ CalHashTableOneInsert(CalHashTable_t * hashTable, Cal_Bdd_t  keyBdd,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalHashTableOneLookup(CalHashTable_t * hashTable, Cal_Bdd_t  keyBdd,
@@ -209,7 +176,7 @@ CalHashTableOneLookup(CalHashTable_t * hashTable, Cal_Bdd_t  keyBdd,
   CalBddNode_t *ptr;
   Cal_Bdd_t tmpBdd;
   int hashValue;
-  
+
   hashValue = HashTableOneDoHash(hashTable, keyBdd);
   ptr = hashTable->bins[hashValue];
   while(ptr != Cal_Nil(CalBddNode_t)){
@@ -232,15 +199,6 @@ CalHashTableOneLookup(CalHashTable_t * hashTable, Cal_Bdd_t  keyBdd,
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 HashTableOneRehash(
@@ -286,13 +244,3 @@ HashTableOneRehash(
   }
   Cal_MemFree(oldBins);
 }
-
-
-
-
-
-
-
-
-
-

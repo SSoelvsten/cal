@@ -76,17 +76,6 @@ static int CalBddDependsOnStep(Cal_BddManager_t * bddManager, Cal_Bdd_t f, Cal_B
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Name        [Cal_BddSupport]
-
-  Synopsis    [returns the support of f as a null-terminated array of variables]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddSupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
@@ -111,15 +100,6 @@ Cal_BddSupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
 }
 
 /**Function********************************************************************
-
-  Name        [Cal_BddDependsOn]
-
-  Synopsis    [Returns 1 if f depends on var and returns 0 otherwise.]
-
-  Description [Returns 1 if f depends on var and returns 0 otherwise.]
-
-  SideEffects [None]
-
 ******************************************************************************/
 int
 Cal_BddDependsOn(Cal_BddManager bddManager, Cal_Bdd  fUserBdd,
@@ -151,17 +131,7 @@ Cal_BddDependsOn(Cal_BddManager bddManager, Cal_Bdd  fUserBdd,
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Name        [CalBddSupportStep]
-
-  Synopsis    [returns the support of f as a null-terminated array of variables]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Returns the support of f as a null-terminated array of variables
 ******************************************************************************/
 static Cal_Bdd_t *
 CalBddSupportStep(
@@ -189,17 +159,7 @@ CalBddSupportStep(
 
 
 /**Function********************************************************************
-
-  Name        [CalBddUnmarkNodes]
-
-  Synopsis    [recursively unmarks the nodes]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Recursively unmarks the nodes
 ******************************************************************************/
 static void
 CalBddUnmarkNodes(
@@ -222,16 +182,6 @@ CalBddUnmarkNodes(
 
 
 /**Function********************************************************************
-
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 CalBddDependsOnStep(

@@ -60,7 +60,7 @@
 /*---------------------------------------------------------------------------*/
 /* Variable declarations                                                     */
 /*---------------------------------------------------------------------------*/
-static   CalNodeManager_t *nodeManager; 
+static   CalNodeManager_t *nodeManager;
 static   int freeListId;
 
 
@@ -113,9 +113,9 @@ static   int freeListId;
 ((CalBddNode_t*) ((CalAddress_t)                          \
                   (CAL_BDD_POINTER(bddNode)->elseBddNode) \
                   ^ (CAL_TAG0(bddNode))))
-  
-    
-    
+
+
+
 /**AutomaticStart*************************************************************/
 
 /*---------------------------------------------------------------------------*/
@@ -149,15 +149,6 @@ static int CeilLog2(int number);
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalBddReorderAuxDF(Cal_BddManager_t *bddManager)
@@ -200,7 +191,7 @@ CalBddReorderAuxDF(Cal_BddManager_t *bddManager)
 /* Definition of static functions                                          */
 /*---------------------------------------------------------------------------*/
 static void
-NodeManagerAllocNode(Cal_BddManager_t *bddManager, CalBddNode_t **nodePtr) 
+NodeManagerAllocNode(Cal_BddManager_t *bddManager, CalBddNode_t **nodePtr)
 {
   /* First check the free list of bddManager */
   if (nodeManager->freeNodeList){
@@ -213,7 +204,7 @@ NodeManagerAllocNode(Cal_BddManager_t *bddManager, CalBddNode_t **nodePtr)
       /* Find the next id with free list */
       for (; freeListId <= bddManager->numVars; freeListId++){
         CalNodeManager_t *nodeManagerForId =
-            bddManager->nodeManagerArray[freeListId]; 
+            bddManager->nodeManagerArray[freeListId];
         if (nodeManagerForId->freeNodeList){
           *nodePtr = nodeManagerForId->freeNodeList;
           nodeManagerForId->freeNodeList = (CalBddNode_t *)0;
@@ -226,37 +217,31 @@ NodeManagerAllocNode(Cal_BddManager_t *bddManager, CalBddNode_t **nodePtr)
   }
   if (!(*nodePtr)){
     /* Create a new page */
-    CalBddNode_t *_freeNodeList, *_nextNode, *_node;                        
-    _freeNodeList =                                                         
-        (CalBddNode_t *)CalPageManagerAllocPage(nodeManager->pageManager);  
-    for(_node = _freeNodeList + NUM_NODES_PER_PAGE - 1, _nextNode =0;       
-        _node != _freeNodeList; _nextNode = _node--){                       
-      _node->nextBddNode = _nextNode;                                       
-    }                                                                       
-    nodeManager->freeNodeList = _freeNodeList + 1;                          
+    CalBddNode_t *_freeNodeList, *_nextNode, *_node;
+    _freeNodeList =
+        (CalBddNode_t *)CalPageManagerAllocPage(nodeManager->pageManager);
+    for(_node = _freeNodeList + NUM_NODES_PER_PAGE - 1, _nextNode =0;
+        _node != _freeNodeList; _nextNode = _node--){
+      _node->nextBddNode = _nextNode;
+    }
+    nodeManager->freeNodeList = _freeNodeList + 1;
     *nodePtr = _node;
-    if (nodeManager->numPages == nodeManager->maxNumPages){             
-      nodeManager->maxNumPages *= 2;                                      
-      nodeManager->pageList =                                            
-          Cal_MemRealloc(CalAddress_t *, nodeManager->pageList, 
-                         nodeManager->maxNumPages);                       
-    }                                                                       
+    if (nodeManager->numPages == nodeManager->maxNumPages){
+      nodeManager->maxNumPages *= 2;
+      nodeManager->pageList =
+          Cal_MemRealloc(CalAddress_t *, nodeManager->pageList,
+                         nodeManager->maxNumPages);
+    }
     nodeManager->pageList[nodeManager->numPages++] =
-        (CalAddress_t *)_freeNodeList;     
+        (CalAddress_t *)_freeNodeList;
   }
 }
 
 /**Function********************************************************************
+  Find or add in the unique table for id.
 
-  Synopsis    [find or add in the unique table for id.]
-
-  Description [optional]
-
-  SideEffects [If a new BDD node is created (found == false), then the
-  numNodes field of the manager needs to be incremented.]
-
-  SeeAlso     [optional]
-
+  As a side effect, if a new BDD node is created (found == false), then the
+  numNodes field of the manager needs to be incremented.
 ******************************************************************************/
 static int
 UniqueTableForIdFindOrAdd(Cal_BddManager_t * bddManager,
@@ -265,7 +250,7 @@ UniqueTableForIdFindOrAdd(Cal_BddManager_t * bddManager,
                           CalBddNode_t *elseBdd,
                           CalBddNode_t **bddPtr)
 {
-  int found = 0; 
+  int found = 0;
   if (thenBdd == elseBdd){
     *bddPtr = thenBdd;
     found = 1;
@@ -276,7 +261,7 @@ UniqueTableForIdFindOrAdd(Cal_BddManager_t * bddManager,
   else{
     found = HashTableFindOrAdd(bddManager, hashTable,
                                CalBddNodeNot(thenBdd),
-                               CalBddNodeNot(elseBdd), bddPtr); 
+                               CalBddNodeNot(elseBdd), bddPtr);
     *bddPtr = CalBddNodeNot(*bddPtr);
   }
   if (!found) bddManager->numNodes++;
@@ -284,15 +269,7 @@ UniqueTableForIdFindOrAdd(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Directly insert a BDD node in the hash table.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Directly insert a BDD node in the hash table.
 ******************************************************************************/
 static void
 HashTableAddDirect(CalHashTable_t * hashTable, CalBddNode_t *bddNode)
@@ -314,24 +291,15 @@ HashTableAddDirect(CalHashTable_t * hashTable, CalBddNode_t *bddNode)
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 HashTableFindOrAdd(Cal_BddManager_t *bddManager, CalHashTable_t
                    *hashTable,  CalBddNode_t *thenBdd,
-                   CalBddNode_t *elseBdd, CalBddNode_t **bddPtr) 
+                   CalBddNode_t *elseBdd, CalBddNode_t **bddPtr)
 {
   CalBddNode_t *ptr;
   int hashValue;
-  
+
   Cal_Assert(CalBddNodeIsOutPos(thenBdd));
   hashValue = CalDoHash2(thenBdd, elseBdd, hashTable);
   for (ptr = hashTable->bins[hashValue]; ptr; ptr = ptr->nextBddNode){
@@ -361,22 +329,15 @@ HashTableFindOrAdd(Cal_BddManager_t *bddManager, CalHashTable_t
 
 
 /**Function********************************************************************
+  Changes the data structure of the bdd nodes.
 
-  Synopsis           [Changes the data structure of the bdd nodes.]
-
-  Description        [New data structure: thenBddId -> id 
-                                          elseBddId -> ref count]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
+  New data structure: thenBddId -> id, elseBddId -> ref count
 ******************************************************************************/
 static void
 BddConvertDataStruct(Cal_BddManager_t *bddManager)
 {
   CalBddNode_t *bddNode, **bins, *thenBddNode, *elseBddNode,
-      *next = Cal_Nil(CalBddNode_t); 
+      *next = Cal_Nil(CalBddNode_t);
   CalBddNode_t *last;
   long numBins;
   int i, refCount, id, index;
@@ -419,7 +380,7 @@ BddConvertDataStruct(Cal_BddManager_t *bddManager)
           bddNode->nextBddNode = next;
           bddNode->thenBddNode = thenBddNode;
           bddNode->elseBddNode = elseBddNode;
-          last = bddNode; 
+          last = bddNode;
         }
         bddNode = next;
       }
@@ -465,22 +426,15 @@ BddConvertDataStruct(Cal_BddManager_t *bddManager)
 
 
 /**Function********************************************************************
+  Changes the data structure of the bdd nodes to the original one.
 
-  Synopsis           [Changes the data structure of the bdd nodes to
-  the original one.]
-
-  Description        [Data structure conversion: thenBddId -> id 
-  elseBddId -> ref count]
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
+  Data structure conversion: thenBddId -> id, elseBddId -> ref count
 ******************************************************************************/
 static void
 BddConvertDataStructBack(Cal_BddManager_t *bddManager)
 {
   Cal_Bdd_t thenBdd, elseBdd;
-  
+
   CalBddNode_t *bddNode, *nextBddNode, **bins;
   long numBins;
   int i, id, index;
@@ -528,15 +482,6 @@ BddConvertDataStructBack(Cal_BddManager_t *bddManager)
 
 #ifdef _FOO_
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
@@ -546,7 +491,7 @@ BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
   CalHashTable_t *uniqueTable;
   CalNodeManager_t *nodeManager;
   int index, id, i, pageCounter, numUsefulSegments, segmentCounter;
-  
+
   /* Initialize and set up few things */
   pageManager = bddManager->pageManager;
   uniqueTable = bddManager->uniqueTable;
@@ -573,18 +518,18 @@ BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
   }
   numUsefulSegments = segmentCounter+1;
   numUsefulPagesInLastSegment = pageCounter+1;
-  
+
   /* Traverse all the nodes belonging in each page */
   /* Put the destination addresses in the next pointer */
-  for (numSegment=0; numSegment < pageManager->numSegments; 
+  for (numSegment=0; numSegment < pageManager->numSegments;
        numSegment++){
-    for (numPage = 0, page = pageManager->pageSegmentArray[numSegment]; 
+    for (numPage = 0, page = pageManager->pageSegmentArray[numSegment];
          numPage < pageManager->numPagesArray[numSegment];
          page += PAGE_SIZE, numPage++){
       for (bddNode = (CalBddNode_t*) page, numNode = 0;
            numNode < NUM_NODES_PER_PAGE; numNode++, bddNode += 1){
         /* If the node is not useful, continue */
-        if (bddNode->elseBddId == 0) continue; 
+        if (bddNode->elseBddId == 0) continue;
         /* Find out the destination address */
         bddId = bddNode->thenBddId;
         nodeCounter[bddId]++;
@@ -601,15 +546,15 @@ BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
   }
   /* Traverse all the nodes belonging in each page */
   /* Update the contents */
-  for (numSegment=0; numSegment < pageManager->totalNumSegments; 
+  for (numSegment=0; numSegment < pageManager->totalNumSegments;
        numSegment++){
-    for (numPage = 0, page = pageManager->pageSegmentArray[numSegment]; 
+    for (numPage = 0, page = pageManager->pageSegmentArray[numSegment];
          numPage < pageManager->numPagesArray[numSegment];
          page += PAGE_SIZE, numPage++){
       for (bddNode = (CalBddNode_t*) page, numNode = 0;
            numNode < NUM_NODES_PER_PAGE; numNode++, bddNode += 1){
         /* If the node is not useful, continue */
-        if (bddNode->elseBddId == 0) continue; 
+        if (bddNode->elseBddId == 0) continue;
         /* If the node has been visited, continue */
         if ((CalAddress_t)bddNode->nextBddNode & 01) continue;
         /* If the nodes is supposed to remain at the same place,
@@ -659,7 +604,7 @@ BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
     /* There are some results computed in pipeline */
     CalBddReorderFixProvisionalNodesAfterReallocation(bddManager);
   }
-  
+
   /* Fix the user BDDs */
   CalBddReorderFixUserBddPtrsAfterReallocation(bddManager);
 
@@ -667,7 +612,7 @@ BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
   CalReorderAssociationFixAfterReallocation(bddManager);
 
   Cal_Assert(CalCheckAssoc(bddManager));
-  
+
 
   /* Update the next pointers */
   /* Since the pages for the ids are distributed in the uniform
@@ -702,16 +647,8 @@ BddReallocateNodesInPlace(Cal_BddManager_t *bddManager)
   }
   pageManager->numSegments = numUsefulSegments;
 }
+
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalAlignCollisionChains(Cal_BddManager_t *bddManager)
@@ -727,7 +664,7 @@ CalAlignCollisionChains(Cal_BddManager_t *bddManager)
       pageListArray[id][i] = nodeManager->pageList[i];
     }
   }
-    
+
   /* Bottom up traversal */
   for (index = bddManager->numVars-1; index >= 0; index--){
     id = bddManager->indexToId[index];
@@ -762,15 +699,6 @@ CalAlignCollisionChains(Cal_BddManager_t *bddManager)
 #endif
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddReallocateNodes(Cal_BddManager_t *bddManager)
@@ -781,19 +709,19 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
   CalPageManager_t *pageManager;
   int numSegments;
   CalAddress_t **pageSegmentArray;
-  
+
   pageManager = bddManager->pageManager2;
   numSegments = pageManager->numSegments;
   pageSegmentArray = pageManager->pageSegmentArray;
-  
+
   /* Reinitialize the page manager */
   pageManager->totalNumPages = 0;
   pageManager->numSegments = 0;
   pageManager->maxNumSegments = MAX_NUM_SEGMENTS;
-  pageManager->pageSegmentArray 
+  pageManager->pageSegmentArray
       = Cal_MemAlloc(CalAddress_t *, pageManager->maxNumSegments);
   pageManager->freePageList = Cal_Nil(CalAddress_t);
-  
+
   /* Do a bottom up traversal */
 
   for (index = bddManager->numVars-1; index >= 0; index--){
@@ -802,7 +730,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
     int numPagesRequired, newSizeIndex;
     CalBddNode_t *bddNode, *dupNode, *thenNode, *elseNode, **oldBins;
     long hashValue, oldNumBins;
-    
+
     id = bddManager->indexToId[index];
     uniqueTableForId = bddManager->uniqueTable[id];
     nodeManager = bddManager->nodeManagerArray[id];
@@ -816,7 +744,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
         2*(numPagesRequired ? numPagesRequired : 1);
     Cal_MemFree(nodeManager->pageList);
     nodeManager->pageList = Cal_MemAlloc(CalAddress_t *,
-                                         nodeManager->maxNumPages); 
+                                         nodeManager->maxNumPages);
     /* Create the new set of bins */
     newSizeIndex =
         CeilLog2(uniqueTableForId->numEntries/HASH_TABLE_DEFAULT_MAX_DENSITY);
@@ -826,14 +754,14 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
     uniqueTableForId->sizeIndex = newSizeIndex;
     uniqueTableForId->numBins =  TABLE_SIZE(uniqueTableForId->sizeIndex);
     uniqueTableForId->maxCapacity =
-        uniqueTableForId->numBins * HASH_TABLE_DEFAULT_MAX_DENSITY; 
-    
+        uniqueTableForId->numBins * HASH_TABLE_DEFAULT_MAX_DENSITY;
+
     uniqueTableForId->bins = Cal_MemAlloc(CalBddNode_t *,
-                                          uniqueTableForId->numBins); 
-    memset((char *)uniqueTableForId->bins, 0, 
-           uniqueTableForId->numBins*sizeof(CalBddNode_t *)); 
+                                          uniqueTableForId->numBins);
+    memset((char *)uniqueTableForId->bins, 0,
+           uniqueTableForId->numBins*sizeof(CalBddNode_t *));
     for (i=0; i<oldNumBins; i++){
-      for (bddNode = oldBins[i]; bddNode; bddNode = bddNode->nextBddNode){ 
+      for (bddNode = oldBins[i]; bddNode; bddNode = bddNode->nextBddNode){
         CalNodeManagerAllocNode(nodeManager, dupNode);
         thenNode = bddNode->thenBddNode;
         CalBddNodeIsForwardedTo(thenNode);
@@ -844,7 +772,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
         Cal_Assert(elseNode);
         Cal_Assert(!CalBddNodeIsForwarded(CAL_BDD_POINTER(elseNode)));
         Cal_Assert(bddManager->idToIndex[bddNode->thenBddId] <
-                   bddManager->idToIndex[thenNode->thenBddId]); 
+                   bddManager->idToIndex[thenNode->thenBddId]);
         Cal_Assert(bddManager->idToIndex[bddNode->thenBddId] <
                    bddManager->idToIndex[CAL_BDD_POINTER(elseNode)->thenBddId]);
         dupNode->thenBddNode = thenNode;
@@ -858,7 +786,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
         bddNode->elseBddNode = (CalBddNode_t *)0;
         bddNode->thenBddId = id;
         Cal_Assert(bddManager->idToIndex[dupNode->thenBddId] <
-                   bddManager->idToIndex[thenNode->thenBddId]); 
+                   bddManager->idToIndex[thenNode->thenBddId]);
         Cal_Assert(bddManager->idToIndex[dupNode->thenBddId] <
                    bddManager->idToIndex[CAL_BDD_POINTER(elseNode)->thenBddId]);
       }
@@ -871,7 +799,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
     /* There are some results computed in pipeline */
     CalBddReorderFixProvisionalNodes(bddManager);
   }
-  
+
   /* Fix the user BDDs */
   CalBddReorderFixUserBddPtrs(bddManager);
 
@@ -879,7 +807,7 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
   CalReorderAssociationFix(bddManager);
 
   Cal_Assert(CalCheckAssoc(bddManager));
-  
+
   /* Free the page manager related stuff*/
   for(i = 0; i < numSegments; i++){
     // BUG: double free!
@@ -890,15 +818,6 @@ BddReallocateNodes(Cal_BddManager_t *bddManager)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddExchangeAux(Cal_BddManager_t *bddManager, CalBddNode_t *f,
@@ -909,7 +828,7 @@ BddExchangeAux(Cal_BddManager_t *bddManager, CalBddNode_t *f,
   CalBddNode_t *newF0, *newF1;
   int f0Found, f1Found;
   int fIndex;
-  
+
   f0 = f->elseBddNode;
   f1 = f->thenBddNode;
 
@@ -927,7 +846,7 @@ BddExchangeAux(Cal_BddManager_t *bddManager, CalBddNode_t *f,
   else {
     f10 = f11 = f1;
   }
-  
+
   if (f00 == f10){
     newF0 = f00;
     f0Found = 1;
@@ -966,7 +885,7 @@ BddExchangeAux(Cal_BddManager_t *bddManager, CalBddNode_t *f,
   Cal_Assert(CAL_BDD_POINTER(f01)->thenBddId != nextId);
   Cal_Assert(CAL_BDD_POINTER(f10)->thenBddId != nextId);
   Cal_Assert(CAL_BDD_POINTER(f11)->thenBddId != nextId);
-  
+
   if (!f0Found){
     BddNodeIcrRefCount(f00);
     BddNodeIcrRefCount(f10);
@@ -982,15 +901,6 @@ BddExchangeAux(Cal_BddManager_t *bddManager, CalBddNode_t *f,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 CheckValidityOfNodes(Cal_BddManager_t *bddManager, long id)
@@ -1003,7 +913,7 @@ CheckValidityOfNodes(Cal_BddManager_t *bddManager, long id)
     for (bddNode = table->bins[i]; bddNode; bddNode = bddNode->nextBddNode){
       int thenIndex = bddManager->idToIndex[bddNode->thenBddNode->thenBddId];
       int elseIndex =
-          bddManager->idToIndex[CAL_BDD_POINTER(bddNode->elseBddNode)->thenBddId]; 
+          bddManager->idToIndex[CAL_BDD_POINTER(bddNode->elseBddNode)->thenBddId];
       assert((thenIndex > index) && (elseIndex > index));
     }
   }
@@ -1011,15 +921,6 @@ CheckValidityOfNodes(Cal_BddManager_t *bddManager, long id)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 SweepVarTable(Cal_BddManager_t *bddManager, long id)
@@ -1028,7 +929,7 @@ SweepVarTable(Cal_BddManager_t *bddManager, long id)
   long numNodesFreed, oldNumEntries;
   CalBddNode_t **ptr, *bddNode;
   int i;
-  
+
   oldNumEntries = table->numEntries;
   for(i = 0; i < table->numBins; ++i){
     for (ptr = &table->bins[i], bddNode = *ptr; bddNode;
@@ -1052,15 +953,6 @@ SweepVarTable(Cal_BddManager_t *bddManager, long id)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddExchange(Cal_BddManager_t *bddManager, long id)
@@ -1073,7 +965,7 @@ BddExchange(Cal_BddManager_t *bddManager, long id)
   CalBddNode_t  *f1, *f2;
   CalAssociation_t *p;
   CalNodeManager_t *nodeManager;
-  
+
   index = bddManager->idToIndex[id];
   nextIndex = index+1;
   nextId = bddManager->indexToId[nextIndex];
@@ -1091,7 +983,7 @@ BddExchange(Cal_BddManager_t *bddManager, long id)
         f1 = bddNode->elseBddNode;
         f2 = bddNode->thenBddNode;
         if ((CAL_BDD_POINTER(f1)->thenBddId != nextId) &&
-            (CAL_BDD_POINTER(f2)->thenBddId != nextId)){ 
+            (CAL_BDD_POINTER(f2)->thenBddId != nextId)){
           ptr = &bddNode->nextBddNode;
         }
         else{
@@ -1112,7 +1004,7 @@ BddExchange(Cal_BddManager_t *bddManager, long id)
   else {
     bddManager->numTrivialSwaps++;
   }
-  
+
   CalFixupAssoc(bddManager, id, nextId, bddManager->tempAssociation);
   for(p = bddManager->associationList; p; p = p->next){
     CalFixupAssoc(bddManager, id, nextId, p);
@@ -1137,15 +1029,6 @@ BddExchange(Cal_BddManager_t *bddManager, long id)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddExchangeVarBlocks(Cal_BddManager_t *bddManager, Cal_Block parent,
@@ -1160,16 +1043,16 @@ BddExchangeVarBlocks(Cal_BddManager_t *bddManager, Cal_Block parent,
   /* fashion. */
   firstBlockWidth = b1->lastIndex - b1->firstIndex;
   secondBlockWidth = b2->lastIndex - b2->firstIndex;
-  
+
   for (i=0; i <= firstBlockWidth + secondBlockWidth; i++){
     j = i - firstBlockWidth;
     if (j < 0) j=0;
     k = ((i > secondBlockWidth) ? secondBlockWidth : i);
     while (j <= k) {
-	  l = b2->firstIndex + j - i + j;
-	  BddExchange(bddManager, bddManager->indexToId[l-1]);
-	  ++j;
-	}
+    l = b2->firstIndex + j - i + j;
+    BddExchange(bddManager, bddManager->indexToId[l-1]);
+    ++j;
+  }
   }
   CalBddBlockDelta(b1, secondBlockWidth+1);
   CalBddBlockDelta(b2, -(firstBlockWidth+1));
@@ -1179,15 +1062,6 @@ BddExchangeVarBlocks(Cal_BddManager_t *bddManager, Cal_Block parent,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 BddReorderWindow2(Cal_BddManager_t *bddManager, Cal_Block block, long i)
@@ -1206,15 +1080,6 @@ BddReorderWindow2(Cal_BddManager_t *bddManager, Cal_Block block, long i)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 BddReorderWindow3(Cal_BddManager_t *bddManager, Cal_Block block, long i)
@@ -1222,7 +1087,7 @@ BddReorderWindow3(Cal_BddManager_t *bddManager, Cal_Block block, long i)
   int best;
   long size, bestSize;
   long origSize;
-  
+
   origSize = bddManager->numNodes;
   best = 0;
   /* 1 2 3 */
@@ -1289,19 +1154,10 @@ BddReorderWindow3(Cal_BddManager_t *bddManager, Cal_Block block, long i)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddReorderStableWindow3Aux(Cal_BddManager_t *bddManager, Cal_Block block,
-                           char *levels) 
+                           char *levels)
 {
   long i;
   int moved;
@@ -1310,9 +1166,9 @@ BddReorderStableWindow3Aux(Cal_BddManager_t *bddManager, Cal_Block block,
   if (block->reorderable) {
     for (i=0; i < block->numChildren-1; ++i) levels[i]=1;
     do {
-	  anySwapped=0;
-	  for (i=0; i < block->numChildren-1; i++){
-	    if (levels[i]){
+    anySwapped=0;
+    for (i=0; i < block->numChildren-1; i++){
+      if (levels[i]){
 #ifdef _CAL_VERBOSE
           fprintf(stdout,"Moving block %3d -- %3d\n",
                   bddManager->indexToId[block->children[i]-> firstIndex],
@@ -1330,21 +1186,21 @@ BddReorderStableWindow3Aux(Cal_BddManager_t *bddManager, Cal_Block block,
             moved = BddReorderWindow2(bddManager, block, i);
           }
           if (moved){
-		    if (i > 0) {
+        if (i > 0) {
               levels[i-1]=1;
               if (i > 1)
                 levels[i-2]=1;
             }
-		    levels[i]=1;
-		    levels[i+1]=1;
-		    if (i < block->numChildren-2){
+        levels[i]=1;
+        levels[i+1]=1;
+        if (i < block->numChildren-2){
               levels[i+2]=1;
               if (i < block->numChildren-3) {
-			    levels[i+3]=1;
-			    if (i < block->numChildren-4) levels[i+4]=1;
-			  }
+          levels[i+3]=1;
+          if (i < block->numChildren-4) levels[i+4]=1;
+        }
             }
-		    anySwapped=1;
+        anySwapped=1;
           }
           else levels[i]=0;
         }
@@ -1357,15 +1213,6 @@ BddReorderStableWindow3Aux(Cal_BddManager_t *bddManager, Cal_Block block,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddReorderStableWindow3(Cal_BddManager_t *bddManager)
@@ -1378,15 +1225,6 @@ BddReorderStableWindow3(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddSiftBlock(Cal_BddManager_t *bddManager, Cal_Block block, long
@@ -1398,7 +1236,7 @@ BddSiftBlock(Cal_BddManager_t *bddManager, Cal_Block block, long
   long currentSize;
   long currentPosition;
   long maxSize;
-  
+
   startSize = bddManager->numNodes;
   bestSize = startSize;
   bestPosition = startPosition;
@@ -1472,17 +1310,11 @@ BddSiftBlock(Cal_BddManager_t *bddManager, Cal_Block block, long
 
 
 /**Function********************************************************************
-
-  Synopsis    [Reorder variables using "sift" algorithm.]
-
-  Description [Reorder variables using "sift" algorithm.]
-
-  SideEffects [None]
-
+  Reorder variables using "sift" algorithm.
 ******************************************************************************/
 static void
 BddReorderSiftAux(Cal_BddManager_t *bddManager, Cal_Block block,
-                     Cal_Block *toSift, double maxSizeFactor) 
+                     Cal_Block *toSift, double maxSizeFactor)
 {
   long i, j, k;
   long width;
@@ -1498,23 +1330,23 @@ BddReorderSiftAux(Cal_BddManager_t *bddManager, Cal_Block block,
            (numVarsShifted <=
             bddManager->maxNumVarsSiftedPerReordering) &&
            (bddManager->numSwaps <=
-            bddManager->maxNumSwapsPerReordering)){ 
-	  i--;
+            bddManager->maxNumSwapsPerReordering)){
+    i--;
       numVarsShifted++;
-	  maxWidth = 0;
-	  widest = 0;
-	  for (j=0; j <= i; ++j) {
+    maxWidth = 0;
+    widest = 0;
+    for (j=0; j <= i; ++j) {
         for (width=0, k=toSift[j]->firstIndex; k <= toSift[j]->lastIndex; ++k){
           width +=
-              bddManager->uniqueTable[bddManager->indexToId[k]]->numEntries; 
+              bddManager->uniqueTable[bddManager->indexToId[k]]->numEntries;
         }
         width /= toSift[j]->lastIndex - toSift[j]->firstIndex+1;
         if (width > maxWidth) {
-		  maxWidth = width;
-		  widest = j;
-		}
+      maxWidth = width;
+      widest = j;
+    }
       }
-	  if (maxWidth > 1) {
+    if (maxWidth > 1) {
         for (j=0; block->children[j] != toSift[widest]; ++j);
 #ifdef _CAL_VERBOSE
         fprintf(stdout,"Moving block %3d -- %3d\n",
@@ -1529,26 +1361,17 @@ BddReorderSiftAux(Cal_BddManager_t *bddManager, Cal_Block block,
         BddSiftBlock(bddManager, block, j, maxSizeFactor);
         toSift[widest] = toSift[i];
       }
-	  else {
+    else {
         break;
       }
-	}
+  }
   }
   for (i=0; i < block->numChildren; ++i)
     BddReorderSiftAux(bddManager, block->children[i], toSift,
-                      maxSizeFactor);  
+                      maxSizeFactor);
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddReorderSift(Cal_BddManager_t *bddManager, double maxSizeFactor)
@@ -1557,23 +1380,13 @@ BddReorderSift(Cal_BddManager_t *bddManager, double maxSizeFactor)
 
   toSift = Cal_MemAlloc(Cal_Block, bddManager->numVars);
   BddReorderSiftAux(bddManager, bddManager->superBlock, toSift,
-                       maxSizeFactor); 
+                       maxSizeFactor);
   Cal_MemFree(toSift);
 }
 
-
-
-
 /**Function********************************************************************
-
-  Synopsis    [Returns the smallest integer greater than or equal to log2 of a
-  number]
-
-  Description [Returns the smallest integer greater than or equal to log2 of a
-  number (The assumption is that the number is >= 1)]
-
-  SideEffects [None]
-
+  Returns the smallest integer greater than or equal to log2 of a number (The
+  assumption is that the number is >= 1)
 ******************************************************************************/
 static int
 CeilLog2(int  number)

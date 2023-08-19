@@ -90,19 +90,12 @@ static int BddReorderWindow3(Cal_BddManager bddManager, long index, int directio
 /*---------------------------------------------------------------------------*/
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalBddReorderAuxBF(Cal_BddManager_t * bddManager)
@@ -133,28 +126,22 @@ CalBddReorderAuxBF(Cal_BddManager_t * bddManager)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
+  Fixes the forwarding nodes in a unique table.
 
-  Synopsis           [Fixes the forwarding nodes in a unique table.]
-
-  Description        [As opposed to CalBddReorderFixCofactors, which fixes
-  the cofactors of the non-forwarding nodes, this routine traverses
-  the list of forwarding nodes and removes the intermediate level of
-  forwarding. Number of levels should be 1 or 2.]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
+  As opposed to CalBddReorderFixCofactors, which fixes the cofactors of the
+  non-forwarding nodes, this routine traverses the list of forwarding nodes and
+  removes the intermediate level of forwarding. Number of levels should be 1 or
+  2.
 ******************************************************************************/
 static void
 BddReorderFixForwardingNodes(Cal_BddManager bddManager,
-                             Cal_BddId_t id) 
+                             Cal_BddId_t id)
 {
   CalHashTable_t *uniqueTableForId =
       bddManager->uniqueTable[id];
   CalBddNode_t *bddNode, *nextBddNode;
   Cal_Bdd_t thenBdd;
-  
+
   /* These are the forwarding nodes. */
   CalBddNode_t *requestNodeList =
       uniqueTableForId->startNode.nextBddNode;
@@ -178,16 +165,8 @@ BddReorderFixForwardingNodes(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [Traverses the forwarding node lists of index,
-  index+1 .. up to index+level. Frees the intermediate forwarding nodes.]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
+  Traverses the forwarding node lists of index, index+1 .. up to index+level.
+  Frees the intermediate forwarding nodes.
 ******************************************************************************/
 static void
 BddReorderFixAndFreeForwardingNodes(Cal_BddManager bddManager,
@@ -199,13 +178,13 @@ BddReorderFixAndFreeForwardingNodes(Cal_BddManager bddManager,
   Cal_Bdd_t thenBdd;
   CalNodeManager_t *nodeManager;
   int i;
-  
+
   /* Fixing */
   for (i=numLevels-1; i >= 0; i--){
     uniqueTableForId =
         bddManager->uniqueTable[bddManager->indexToId[index+i]];
     for (bddNode = uniqueTableForId->startNode.nextBddNode; bddNode;
-         bddNode = nextBddNode){ 
+         bddNode = nextBddNode){
       nextBddNode = CalBddNodeGetNextBddNode(bddNode);
       CalBddNodeGetThenBdd(bddNode, thenBdd);
       if (CalBddIsForwarded(thenBdd)){
@@ -213,7 +192,7 @@ BddReorderFixAndFreeForwardingNodes(Cal_BddManager bddManager,
           CalBddMark(thenBdd);
           CalBddForward(thenBdd);
         } while (CalBddIsForwarded(thenBdd));
-        CalBddNodePutThenBdd(bddNode, thenBdd); 
+        CalBddNodePutThenBdd(bddNode, thenBdd);
       }
       Cal_Assert(CalBddIsForwarded(thenBdd) == 0);
     }
@@ -224,7 +203,7 @@ BddReorderFixAndFreeForwardingNodes(Cal_BddManager bddManager,
         bddManager->uniqueTable[bddManager->indexToId[index+i]];
     endNode = &(uniqueTableForId->startNode);
     for (bddNode = uniqueTableForId->startNode.nextBddNode; bddNode;
-         bddNode = nextBddNode){ 
+         bddNode = nextBddNode){
       nextBddNode = CalBddNodeGetNextBddNode(bddNode);
       CalBddNodeGetThenBdd(bddNode, thenBdd);
       if (CalBddIsMarked(thenBdd)){
@@ -245,15 +224,6 @@ BddReorderFixAndFreeForwardingNodes(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [Traversesoptional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
@@ -286,10 +256,10 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
   Cal_Bdd_t f10;
   Cal_Bdd_t f11;
   CalAssociation_t *assoc;
-  
+
   varId = bddManager->indexToId[varIndex];
   nextVarId = bddManager->indexToId[varIndex + 1];
-  
+
   if (CalTestInteract(bddManager, varId, nextVarId)){
   bddManager->numSwaps++;
 #ifdef _CAL_VERBOSE
@@ -300,7 +270,7 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
   nextUniqueTableForId = bddManager->uniqueTable[nextVarId];
   curSize1 = bddManager->uniqueTable[varId]->numEntries;
   curSize2 = bddManager->uniqueTable[nextVarId]->numEntries;
-  
+
   /*uniqueTableForId->requestNodeList = Cal_Nil(CalBddNode_t);*/
   processingNodeList = Cal_Nil(CalBddNode_t);
   numBins = uniqueTableForId->numBins;
@@ -348,16 +318,16 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
         */
         CalBddNodeGetElseBdd(bddNode, f0);
         CalBddNodeGetThenBdd(bddNode, f1);
-        
+
         if (CalBddIsForwarded(f1)) {
           CalBddForward(f1);
           CalBddNodePutThenBdd(bddNode, f1);
         }
         Cal_Assert(CalBddIsForwarded(f1) == 0);
-        
+
         if (CalBddIsForwarded(f0)) {
           CalBddForward(f0);
-          CalBddNodePutElseBdd(bddNode, f0); 
+          CalBddNodePutElseBdd(bddNode, f0);
         }
         Cal_Assert(CalBddIsForwarded(f0) == 0);
         /*
@@ -365,27 +335,27 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
         */
         elseVarIndex = CalBddNodeGetElseBddIndex(bddManager, bddNode);
         thenVarIndex = CalBddNodeGetThenBddIndex(bddManager, bddNode);
-        
+
         if ((elseVarIndex > (varIndex + 1))
-            && (thenVarIndex > (varIndex + 1))) { 
+            && (thenVarIndex > (varIndex + 1))) {
           prevBddNode = bddNode;
           Cal_Assert(CalDoHash2(CalBddGetBddNode(f1),
-                                CalBddGetBddNode(f0), 
+                                CalBddGetBddNode(f0),
                                 uniqueTableForId) == i);
           continue;
         }
-  
+
         /* This node is going to be forwared */
         CalBddNodePutNextBddNode(bddNode, processingNodeList);
         processingNodeList = bddNode;
-        
+
         /* Update the unique table appropriately */
         if (prevBddNode){
           CalBddNodePutNextBddNode(prevBddNode, nextBddNode);
         }
         else{
           bins[i] = nextBddNode;
-        } 
+        }
         uniqueTableForId->numEntries--;
         bddManager->numNodes--;
       }
@@ -443,24 +413,24 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
 
         elseVarIndex = CalBddNodeGetElseBddIndex(bddManager, bddNode);
         thenVarIndex = CalBddNodeGetThenBddIndex(bddManager, bddNode);
-        
+
         if ((elseVarIndex > (varIndex + 1))
-            && (thenVarIndex > (varIndex + 1))) { 
+            && (thenVarIndex > (varIndex + 1))) {
           prevBddNode = bddNode;
           continue;
         }
-  
+
         /* This node is going to be forwared */
         CalBddNodePutNextBddNode(bddNode, processingNodeList);
         processingNodeList = bddNode;
-        
+
         /* Update the unique table appropriately */
         if (prevBddNode){
           CalBddNodePutNextBddNode(prevBddNode, nextBddNode);
         }
         else{
           bins[i] = nextBddNode;
-        } 
+        }
         uniqueTableForId->numEntries--;
         bddManager->numNodes--;
       }
@@ -553,19 +523,19 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
     */
     bddNode->nextBddNode = startNode;
     startNode = bddNode;
-    
+
     bddNode = nextBddNode;
   }
   /*uniqueTableForId->endNode = endNode;*/
   uniqueTableForId->startNode.nextBddNode = startNode;
 
   BddReorderFreeNodes(bddManager, nextVarId);
-  
+
   }
   else{
     bddManager->numTrivialSwaps++;
   }
-  
+
   CalFixupAssoc(bddManager, varId, nextVarId, bddManager->tempAssociation);
   for(assoc = bddManager->associationList; assoc; assoc = assoc->next){
     CalFixupAssoc(bddManager, varId, nextVarId, assoc);
@@ -588,15 +558,6 @@ BddReorderSwapVarIndex(Cal_BddManager_t * bddManager, int varIndex,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 CofactorFixAndReclaimForwardedNodes(Cal_BddManager_t *bddManager, int
@@ -614,7 +575,7 @@ CofactorFixAndReclaimForwardedNodes(Cal_BddManager_t *bddManager, int
   CalBddReorderFixUserBddPtrs(bddManager);
   CalReorderAssociationFix(bddManager);
   for (index = cofactorCheckStartIndex;
-       index <= cofactorCheckEndIndex; index++){ 
+       index <= cofactorCheckEndIndex; index++){
     varId = bddManager->indexToId[index];
     CalBddReorderFixCofactors(bddManager, varId);
   }
@@ -625,15 +586,6 @@ CofactorFixAndReclaimForwardedNodes(Cal_BddManager_t *bddManager, int
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddReorderFreeNodes(Cal_BddManager_t * bddManager, int varId)
@@ -657,7 +609,7 @@ BddReorderFreeNodes(Cal_BddManager_t * bddManager, int varId)
     bddManager->numPeakNodes = bddManager->numNodes +
         bddManager->numForwardedNodes ;
   }
-  
+
   for(i = 0; i < numBins; i++){
     prevNode = NULL;
     bddNode = bins[i];
@@ -692,15 +644,6 @@ BddReorderFreeNodes(Cal_BddManager_t * bddManager, int varId)
 #ifdef _CAL_VERBOSE
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 PrintBddProfileAfterReorder(Cal_BddManager_t *bddManager)
@@ -711,10 +654,10 @@ PrintBddProfileAfterReorder(Cal_BddManager_t *bddManager)
     char *levels = Cal_MemAlloc(char, bddManager->numVars+1);
     CalBddNode_t *requestNodeList;
     Cal_Bdd_t thenBdd, elseBdd;
-    
+
   /* Now traverse all the nodes in order */
     for (index = 0; index < bddManager->numVars; index++){
-      fprintf(stdout,"**** %3d ****\n", bddManager->indexToId[index]);  
+      fprintf(stdout,"**** %3d ****\n", bddManager->indexToId[index]);
       uniqueTableForId = bddManager->uniqueTable[bddManager->indexToId[index]];
       numBins = uniqueTableForId->numBins;
       for (i=1; i<=bddManager->numVars; i++) {
@@ -728,13 +671,13 @@ PrintBddProfileAfterReorder(Cal_BddManager_t *bddManager)
               CalBddNodeGetThenBdd(bddNode, thenBdd);
               CalBddNodeGetElseBdd(bddNode, elseBdd);
               if (CalBddIsForwarded(thenBdd) ||
-                  CalBddIsForwarded(elseBdd)){                       
+                  CalBddIsForwarded(elseBdd)){
                 j++;
               }
-              if (CalBddIsForwarded(thenBdd)) {                      
+              if (CalBddIsForwarded(thenBdd)) {
                   levels[CalBddGetThenBddId(thenBdd)]++;
               }
-              if (CalBddIsForwarded(elseBdd)) {                      
+              if (CalBddIsForwarded(elseBdd)) {
                   levels[CalBddGetThenBddId(elseBdd)]++;
               }
           }
@@ -772,13 +715,7 @@ PrintBddProfileAfterReorder(Cal_BddManager_t *bddManager)
 #endif
 
 /**Function********************************************************************
-
-  Synopsis    [Reorder variables using "sift" algorithm.]
-
-  Description [Reorder variables using "sift" algorithm.]
-
-  SideEffects [None]
-
+  Reorder variables using "sift" algorithm.
 ******************************************************************************/
 static void
 BddReorderVarSift(Cal_BddManager bddManager, double maxSizeFactor)
@@ -789,7 +726,7 @@ BddReorderVarSift(Cal_BddManager bddManager, double maxSizeFactor)
   int *idArray;
   long numVarsShifted = 0;
   bddManager->numSwaps = 0;
-  
+
   idArray = Cal_MemAlloc(int, bddManager->numVars);
   for (i = 0; i < bddManager->numVars; i++) {
     idArray[i] = bddManager->indexToId[i];
@@ -799,7 +736,7 @@ BddReorderVarSift(Cal_BddManager bddManager, double maxSizeFactor)
          (numVarsShifted <=
           bddManager->maxNumVarsSiftedPerReordering) &&
          (bddManager->numSwaps <=
-          bddManager->maxNumSwapsPerReordering)){ 
+          bddManager->maxNumSwapsPerReordering)){
     i--;
     numVarsShifted++;
 /*
@@ -815,7 +752,7 @@ BddReorderVarSift(Cal_BddManager bddManager, double maxSizeFactor)
         mostNodesId = j;
       }
     }
- 
+
     if (mostNodes <= 1) { /* I can put a different stopping criterion */
       /*
        * Most number of nodes among the vars not sifted yet is 0. Stop.
@@ -825,7 +762,7 @@ BddReorderVarSift(Cal_BddManager bddManager, double maxSizeFactor)
 
     BddReorderSiftToBestPos(bddManager,
                             bddManager->idToIndex[idArray[mostNodesId]],
-                            maxSizeFactor); 
+                            maxSizeFactor);
     Cal_Assert(CalCheckAllValidity(bddManager));
     idArray[mostNodesId] = idArray[i];
   }
@@ -835,15 +772,6 @@ BddReorderVarSift(Cal_BddManager bddManager, double maxSizeFactor)
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
@@ -867,8 +795,8 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
 
   int swapFlag = 0; /* If a swap has taken place after last cleaning
                        up */
-                       
-  
+
+
   curSize = bestSize = bddManager->numNodes;
   bestIndex = varStartIndex;
 
@@ -878,13 +806,13 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
   }
   fprintf(stdout, "%8d\n", bddManager->numNodes);
 #endif
-  
+
   /*
   ** If varStartIndex > numVars/2, do: Down, Up, Down.
   ** If varStartIndex < numVars/2, do: Up, Down, Up
   ** Followed by a cleanup phase in either case.
   */
-  
+
   if (varStartIndex >= (numVars >> 1)){
     /* Phase I: Downward swap, no forwarding check. */
     varCurIndex = varStartIndex;
@@ -895,7 +823,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex+1,
-                                               varCurIndex+1); 
+                                               varCurIndex+1);
         swapFlag = 0;
       }
       varCurIndex++;
@@ -910,13 +838,13 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         bestIndex = varCurIndex;
       }
     }
-    
+
     /* Phase II : Two parts */
     /*
     ** Part One: Upward swap until varStartIndex. Fix cofactors and
-    ** fix double pointers. 
+    ** fix double pointers.
     */
-    
+
     while (varCurIndex > varStartIndex) {
       varCurIndex--;
       BddReorderSwapVarIndex(bddManager, varCurIndex, 1);
@@ -927,12 +855,12 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex,
-                                               bottomMostSwapIndex); 
+                                               bottomMostSwapIndex);
         swapFlag = 0;
       }
     }
     curSize = startSize;
-    
+
     /*
     ** Part two: Upward swap all the way to the top. Fix cofactors.
     */
@@ -945,7 +873,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex,
-                                               bottomMostSwapIndex); 
+                                               bottomMostSwapIndex);
         swapFlag = 0;
       }
       if (curSize > maxSize){
@@ -966,30 +894,30 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
       }
       CalBddReorderFixUserBddPtrs(bddManager);
       CalReorderAssociationFix(bddManager);
-      
+
       /* The upward swapping might have stopped short */
       for (i = 0; i < topMostSwapIndex; i++){
         varId = bddManager->indexToId[i];
         CalBddReorderFixCofactors(bddManager, varId);
       }
-      
+
       CalBddReorderReclaimForwardedNodes(bddManager, topMostSwapIndex,
                                          bottomMostSwapIndex);
       swapFlag = 0;
     }
-    
+
     Cal_Assert(CalCheckAllValidity(bddManager));
-    
+
     /* Phase III : Swap to the min position */
 
     while (varCurIndex < bestIndex) {
-      BddReorderSwapVarIndex(bddManager, varCurIndex, 0); 
+      BddReorderSwapVarIndex(bddManager, varCurIndex, 0);
       swapFlag = 1;
       if (bddManager->numForwardedNodes > bddManager->maxForwardedNodes){
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex+1,
-                                               varCurIndex+1); 
+                                               varCurIndex+1);
         swapFlag = 0;
       }
       varCurIndex++;
@@ -1007,7 +935,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex+1,
-                                               varStartIndex); 
+                                               varStartIndex);
         swapFlag = 0;
       }
       if (curSize > maxSize){
@@ -1019,7 +947,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         bestIndex = varCurIndex;
       }
     }
-    
+
     if (swapFlag){
       /* Fix user BDD pointers and reclaim forwarding nodes */
       if (bddManager->pipelineState == CREATE){
@@ -1037,7 +965,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
                                          varStartIndex);
       swapFlag = 0;
     }
-    
+
     Cal_Assert(CalCheckAllValidity(bddManager));
 
     /* Phase II : Move all the way down : two parts */
@@ -1051,7 +979,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex+1,
-                                               varCurIndex+1); 
+                                               varCurIndex+1);
         swapFlag = 0;
       }
       varCurIndex++;
@@ -1064,7 +992,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                varCurIndex-1,
                                                varCurIndex+1,
-                                               varCurIndex+1); 
+                                               varCurIndex+1);
         swapFlag = 0;
       }
       varCurIndex++;
@@ -1090,7 +1018,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
       if (bddManager->numForwardedNodes > bddManager->maxForwardedNodes){
         CofactorFixAndReclaimForwardedNodes(bddManager, 0, varCurIndex-1,
                                                varCurIndex,
-                                               bottomMostSwapIndex); 
+                                               bottomMostSwapIndex);
         swapFlag = 0;
       }
     }
@@ -1099,12 +1027,12 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
 #ifdef _CAL_VERBOSE
   PrintBddProfileAfterReorder(bddManager);
 #endif
-  
+
   if (CalBddIdNeedsRepacking(bddManager, origId)){
     if (swapFlag){
       if (varStartIndex >= (numVars >> 1)){
         CalBddPackNodesAfterReorderForSingleId(bddManager, 0,
-                                               bestIndex, bestIndex); 
+                                               bestIndex, bestIndex);
       }
       /*
       else if (bestIndex >= (numVars >> 1)){
@@ -1123,7 +1051,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
           BddSiftPerfromPhaseIV(bddManager, varStartIndex, bestIndex,
                                 bottomMostSwapIndex);
           BddPackNodesAfterReorderForSingleId(bddManager, 0,
-                                                 bestIndex, bestIndex); 
+                                                 bestIndex, bestIndex);
         }
       }
       */
@@ -1132,12 +1060,12 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
         BddSiftPerfromPhaseIV(bddManager, varStartIndex, bestIndex,
                               bottomMostSwapIndex);
         CalBddPackNodesAfterReorderForSingleId(bddManager, 0,
-                                               bestIndex, bestIndex); 
+                                               bestIndex, bestIndex);
       }
     }
     else {
       CalBddPackNodesAfterReorderForSingleId(bddManager, 0, bestIndex,
-                                             bestIndex); 
+                                             bestIndex);
     }
   }
   else if (swapFlag) {
@@ -1146,7 +1074,7 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
                           bottomMostSwapIndex);
   }
   Cal_Assert(CalCheckAllValidity(bddManager));
-  
+
 #ifdef _CAL_VERBOSE
   printf("ID = %3d SI = %3d EI = %3d Nodes = %7d\n", origId,
          varStartIndex, bestIndex, bddManager->numNodes);
@@ -1154,24 +1082,14 @@ BddReorderSiftToBestPos(Cal_BddManager_t * bddManager, int
   return bestIndex;
 }
 
-  
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddSiftPerfromPhaseIV(Cal_BddManager_t *bddManager, int varStartIndex,
                       int bestIndex, int bottomMostSwapIndex)
 {
   int varCurIndex, varId;
-  
+
 
 /* We need to perform phase IV */
   varCurIndex = bestIndex-1;
@@ -1191,21 +1109,11 @@ BddSiftPerfromPhaseIV(Cal_BddManager_t *bddManager, int varStartIndex,
   }
   else {
     CalBddReorderReclaimForwardedNodes(bddManager, bestIndex,
-                                       bottomMostSwapIndex); 
+                                       bottomMostSwapIndex);
   }
 }
 
-
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 BddReorderVarWindow(Cal_BddManager bddManager, char *levels)
@@ -1215,7 +1123,7 @@ BddReorderVarWindow(Cal_BddManager bddManager, char *levels)
   int anySwapped;
   int even;
   int lastIndex = bddManager->numVars-1;
-  
+
 #ifdef _CAL_VERBOSE
   for (i=0; i<bddManager->numVars; i++){
     fprintf(stdout, "%3d ", bddManager->indexToId[i]);
@@ -1233,7 +1141,7 @@ BddReorderVarWindow(Cal_BddManager bddManager, char *levels)
           if (i < bddManager->numVars-2) {
             moved = BddReorderWindow3(bddManager, i, 0);
             if (bddManager->numForwardedNodes >
-                bddManager->maxForwardedNodes){   
+                bddManager->maxForwardedNodes){
               CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                      i-1, 0, i+2);
               CalBddPackNodesForMultipleIds(bddManager,
@@ -1286,20 +1194,20 @@ BddReorderVarWindow(Cal_BddManager bddManager, char *levels)
            */
         if (i > 1) {
           CalBddReorderFixCofactors(bddManager,
-                                 bddManager->indexToId[i-2]); 
+                                 bddManager->indexToId[i-2]);
         }
         else {
           CalBddReorderFixCofactors(bddManager,
-                                 bddManager->indexToId[i-1]); 
+                                 bddManager->indexToId[i-1]);
         }
         if (levels[i]) {
           if (i > 1) {
             moved = BddReorderWindow3(bddManager, i-2, 1);
             if (bddManager->numForwardedNodes >
-                bddManager->maxForwardedNodes){ 
+                bddManager->maxForwardedNodes){
               CofactorFixAndReclaimForwardedNodes(bddManager, 0,
                                                   i-3, 0,
-                                                  lastIndex); 
+                                                  lastIndex);
               CalBddPackNodesForMultipleIds(bddManager,
                                             bddManager->indexToId[i-2], 3);
             }
@@ -1359,15 +1267,6 @@ BddReorderVarWindow(Cal_BddManager bddManager, char *levels)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 BddReorderWindow2(Cal_BddManager bddManager, long index, int directionFlag)
@@ -1383,7 +1282,7 @@ BddReorderWindow2(Cal_BddManager bddManager, long index, int directionFlag)
   if (directionFlag){/* Upward window swap */
     BddReorderFixAndFreeForwardingNodes(bddManager,
                                         bddManager->indexToId[index],
-                                        bddManager->numVars-index); 
+                                        bddManager->numVars-index);
   }
   else{
     BddReorderFixAndFreeForwardingNodes(bddManager,
@@ -1394,15 +1293,6 @@ BddReorderWindow2(Cal_BddManager bddManager, long index, int directionFlag)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static int
 BddReorderWindow3(Cal_BddManager bddManager, long index, int directionFlag)
@@ -1410,11 +1300,11 @@ BddReorderWindow3(Cal_BddManager bddManager, long index, int directionFlag)
   int best;
   long curSize, bestSize;
   long origSize = bddManager->numNodes;
-  
+
   /* 1 2 3 */
   best = 0;
   bestSize = bddManager->numNodes;
-  BddReorderSwapVarIndex(bddManager, index, 0); 
+  BddReorderSwapVarIndex(bddManager, index, 0);
   /* 2 1 3 */
   curSize = bddManager->numNodes;
   if (curSize < bestSize){
@@ -1478,7 +1368,7 @@ BddReorderWindow3(Cal_BddManager bddManager, long index, int directionFlag)
   if (directionFlag){/* Upward window swap */
     BddReorderFixAndFreeForwardingNodes(bddManager,
                                         bddManager->indexToId[index],
-                                        bddManager->numVars-index); 
+                                        bddManager->numVars-index);
   }
   else{
     BddReorderFixAndFreeForwardingNodes(bddManager,
@@ -1487,4 +1377,3 @@ BddReorderWindow3(Cal_BddManager bddManager, long index, int directionFlag)
   Cal_Assert(CalCheckValidityOfNodesForWindow(bddManager, index, 3));
   return ((best > 0) && (origSize > bestSize));
 }
-

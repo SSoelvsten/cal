@@ -5,7 +5,7 @@
   PackageName [cal]
 
   Synopsis    [Routines for creating and managing the pipelined BDD
-  operations.] 
+  operations.]
 
   Description [Eventually we would like to have this feature
   transparent to the user.]
@@ -76,16 +76,6 @@
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Set depth of a BDD pipeline.]
-
-  Description [The "depth" determines the amount of dependency we
-  would allow in pipelined computation.]
-
-  SideEffects [None.]
-
-  SeeAlso     []
-
 ******************************************************************************/
 void
 Cal_PipelineSetDepth(Cal_BddManager bddManager, int depth)
@@ -111,20 +101,10 @@ Cal_PipelineSetDepth(Cal_BddManager bddManager, int depth)
   }
   else{
     bddManager->depth = depth;
-  }  
+  }
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Initialize a BDD pipeline.]
-
-  Description [All the operations for this pipeline must be of the
-  same kind.]
-
-  SideEffects [None.]
-
-  SeeAlso     []
-
 ******************************************************************************/
 int
 Cal_PipelineInit(Cal_BddManager bddManager, Cal_BddOp_t bddOp)
@@ -151,20 +131,10 @@ Cal_PipelineInit(Cal_BddManager bddManager, Cal_BddOp_t bddOp)
       return 0;
     }
     return 1;
-  }  
+  }
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Create a provisional BDD in the pipeline.]
-
-  Description [The provisional BDD is automatically freed once the
-  pipeline is quitted.]
-
-  SideEffects []
-
-  SeeAlso     []
-
 ******************************************************************************/
 Cal_Bdd
 Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
@@ -175,9 +145,9 @@ Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
   Cal_Bdd_t provisionalBdd, f, g;
   Cal_BddId_t bddId;
   Cal_Bdd userNode;
-  
+
   insertDepth = 0;
-  
+
   f = CalBddGetInternalBdd(bddManager, fUserBdd);
   g = CalBddGetInternalBdd(bddManager, gUserBdd);
   if(bddManager->pipelineState != CREATE){
@@ -229,16 +199,6 @@ Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Executes a pipeline.]
-
-  Description [All the results are computed. User should update the
-  BDDs of interest. Eventually this feature would become transparent.]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 Cal_PipelineExecute(Cal_BddManager bddManager)
@@ -248,7 +208,7 @@ Cal_PipelineExecute(Cal_BddManager bddManager)
   Cal_Bdd_t thenBdd;
   int automaticDepthControlFlag = 0;
   int pipelineDepth;
-  
+
   if(bddManager->pipelineState != CREATE){
     CalBddWarningMessage("Pipeline cannot be executed");
     return 0;
@@ -256,7 +216,7 @@ Cal_PipelineExecute(Cal_BddManager bddManager)
 
   /* Check if we need to control the depth value using some heuristic */
   if (bddManager->depth == 0) automaticDepthControlFlag = 1;
-  
+
   requestNodeListArray = bddManager->requestNodeListArray;
   pipelineDepth = bddManager->pipelineDepth;
   while(pipelineDepth){
@@ -301,22 +261,12 @@ Cal_PipelineExecute(Cal_BddManager bddManager)
   bddManager->pipelineState = UPDATE;
   return 1;
 }
-  
+
 /**Function********************************************************************
-
-  Synopsis    [Update a provisional Bdd obtained during pipelining.]
-
-  Description [The provisional BDD is automatically freed after
-  quitting pipeline.]
-
-  SideEffects []
-
-  SeeAlso     []
-
 ******************************************************************************/
 Cal_Bdd
 Cal_PipelineUpdateProvisionalBdd(Cal_BddManager bddManager,
-                                 Cal_Bdd provisionalBdd) 
+                                 Cal_Bdd provisionalBdd)
 {
   Cal_Bdd_t calBdd = CalBddGetInternalBdd(bddManager, provisionalBdd);
   if(bddManager->pipelineState != UPDATE){
@@ -328,17 +278,6 @@ Cal_PipelineUpdateProvisionalBdd(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis           [Returns 1, if the given user BDD contains
-  provisional BDD node.]
-
-  Description        [Returns 1, if the given user BDD contains
-  provisional BDD node.]
-
-  SideEffects        [None.]
-
-  SeeAlso            []
-
 ******************************************************************************/
 int
 Cal_BddIsProvisional(Cal_BddManager bddManager, Cal_Bdd userBdd)
@@ -348,16 +287,6 @@ Cal_BddIsProvisional(Cal_BddManager bddManager, Cal_Bdd userBdd)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Resets the pipeline freeing all resources.]
-
-  Description [The user must make sure to update all provisional BDDs
-  of interest before calling this routine.]
-
-  SideEffects []
-
-  SeeAlso     []
-
 ******************************************************************************/
 void
 Cal_PipelineQuit(Cal_BddManager bddManager)
@@ -367,7 +296,7 @@ Cal_PipelineQuit(Cal_BddManager bddManager)
 
   bddManager->pipelineState = READY;
   for(i = 0; i < bddManager->pipelineDepth; i++){
-    for(requestNode = bddManager->requestNodeListArray[i], 
+    for(requestNode = bddManager->requestNodeListArray[i],
         bddManager->requestNodeListArray[i] = Cal_Nil(CalRequestNode_t);
         requestNode != Cal_Nil(CalRequestNode_t);
         requestNode = next){
@@ -390,15 +319,6 @@ Cal_PipelineQuit(Cal_BddManager bddManager)
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalBddReorderFixProvisionalNodes(Cal_BddManager_t *bddManager)
@@ -408,10 +328,10 @@ CalBddReorderFixProvisionalNodes(Cal_BddManager_t *bddManager)
   CalRequestNode_t *node, *nextNode;
   int i;
   Cal_Bdd_t thenBdd, elseBdd;
-  
+
   for (i=0;
        i<bddManager->pipelineDepth-bddManager->currentPipelineDepth;
-       i++){ 
+       i++){
     for (node = *requestNodeListArray; node; node = nextNode){
       nextNode = CalBddNodeGetNextBddNode(node);
       Cal_Assert(CalBddNodeIsForwarded(node));
@@ -446,15 +366,6 @@ CalBddReorderFixProvisionalNodes(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalCheckPipelineValidity(Cal_BddManager_t *bddManager)
@@ -464,10 +375,10 @@ CalCheckPipelineValidity(Cal_BddManager_t *bddManager)
   CalRequestNode_t *node, *nextNode;
   int i;
   Cal_Bdd_t thenBdd, elseBdd;
-  
+
   for (i=0;
        i<bddManager->pipelineDepth-bddManager->currentPipelineDepth;
-       i++){ 
+       i++){
     for (node = *requestNodeListArray; node; node = nextNode){
       nextNode = CalBddNodeGetNextBddNode(node);
       Cal_Assert(CalBddNodeIsForwarded(node));
@@ -479,7 +390,7 @@ CalCheckPipelineValidity(Cal_BddManager_t *bddManager)
   for (; i<bddManager->pipelineDepth; i++){
     for (node = *requestNodeListArray; node; node = nextNode){
       nextNode = CalBddNodeGetNextBddNode(node);
-      Cal_Assert(CalBddNodeIsForwarded(node) == 0); 
+      Cal_Assert(CalBddNodeIsForwarded(node) == 0);
       CalBddNodeGetThenBdd(node, thenBdd);
       /*Cal_Assert(CalBddIsForwarded(thenBdd) == 0);*/
       /* This is possible since the actual BDD of thenBdd could have been
@@ -494,4 +405,3 @@ CalCheckPipelineValidity(Cal_BddManager_t *bddManager)
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
-

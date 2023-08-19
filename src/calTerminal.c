@@ -80,16 +80,8 @@
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpAnd(Cal_BddManager_t * bddManager,
@@ -135,15 +127,6 @@ CalOpAnd(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpNand(Cal_BddManager_t * bddManager,
@@ -189,15 +172,6 @@ CalOpNand(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpOr(
@@ -244,15 +218,6 @@ CalOpOr(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpXor(
@@ -299,15 +264,6 @@ CalOpXor(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd_t
 CalOpITE(
@@ -321,7 +277,7 @@ CalOpITE(
   int complementFlag = 0;
 
   /*
-   * First phase: Make substitutions 
+   * First phase: Make substitutions
    * ITE(F,F,H) = ITE(F,1,H)
    * ITE(F,F',H) = ITE(F,0,H)
    * ITE(F,G,F) = ITE(F,G,0)
@@ -406,16 +362,3 @@ CalOpITE(
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-

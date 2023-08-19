@@ -77,16 +77,6 @@ static void CalHashTableSwapVarsMinusApply(Cal_BddManager_t * bddManager, CalHas
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Return a function obtained by swapping two variables]
-
-  Description [Returns the BDD obtained by simultaneously substituting variable
-  g by variable h and variable h and variable g in the BDD f]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddSubstitute]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddSwapVars(Cal_BddManager  bddManager, Cal_Bdd  fUserBdd,
@@ -215,15 +205,6 @@ Cal_BddSwapVars(Cal_BddManager  bddManager, Cal_Bdd  fUserBdd,
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSwapVarsApply(
@@ -369,15 +350,6 @@ CalHashTableSwapVarsApply(
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSwapVarsPlusApply(
@@ -468,15 +440,6 @@ CalHashTableSwapVarsPlusApply(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSwapVarsMinusApply(

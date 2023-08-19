@@ -83,18 +83,6 @@ static void HashTableCofactorReduce(Cal_BddManager_t * bddManager, CalHashTable_
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Returns the generalized cofactor of BDD f with respect
-  to BDD c.]
-
-  Description [Returns the generalized cofactor of BDD f with respect
-  to BDD c. The constrain operator given by Coudert et al (ICCAD90) is
-  used to find the generalized cofactor.]
-
-  SideEffects [None.]
-
-  SeeAlso     [Cal_BddReduce]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddCofactor(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
@@ -119,20 +107,6 @@ Cal_BddCofactor(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Returns a BDD which agrees with f for all valuations
-  which satisfy c.]
-
-  Description [Returns a BDD which agrees with f for all valuations
-  which satisfy c. The result is usually smaller in terms of number of
-  BDD nodes than f. This operation is typically used in state space
-  searches to simplify the representation for the set of states wich
-  will be expanded at each step.]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddCofactor]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddReduce(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
@@ -148,7 +122,7 @@ Cal_BddReduce(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
       Cal_BddManagerGC(bddManager);
       return Cal_BddNull(bddManager);
     }
-	if (Cal_BddSize(bddManager, userResult, 1) <
+  if (Cal_BddSize(bddManager, userResult, 1) <
         Cal_BddSize(bddManager, fUserBdd, 1)){
       return userResult;
     }
@@ -162,20 +136,6 @@ Cal_BddReduce(Cal_BddManager  bddManager, Cal_Bdd fUserBdd,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Returns a minimal BDD whose function contains fMin and is
-  contained in fMax.]
-
-  Description [Returns a minimal BDD f which is contains fMin and is
-  contained in fMax ( fMin <= f <= fMax).
-  This operation is typically used in state space searches to simplify
-  the representation for the set of states wich will be expanded at
-  each step (Rk Rk-1' <= f <= Rk).] 
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddReduce]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddBetween(Cal_BddManager  bddManager, Cal_Bdd fMinUserBdd,
@@ -225,15 +185,6 @@ Cal_BddBetween(Cal_BddManager  bddManager, Cal_Bdd fMinUserBdd,
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpCofactor(
@@ -262,15 +213,6 @@ CalOpCofactor(
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddReduceBF(
@@ -284,19 +226,19 @@ BddReduceBF(
   CalHashTable_t **orHashTableArray = bddManager->reqQue[0];
   CalHashTable_t **reduceHashTableArray = bddManager->reqQue[1];
   CalHashTable_t *uniqueTableForId;
-  
+
   /*Cal_BddIndex_t minIndex;*/
   int minIndex;
   int bddIndex;
   Cal_BddId_t bddId, minId;
-  
-  
+
+
   if ((*calOpProc)(bddManager, f, c, &result) == 1){
     return result;
   }
 
   CalBddGetMinIdAndMinIndex(bddManager, f, c, minId, minIndex);
-  CalHashTableFindOrAdd(reduceHashTableArray[minId], f, c, &result); 
+  CalHashTableFindOrAdd(reduceHashTableArray[minId], f, c, &result);
   for (bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
     hashTable = reduceHashTableArray[bddId];
@@ -322,15 +264,6 @@ BddReduceBF(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddCofactorBF(Cal_BddManager_t * bddManager,
@@ -342,29 +275,29 @@ BddCofactorBF(Cal_BddManager_t * bddManager,
   CalHashTable_t  *hashTable;
   CalHashTable_t **cofactorHashTableArray = bddManager->reqQue[0];
   CalHashTable_t *uniqueTableForId;
-  
+
 /*Cal_BddIndex_t minIndex;*/
   int minIndex;
   int bddIndex;
   Cal_BddId_t bddId, minId;
-  
+
   if (CalBddIsBddZero(bddManager, c)){
     CalBddWarningMessage("Bdd Cofactor Called with zero care set");
     return bddManager->bddOne;
   }
-  
+
   if (calOpProc(bddManager, f, c, &result) == 1){
     return result;
   }
 
   CalBddGetMinIdAndMinIndex(bddManager, f, c, minId, minIndex);
-  CalHashTableFindOrAdd(cofactorHashTableArray[minId], f, c, &result); 
+  CalHashTableFindOrAdd(cofactorHashTableArray[minId], f, c, &result);
   for (bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
     hashTable = cofactorHashTableArray[bddId];
     if(hashTable->numEntries){
       HashTableCofactorApply(bddManager, hashTable, cofactorHashTableArray,
-                             calOpProc); 
+                             calOpProc);
     }
   }
   for(bddIndex = bddManager->numVars - 1; bddIndex >= minIndex; bddIndex--){
@@ -384,15 +317,6 @@ BddCofactorBF(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 HashTableReduceApply(Cal_BddManager_t * bddManager,
@@ -409,14 +333,14 @@ HashTableReduceApply(Cal_BddManager_t * bddManager,
   int minIndex;
   int bddIndex;
   CalHashTable_t *orHashTable;
-  
+
   requestNodeList = Cal_Nil(CalRequestNode_t);
   for(i = 0; i < numBins; i++){
     last = Cal_Nil(CalRequestNode_t);
     for (requestNode =  hashTable->bins[i]; requestNode !=
                                                 Cal_Nil(CalRequestNode_t);
          requestNode = nextRequestNode){
-      nextRequestNode = CalRequestNodeGetNextRequestNode(requestNode);  
+      nextRequestNode = CalRequestNodeGetNextRequestNode(requestNode);
       CalRequestNodeGetF(requestNode, f);
       CalRequestNodeGetG(requestNode, c);
       CalBddGetMinId2(bddManager, f, c, minId);
@@ -468,7 +392,7 @@ HashTableReduceApply(Cal_BddManager_t * bddManager,
       CalHashTableApply(bddManager, orHashTable, orHashTableArray, CalOpOr);
     }
   }
-  
+
   for(bddIndex = bddManager->numVars - 1; bddIndex >= minIndex; bddIndex--){
     CalHashTable_t *uniqueTableForId;
     bddId = bddManager->indexToId[bddIndex];
@@ -492,7 +416,7 @@ HashTableReduceApply(Cal_BddManager_t * bddManager,
     CalBddAddRefCount(result, 2);
     CalHashTableAddDirect(hashTable, requestNode);
   }
-  
+
   /* Clean up the orHashTableArray */
   for(bddIndex = bddManager->numVars - 1; bddIndex >= minIndex; bddIndex--){
     bddId = bddManager->indexToId[bddIndex];
@@ -501,15 +425,6 @@ HashTableReduceApply(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 HashTableCofactorApply(Cal_BddManager_t * bddManager,
@@ -554,15 +469,6 @@ HashTableCofactorApply(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 HashTableCofactorReduce(Cal_BddManager_t * bddManager,
@@ -656,25 +562,3 @@ HashTableCofactorReduce(Cal_BddManager_t * bddManager,
   }
   hashTable->endNode = endNode;
 }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

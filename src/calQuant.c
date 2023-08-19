@@ -93,18 +93,6 @@ static Cal_Bdd_t BddRelProdBFPlusDF(Cal_BddManager_t * bddManager, Cal_Bdd_t f, 
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Returns the result of existentially quantifying some
-  variables from the given BDD.]
-
-  Description [Returns the BDD for f with all the variables that are
-  paired with something in the current variable association
-  existentially quantified out.]
-
-  SideEffects [None.]
-
-  SeeAlso     [Cal_BddRelProd]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddExists(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
@@ -116,7 +104,7 @@ Cal_BddExists(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
     Cal_Bdd_t f = CalBddGetInternalBdd(bddManager, fUserBdd);
     CalAssociation_t *assoc = bddManager->currentAssociation;
     unsigned short opCode;
-    
+
     if (assoc->id == -1){
       opCode = bddManager->tempOpCode--;
     }
@@ -143,30 +131,19 @@ Cal_BddExists(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the result of taking the logical AND of the
-  argument BDDs and existentially quantifying some variables from the
-  product.] 
-
-  Description [Returns the BDD for the logical AND of f and g with all
-  the variables that are paired with something in the current variable
-  association existentially quantified out.]
-
-  SideEffects [None.]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddRelProd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
 {
   Cal_Bdd_t result;
   Cal_Bdd userResult;
-  
+
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd)){
     Cal_Bdd_t f = CalBddGetInternalBdd(bddManager, fUserBdd);
     Cal_Bdd_t g = CalBddGetInternalBdd(bddManager, gUserBdd);
     CalAssociation_t *assoc = bddManager->currentAssociation;
     unsigned short opCode;
-    
+
     if (bddManager->currentAssociation->id == -1){
       opCode = bddManager->tempOpCode--;
       bddManager->tempOpCode--;
@@ -193,16 +170,6 @@ Cal_BddRelProd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the result of universally quantifying some
-  variables from the given BDD.]
-
-  Description [Returns the BDD for f with all the variables that are
-  paired with something in the current variable association
-  universally quantified out.]
-
-  SideEffects [None.]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddForAll(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
@@ -244,24 +211,15 @@ Cal_BddForAll(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
-  
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpExists(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t *
-            resultBddPtr) 
+            resultBddPtr)
 {
   if (((int)bddManager->idToIndex[CalBddGetBddId(f)]) >
-      bddManager->currentAssociation->lastBddIndex){ 
+      bddManager->currentAssociation->lastBddIndex){
     *resultBddPtr = f;
     return 1;
   }
@@ -270,19 +228,10 @@ CalOpExists(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t *
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpRelProd(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t  g,
-             Cal_Bdd_t * resultBddPtr) 
+             Cal_Bdd_t * resultBddPtr)
 {
   if (CalBddIsBddZero(bddManager, f) || CalBddIsBddZero(bddManager, g) ||
       CalBddIsComplementEqual(f, g)){
@@ -300,15 +249,6 @@ CalOpRelProd(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t  g,
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddExistsStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, unsigned
@@ -319,7 +259,7 @@ BddExistsStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, unsigned
   Cal_Bdd_t result;
   Cal_BddId_t topId;
   int quantifying;
-  
+
   if (((int)CalBddGetBddIndex(bddManager, f)) > association->lastBddIndex){
     return f;
   }
@@ -340,8 +280,8 @@ BddExistsStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, unsigned
     if (quantifying){
       CalBddNot(temp1, temp1);
       CalBddNot(temp2, temp2);
-	  result = BddDFStep(bddManager, temp1, temp2, CalOpNand, CAL_OP_NAND);
-	}
+    result = BddDFStep(bddManager, temp1, temp2, CalOpNand, CAL_OP_NAND);
+  }
     else {
       Cal_BddId_t id = CalBddGetBddId(f);
       if (CalUniqueTableForIdFindOrAdd(bddManager, bddManager->uniqueTable[id],
@@ -350,21 +290,12 @@ BddExistsStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, unsigned
         CalBddIcrRefCount(temp2);
       }
     }
-  } 
+  }
   CalCacheTableOneInsert(bddManager, f, result, opCode, 0);
   return (result);
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddRelProdStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t
@@ -405,7 +336,7 @@ BddRelProdStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t
     return result;
   }
   CalBddGetMinId2(bddManager, f, g, topId);
-  
+
   quantifying = (CalBddIsBddNull(bddManager, assoc->varAssociation[topId]) ? 0
                  : 1);
   CalBddGetCofactors(f, topId, f1, f2);
@@ -420,9 +351,9 @@ BddRelProdStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t
     if (quantifying) {
       CalBddNot(temp1, temp1);
       CalBddNot(temp2, temp2);
-	  result = BddDFStep(bddManager, temp1, temp2, CalOpNand, CAL_OP_NAND);
-	  /*result = BddDFStep(bddManager, temp1, temp2, CalOpOr, CAL_OP_OR);*/
-	}
+    result = BddDFStep(bddManager, temp1, temp2, CalOpNand, CAL_OP_NAND);
+    /*result = BddDFStep(bddManager, temp1, temp2, CalOpOr, CAL_OP_OR);*/
+  }
     else {
       if (CalUniqueTableForIdFindOrAdd(bddManager,
                                        bddManager->uniqueTable[topId],
@@ -437,15 +368,6 @@ BddRelProdStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddDFStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t g,
@@ -477,28 +399,20 @@ BddDFStep(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t g,
   CalCacheTableTwoInsert(bddManager, f, g, result, opCode, 0);
   return (result);
 }
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 HashTableApply(Cal_BddManager_t * bddManager, CalHashTable_t * hashTable,
                CalHashTable_t ** reqQueAtPipeDepth, CalOpProc_t calOpProc,
-               unsigned long opCode)  
+               unsigned long opCode)
 {
   int i, numBins = hashTable->numBins;
   CalBddNode_t **bins = hashTable->bins;
   CalRequestNode_t *requestNode;
   Cal_Bdd_t fx, gx, fxbar, gxbar, result;
   Cal_BddId_t bddId;
-  
+
   for(i = 0; i < numBins; i++){
     for(requestNode = bins[i];
         requestNode != Cal_Nil(CalRequestNode_t);
@@ -520,10 +434,10 @@ HashTableApply(Cal_BddManager_t * bddManager, CalHashTable_t * hashTable,
       CalBddNormalize(fxbar, gxbar);
       if((*calOpProc)(bddManager, fxbar, gxbar, &result) == 0){
         if (CalCacheTableTwoLookup(bddManager, fxbar, gxbar, opCode, &result)
-            == 0){ 
+            == 0){
           CalBddGetMinId2(bddManager, fxbar, gxbar, bddId);
           CalHashTableFindOrAdd(reqQueAtPipeDepth[bddId], fxbar, gxbar,
-                                &result); 
+                                &result);
           CalCacheTableTwoInsert(bddManager, fxbar, gxbar, result,
                                  opCode, 1);
         }
@@ -538,15 +452,6 @@ HashTableApply(Cal_BddManager_t * bddManager, CalHashTable_t * hashTable,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 HashTableReduce(Cal_BddManager_t * bddManager, CalHashTable_t * hashTable,
@@ -618,7 +523,7 @@ HashTableReduce(Cal_BddManager_t * bddManager, CalHashTable_t * hashTable,
         CalBddNodePutElseBddNode(bddNode, CalBddGetBddNodeNot(elseBdd));
         /*
         CalNodeManagerInitBddNode(nodeManager, thenBdd, elseBdd,
-                               Cal_Nil(CalBddNode_t), bddNode); 
+                               Cal_Nil(CalBddNode_t), bddNode);
                                */
         CalBddNodeGetRefCount(requestNode, refCount);
         CalBddNodePutRefCount(bddNode, refCount);
@@ -643,28 +548,19 @@ HashTableReduce(Cal_BddManager_t * bddManager, CalHashTable_t * hashTable,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddExistsApply(Cal_BddManager_t *bddManager, int quantifying,
                CalHashTable_t *existHashTable, CalHashTable_t
-               **existHashTableArray,  CalOpProc1_t calOpProc, 
-               unsigned short opCode, CalAssociation_t *assoc)  
+               **existHashTableArray,  CalOpProc1_t calOpProc,
+               unsigned short opCode, CalAssociation_t *assoc)
 {
   int i, numBins = existHashTable->numBins;
   CalBddNode_t **bins = existHashTable->bins;
   CalRequestNode_t *requestNode;
   Cal_Bdd_t f, fx, fxbar, result, resultBar;
-  int lastBddIndex = assoc->lastBddIndex; 
-  
+  int lastBddIndex = assoc->lastBddIndex;
+
   if (quantifying){
     for(i = 0; i < numBins; i++){
       for(requestNode = bins[i];
@@ -673,10 +569,10 @@ BddExistsApply(Cal_BddManager_t *bddManager, int quantifying,
         CalRequestNodeGetF(requestNode, f);
         CalBddGetThenBdd(f, fx);
         CalBddGetElseBdd(f, fxbar);
-      
+
         /*if(calOpProc(bddManager, fx, &result) == 0){*/
         if (((int)bddManager->idToIndex[CalBddGetBddId(fx)]) <= lastBddIndex){
-          if (CalCacheTableOneLookup(bddManager, fx, opCode, &result)){ 
+          if (CalCacheTableOneLookup(bddManager, fx, opCode, &result)){
             CalRequestIsForwardedTo(result);
           }
           else {
@@ -702,9 +598,9 @@ BddExistsApply(Cal_BddManager_t *bddManager, int quantifying,
         CalRequestNodeGetF(requestNode, f);
         CalBddGetThenBdd(f, fx);
         CalBddGetElseBdd(f, fxbar);
-      
+
         if (((int)bddManager->idToIndex[CalBddGetBddId(fx)]) <= lastBddIndex){
-          if (CalCacheTableOneLookup(bddManager, fx, opCode, &result)){ 
+          if (CalCacheTableOneLookup(bddManager, fx, opCode, &result)){
             CalRequestIsForwardedTo(result);
           }
           else {
@@ -729,7 +625,7 @@ BddExistsApply(Cal_BddManager_t *bddManager, int quantifying,
             CalHashTableFindOrAdd(existHashTableArray[CalBddGetBddId(fxbar)], fxbar,
                                   bddManager->bddOne, &resultBar);
             CalCacheTableOneInsert(bddManager, fxbar, resultBar,
-                                   opCode, 1); 
+                                   opCode, 1);
           }
         }
         else{
@@ -743,49 +639,40 @@ BddExistsApply(Cal_BddManager_t *bddManager, int quantifying,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
-static void  
+static void
 BddExistsBFAux(Cal_BddManager_t *bddManager, int minIndex,
                CalHashTable_t **existHashTableArray, CalHashTable_t
                **orHashTableArray,  CalOpProc1_t calOpProc, unsigned
-               short opCode, CalAssociation_t *assoc)   
+               short opCode, CalAssociation_t *assoc)
 {
   int index;
   Cal_BddId_t bddId;
   int quantifying;
-  
+
   /* Apply phase */
   for (index = minIndex; index < bddManager->numVars; index++){
     bddId = bddManager->indexToId[index];
     if (existHashTableArray[bddId]->numEntries){
       quantifying = (CalBddIsBddNull(bddManager,
-                                     assoc->varAssociation[bddId]) ? 0 : 1); 
+                                     assoc->varAssociation[bddId]) ? 0 : 1);
       BddExistsApply(bddManager, quantifying,
                      existHashTableArray[bddId], existHashTableArray,
-                     calOpProc, opCode, assoc);    
+                     calOpProc, opCode, assoc);
     }
   }
-  
+
   /* Reduce phase */
   for (index = bddManager->numVars-1; index >= minIndex; index--){
     bddId = bddManager->indexToId[index];
     if (existHashTableArray[bddId]->numEntries){
       quantifying = (CalBddIsBddNull(bddManager,
-                                     assoc->varAssociation[bddId]) ? 0 : 1); 
+                                     assoc->varAssociation[bddId]) ? 0 : 1);
       if (quantifying){
         BddExistsReduce(bddManager, existHashTableArray[bddId],
                         existHashTableArray, orHashTableArray,
                         opCode, assoc);
-      } 
+      }
       else {
         HashTableReduce(bddManager, existHashTableArray[bddId],
                         bddManager->uniqueTable[bddId]);
@@ -795,35 +682,26 @@ BddExistsBFAux(Cal_BddManager_t *bddManager, int minIndex,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
                 *existHashTable, CalHashTable_t **existHashTableArray,
                 CalHashTable_t **orHashTableArray, unsigned short
-                opCode, CalAssociation_t *association) 
+                opCode, CalAssociation_t *association)
 {
   int i, numBins = existHashTable->numBins;
   CalBddNode_t **bins = existHashTable->bins;
   CalRequestNode_t *requestNode, *next, *requestNodeListAux;
   CalBddNode_t *endNode;
-  
+
   int bddIndex;
   /*Cal_BddIndex_t minIndex, elseIndex;*/
   int minIndex, elseIndex;
   Cal_BddId_t bddId, minId;
   Cal_Bdd_t thenBdd, elseBdd, result, orResult;
   Cal_BddRefCount_t refCount;
-  int lastBddIndex = association->lastBddIndex; 
-  
+  int lastBddIndex = association->lastBddIndex;
+
 
   /* For those nodes which get processed in the first pass */
   /* requestNodeList = existHashTable->requestNodeList; */
@@ -834,9 +712,9 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
    */
   requestNodeListAux = Cal_Nil(CalRequestNode_t);
   existHashTable->numEntries = 0;
-  
+
   minIndex = bddManager->numVars;
-  
+
   for(i = 0; i < numBins; i++){
     for(requestNode = bins[i], bins[i] = Cal_Nil(CalRequestNode_t);
         requestNode != Cal_Nil(CalRequestNode_t);
@@ -858,14 +736,14 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
         endNode = requestNode;
         continue;
       }
-      
+
       CalRequestNodePutNextRequestNode(requestNode, requestNodeListAux);
       requestNodeListAux = requestNode;
 
       /*if(CalOpExists(bddManager, elseBdd, &result) == 0){*/
       if (((int)bddManager->idToIndex[CalBddGetBddId(elseBdd)]) <= lastBddIndex){
         if (CalCacheTableOneLookup(bddManager, elseBdd, opCode,
-                                   &result)){  
+                                   &result)){
           CalRequestIsForwardedTo(result);
         }
         else{
@@ -874,7 +752,7 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
           CalCacheTableOneInsert(bddManager, elseBdd, result,
                                  opCode, 1);
           if (minIndex > (elseIndex = CalBddGetBddIndex(bddManager,
-                                                        elseBdd))){ 
+                                                        elseBdd))){
             minIndex = elseIndex;
           }
         }
@@ -885,20 +763,20 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
       CalRequestNodePutElseRequest(requestNode, result);
     }
   }
-  
+
   if (!requestNodeListAux){
     /* requestNodeList = requestNodeList; */
     existHashTable->endNode = endNode;
     return;
   }
-  
+
   BddExistsBFAux(bddManager, minIndex, existHashTableArray,
-                 orHashTableArray,  CalOpExists, opCode, association); 
+                 orHashTableArray,  CalOpExists, opCode, association);
   minIndex = bddManager->numVars;
   for (requestNode = requestNodeListAux; requestNode; requestNode = next){
     Cal_Bdd_t thenResult, elseResult;
     Cal_BddIndex_t orResultIndex;
-    
+
     next = CalRequestNodeGetNextRequestNode(requestNode);
     CalRequestNodeGetThenRequest(requestNode, thenResult);
     CalRequestNodeGetElseRequest(requestNode, elseResult);
@@ -923,7 +801,7 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
     }
     CalRequestNodePutThenRequest(requestNode, orResult);
   }
-  
+
 
   /* Call "OR" apply and reduce */
   for (bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
@@ -933,7 +811,7 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
                      CalOpNand, CAL_OP_NAND);
     }
   }
-  
+
   for(bddIndex = bddManager->numVars - 1; bddIndex >= minIndex; bddIndex--){
     CalHashTable_t *uniqueTableForId;
     bddId = bddManager->indexToId[bddIndex];
@@ -942,7 +820,7 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
       HashTableReduce(bddManager, orHashTableArray[bddId], uniqueTableForId);
     }
   }
-  
+
   for (requestNode = requestNodeListAux; requestNode; requestNode = next){
     next = CalRequestNodeGetNextRequestNode(requestNode);
     CalRequestNodeGetThenRequest(requestNode, result);
@@ -961,19 +839,10 @@ BddExistsReduce(Cal_BddManager_t *bddManager, CalHashTable_t
   }
   /*existHashTable->requestNodeList = requestNodeList;*/
   existHashTable->endNode = endNode;
-  
+
 }
-  
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddExistsBFPlusDF(Cal_BddManager_t *bddManager, Cal_Bdd_t f, unsigned
@@ -982,12 +851,12 @@ BddExistsBFPlusDF(Cal_BddManager_t *bddManager, Cal_Bdd_t f, unsigned
   Cal_BddId_t fId = CalBddGetBddId(f);
   Cal_BddIndex_t bddIndex;
   Cal_BddId_t bddId;
-  
+
   Cal_BddIndex_t fIndex = bddManager->idToIndex[fId];
   CalHashTable_t **orHashTableArray = bddManager->reqQue[4];
   CalHashTable_t **existHashTableArray = bddManager->reqQue[5];
   Cal_Bdd_t result;
-  
+
   if (CalOpExists(bddManager, f, &result) == 1){
     return result;
   }
@@ -995,14 +864,14 @@ BddExistsBFPlusDF(Cal_BddManager_t *bddManager, Cal_Bdd_t f, unsigned
   if (CalCacheTableOneLookup(bddManager, f, opCode, &result)){
     return result;
   }
-  
+
   /*
-   * Change the size of the exist hash table to min. size 
+   * Change the size of the exist hash table to min. size
    */
   for (bddIndex = fIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
     existHashTableArray[bddId]->sizeIndex =
-        DEFAULT_EXIST_HASH_TABLE_SIZE_INDEX;  
+        DEFAULT_EXIST_HASH_TABLE_SIZE_INDEX;
     existHashTableArray[bddId]->numBins = DEFAULT_EXIST_HASH_TABLE_SIZE;
     Cal_MemFree(existHashTableArray[bddId]->bins);
     existHashTableArray[bddId]->bins = Cal_MemAlloc(CalBddNode_t*,
@@ -1010,16 +879,16 @@ BddExistsBFPlusDF(Cal_BddManager_t *bddManager, Cal_Bdd_t f, unsigned
     memset((char *)existHashTableArray[bddId]->bins, 0,
            existHashTableArray[bddId]->numBins*sizeof(CalBddNode_t*));
   }
-  
+
   CalHashTableFindOrAdd(existHashTableArray[fId], f, bddManager->bddOne,
-                        &result);  
+                        &result);
 
 
   BddExistsBFAux(bddManager, fIndex, existHashTableArray, orHashTableArray,
-                 CalOpExists, opCode, association);  
+                 CalOpExists, opCode, association);
 
   CalRequestIsForwardedTo(result);
-  
+
   CalCacheTableTwoFixResultPointers(bddManager);
   CalCacheTableOneInsert(bddManager, f, result, opCode, 0);
   for (bddIndex = fIndex; bddIndex < bddManager->numVars; bddIndex++){
@@ -1030,17 +899,8 @@ BddExistsBFPlusDF(Cal_BddManager_t *bddManager, Cal_Bdd_t f, unsigned
   return result;
 }
 
-  
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
@@ -1055,7 +915,7 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
   Cal_Bdd_t fx, fxbar, gx, gxbar, result, resultBar;
   /*Cal_BddIndex_t minIndex;*/
   int minIndex;
-  
+
   for(i = 0; i < numBins; i++){
     for(requestNode = bins[i];
         requestNode != Cal_Nil(CalRequestNode_t);
@@ -1066,7 +926,7 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
       if (minIndex > assoc->lastBddIndex){
         if (CalOpAnd(bddManager, fx, gx, &result) == 0){
           if (CalCacheTableTwoLookup(bddManager, fx, gx, CAL_OP_NAND,
-                                     &result)){  
+                                     &result)){
             CalRequestIsForwardedTo(result);
           }
           else{
@@ -1080,13 +940,13 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
       else {
         if(calOpProc(bddManager, fx, gx, &result) == 0){
           if (CalCacheTableTwoLookup(bddManager, fx, gx, opCode,
-                                     &result)){      
+                                     &result)){
             CalRequestIsForwardedTo(result);
           }
           else {
             CalHashTableFindOrAdd(relProdHashTableArray[minId], fx, gx,
-                                  &result);   
-            CalCacheTableTwoInsert(bddManager, fx, gx, result, opCode, 1); 
+                                  &result);
+            CalCacheTableTwoInsert(bddManager, fx, gx, result, opCode, 1);
           }
         }
       }
@@ -1095,14 +955,14 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
         Cal_Bdd_t elseRequest;
         Cal_BddId_t elseRequestId;
         CalBddNode_t *elseRequestNode;
-        
+
         CalBddGetMinId2(bddManager, fxbar, gxbar, elseRequestId);
         CalNodeManagerInitBddNode(bddManager->nodeManagerArray[elseRequestId],
                                   fxbar, gxbar, Cal_Nil(CalBddNode_t),
                                   elseRequestNode);
         /*
           CalNodeManagerAllocNode(bddManager->nodeManagerArray[elseRequestId],
-          elseRequestNode);  
+          elseRequestNode);
           CalRequestNodePutF(elseRequestNode, fxbar);
           CalRequestNodePutG(elseRequestNode, gxbar);
         */
@@ -1117,14 +977,14 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
         if (minIndex > assoc->lastBddIndex){
           if (CalOpAnd(bddManager, fxbar, gxbar, &resultBar) == 0){
             if( CalCacheTableTwoLookup(bddManager, fxbar, gxbar,
-                                       CAL_OP_NAND, &resultBar)){  
+                                       CAL_OP_NAND, &resultBar)){
               CalRequestIsForwardedTo(resultBar);
             }
             else{
               CalHashTableFindOrAdd(andHashTableArray[minId], fxbar, gxbar,
-                                    &resultBar); 
+                                    &resultBar);
               CalCacheTableTwoInsert(bddManager, fxbar, gxbar, resultBar,
-                                     CAL_OP_NAND, 1); 
+                                     CAL_OP_NAND, 1);
             }
             CalBddNot(resultBar, resultBar);
           }
@@ -1132,14 +992,14 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
         else {
           if(calOpProc(bddManager, fxbar, gxbar, &resultBar) == 0){
             if (CalCacheTableTwoLookup(bddManager, fxbar, gxbar, opCode,
-                                       &resultBar)){   
+                                       &resultBar)){
               CalRequestIsForwardedTo(resultBar);
             }
-            else { 
+            else {
               CalHashTableFindOrAdd(relProdHashTableArray[minId],
                                     fxbar, gxbar, &resultBar);
               CalCacheTableTwoInsert(bddManager, fxbar, gxbar,
-                                     resultBar, opCode, 1); 
+                                     resultBar, opCode, 1);
             }
           }
         }
@@ -1149,16 +1009,8 @@ BddRelProdApply(Cal_BddManager_t *bddManager, int quantifying, CalHashTable_t
     }
   }
 }
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
@@ -1166,7 +1018,7 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
                  **relProdHashTableArray, CalHashTable_t
                  **andHashTableArray, CalHashTable_t
                  **orHashTableArray, unsigned short opCode,
-                 CalAssociation_t *assoc)  
+                 CalAssociation_t *assoc)
 {
   int i, numBins = relProdHashTable->numBins;
   CalBddNode_t **bins = relProdHashTable->bins;
@@ -1180,19 +1032,19 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
   Cal_BddRefCount_t refCount;
   Cal_Bdd_t fxbar, gxbar;
   CalBddNode_t *endNode;
-  
+
 
   /* For those nodes which get processed in the first pass */
   /*requestNodeList = relProdHashTable->requestNodeList;*/
   endNode = relProdHashTable->endNode;
-  
+
   /* For the other ones. This list is merged with the requestNodeList
    * after processing is complete.
    */
   requestNodeListAux = Cal_Nil(CalRequestNode_t);
-  
+
   minIndex = bddManager->numVars;
-  
+
   for(i = 0; i < numBins; i++){
     for(requestNode = bins[i], bins[i] = Cal_Nil(CalRequestNode_t);
         requestNode != Cal_Nil(CalRequestNode_t);
@@ -1206,7 +1058,7 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
       CalRequestIsForwardedTo(elseBdd);
       CalRequestGetF(elseBdd, fxbar);
       CalRequestGetG(elseBdd, gxbar);
-      
+
       /* Free the else request node because it is not needed */
       elseRequestNode = CalRequestNodeGetElseRequestNode(requestNode);
       elseRequestId = CalRequestNodeGetElseRequestId(requestNode);
@@ -1224,7 +1076,7 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
         endNode = requestNode;
         continue;
       }
-      
+
       CalRequestNodePutNextRequestNode(requestNode, requestNodeListAux);
       requestNodeListAux = requestNode;
 
@@ -1249,14 +1101,14 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
       else {
         if(CalOpRelProd(bddManager, fxbar, gxbar, &result) == 0){
           if (CalCacheTableTwoLookup(bddManager, fxbar, gxbar, opCode,
-                                     &result)){  
+                                     &result)){
             CalRequestIsForwardedTo(result);
           }
           else {
-            CalHashTableFindOrAdd(relProdHashTableArray[bddId], fxbar, gxbar, 
+            CalHashTableFindOrAdd(relProdHashTableArray[bddId], fxbar, gxbar,
                                   &result);
             CalCacheTableTwoInsert(bddManager, fxbar, gxbar, result,
-                                   opCode, 1); 
+                                   opCode, 1);
             if (minIndex > bddIndex) minIndex = bddIndex;
           }
         }
@@ -1270,15 +1122,15 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
     relProdHashTable->endNode = endNode;
     return;
   }
-  
+
   BddRelProdBFAux(bddManager, minIndex, relProdHashTableArray,
                   andHashTableArray, orHashTableArray, opCode, assoc);
-  
+
   minIndex = bddManager->numVars;
   for (requestNode = requestNodeListAux; requestNode; requestNode = next){
     Cal_Bdd_t thenResult, elseResult;
     Cal_BddIndex_t orResultIndex;
-    
+
     next = CalRequestNodeGetNextRequestNode(requestNode);
     CalRequestNodeGetThenRequest(requestNode, thenResult);
     CalRequestNodeGetElseRequest(requestNode, elseResult);
@@ -1289,7 +1141,7 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
       CalBddNot(thenResult, thenResult);
       CalBddNot(elseResult, elseResult);
       if (CalCacheTableTwoLookup(bddManager, thenResult, elseResult,
-                                 CAL_OP_NAND, &orResult)){ 
+                                 CAL_OP_NAND, &orResult)){
         CalRequestIsForwardedTo(orResult);
       }
       else {
@@ -1298,7 +1150,7 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
         CalHashTableFindOrAdd(orHashTableArray[minId], thenResult, elseResult,
                               &orResult);
         CalCacheTableTwoInsert(bddManager, thenResult, elseResult, orResult,
-                                 CAL_OP_NAND, 1); 
+                                 CAL_OP_NAND, 1);
         if (minIndex > orResultIndex) minIndex = orResultIndex;
       }
     }
@@ -1310,10 +1162,10 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
     bddId = bddManager->indexToId[bddIndex];
     if(orHashTableArray[bddId]->numEntries){
         HashTableApply(bddManager, orHashTableArray[bddId], orHashTableArray,
-                       CalOpNand, CAL_OP_NAND); 
+                       CalOpNand, CAL_OP_NAND);
     }
   }
-  
+
   for(bddIndex = bddManager->numVars - 1; bddIndex >= minIndex; bddIndex--){
     CalHashTable_t *uniqueTableForId;
     bddId = bddManager->indexToId[bddIndex];
@@ -1344,15 +1196,6 @@ BddRelProdReduce(Cal_BddManager_t *bddManager, CalHashTable_t
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddRelProdBFAux(Cal_BddManager_t *bddManager, int minIndex,
@@ -1366,21 +1209,21 @@ BddRelProdBFAux(Cal_BddManager_t *bddManager, int minIndex,
   int index;
   Cal_BddId_t bddId;
   CalHashTable_t *hashTable;
-  
+
   for (bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
     hashTable = andHashTableArray[bddId];
     if(hashTable->numEntries){
       HashTableApply(bddManager, hashTable, andHashTableArray, CalOpNand,
-                     CAL_OP_NAND); 
+                     CAL_OP_NAND);
     }
     hashTable = relProdHashTableArray[bddId];
     if(hashTable->numEntries){
       quantifying = (CalBddIsBddNull(bddManager,
-                                     assoc->varAssociation[bddId]) ? 0 : 1); 
+                                     assoc->varAssociation[bddId]) ? 0 : 1);
       BddRelProdApply(bddManager, quantifying, hashTable,
                       relProdHashTableArray, andHashTableArray,
-                      CalOpRelProd, opCode, assoc); 
+                      CalOpRelProd, opCode, assoc);
     }
   }
 
@@ -1395,11 +1238,11 @@ BddRelProdBFAux(Cal_BddManager_t *bddManager, int minIndex,
     }
     if (relProdHashTableArray[bddId]->numEntries){
       quantifying = (CalBddIsBddNull(bddManager,
-                                     assoc->varAssociation[bddId]) ? 0 : 1); 
+                                     assoc->varAssociation[bddId]) ? 0 : 1);
       if (quantifying){
         BddRelProdReduce(bddManager, relProdHashTableArray[bddId],
                          relProdHashTableArray, andHashTableArray,
-                         orHashTableArray, opCode, assoc); 
+                         orHashTableArray, opCode, assoc);
       }
       else {
         HashTableReduce(bddManager, relProdHashTableArray[bddId],
@@ -1410,15 +1253,6 @@ BddRelProdBFAux(Cal_BddManager_t *bddManager, int minIndex,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static Cal_Bdd_t
 BddRelProdBFPlusDF(Cal_BddManager_t * bddManager, Cal_Bdd_t  f,
@@ -1445,12 +1279,12 @@ BddRelProdBFPlusDF(Cal_BddManager_t * bddManager, Cal_Bdd_t  f,
   CalBddGetMinIdAndMinIndex(bddManager, f, g, minId, minIndex);
 
   /*
-   * Change the size of the exist hash table to min. size 
+   * Change the size of the exist hash table to min. size
    */
   for (bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
     relProdHashTableArray[bddId]->sizeIndex =
-        DEFAULT_EXIST_HASH_TABLE_SIZE_INDEX;  
+        DEFAULT_EXIST_HASH_TABLE_SIZE_INDEX;
     relProdHashTableArray[bddId]->numBins = DEFAULT_EXIST_HASH_TABLE_SIZE;
     Cal_MemFree(relProdHashTableArray[bddId]->bins);
     relProdHashTableArray[bddId]->bins = Cal_MemAlloc(CalBddNode_t*,
@@ -1473,11 +1307,11 @@ BddRelProdBFPlusDF(Cal_BddManager_t * bddManager, Cal_Bdd_t  f,
     }
   }
   else {
-    CalHashTableFindOrAdd(relProdHashTableArray[minId], f, g, &result); 
+    CalHashTableFindOrAdd(relProdHashTableArray[minId], f, g, &result);
   }
 
   BddRelProdBFAux(bddManager, minIndex, relProdHashTableArray,
-                  andHashTableArray, orHashTableArray, opCode, association); 
+                  andHashTableArray, orHashTableArray, opCode, association);
   CalRequestIsForwardedTo(result);
   CalCacheTableTwoFixResultPointers(bddManager);
   CalCacheTableTwoInsert(bddManager, f, g, result, opCode, 0);
@@ -1489,4 +1323,3 @@ BddRelProdBFPlusDF(Cal_BddManager_t * bddManager, Cal_Bdd_t  f,
   }
   return result;
 }
-
