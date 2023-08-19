@@ -6,6 +6,8 @@ extern "C" {
 #include <calInt.h>
 }
 
+#include <vector>
+
 // -----------------------------------------------------------------------------
 // Forward Declarations
 class BDD;
