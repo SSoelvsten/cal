@@ -286,7 +286,14 @@ public:
   /// \copybrief Cal_BddGetRegular
   //////////////////////////////////////////////////////////////////////////////
   BDD Regular() const
-  { return BDD(this->_bddManager, Cal_BddGetRegular(this->_bddManager, this->_bdd)); }
+  {
+    // Unlike other BDD operations of CAL, `Cal_BddGetRegular` does not
+    // increment the reference count of its output. Hence, we have to do so here
+    // to compensate for the `UnFree(...)` in `~BDD()`.
+    BDD res(this->_bddManager, Cal_BddGetRegular(this->_bddManager, this->_bdd));
+    BDD::UnFree(res._bddManager, res._bdd);
+    return res;
+  }
 
   //////////////////////////////////////////////////////////////////////////////
   /// \copybrief Cal_BddNot
