@@ -426,6 +426,18 @@ public:
   // ---------------------------------------------------------------------------
   // Settings + Statistics
 
+  void SetParameters(long reorderingThreshold,
+                     long maxForwardedNodes,
+                     double repackAfterGCThreshold,
+                     double tableRepackThreshold)
+  {
+    return Cal_BddManagerSetParameters(this->_bddManager,
+                                       reorderingThreshold,
+                                       maxForwardedNodes,
+                                       repackAfterGCThreshold,
+                                       tableRepackThreshold);
+  }
+
   unsigned long GetNumNodes()
   { return Cal_BddManagerGetNumNodes(this->_bddManager); }
 
