@@ -42,6 +42,7 @@ var NAVTREE =
       [ "Preliminary Papers", "page__cite.html#autotoc_md8", null ],
       [ "Original CAL Papers", "page__cite.html#autotoc_md9", null ]
     ] ],
+    [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -61,7 +62,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"group__module____c.html#gad9b22a6e06dd0593fb226a50edbecaa6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

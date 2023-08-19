@@ -145,396 +145,498 @@ $(document).ready(function(){initNavTree('cal_8h_source.html',''); initResizable
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#define CAL_REORDER_METHOD_DF 1</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Cal_BddManagerStruct *Cal_BddManager;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Cal_BddManagerStruct Cal_BddManager_t;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>CalBddNodeStruct *Cal_Bdd;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Cal_BddId_t;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Cal_BddIndex_t;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> * (*Cal_VarNamingFn_t)(Cal_BddManager, Cal_Bdd, Cal_Pointer_t);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> * (*Cal_TerminalIdFn_t)(Cal_BddManager, Cal_Address_t, Cal_Address_t, Cal_Pointer_t);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Cal_BlockStruct *Cal_Block;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">enum</span> Cal_BddOpEnum {CAL_AND, CAL_OR, CAL_XOR};</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> Cal_BddOpEnum Cal_BddOp_t;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#ifndef EXTERN</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#define EXTERN extern</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411">  137</a></span>&#160;<span class="preprocessor">#define Cal_BddNamingFnNone ((char *(*)(Cal_BddManager, Cal_Bdd, Cal_Pointer_t))0)</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="group__module____c.html#ga398d29a2c27cc2eee06b2f59eaada488">  140</a></span>&#160;<span class="preprocessor">#define Cal_BddTerminalIdFnNone ((char *(*)(Cal_BddManager, Cal_Address_t, Cal_Address_t, Cal_Pointer_t))0)</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#define Cal_Assert(valid) assert(valid)</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Cal_BddManagerStruct *Cal_BddManager;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Cal_BddManagerStruct Cal_BddManager_t;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>CalBddNodeStruct *Cal_Bdd;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Cal_BddId_t;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Cal_BddIndex_t;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> * (*Cal_VarNamingFn_t)(Cal_BddManager, Cal_Bdd, Cal_Pointer_t);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> * (*Cal_TerminalIdFn_t)(Cal_BddManager, Cal_Address_t, Cal_Address_t, Cal_Pointer_t);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Cal_BlockStruct *Cal_Block;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">enum</span> Cal_BddOpEnum {CAL_AND, CAL_OR, CAL_XOR};</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> Cal_BddOpEnum Cal_BddOp_t;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#ifndef EXTERN</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#define EXTERN extern</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411">  141</a></span>&#160;<span class="preprocessor">#define Cal_BddNamingFnNone ((char *(*)(Cal_BddManager, Cal_Bdd, Cal_Pointer_t))0)</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="group__module____c.html#ga398d29a2c27cc2eee06b2f59eaada488">  146</a></span>&#160;<span class="preprocessor">#define Cal_BddTerminalIdFnNone ((char *(*)(Cal_BddManager, Cal_Address_t, Cal_Address_t, Cal_Pointer_t))0)</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#define Cal_Assert(valid) assert(valid)</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;EXTERN Cal_BddManager Cal_BddManagerInit();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddManagerQuit(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">/* | Hooks and Parameters                                                    */</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;EXTERN <span class="keywordtype">void</span> * Cal_BddManagerGetHooks(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddManagerSetHooks(Cal_BddManager bddManager, <span class="keywordtype">void</span> *hooks);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddManagerSetParameters(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                                        <span class="keywordtype">long</span> reorderingThreshold,</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                                        <span class="keywordtype">long</span> maxForwardedNodes,</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                                        <span class="keywordtype">double</span> repackAfterGCThreshold,</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                                        <span class="keywordtype">double</span> tableRepackThreshold);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="comment">/* | Statistics and Information                                              */</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;EXTERN <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Cal_BddManagerGetNumNodes(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;EXTERN <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Cal_BddTotalSize(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;EXTERN <span class="keywordtype">long</span> Cal_BddVars(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddOverflow(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddStats(Cal_BddManager bddManager, FILE * fp);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">/* | Memory and Garbage Collection                                           */</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;EXTERN <span class="keywordtype">long</span> Cal_BddNodeLimit(Cal_BddManager bddManager, <span class="keywordtype">long</span> newLimit);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddSetGCMode(Cal_BddManager bddManager, <span class="keywordtype">int</span> gcMode);</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddManagerSetGCLimit(Cal_BddManager manager);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddManagerGC(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">/* | Variable Reordering                                                     */</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddDynamicReordering(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                                     <span class="keywordtype">int</span> technique,</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                                     <span class="keywordtype">int</span> method);</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddReorder(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;EXTERN Cal_Block Cal_BddNewVarBlock(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                                    Cal_Bdd variable,</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                                    <span class="keywordtype">long</span> length);</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddVarBlockReorderable(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                                       Cal_Block block,</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                                       <span class="keywordtype">int</span> reorderable);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">/* | Association List                                                        */</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_AssociationInit(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                               Cal_Bdd *associationInfoUserBdds,</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                               <span class="keywordtype">int</span> pairs);</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_AssociationQuit(Cal_BddManager bddManager, <span class="keywordtype">int</span> associationId);</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_AssociationSetCurrent(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                                     <span class="keywordtype">int</span> associationId);</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160; </div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_TempAssociationInit(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                                    Cal_Bdd *associationInfoUserBdds,</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                                    <span class="keywordtype">int</span> pairs);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_TempAssociationAugment(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                                       Cal_Bdd *associationInfoUserBdds,</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                                       <span class="keywordtype">int</span> pairs);</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_TempAssociationQuit(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="comment">/* | Save / Load of BDDs                                                     */</span></div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160; </div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddDumpBdd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;                          Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;                          Cal_Bdd * userVars,</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                          FILE * fp);</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160; </div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;EXTERN Cal_Bdd Cal_BddUndumpBdd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;                                Cal_Bdd * userVars,</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;                                FILE * fp,</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;                                <span class="keywordtype">int</span> * error);</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="group__module____c.html#gaaaaf85b240ea9f11989884553e34c53b">  169</a></span>&#160;EXTERN Cal_BddManager <a class="code" href="group__module____c.html#gaaaaf85b240ea9f11989884553e34c53b">Cal_BddManagerInit</a>();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="group__module____c.html#gaddbb7cb1d592ed0d85e7bebf33dc42f2">  176</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gaddbb7cb1d592ed0d85e7bebf33dc42f2">Cal_BddManagerQuit</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">/* | Hooks and Parameters                                                    */</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="group__module____c.html#gad9b22a6e06dd0593fb226a50edbecaa6">  187</a></span>&#160;EXTERN <span class="keywordtype">void</span> * <a class="code" href="group__module____c.html#gad9b22a6e06dd0593fb226a50edbecaa6">Cal_BddManagerGetHooks</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="group__module____c.html#gafd206e0e93fad37ed022933f832128c4">  196</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gafd206e0e93fad37ed022933f832128c4">Cal_BddManagerSetHooks</a>(Cal_BddManager bddManager, <span class="keywordtype">void</span> *hooks);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="group__module____c.html#gafe2c00a5c4b79ca80a9a3c5ef798227a">  220</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gafe2c00a5c4b79ca80a9a3c5ef798227a">Cal_BddManagerSetParameters</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                                        <span class="keywordtype">long</span> reorderingThreshold,</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                                        <span class="keywordtype">long</span> maxForwardedNodes,</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                                        <span class="keywordtype">double</span> repackAfterGCThreshold,</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                                        <span class="keywordtype">double</span> tableRepackThreshold);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">/* | Statistics and Information                                              */</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="group__module____c.html#gaa4014e81c805b7ab51cff12df1aad0d1">  235</a></span>&#160;EXTERN <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="group__module____c.html#gaa4014e81c805b7ab51cff12df1aad0d1">Cal_BddManagerGetNumNodes</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="group__module____c.html#ga8b65056969337f7e611c60329e885c26">  242</a></span>&#160;EXTERN <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="group__module____c.html#ga8b65056969337f7e611c60329e885c26">Cal_BddTotalSize</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="group__module____c.html#gac1c41629ebc92746faeb02974331a359">  247</a></span>&#160;EXTERN <span class="keywordtype">long</span> <a class="code" href="group__module____c.html#gac1c41629ebc92746faeb02974331a359">Cal_BddVars</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="group__module____c.html#ga84063346e71e2a8f11943d5d344b73a5">  256</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga84063346e71e2a8f11943d5d344b73a5">Cal_BddOverflow</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="group__module____c.html#ga04690c16f880fceb4b31f5aae1f23c60">  261</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga04690c16f880fceb4b31f5aae1f23c60">Cal_BddStats</a>(Cal_BddManager bddManager, FILE * fp);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">/* | Memory and Garbage Collection                                           */</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="group__module____c.html#ga66da099c0033ebd8f979dc882400c1c9">  274</a></span>&#160;EXTERN <span class="keywordtype">long</span> <a class="code" href="group__module____c.html#ga66da099c0033ebd8f979dc882400c1c9">Cal_BddNodeLimit</a>(Cal_BddManager bddManager, <span class="keywordtype">long</span> newLimit);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
+<div class="line"><a name="l00282"></a><span class="lineno"><a class="line" href="group__module____c.html#gac5ff28098a2167da2af3f20383904451">  282</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gac5ff28098a2167da2af3f20383904451">Cal_BddSetGCMode</a>(Cal_BddManager bddManager, <span class="keywordtype">int</span> gcMode);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="group__module____c.html#ga75ea88619e4d8ac49eb9eeae2ac44b1d">  292</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga75ea88619e4d8ac49eb9eeae2ac44b1d">Cal_BddManagerSetGCLimit</a>(Cal_BddManager manager);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="group__module____c.html#ga26c0636b829ba9f740f2655177a0fe07">  301</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga26c0636b829ba9f740f2655177a0fe07">Cal_BddManagerGC</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">/* | Variable Reordering                                                     */</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno"><a class="line" href="group__module____c.html#ga65f1251eb922638fe67454d94125d412">  312</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga65f1251eb922638fe67454d94125d412">Cal_BddDynamicReordering</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                                     <span class="keywordtype">int</span> technique,</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                                     <span class="keywordtype">int</span> method);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="group__module____c.html#gad06a3d382f760006dc9fd432bea68789">  323</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gad06a3d382f760006dc9fd432bea68789">Cal_BddReorder</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="group__module____c.html#gaa562ddaaf6420309f2cfe0bf4ccbc40a">  335</a></span>&#160;EXTERN Cal_Block <a class="code" href="group__module____c.html#gaa562ddaaf6420309f2cfe0bf4ccbc40a">Cal_BddNewVarBlock</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                                    Cal_Bdd variable,</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                                    <span class="keywordtype">long</span> length);</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="group__module____c.html#ga5a49eabb77e07f9866e1bcbcd270bded">  345</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga5a49eabb77e07f9866e1bcbcd270bded">Cal_BddVarBlockReorderable</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                                       Cal_Block block,</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                                       <span class="keywordtype">int</span> reorderable);</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment">/* | Association List                                                        */</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00374"></a><span class="lineno"><a class="line" href="group__module____c.html#ga41967405e8ae6caec0c3557a66a87430">  374</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga41967405e8ae6caec0c3557a66a87430">Cal_AssociationInit</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                               Cal_Bdd *associationInfoUserBdds,</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                               <span class="keywordtype">int</span> pairs);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="group__module____c.html#gaad70855528f24dce75494788f54efdd8">  386</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gaad70855528f24dce75494788f54efdd8">Cal_AssociationQuit</a>(Cal_BddManager bddManager, <span class="keywordtype">int</span> associationId);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="group__module____c.html#gabf6efc85c83491d18249871e8bfedd6d">  394</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gabf6efc85c83491d18249871e8bfedd6d">Cal_AssociationSetCurrent</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                                     <span class="keywordtype">int</span> associationId);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160; </div>
+<div class="line"><a name="l00405"></a><span class="lineno"><a class="line" href="group__module____c.html#ga6c033a171baf120dd10e5c889fe16de1">  405</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga6c033a171baf120dd10e5c889fe16de1">Cal_TempAssociationInit</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                                    Cal_Bdd *associationInfoUserBdds,</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                                    <span class="keywordtype">int</span> pairs);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160; </div>
+<div class="line"><a name="l00414"></a><span class="lineno"><a class="line" href="group__module____c.html#gade9f273d604671b7acd5a0970b002c13">  414</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gade9f273d604671b7acd5a0970b002c13">Cal_TempAssociationAugment</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                                       Cal_Bdd *associationInfoUserBdds,</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                                       <span class="keywordtype">int</span> pairs);</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160; </div>
+<div class="line"><a name="l00423"></a><span class="lineno"><a class="line" href="group__module____c.html#ga3f54f5866f06f1af0014fdfb732839ba">  423</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga3f54f5866f06f1af0014fdfb732839ba">Cal_TempAssociationQuit</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="comment">/* | Save / Load of BDDs                                                     */</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
+<div class="line"><a name="l00439"></a><span class="lineno"><a class="line" href="group__module____c.html#ga75507284ba925e06b66c92c7aad6cbf9">  439</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga75507284ba925e06b66c92c7aad6cbf9">Cal_BddDumpBdd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                          Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                          Cal_Bdd * userVars,</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                          FILE * fp);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
+<div class="line"><a name="l00466"></a><span class="lineno"><a class="line" href="group__module____c.html#ga77ec3f2a6340c2f7ff70c092effdadeb">  466</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga77ec3f2a6340c2f7ff70c092effdadeb">Cal_BddUndumpBdd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;                                Cal_Bdd * userVars,</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;                                FILE * fp,</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;                                <span class="keywordtype">int</span> * error);</div>
 <div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160; </div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddFree(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160; </div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddUnFree(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160; </div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment">/* | Basic Constructors                                                      */</span></div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;EXTERN Cal_Bdd Cal_BddNull(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160; </div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;EXTERN Cal_Bdd Cal_BddOne(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160; </div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;EXTERN Cal_Bdd Cal_BddZero(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160; </div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;EXTERN Cal_Bdd Cal_BddManagerCreateNewVarFirst(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160; </div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;EXTERN Cal_Bdd Cal_BddManagerCreateNewVarLast(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160; </div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;EXTERN Cal_Bdd Cal_BddManagerCreateNewVarBefore(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;                                                Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160; </div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;EXTERN Cal_Bdd Cal_BddManagerCreateNewVarAfter(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;                                               Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;EXTERN Cal_Bdd Cal_BddManagerGetVarWithIndex(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;                                             Cal_BddIndex_t index);</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160; </div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;EXTERN Cal_Bdd Cal_BddManagerGetVarWithId(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;                                          Cal_BddId_t <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160; </div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="comment">/* | Predicates                                                              */</span></div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160; </div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsBddNull(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160; </div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsBddOne(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160; </div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsBddZero(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160; </div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsBddConst(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160; </div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsCube(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160; </div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsEqual(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                          Cal_Bdd userBdd1,</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                          Cal_Bdd userBdd2);</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160; </div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddDependsOn(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                            Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;                            Cal_Bdd varUserBdd);</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160; </div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;EXTERN <span class="keywordtype">long</span> Cal_BddSize(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                        Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                        <span class="keywordtype">int</span> negout);</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160; </div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;EXTERN <span class="keywordtype">long</span> Cal_BddSizeMultiple(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                                Cal_Bdd *fUserBddArray,</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                                <span class="keywordtype">int</span> negout);</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160; </div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddSupport(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                           Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                           Cal_Bdd *support);</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160; </div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddProfile(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                           Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                           <span class="keywordtype">long</span> * levelCounts,</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                           <span class="keywordtype">int</span> negout);</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160; </div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddProfileMultiple(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                                   Cal_Bdd *fUserBddArray,</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;                                   <span class="keywordtype">long</span> * levelCounts,</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;                                   <span class="keywordtype">int</span> negout);</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160; </div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddFunctionProfile(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                                   Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;                                   <span class="keywordtype">long</span> * funcCounts);</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160; </div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray, <span class="keywordtype">long</span> * funcCounts);</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160; </div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddPrintBdd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                            Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;                            Cal_VarNamingFn_t VarNamingFn,</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;                            Cal_TerminalIdFn_t TerminalIdFn,</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;                            Cal_Pointer_t env,</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;                            FILE *fp);</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddPrintProfile(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;                                Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;                                Cal_VarNamingFn_t varNamingProc,</div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;                                <span class="keywordtype">char</span> * env,</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;                                <span class="keywordtype">int</span> lineLength,</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;                                FILE * fp);</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160; </div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddPrintProfileMultiple(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;                                        Cal_Bdd *userBdds,</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;                                        Cal_VarNamingFn_t varNamingProc,</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;                                        <span class="keywordtype">char</span> * env,</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;                                        <span class="keywordtype">int</span> lineLength,</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;                                        FILE * fp);</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160; </div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddPrintFunctionProfile(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                                        Cal_Bdd f,</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;                                        Cal_VarNamingFn_t varNamingProc,</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;                                        <span class="keywordtype">char</span> * env,</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;                                        <span class="keywordtype">int</span> lineLength,</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;                                        FILE * fp);</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160; </div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddPrintFunctionProfileMultiple(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;                                                Cal_Bdd *userBdds,</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;                                                Cal_VarNamingFn_t varNamingProc,</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                                                <span class="keywordtype">char</span> * env,</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;                                                <span class="keywordtype">int</span> lineLength,</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;                                                FILE * fp);</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160; </div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_BddFunctionPrint(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;                                 Cal_Bdd userBdd,</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;                                 <span class="keywordtype">char</span> *name);</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160; </div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;EXTERN Cal_Bdd Cal_BddIdentity(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160; </div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;EXTERN Cal_Bdd Cal_BddGetRegular(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160; </div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;EXTERN Cal_Bdd Cal_BddNot(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160; </div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;EXTERN Cal_Bdd Cal_BddCompose(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;                              Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;                              Cal_Bdd gUserBdd,</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;                              Cal_Bdd hUserBdd);</div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160; </div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;EXTERN Cal_Bdd Cal_BddIntersects(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                                 Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                                 Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160; </div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;EXTERN Cal_Bdd Cal_BddImplies(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;                              Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;                              Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160; </div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;EXTERN Cal_Bdd Cal_BddITE(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;                          Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;                          Cal_Bdd gUserBdd,</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;                          Cal_Bdd hUserBdd);</div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160; </div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;EXTERN Cal_Bdd Cal_BddAnd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;                          Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;                          Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160; </div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;EXTERN Cal_Bdd Cal_BddMultiwayAnd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;                                  Cal_Bdd *userBddArray);</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160; </div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;EXTERN Cal_Bdd Cal_BddNand(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;                           Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;                           Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160; </div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;EXTERN Cal_Bdd Cal_BddOr(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;                         Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;                         Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160; </div>
-<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;EXTERN Cal_Bdd Cal_BddMultiwayOr(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;                                 Cal_Bdd *userBddArray);</div>
-<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160; </div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;EXTERN Cal_Bdd Cal_BddNor(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;                          Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;                          Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160; </div>
-<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;EXTERN Cal_Bdd Cal_BddXor(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;                          Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;                          Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160; </div>
-<div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;EXTERN Cal_Bdd Cal_BddMultiwayXor(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;                                  Cal_Bdd *userBddArray);</div>
-<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160; </div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;EXTERN Cal_Bdd Cal_BddXnor(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;                           Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;                           Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160; </div>
-<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;EXTERN Cal_Bdd * Cal_BddPairwiseAnd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;                                    Cal_Bdd *userBddArray);</div>
-<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160; </div>
-<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;EXTERN Cal_Bdd * Cal_BddPairwiseOr(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;                                   Cal_Bdd *userBddArray);</div>
-<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160; </div>
-<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;EXTERN Cal_Bdd * Cal_BddPairwiseXor(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;                                    Cal_Bdd *userBddArray);</div>
-<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160; </div>
-<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;EXTERN Cal_Bdd Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160; </div>
-<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;EXTERN Cal_Bdd Cal_BddVarSubstitute(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;                                    Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160; </div>
-<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;EXTERN Cal_Bdd Cal_BddSwapVars(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;                               Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;                               Cal_Bdd gUserBdd,</div>
-<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;                               Cal_Bdd hUserBdd);</div>
-<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160; </div>
-<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;EXTERN Cal_Bdd Cal_BddExists(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160; </div>
-<div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;EXTERN Cal_Bdd Cal_BddForAll(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160; </div>
-<div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;EXTERN Cal_Bdd Cal_BddRelProd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;                              Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;                              Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160; </div>
-<div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;EXTERN Cal_Bdd Cal_BddCofactor(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160;                               Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;                               Cal_Bdd cUserBdd);</div>
-<div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160; </div>
-<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;EXTERN Cal_Bdd Cal_BddReduce(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;                             Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;                             Cal_Bdd cUserBdd);</div>
-<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160; </div>
-<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;EXTERN Cal_Bdd Cal_BddBetween(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;                              Cal_Bdd fMinUserBdd,</div>
-<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;                              Cal_Bdd fMaxUserBdd);</div>
-<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160; </div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;EXTERN Cal_Bdd Cal_BddSatisfy(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160; </div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;EXTERN Cal_Bdd Cal_BddSatisfySupport(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;                                     Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160; </div>
-<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;EXTERN <span class="keywordtype">double</span> Cal_BddSatisfyingFraction(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;                                        Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160; </div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;<span class="comment">/* | Node Information and Traversal                                          */</span></div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160; </div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddType(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160; </div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;EXTERN Cal_BddId_t Cal_BddGetIfIndex(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;                                     Cal_Bdd userBdd);</div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160; </div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;EXTERN Cal_BddId_t Cal_BddGetIfId(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160; </div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;EXTERN Cal_Bdd Cal_BddIf(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160; </div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;EXTERN Cal_Bdd Cal_BddThen(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160; </div>
-<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;EXTERN Cal_Bdd Cal_BddElse(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160; </div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160; </div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; </div>
+<div class="line"><a name="l00488"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2c4946d6a3b99991ca5d6040c5f9fbb4">  488</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga2c4946d6a3b99991ca5d6040c5f9fbb4">Cal_BddFree</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
+<div class="line"><a name="l00500"></a><span class="lineno"><a class="line" href="group__module____c.html#ga02490e7365b1f1fe46a8ca9c80f10bbf">  500</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga02490e7365b1f1fe46a8ca9c80f10bbf">Cal_BddUnFree</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160; </div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;<span class="comment">/* | Basic Constructors                                                      */</span></div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160; </div>
+<div class="line"><a name="l00509"></a><span class="lineno"><a class="line" href="group__module____c.html#gaf48cb29c426e1e2f2ba01975c7356315">  509</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaf48cb29c426e1e2f2ba01975c7356315">Cal_BddNull</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
+<div class="line"><a name="l00516"></a><span class="lineno"><a class="line" href="group__module____c.html#ga73f13634027b1b7b73e6ffdbbd6b5359">  516</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga73f13634027b1b7b73e6ffdbbd6b5359">Cal_BddOne</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160; </div>
+<div class="line"><a name="l00523"></a><span class="lineno"><a class="line" href="group__module____c.html#ga9f6c8d103d90cc04fa98eb04f909bf0f">  523</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga9f6c8d103d90cc04fa98eb04f909bf0f">Cal_BddZero</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160; </div>
+<div class="line"><a name="l00528"></a><span class="lineno"><a class="line" href="group__module____c.html#gaa543ea4e609619c343430cad8bf9b700">  528</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaa543ea4e609619c343430cad8bf9b700">Cal_BddManagerCreateNewVarFirst</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160; </div>
+<div class="line"><a name="l00533"></a><span class="lineno"><a class="line" href="group__module____c.html#ga67624fee7e515b30757913e8a6deb26c">  533</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga67624fee7e515b30757913e8a6deb26c">Cal_BddManagerCreateNewVarLast</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160; </div>
+<div class="line"><a name="l00539"></a><span class="lineno"><a class="line" href="group__module____c.html#ga8bca144cb0bf97034fde250c1b52540b">  539</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga8bca144cb0bf97034fde250c1b52540b">Cal_BddManagerCreateNewVarBefore</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;                                                Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160; </div>
+<div class="line"><a name="l00546"></a><span class="lineno"><a class="line" href="group__module____c.html#ga70fad03d3bdd290b09c181543084bb11">  546</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga70fad03d3bdd290b09c181543084bb11">Cal_BddManagerCreateNewVarAfter</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;                                               Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160; </div>
+<div class="line"><a name="l00555"></a><span class="lineno"><a class="line" href="group__module____c.html#ga1e0f3c17f335c38715931599dc13efc6">  555</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga1e0f3c17f335c38715931599dc13efc6">Cal_BddManagerGetVarWithIndex</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;                                             Cal_BddIndex_t index);</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160; </div>
+<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="group__module____c.html#ga691f69c419c6a2e1d724f5b6fff975d8">  563</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga691f69c419c6a2e1d724f5b6fff975d8">Cal_BddManagerGetVarWithId</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;                                          Cal_BddId_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; </div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;<span class="comment">/* | Predicates                                                              */</span></div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160; </div>
+<div class="line"><a name="l00573"></a><span class="lineno"><a class="line" href="group__module____c.html#gaf4a2a5e1512c5c51fcb9373dd3a6023c">  573</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gaf4a2a5e1512c5c51fcb9373dd3a6023c">Cal_BddIsBddNull</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160; </div>
+<div class="line"><a name="l00580"></a><span class="lineno"><a class="line" href="group__module____c.html#ga7ebe35da151ede5244be96e07955d9bf">  580</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga7ebe35da151ede5244be96e07955d9bf">Cal_BddIsBddOne</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160; </div>
+<div class="line"><a name="l00587"></a><span class="lineno"><a class="line" href="group__module____c.html#gad1dc0498c18875ba1e2b813609de091c">  587</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gad1dc0498c18875ba1e2b813609de091c">Cal_BddIsBddZero</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; </div>
+<div class="line"><a name="l00595"></a><span class="lineno"><a class="line" href="group__module____c.html#ga1e6664504f64cef01dda00857c2abc4b">  595</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga1e6664504f64cef01dda00857c2abc4b">Cal_BddIsBddConst</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160; </div>
+<div class="line"><a name="l00600"></a><span class="lineno"><a class="line" href="group__module____c.html#gad5e7f318b83eba455e21bbe3d87edcc4">  600</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gad5e7f318b83eba455e21bbe3d87edcc4">Cal_BddIsCube</a>(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160; </div>
+<div class="line"><a name="l00605"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2febb84fccef602f93e92266b6ad5509">  605</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga2febb84fccef602f93e92266b6ad5509">Cal_BddIsEqual</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                          Cal_Bdd userBdd1,</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                          Cal_Bdd userBdd2);</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160; </div>
+<div class="line"><a name="l00612"></a><span class="lineno"><a class="line" href="group__module____c.html#gad5be3dd7b3a37b25282624dbddd7c544">  612</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gad5be3dd7b3a37b25282624dbddd7c544">Cal_BddDependsOn</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                            Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                            Cal_Bdd varUserBdd);</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160; </div>
+<div class="line"><a name="l00622"></a><span class="lineno"><a class="line" href="group__module____c.html#ga8d3dd5507f3bd45f56ac70bc68c76df2">  622</a></span>&#160;EXTERN <span class="keywordtype">long</span> <a class="code" href="group__module____c.html#ga8d3dd5507f3bd45f56ac70bc68c76df2">Cal_BddSize</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                        Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                        <span class="keywordtype">int</span> negout);</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160; </div>
+<div class="line"><a name="l00630"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2dff9f2a3da4b93e6aff4f12cffc363d">  630</a></span>&#160;EXTERN <span class="keywordtype">long</span> <a class="code" href="group__module____c.html#ga2dff9f2a3da4b93e6aff4f12cffc363d">Cal_BddSizeMultiple</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                                Cal_Bdd *fUserBddArray,</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                                <span class="keywordtype">int</span> negout);</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160; </div>
+<div class="line"><a name="l00637"></a><span class="lineno"><a class="line" href="group__module____c.html#gac21ea1852fdc14037f0fcde467e0940c">  637</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gac21ea1852fdc14037f0fcde467e0940c">Cal_BddSupport</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                           Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                           Cal_Bdd *support);</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160; </div>
+<div class="line"><a name="l00649"></a><span class="lineno"><a class="line" href="group__module____c.html#ga839d6402ad9fd70c8f81034affc80179">  649</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga839d6402ad9fd70c8f81034affc80179">Cal_BddProfile</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                           Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;                           <span class="keywordtype">long</span> * levelCounts,</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;                           <span class="keywordtype">int</span> negout);</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160; </div>
+<div class="line"><a name="l00660"></a><span class="lineno"><a class="line" href="group__module____c.html#ga52c6a3fcbae010b4a1bdfb3afcee8cb3">  660</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga52c6a3fcbae010b4a1bdfb3afcee8cb3">Cal_BddProfileMultiple</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;                                   Cal_Bdd *fUserBddArray,</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;                                   <span class="keywordtype">long</span> * levelCounts,</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;                                   <span class="keywordtype">int</span> negout);</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160; </div>
+<div class="line"><a name="l00674"></a><span class="lineno"><a class="line" href="group__module____c.html#ga3ff7f750198fec1843aa7ce7560e8315">  674</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga3ff7f750198fec1843aa7ce7560e8315">Cal_BddFunctionProfile</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;                                   Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;                                   <span class="keywordtype">long</span> * funcCounts);</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160; </div>
+<div class="line"><a name="l00684"></a><span class="lineno"><a class="line" href="group__module____c.html#gacc04e070213a96dd1c21b3fabc76fe49">  684</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gacc04e070213a96dd1c21b3fabc76fe49">Cal_BddFunctionProfileMultiple</a>(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray, <span class="keywordtype">long</span> * funcCounts);</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160; </div>
+<div class="line"><a name="l00710"></a><span class="lineno"><a class="line" href="group__module____c.html#ga4a8d7be504032d296c567d16c1280c37">  710</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga4a8d7be504032d296c567d16c1280c37">Cal_BddPrintBdd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;                            Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;                            Cal_VarNamingFn_t VarNamingFn,</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;                            Cal_TerminalIdFn_t TerminalIdFn,</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;                            Cal_Pointer_t env,</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;                            FILE *fp);</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160; </div>
+<div class="line"><a name="l00726"></a><span class="lineno"><a class="line" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726">  726</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726">Cal_BddPrintProfile</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;                                Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;                                Cal_VarNamingFn_t varNamingProc,</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;                                <span class="keywordtype">char</span> * env,</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;                                <span class="keywordtype">int</span> lineLength,</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;                                FILE * fp);</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160; </div>
+<div class="line"><a name="l00739"></a><span class="lineno"><a class="line" href="group__module____c.html#ga949af55cbfe77f394ae9222a28c32f62">  739</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga949af55cbfe77f394ae9222a28c32f62">Cal_BddPrintProfileMultiple</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;                                        Cal_Bdd *userBdds,</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;                                        Cal_VarNamingFn_t varNamingProc,</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;                                        <span class="keywordtype">char</span> * env,</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;                                        <span class="keywordtype">int</span> lineLength,</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;                                        FILE * fp);</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160; </div>
+<div class="line"><a name="l00751"></a><span class="lineno"><a class="line" href="group__module____c.html#ga682c9ea7d24fa307dc6bd681ffe81127">  751</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga682c9ea7d24fa307dc6bd681ffe81127">Cal_BddPrintFunctionProfile</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;                                        Cal_Bdd f,</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;                                        Cal_VarNamingFn_t varNamingProc,</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                                        <span class="keywordtype">char</span> * env,</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                                        <span class="keywordtype">int</span> lineLength,</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                                        FILE * fp);</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160; </div>
+<div class="line"><a name="l00764"></a><span class="lineno"><a class="line" href="group__module____c.html#ga3e27cb5e8864010f322932919928613e">  764</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga3e27cb5e8864010f322932919928613e">Cal_BddPrintFunctionProfileMultiple</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;                                                Cal_Bdd *userBdds,</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;                                                Cal_VarNamingFn_t varNamingProc,</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;                                                <span class="keywordtype">char</span> * env,</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;                                                <span class="keywordtype">int</span> lineLength,</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;                                                FILE * fp);</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160; </div>
+<div class="line"><a name="l00774"></a><span class="lineno"><a class="line" href="group__module____c.html#ga6d7abe3753e89dd403cbe3580239cf59">  774</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga6d7abe3753e89dd403cbe3580239cf59">Cal_BddFunctionPrint</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;                                 Cal_Bdd userBdd,</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;                                 <span class="keywordtype">char</span> *name);</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160; </div>
+<div class="line"><a name="l00785"></a><span class="lineno"><a class="line" href="group__module____c.html#ga38b7b7e23e08cc3c313a18d1e6c0e113">  785</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga38b7b7e23e08cc3c313a18d1e6c0e113">Cal_BddIdentity</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160; </div>
+<div class="line"><a name="l00794"></a><span class="lineno"><a class="line" href="group__module____c.html#gabc81e8b2373b47879ba584b805100e49">  794</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gabc81e8b2373b47879ba584b805100e49">Cal_BddGetRegular</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160; </div>
+<div class="line"><a name="l00803"></a><span class="lineno"><a class="line" href="group__module____c.html#ga7e38ef9078648bf605892d3d6812fbc8">  803</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga7e38ef9078648bf605892d3d6812fbc8">Cal_BddNot</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160; </div>
+<div class="line"><a name="l00810"></a><span class="lineno"><a class="line" href="group__module____c.html#ga31cc9e3c7d9e18d4af986c0eec84e720">  810</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga31cc9e3c7d9e18d4af986c0eec84e720">Cal_BddCompose</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;                              Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;                              Cal_Bdd gUserBdd,</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;                              Cal_Bdd hUserBdd);</div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160; </div>
+<div class="line"><a name="l00822"></a><span class="lineno"><a class="line" href="group__module____c.html#ga7eef72367ad86f986e64c7b8fd3fb9b8">  822</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga7eef72367ad86f986e64c7b8fd3fb9b8">Cal_BddIntersects</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                                 Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                                 Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160; </div>
+<div class="line"><a name="l00833"></a><span class="lineno"><a class="line" href="group__module____c.html#gaed17a8b2916a9576e8760373593b814d">  833</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaed17a8b2916a9576e8760373593b814d">Cal_BddImplies</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;                              Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;                              Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160; </div>
+<div class="line"><a name="l00845"></a><span class="lineno"><a class="line" href="group__module____c.html#gacdfa3f9ee1aade67aa4269519b690698">  845</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gacdfa3f9ee1aade67aa4269519b690698">Cal_BddITE</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;                          Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;                          Cal_Bdd gUserBdd,</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;                          Cal_Bdd hUserBdd);</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160; </div>
+<div class="line"><a name="l00853"></a><span class="lineno"><a class="line" href="group__module____c.html#gaf922a0fac8b3f7773a04e16c8ded07f1">  853</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaf922a0fac8b3f7773a04e16c8ded07f1">Cal_BddAnd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;                          Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;                          Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160; </div>
+<div class="line"><a name="l00862"></a><span class="lineno"><a class="line" href="group__module____c.html#ga52d1736f6a1aa20d38d860a0ae3c2245">  862</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga52d1736f6a1aa20d38d860a0ae3c2245">Cal_BddMultiwayAnd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;                                  Cal_Bdd *userBddArray);</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160; </div>
+<div class="line"><a name="l00870"></a><span class="lineno"><a class="line" href="group__module____c.html#ga7269f9e32becc21ecd62d1e134675a26">  870</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga7269f9e32becc21ecd62d1e134675a26">Cal_BddNand</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;                           Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;                           Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160; </div>
+<div class="line"><a name="l00877"></a><span class="lineno"><a class="line" href="group__module____c.html#gaed37c140c3268b23dc97225a93902406">  877</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaed37c140c3268b23dc97225a93902406">Cal_BddOr</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;                         Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;                         Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00880"></a><span class="lineno">  880</span>&#160; </div>
+<div class="line"><a name="l00886"></a><span class="lineno"><a class="line" href="group__module____c.html#gaf1b13a06fe3b22f9e33cdf31bf2d511d">  886</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaf1b13a06fe3b22f9e33cdf31bf2d511d">Cal_BddMultiwayOr</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;                                 Cal_Bdd *userBddArray);</div>
+<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160; </div>
+<div class="line"><a name="l00894"></a><span class="lineno"><a class="line" href="group__module____c.html#gaeb3aa8e0189e1cea6361cb5ed026bfda">  894</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaeb3aa8e0189e1cea6361cb5ed026bfda">Cal_BddNor</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;                          Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;                          Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160; </div>
+<div class="line"><a name="l00901"></a><span class="lineno"><a class="line" href="group__module____c.html#ga292de7d7f8ebb81fdf01b6ee789ef53a">  901</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga292de7d7f8ebb81fdf01b6ee789ef53a">Cal_BddXor</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;                          Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;                          Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160; </div>
+<div class="line"><a name="l00910"></a><span class="lineno"><a class="line" href="group__module____c.html#ga4965bf1245e4a15136c20f7e22020263">  910</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga4965bf1245e4a15136c20f7e22020263">Cal_BddMultiwayXor</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;                                  Cal_Bdd *userBddArray);</div>
+<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160; </div>
+<div class="line"><a name="l00918"></a><span class="lineno"><a class="line" href="group__module____c.html#gac5838d954a3af710ac6df4d628eb44b6">  918</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gac5838d954a3af710ac6df4d628eb44b6">Cal_BddXnor</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;                           Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                           Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160; </div>
+<div class="line"><a name="l00931"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2af9da07752702d20e2dfd2fffe16ba9">  931</a></span>&#160;EXTERN Cal_Bdd * <a class="code" href="group__module____c.html#ga2af9da07752702d20e2dfd2fffe16ba9">Cal_BddPairwiseAnd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;                                    Cal_Bdd *userBddArray);</div>
+<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160; </div>
+<div class="line"><a name="l00943"></a><span class="lineno"><a class="line" href="group__module____c.html#ga95011b43a17c947527078aa2e9c0d94e">  943</a></span>&#160;EXTERN Cal_Bdd * <a class="code" href="group__module____c.html#ga95011b43a17c947527078aa2e9c0d94e">Cal_BddPairwiseOr</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;                                   Cal_Bdd *userBddArray);</div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160; </div>
+<div class="line"><a name="l00955"></a><span class="lineno"><a class="line" href="group__module____c.html#ga1e268aa82214efec564610247b163e79">  955</a></span>&#160;EXTERN Cal_Bdd * <a class="code" href="group__module____c.html#ga1e268aa82214efec564610247b163e79">Cal_BddPairwiseXor</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;                                    Cal_Bdd *userBddArray);</div>
+<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160; </div>
+<div class="line"><a name="l00967"></a><span class="lineno"><a class="line" href="group__module____c.html#ga65c0d2b9381f7c4e853d20223e5c0c34">  967</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga65c0d2b9381f7c4e853d20223e5c0c34">Cal_BddSubstitute</a>(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160; </div>
+<div class="line"><a name="l00981"></a><span class="lineno"><a class="line" href="group__module____c.html#ga606d0486d1295ea66174f24a0b4569cf">  981</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga606d0486d1295ea66174f24a0b4569cf">Cal_BddVarSubstitute</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;                                    Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160; </div>
+<div class="line"><a name="l00992"></a><span class="lineno"><a class="line" href="group__module____c.html#gaf7e81563199741e5cc8465ffed299211">  992</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaf7e81563199741e5cc8465ffed299211">Cal_BddSwapVars</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;                               Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;                               Cal_Bdd gUserBdd,</div>
+<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;                               Cal_Bdd hUserBdd);</div>
+<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160; </div>
+<div class="line"><a name="l01006"></a><span class="lineno"><a class="line" href="group__module____c.html#ga7a34ed1799943cf8336af295b387060b"> 1006</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga7a34ed1799943cf8336af295b387060b">Cal_BddExists</a>(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160; </div>
+<div class="line"><a name="l01017"></a><span class="lineno"><a class="line" href="group__module____c.html#gae7714b8ec553600a99cb319f0a7454eb"> 1017</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gae7714b8ec553600a99cb319f0a7454eb">Cal_BddForAll</a>(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160; </div>
+<div class="line"><a name="l01026"></a><span class="lineno"><a class="line" href="group__module____c.html#gad341031ac793f2be9d4a7fa378633f96"> 1026</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gad341031ac793f2be9d4a7fa378633f96">Cal_BddRelProd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;                              Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;                              Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160; </div>
+<div class="line"><a name="l01039"></a><span class="lineno"><a class="line" href="group__module____c.html#ga4e47dd481cd5855386c9f3e36d2a5b53"> 1039</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga4e47dd481cd5855386c9f3e36d2a5b53">Cal_BddCofactor</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;                               Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;                               Cal_Bdd cUserBdd);</div>
+<div class="line"><a name="l01042"></a><span class="lineno"> 1042</span>&#160; </div>
+<div class="line"><a name="l01053"></a><span class="lineno"><a class="line" href="group__module____c.html#gaa9236add1159254f209193f33dd83cb7"> 1053</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaa9236add1159254f209193f33dd83cb7">Cal_BddReduce</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;                             Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;                             Cal_Bdd cUserBdd);</div>
+<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160; </div>
+<div class="line"><a name="l01067"></a><span class="lineno"><a class="line" href="group__module____c.html#gab3ff7bdbc42ea0fc2d219377d3bed71a"> 1067</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gab3ff7bdbc42ea0fc2d219377d3bed71a">Cal_BddBetween</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;                              Cal_Bdd fMinUserBdd,</div>
+<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;                              Cal_Bdd fMaxUserBdd);</div>
+<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160; </div>
+<div class="line"><a name="l01079"></a><span class="lineno"><a class="line" href="group__module____c.html#gaab86642d97b18c01f6f3b9cabf5f7ec9"> 1079</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gaab86642d97b18c01f6f3b9cabf5f7ec9">Cal_BddSatisfy</a>(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160; </div>
+<div class="line"><a name="l01091"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2262483432e64fa38b499deb6c464724"> 1091</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga2262483432e64fa38b499deb6c464724">Cal_BddSatisfySupport</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;                                     Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160; </div>
+<div class="line"><a name="l01102"></a><span class="lineno"><a class="line" href="group__module____c.html#ga0434c0c01c1c73907b6dd257a0953bfa"> 1102</a></span>&#160;EXTERN <span class="keywordtype">double</span> <a class="code" href="group__module____c.html#ga0434c0c01c1c73907b6dd257a0953bfa">Cal_BddSatisfyingFraction</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;                                        Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160; </div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;<span class="comment">/* | Node Information and Traversal                                          */</span></div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;<span class="comment">/*---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160; </div>
+<div class="line"><a name="l01117"></a><span class="lineno"><a class="line" href="group__module____c.html#gab4f07470db15052da757687b9975002e"> 1117</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#gab4f07470db15052da757687b9975002e">Cal_BddType</a>(Cal_BddManager bddManager, Cal_Bdd fUserBdd);</div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160; </div>
+<div class="line"><a name="l01124"></a><span class="lineno"><a class="line" href="group__module____c.html#ga790ac5e0059adb862b8eeb47a84274c7"> 1124</a></span>&#160;EXTERN Cal_BddId_t <a class="code" href="group__module____c.html#ga790ac5e0059adb862b8eeb47a84274c7">Cal_BddGetIfIndex</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;                                     Cal_Bdd userBdd);</div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160; </div>
+<div class="line"><a name="l01132"></a><span class="lineno"><a class="line" href="group__module____c.html#ga0eb61ecc2b72da98216ed54e0958a8c3"> 1132</a></span>&#160;EXTERN Cal_BddId_t <a class="code" href="group__module____c.html#ga0eb61ecc2b72da98216ed54e0958a8c3">Cal_BddGetIfId</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160; </div>
+<div class="line"><a name="l01139"></a><span class="lineno"><a class="line" href="group__module____c.html#ga9e700453c2e9075de29d88d9711fd9c3"> 1139</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga9e700453c2e9075de29d88d9711fd9c3">Cal_BddIf</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160; </div>
+<div class="line"><a name="l01147"></a><span class="lineno"><a class="line" href="group__module____c.html#gad5a5eab57532f0da4f5b7a591c1c0d5f"> 1147</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gad5a5eab57532f0da4f5b7a591c1c0d5f">Cal_BddThen</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160; </div>
+<div class="line"><a name="l01155"></a><span class="lineno"><a class="line" href="group__module____c.html#ga0080fa27951955996eb5de149fb11e03"> 1155</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga0080fa27951955996eb5de149fb11e03">Cal_BddElse</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
 <div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160; </div>
-<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160; </div>
-<div class="line"><a name="l01169"></a><span class="lineno"> 1169</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_PipelineInit(Cal_BddManager bddManager, Cal_BddOp_t bddOp);</div>
-<div class="line"><a name="l01170"></a><span class="lineno"> 1170</span>&#160; </div>
-<div class="line"><a name="l01179"></a><span class="lineno"> 1179</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_PipelineQuit(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l01180"></a><span class="lineno"> 1180</span>&#160; </div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;EXTERN <span class="keywordtype">void</span> Cal_PipelineSetDepth(Cal_BddManager bddManager, <span class="keywordtype">int</span> depth);</div>
-<div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160; </div>
-<div class="line"><a name="l01199"></a><span class="lineno"> 1199</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_PipelineExecute(Cal_BddManager bddManager);</div>
-<div class="line"><a name="l01200"></a><span class="lineno"> 1200</span>&#160; </div>
-<div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160;EXTERN <span class="keywordtype">int</span> Cal_BddIsProvisional(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
-<div class="line"><a name="l01208"></a><span class="lineno"> 1208</span>&#160; </div>
-<div class="line"><a name="l01215"></a><span class="lineno"> 1215</span>&#160;EXTERN Cal_Bdd Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01216"></a><span class="lineno"> 1216</span>&#160;                                                Cal_Bdd fUserBdd,</div>
-<div class="line"><a name="l01217"></a><span class="lineno"> 1217</span>&#160;                                                Cal_Bdd gUserBdd);</div>
-<div class="line"><a name="l01218"></a><span class="lineno"> 1218</span>&#160; </div>
-<div class="line"><a name="l01224"></a><span class="lineno"> 1224</span>&#160;EXTERN Cal_Bdd Cal_PipelineUpdateProvisionalBdd(Cal_BddManager bddManager,</div>
-<div class="line"><a name="l01225"></a><span class="lineno"> 1225</span>&#160;                                                Cal_Bdd provisionalBdd);</div>
-<div class="line"><a name="l01226"></a><span class="lineno"> 1226</span>&#160; </div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160; </div>
+<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160; </div>
+<div class="line"><a name="l01172"></a><span class="lineno"><a class="line" href="group__module____c.html#ga981d7557f454488b899a2c9db62b6962"> 1172</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga981d7557f454488b899a2c9db62b6962">Cal_PipelineInit</a>(Cal_BddManager bddManager, Cal_BddOp_t bddOp);</div>
+<div class="line"><a name="l01173"></a><span class="lineno"> 1173</span>&#160; </div>
+<div class="line"><a name="l01182"></a><span class="lineno"><a class="line" href="group__module____c.html#gada1a064fd1ba9db70aaf1efe554efd02"> 1182</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#gada1a064fd1ba9db70aaf1efe554efd02">Cal_PipelineQuit</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160; </div>
+<div class="line"><a name="l01190"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2cda07313f83b3ce39d8ca655eadb47b"> 1190</a></span>&#160;EXTERN <span class="keywordtype">void</span> <a class="code" href="group__module____c.html#ga2cda07313f83b3ce39d8ca655eadb47b">Cal_PipelineSetDepth</a>(Cal_BddManager bddManager, <span class="keywordtype">int</span> depth);</div>
+<div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160; </div>
+<div class="line"><a name="l01202"></a><span class="lineno"><a class="line" href="group__module____c.html#ga0fb80bb6fb98b407c88f565920bfa681"> 1202</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga0fb80bb6fb98b407c88f565920bfa681">Cal_PipelineExecute</a>(Cal_BddManager bddManager);</div>
+<div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160; </div>
+<div class="line"><a name="l01210"></a><span class="lineno"><a class="line" href="group__module____c.html#ga37d80b4715363cc8e3ad501a3e7d179d"> 1210</a></span>&#160;EXTERN <span class="keywordtype">int</span> <a class="code" href="group__module____c.html#ga37d80b4715363cc8e3ad501a3e7d179d">Cal_BddIsProvisional</a>(Cal_BddManager bddManager, Cal_Bdd userBdd);</div>
+<div class="line"><a name="l01211"></a><span class="lineno"> 1211</span>&#160; </div>
+<div class="line"><a name="l01218"></a><span class="lineno"><a class="line" href="group__module____c.html#ga2cc944b93fa6a2c7178428b4c2ca0a29"> 1218</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#ga2cc944b93fa6a2c7178428b4c2ca0a29">Cal_PipelineCreateProvisionalBdd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01219"></a><span class="lineno"> 1219</span>&#160;                                                Cal_Bdd fUserBdd,</div>
+<div class="line"><a name="l01220"></a><span class="lineno"> 1220</span>&#160;                                                Cal_Bdd gUserBdd);</div>
+<div class="line"><a name="l01221"></a><span class="lineno"> 1221</span>&#160; </div>
+<div class="line"><a name="l01227"></a><span class="lineno"><a class="line" href="group__module____c.html#gac0627543d7cd4bd3029b24aac4d246f9"> 1227</a></span>&#160;EXTERN Cal_Bdd <a class="code" href="group__module____c.html#gac0627543d7cd4bd3029b24aac4d246f9">Cal_PipelineUpdateProvisionalBdd</a>(Cal_BddManager bddManager,</div>
+<div class="line"><a name="l01228"></a><span class="lineno"> 1228</span>&#160;                                                Cal_Bdd provisionalBdd);</div>
 <div class="line"><a name="l01229"></a><span class="lineno"> 1229</span>&#160; </div>
 <div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160; </div>
-<div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CAL */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160; </div>
+<div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _CAL */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__module____c_html_ga0080fa27951955996eb5de149fb11e03"><div class="ttname"><a href="group__module____c.html#ga0080fa27951955996eb5de149fb11e03">Cal_BddElse</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddElse(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">the negative cofactor of the argument BDD with respect to its top variable.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga02490e7365b1f1fe46a8ca9c80f10bbf"><div class="ttname"><a href="group__module____c.html#ga02490e7365b1f1fe46a8ca9c80f10bbf">Cal_BddUnFree</a></div><div class="ttdeci">EXTERN void Cal_BddUnFree(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Unfrees the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga0434c0c01c1c73907b6dd257a0953bfa"><div class="ttname"><a href="group__module____c.html#ga0434c0c01c1c73907b6dd257a0953bfa">Cal_BddSatisfyingFraction</a></div><div class="ttdeci">EXTERN double Cal_BddSatisfyingFraction(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Fraction of valuations which make f true.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga04690c16f880fceb4b31f5aae1f23c60"><div class="ttname"><a href="group__module____c.html#ga04690c16f880fceb4b31f5aae1f23c60">Cal_BddStats</a></div><div class="ttdeci">EXTERN void Cal_BddStats(Cal_BddManager bddManager, FILE *fp)</div><div class="ttdoc">Prints miscellaneous BDD statistics.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga0eb61ecc2b72da98216ed54e0958a8c3"><div class="ttname"><a href="group__module____c.html#ga0eb61ecc2b72da98216ed54e0958a8c3">Cal_BddGetIfId</a></div><div class="ttdeci">EXTERN Cal_BddId_t Cal_BddGetIfId(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Returns the index of the top variable of the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga0fb80bb6fb98b407c88f565920bfa681"><div class="ttname"><a href="group__module____c.html#ga0fb80bb6fb98b407c88f565920bfa681">Cal_PipelineExecute</a></div><div class="ttdeci">EXTERN int Cal_PipelineExecute(Cal_BddManager bddManager)</div><div class="ttdoc">Executes a pipeline.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga1e0f3c17f335c38715931599dc13efc6"><div class="ttname"><a href="group__module____c.html#ga1e0f3c17f335c38715931599dc13efc6">Cal_BddManagerGetVarWithIndex</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddManagerGetVarWithIndex(Cal_BddManager bddManager, Cal_BddIndex_t index)</div><div class="ttdoc">The variable with the specified index, null if no such variable exists.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga1e268aa82214efec564610247b163e79"><div class="ttname"><a href="group__module____c.html#ga1e268aa82214efec564610247b163e79">Cal_BddPairwiseXor</a></div><div class="ttdeci">EXTERN Cal_Bdd * Cal_BddPairwiseXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)</div><div class="ttdoc">Logical XOR of BDD pairs in argument null-termiinated array of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga1e6664504f64cef01dda00857c2abc4b"><div class="ttname"><a href="group__module____c.html#ga1e6664504f64cef01dda00857c2abc4b">Cal_BddIsBddConst</a></div><div class="ttdeci">EXTERN int Cal_BddIsBddConst(Cal_BddManager bddManager, Cal_Bdd userBdd)</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2262483432e64fa38b499deb6c464724"><div class="ttname"><a href="group__module____c.html#ga2262483432e64fa38b499deb6c464724">Cal_BddSatisfySupport</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddSatisfySupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Returns a special cube contained in f.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga26c0636b829ba9f740f2655177a0fe07"><div class="ttname"><a href="group__module____c.html#ga26c0636b829ba9f740f2655177a0fe07">Cal_BddManagerGC</a></div><div class="ttdeci">EXTERN int Cal_BddManagerGC(Cal_BddManager bddManager)</div><div class="ttdoc">Invokes the garbage collection at the manager level.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga292de7d7f8ebb81fdf01b6ee789ef53a"><div class="ttname"><a href="group__module____c.html#ga292de7d7f8ebb81fdf01b6ee789ef53a">Cal_BddXor</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddXor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical XOR of argument BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2af9da07752702d20e2dfd2fffe16ba9"><div class="ttname"><a href="group__module____c.html#ga2af9da07752702d20e2dfd2fffe16ba9">Cal_BddPairwiseAnd</a></div><div class="ttdeci">EXTERN Cal_Bdd * Cal_BddPairwiseAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)</div><div class="ttdoc">Logical AND of BDD pairs in argument null-termiinated array of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2c4946d6a3b99991ca5d6040c5f9fbb4"><div class="ttname"><a href="group__module____c.html#ga2c4946d6a3b99991ca5d6040c5f9fbb4">Cal_BddFree</a></div><div class="ttdeci">EXTERN void Cal_BddFree(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Frees the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2cc944b93fa6a2c7178428b4c2ca0a29"><div class="ttname"><a href="group__module____c.html#ga2cc944b93fa6a2c7178428b4c2ca0a29">Cal_PipelineCreateProvisionalBdd</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_PipelineCreateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Create a provisional BDD in the pipeline.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2cda07313f83b3ce39d8ca655eadb47b"><div class="ttname"><a href="group__module____c.html#ga2cda07313f83b3ce39d8ca655eadb47b">Cal_PipelineSetDepth</a></div><div class="ttdeci">EXTERN void Cal_PipelineSetDepth(Cal_BddManager bddManager, int depth)</div><div class="ttdoc">Set depth of a BDD pipeline.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2dff9f2a3da4b93e6aff4f12cffc363d"><div class="ttname"><a href="group__module____c.html#ga2dff9f2a3da4b93e6aff4f12cffc363d">Cal_BddSizeMultiple</a></div><div class="ttdeci">EXTERN long Cal_BddSizeMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray, int negout)</div><div class="ttdoc">Similar to Cal_BddSize for a null-terminated array of BDDs and accounting for sharing of nodes.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga2febb84fccef602f93e92266b6ad5509"><div class="ttname"><a href="group__module____c.html#ga2febb84fccef602f93e92266b6ad5509">Cal_BddIsEqual</a></div><div class="ttdeci">EXTERN int Cal_BddIsEqual(Cal_BddManager bddManager, Cal_Bdd userBdd1, Cal_Bdd userBdd2)</div><div class="ttdoc">Returns 1 if argument BDDs are equal, 0 otherwise.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga31cc9e3c7d9e18d4af986c0eec84e720"><div class="ttname"><a href="group__module____c.html#ga31cc9e3c7d9e18d4af986c0eec84e720">Cal_BddCompose</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddCompose(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd, Cal_Bdd hUserBdd)</div><div class="ttdoc">Substitute a BDD variable by a function.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga37d80b4715363cc8e3ad501a3e7d179d"><div class="ttname"><a href="group__module____c.html#ga37d80b4715363cc8e3ad501a3e7d179d">Cal_BddIsProvisional</a></div><div class="ttdeci">EXTERN int Cal_BddIsProvisional(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Returns 1, if the given user BDD is a provisional BDD node.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga38b7b7e23e08cc3c313a18d1e6c0e113"><div class="ttname"><a href="group__module____c.html#ga38b7b7e23e08cc3c313a18d1e6c0e113">Cal_BddIdentity</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddIdentity(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Duplicate of the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga3e27cb5e8864010f322932919928613e"><div class="ttname"><a href="group__module____c.html#ga3e27cb5e8864010f322932919928613e">Cal_BddPrintFunctionProfileMultiple</a></div><div class="ttdeci">EXTERN void Cal_BddPrintFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *userBdds, Cal_VarNamingFn_t varNamingProc, char *env, int lineLength, FILE *fp)</div><div class="ttdoc">Similar to Cal_BddPrintFunctionProfile but displays a function profile for a set of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga3f54f5866f06f1af0014fdfb732839ba"><div class="ttname"><a href="group__module____c.html#ga3f54f5866f06f1af0014fdfb732839ba">Cal_TempAssociationQuit</a></div><div class="ttdeci">EXTERN void Cal_TempAssociationQuit(Cal_BddManager bddManager)</div><div class="ttdoc">Cleans up temporary association.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga3ff7f750198fec1843aa7ce7560e8315"><div class="ttname"><a href="group__module____c.html#ga3ff7f750198fec1843aa7ce7560e8315">Cal_BddFunctionProfile</a></div><div class="ttdeci">EXTERN void Cal_BddFunctionProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd, long *funcCounts)</div><div class="ttdoc">The number of subfunctions of f which may be obtained by restricting variables with an index lower th...</div></div>
+<div class="ttc" id="agroup__module____c_html_ga41967405e8ae6caec0c3557a66a87430"><div class="ttname"><a href="group__module____c.html#ga41967405e8ae6caec0c3557a66a87430">Cal_AssociationInit</a></div><div class="ttdeci">EXTERN int Cal_AssociationInit(Cal_BddManager bddManager, Cal_Bdd *associationInfoUserBdds, int pairs)</div><div class="ttdoc">Creates or finds a variable association.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga4965bf1245e4a15136c20f7e22020263"><div class="ttname"><a href="group__module____c.html#ga4965bf1245e4a15136c20f7e22020263">Cal_BddMultiwayXor</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)</div><div class="ttdoc">Logical XOR of BDDs in argument null-terminated array of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga4a8d7be504032d296c567d16c1280c37"><div class="ttname"><a href="group__module____c.html#ga4a8d7be504032d296c567d16c1280c37">Cal_BddPrintBdd</a></div><div class="ttdeci">EXTERN void Cal_BddPrintBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_VarNamingFn_t VarNamingFn, Cal_TerminalIdFn_t TerminalIdFn, Cal_Pointer_t env, FILE *fp)</div><div class="ttdoc">Prints a BDD in the human readable form.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga4e47dd481cd5855386c9f3e36d2a5b53"><div class="ttname"><a href="group__module____c.html#ga4e47dd481cd5855386c9f3e36d2a5b53">Cal_BddCofactor</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddCofactor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd cUserBdd)</div><div class="ttdoc">Generalized cofactor of f with respect to c.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga52c6a3fcbae010b4a1bdfb3afcee8cb3"><div class="ttname"><a href="group__module____c.html#ga52c6a3fcbae010b4a1bdfb3afcee8cb3">Cal_BddProfileMultiple</a></div><div class="ttdeci">EXTERN void Cal_BddProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray, long *levelCounts, int negout)</div><div class="ttdoc">Similar to Cal_BddProfile for a null-terminated array of BDDs and accounting for sharing of nodes.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga52d1736f6a1aa20d38d860a0ae3c2245"><div class="ttname"><a href="group__module____c.html#ga52d1736f6a1aa20d38d860a0ae3c2245">Cal_BddMultiwayAnd</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)</div><div class="ttdoc">Logical AND of BDDs in argument null-terminated array of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga5a49eabb77e07f9866e1bcbcd270bded"><div class="ttname"><a href="group__module____c.html#ga5a49eabb77e07f9866e1bcbcd270bded">Cal_BddVarBlockReorderable</a></div><div class="ttdeci">EXTERN void Cal_BddVarBlockReorderable(Cal_BddManager bddManager, Cal_Block block, int reorderable)</div><div class="ttdoc">Sets the reoderability of a particular block.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga606d0486d1295ea66174f24a0b4569cf"><div class="ttname"><a href="group__module____c.html#ga606d0486d1295ea66174f24a0b4569cf">Cal_BddVarSubstitute</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddVarSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Substitute a set of variables by set of another variables.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga65c0d2b9381f7c4e853d20223e5c0c34"><div class="ttname"><a href="group__module____c.html#ga65c0d2b9381f7c4e853d20223e5c0c34">Cal_BddSubstitute</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Substitute a set of variables by functions.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga65f1251eb922638fe67454d94125d412"><div class="ttname"><a href="group__module____c.html#ga65f1251eb922638fe67454d94125d412">Cal_BddDynamicReordering</a></div><div class="ttdeci">EXTERN void Cal_BddDynamicReordering(Cal_BddManager bddManager, int technique, int method)</div><div class="ttdoc">Specify dynamic reordering technique and method.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga66da099c0033ebd8f979dc882400c1c9"><div class="ttname"><a href="group__module____c.html#ga66da099c0033ebd8f979dc882400c1c9">Cal_BddNodeLimit</a></div><div class="ttdeci">EXTERN long Cal_BddNodeLimit(Cal_BddManager bddManager, long newLimit)</div><div class="ttdoc">Sets the node limit to new_limit and returns the old limit.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga67624fee7e515b30757913e8a6deb26c"><div class="ttname"><a href="group__module____c.html#ga67624fee7e515b30757913e8a6deb26c">Cal_BddManagerCreateNewVarLast</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddManagerCreateNewVarLast(Cal_BddManager bddManager)</div><div class="ttdoc">Create and obtain a new variable at the end of the variable order.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga682c9ea7d24fa307dc6bd681ffe81127"><div class="ttname"><a href="group__module____c.html#ga682c9ea7d24fa307dc6bd681ffe81127">Cal_BddPrintFunctionProfile</a></div><div class="ttdeci">EXTERN void Cal_BddPrintFunctionProfile(Cal_BddManager bddManager, Cal_Bdd f, Cal_VarNamingFn_t varNamingProc, char *env, int lineLength, FILE *fp)</div><div class="ttdoc">Similar to Cal_BddPrintProfile but displays a function profile for f.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga691f69c419c6a2e1d724f5b6fff975d8"><div class="ttname"><a href="group__module____c.html#ga691f69c419c6a2e1d724f5b6fff975d8">Cal_BddManagerGetVarWithId</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddManagerGetVarWithId(Cal_BddManager bddManager, Cal_BddId_t id)</div><div class="ttdoc">The variable with the specified id, null if no such variable exists.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga6c033a171baf120dd10e5c889fe16de1"><div class="ttname"><a href="group__module____c.html#ga6c033a171baf120dd10e5c889fe16de1">Cal_TempAssociationInit</a></div><div class="ttdeci">EXTERN void Cal_TempAssociationInit(Cal_BddManager bddManager, Cal_Bdd *associationInfoUserBdds, int pairs)</div><div class="ttdoc">Sets the temporary variable association.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga6d7abe3753e89dd403cbe3580239cf59"><div class="ttname"><a href="group__module____c.html#ga6d7abe3753e89dd403cbe3580239cf59">Cal_BddFunctionPrint</a></div><div class="ttdeci">EXTERN void Cal_BddFunctionPrint(Cal_BddManager bddManager, Cal_Bdd userBdd, char *name)</div><div class="ttdoc">Prints the function implemented by the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga70fad03d3bdd290b09c181543084bb11"><div class="ttname"><a href="group__module____c.html#ga70fad03d3bdd290b09c181543084bb11">Cal_BddManagerCreateNewVarAfter</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddManagerCreateNewVarAfter(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Create and obtain a new variable after the specified one in the variable order.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga7269f9e32becc21ecd62d1e134675a26"><div class="ttname"><a href="group__module____c.html#ga7269f9e32becc21ecd62d1e134675a26">Cal_BddNand</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddNand(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical NAND of argument BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga73f13634027b1b7b73e6ffdbbd6b5359"><div class="ttname"><a href="group__module____c.html#ga73f13634027b1b7b73e6ffdbbd6b5359">Cal_BddOne</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddOne(Cal_BddManager bddManager)</div><div class="ttdoc">The BDD for the constant one.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga75507284ba925e06b66c92c7aad6cbf9"><div class="ttname"><a href="group__module____c.html#ga75507284ba925e06b66c92c7aad6cbf9">Cal_BddDumpBdd</a></div><div class="ttdeci">EXTERN int Cal_BddDumpBdd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd *userVars, FILE *fp)</div><div class="ttdoc">Write a BDD to a file.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga75ea88619e4d8ac49eb9eeae2ac44b1d"><div class="ttname"><a href="group__module____c.html#ga75ea88619e4d8ac49eb9eeae2ac44b1d">Cal_BddManagerSetGCLimit</a></div><div class="ttdeci">EXTERN void Cal_BddManagerSetGCLimit(Cal_BddManager manager)</div><div class="ttdoc">Sets the limit of the garbage collection.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga77ec3f2a6340c2f7ff70c092effdadeb"><div class="ttname"><a href="group__module____c.html#ga77ec3f2a6340c2f7ff70c092effdadeb">Cal_BddUndumpBdd</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddUndumpBdd(Cal_BddManager bddManager, Cal_Bdd *userVars, FILE *fp, int *error)</div><div class="ttdoc">Reads a BDD from a file.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga790ac5e0059adb862b8eeb47a84274c7"><div class="ttname"><a href="group__module____c.html#ga790ac5e0059adb862b8eeb47a84274c7">Cal_BddGetIfIndex</a></div><div class="ttdeci">EXTERN Cal_BddId_t Cal_BddGetIfIndex(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Returns the id of the top variable of the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga7a34ed1799943cf8336af295b387060b"><div class="ttname"><a href="group__module____c.html#ga7a34ed1799943cf8336af295b387060b">Cal_BddExists</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddExists(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Existentially quantification of some variables from the given BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga7e38ef9078648bf605892d3d6812fbc8"><div class="ttname"><a href="group__module____c.html#ga7e38ef9078648bf605892d3d6812fbc8">Cal_BddNot</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddNot(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Complement of the argument BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga7ebe35da151ede5244be96e07955d9bf"><div class="ttname"><a href="group__module____c.html#ga7ebe35da151ede5244be96e07955d9bf">Cal_BddIsBddOne</a></div><div class="ttdeci">EXTERN int Cal_BddIsBddOne(Cal_BddManager bddManager, Cal_Bdd userBdd)</div></div>
+<div class="ttc" id="agroup__module____c_html_ga7eef72367ad86f986e64c7b8fd3fb9b8"><div class="ttname"><a href="group__module____c.html#ga7eef72367ad86f986e64c7b8fd3fb9b8">Cal_BddIntersects</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddIntersects(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Computes a BDD that implies conjunction of f and g.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga839d6402ad9fd70c8f81034affc80179"><div class="ttname"><a href="group__module____c.html#ga839d6402ad9fd70c8f81034affc80179">Cal_BddProfile</a></div><div class="ttdeci">EXTERN void Cal_BddProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd, long *levelCounts, int negout)</div><div class="ttdoc">The number of nodes at each level in f.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga84063346e71e2a8f11943d5d344b73a5"><div class="ttname"><a href="group__module____c.html#ga84063346e71e2a8f11943d5d344b73a5">Cal_BddOverflow</a></div><div class="ttdeci">EXTERN int Cal_BddOverflow(Cal_BddManager bddManager)</div><div class="ttdoc">Returns 1 if the node limit has been exceeded, 0 otherwise.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga8a259bbea195eea7b76c208e687a2726"><div class="ttname"><a href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726">Cal_BddPrintProfile</a></div><div class="ttdeci">EXTERN void Cal_BddPrintProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_VarNamingFn_t varNamingProc, char *env, int lineLength, FILE *fp)</div><div class="ttdoc">Displays the node profile for f on fp.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga8b65056969337f7e611c60329e885c26"><div class="ttname"><a href="group__module____c.html#ga8b65056969337f7e611c60329e885c26">Cal_BddTotalSize</a></div><div class="ttdeci">EXTERN unsigned long Cal_BddTotalSize(Cal_BddManager bddManager)</div><div class="ttdoc">Returns the number of nodes in the Unique table.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga8bca144cb0bf97034fde250c1b52540b"><div class="ttname"><a href="group__module____c.html#ga8bca144cb0bf97034fde250c1b52540b">Cal_BddManagerCreateNewVarBefore</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddManagerCreateNewVarBefore(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Create and obtain a new variable before the specified one in the variable order.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga8d3dd5507f3bd45f56ac70bc68c76df2"><div class="ttname"><a href="group__module____c.html#ga8d3dd5507f3bd45f56ac70bc68c76df2">Cal_BddSize</a></div><div class="ttdeci">EXTERN long Cal_BddSize(Cal_BddManager bddManager, Cal_Bdd fUserBdd, int negout)</div><div class="ttdoc">BDD size of f.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga949af55cbfe77f394ae9222a28c32f62"><div class="ttname"><a href="group__module____c.html#ga949af55cbfe77f394ae9222a28c32f62">Cal_BddPrintProfileMultiple</a></div><div class="ttdeci">EXTERN void Cal_BddPrintProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *userBdds, Cal_VarNamingFn_t varNamingProc, char *env, int lineLength, FILE *fp)</div><div class="ttdoc">Similar to Cal_BddPrintProfile but displays the profile for a set of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga95011b43a17c947527078aa2e9c0d94e"><div class="ttname"><a href="group__module____c.html#ga95011b43a17c947527078aa2e9c0d94e">Cal_BddPairwiseOr</a></div><div class="ttdeci">EXTERN Cal_Bdd * Cal_BddPairwiseOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)</div><div class="ttdoc">Logical OR of BDD pairs in argument null-termiinated array of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga981d7557f454488b899a2c9db62b6962"><div class="ttname"><a href="group__module____c.html#ga981d7557f454488b899a2c9db62b6962">Cal_PipelineInit</a></div><div class="ttdeci">EXTERN int Cal_PipelineInit(Cal_BddManager bddManager, Cal_BddOp_t bddOp)</div><div class="ttdoc">Initialize a BDD pipeline.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga9e700453c2e9075de29d88d9711fd9c3"><div class="ttname"><a href="group__module____c.html#ga9e700453c2e9075de29d88d9711fd9c3">Cal_BddIf</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddIf(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">A BDD corresponding to the top variable of the given BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_ga9f6c8d103d90cc04fa98eb04f909bf0f"><div class="ttname"><a href="group__module____c.html#ga9f6c8d103d90cc04fa98eb04f909bf0f">Cal_BddZero</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddZero(Cal_BddManager bddManager)</div><div class="ttdoc">The BDD for the constant zero.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaa4014e81c805b7ab51cff12df1aad0d1"><div class="ttname"><a href="group__module____c.html#gaa4014e81c805b7ab51cff12df1aad0d1">Cal_BddManagerGetNumNodes</a></div><div class="ttdeci">EXTERN unsigned long Cal_BddManagerGetNumNodes(Cal_BddManager bddManager)</div><div class="ttdoc">Returns the number of BDD nodes.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaa543ea4e609619c343430cad8bf9b700"><div class="ttname"><a href="group__module____c.html#gaa543ea4e609619c343430cad8bf9b700">Cal_BddManagerCreateNewVarFirst</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddManagerCreateNewVarFirst(Cal_BddManager bddManager)</div><div class="ttdoc">Create and obtain a new variable at the start of the variable order.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaa562ddaaf6420309f2cfe0bf4ccbc40a"><div class="ttname"><a href="group__module____c.html#gaa562ddaaf6420309f2cfe0bf4ccbc40a">Cal_BddNewVarBlock</a></div><div class="ttdeci">EXTERN Cal_Block Cal_BddNewVarBlock(Cal_BddManager bddManager, Cal_Bdd variable, long length)</div><div class="ttdoc">Creates and returns a variable block used for controlling dynamic reordering.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaa9236add1159254f209193f33dd83cb7"><div class="ttname"><a href="group__module____c.html#gaa9236add1159254f209193f33dd83cb7">Cal_BddReduce</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddReduce(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd cUserBdd)</div><div class="ttdoc">A function that agrees with f for all valuations which satisfy c.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaaaaf85b240ea9f11989884553e34c53b"><div class="ttname"><a href="group__module____c.html#gaaaaf85b240ea9f11989884553e34c53b">Cal_BddManagerInit</a></div><div class="ttdeci">EXTERN Cal_BddManager Cal_BddManagerInit()</div><div class="ttdoc">Creates and initializes a new BDD manager.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaab86642d97b18c01f6f3b9cabf5f7ec9"><div class="ttname"><a href="group__module____c.html#gaab86642d97b18c01f6f3b9cabf5f7ec9">Cal_BddSatisfy</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddSatisfy(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">A satisfying assignment of f.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaad70855528f24dce75494788f54efdd8"><div class="ttname"><a href="group__module____c.html#gaad70855528f24dce75494788f54efdd8">Cal_AssociationQuit</a></div><div class="ttdeci">EXTERN void Cal_AssociationQuit(Cal_BddManager bddManager, int associationId)</div><div class="ttdoc">Deletes the variable association given by id.</div></div>
+<div class="ttc" id="agroup__module____c_html_gab3ff7bdbc42ea0fc2d219377d3bed71a"><div class="ttname"><a href="group__module____c.html#gab3ff7bdbc42ea0fc2d219377d3bed71a">Cal_BddBetween</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddBetween(Cal_BddManager bddManager, Cal_Bdd fMinUserBdd, Cal_Bdd fMaxUserBdd)</div><div class="ttdoc">A function that contains fMin and is contained in fMax.</div></div>
+<div class="ttc" id="agroup__module____c_html_gab4f07470db15052da757687b9975002e"><div class="ttname"><a href="group__module____c.html#gab4f07470db15052da757687b9975002e">Cal_BddType</a></div><div class="ttdeci">EXTERN int Cal_BddType(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">The type of the given BDD (0, 1, +var, -var, overflow, nonterminal).</div></div>
+<div class="ttc" id="agroup__module____c_html_gabc81e8b2373b47879ba584b805100e49"><div class="ttname"><a href="group__module____c.html#gabc81e8b2373b47879ba584b805100e49">Cal_BddGetRegular</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddGetRegular(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">Returns a BDD with positive from a given BDD with arbitrary phase.</div></div>
+<div class="ttc" id="agroup__module____c_html_gabf6efc85c83491d18249871e8bfedd6d"><div class="ttname"><a href="group__module____c.html#gabf6efc85c83491d18249871e8bfedd6d">Cal_AssociationSetCurrent</a></div><div class="ttdeci">EXTERN int Cal_AssociationSetCurrent(Cal_BddManager bddManager, int associationId)</div><div class="ttdoc">Sets the current variable association to the one given.</div></div>
+<div class="ttc" id="agroup__module____c_html_gac0627543d7cd4bd3029b24aac4d246f9"><div class="ttname"><a href="group__module____c.html#gac0627543d7cd4bd3029b24aac4d246f9">Cal_PipelineUpdateProvisionalBdd</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_PipelineUpdateProvisionalBdd(Cal_BddManager bddManager, Cal_Bdd provisionalBdd)</div><div class="ttdoc">Update a provisional BDD obtained during pipelining.</div></div>
+<div class="ttc" id="agroup__module____c_html_gac1c41629ebc92746faeb02974331a359"><div class="ttname"><a href="group__module____c.html#gac1c41629ebc92746faeb02974331a359">Cal_BddVars</a></div><div class="ttdeci">EXTERN long Cal_BddVars(Cal_BddManager bddManager)</div><div class="ttdoc">Returns the number of BDD variables.</div></div>
+<div class="ttc" id="agroup__module____c_html_gac21ea1852fdc14037f0fcde467e0940c"><div class="ttname"><a href="group__module____c.html#gac21ea1852fdc14037f0fcde467e0940c">Cal_BddSupport</a></div><div class="ttdeci">EXTERN void Cal_BddSupport(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd *support)</div><div class="ttdoc">Returns the support of f as a null-terminated array of variables.</div></div>
+<div class="ttc" id="agroup__module____c_html_gac5838d954a3af710ac6df4d628eb44b6"><div class="ttname"><a href="group__module____c.html#gac5838d954a3af710ac6df4d628eb44b6">Cal_BddXnor</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddXnor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical XNOR of argument BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_gac5ff28098a2167da2af3f20383904451"><div class="ttname"><a href="group__module____c.html#gac5ff28098a2167da2af3f20383904451">Cal_BddSetGCMode</a></div><div class="ttdeci">EXTERN void Cal_BddSetGCMode(Cal_BddManager bddManager, int gcMode)</div><div class="ttdoc">Sets the garbage collection mode.</div></div>
+<div class="ttc" id="agroup__module____c_html_gacc04e070213a96dd1c21b3fabc76fe49"><div class="ttname"><a href="group__module____c.html#gacc04e070213a96dd1c21b3fabc76fe49">Cal_BddFunctionProfileMultiple</a></div><div class="ttdeci">EXTERN void Cal_BddFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray, long *funcCounts)</div><div class="ttdoc">Similar to Cal_BddFunctionProfile for a null-terminated array of BDDs and accounting for sharing of n...</div></div>
+<div class="ttc" id="agroup__module____c_html_gacdfa3f9ee1aade67aa4269519b690698"><div class="ttname"><a href="group__module____c.html#gacdfa3f9ee1aade67aa4269519b690698">Cal_BddITE</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddITE(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd, Cal_Bdd hUserBdd)</div><div class="ttdoc">Logical If-Then-Else.</div></div>
+<div class="ttc" id="agroup__module____c_html_gad06a3d382f760006dc9fd432bea68789"><div class="ttname"><a href="group__module____c.html#gad06a3d382f760006dc9fd432bea68789">Cal_BddReorder</a></div><div class="ttdeci">EXTERN void Cal_BddReorder(Cal_BddManager bddManager)</div><div class="ttdoc">Invoke the current dynamic reodering method.</div></div>
+<div class="ttc" id="agroup__module____c_html_gad1dc0498c18875ba1e2b813609de091c"><div class="ttname"><a href="group__module____c.html#gad1dc0498c18875ba1e2b813609de091c">Cal_BddIsBddZero</a></div><div class="ttdeci">EXTERN int Cal_BddIsBddZero(Cal_BddManager bddManager, Cal_Bdd userBdd)</div></div>
+<div class="ttc" id="agroup__module____c_html_gad341031ac793f2be9d4a7fa378633f96"><div class="ttname"><a href="group__module____c.html#gad341031ac793f2be9d4a7fa378633f96">Cal_BddRelProd</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddRelProd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical AND of the argument BDDs and existentially quantifying some variables from the product.</div></div>
+<div class="ttc" id="agroup__module____c_html_gad5a5eab57532f0da4f5b7a591c1c0d5f"><div class="ttname"><a href="group__module____c.html#gad5a5eab57532f0da4f5b7a591c1c0d5f">Cal_BddThen</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddThen(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">the positive cofactor of the argument BDD with respect to its top variable.</div></div>
+<div class="ttc" id="agroup__module____c_html_gad5be3dd7b3a37b25282624dbddd7c544"><div class="ttname"><a href="group__module____c.html#gad5be3dd7b3a37b25282624dbddd7c544">Cal_BddDependsOn</a></div><div class="ttdeci">EXTERN int Cal_BddDependsOn(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd varUserBdd)</div><div class="ttdoc">Returns 1 if f depends on var and returns 0 otherwise.</div></div>
+<div class="ttc" id="agroup__module____c_html_gad5e7f318b83eba455e21bbe3d87edcc4"><div class="ttname"><a href="group__module____c.html#gad5e7f318b83eba455e21bbe3d87edcc4">Cal_BddIsCube</a></div><div class="ttdeci">EXTERN int Cal_BddIsCube(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Returns 1 if the argument BDD is a cube, 0 otherwise.</div></div>
+<div class="ttc" id="agroup__module____c_html_gad9b22a6e06dd0593fb226a50edbecaa6"><div class="ttname"><a href="group__module____c.html#gad9b22a6e06dd0593fb226a50edbecaa6">Cal_BddManagerGetHooks</a></div><div class="ttdeci">EXTERN void * Cal_BddManagerGetHooks(Cal_BddManager bddManager)</div><div class="ttdoc">Returns the hooks field of the manager.</div></div>
+<div class="ttc" id="agroup__module____c_html_gada1a064fd1ba9db70aaf1efe554efd02"><div class="ttname"><a href="group__module____c.html#gada1a064fd1ba9db70aaf1efe554efd02">Cal_PipelineQuit</a></div><div class="ttdeci">EXTERN void Cal_PipelineQuit(Cal_BddManager bddManager)</div><div class="ttdoc">Resets the pipeline freeing all resources.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaddbb7cb1d592ed0d85e7bebf33dc42f2"><div class="ttname"><a href="group__module____c.html#gaddbb7cb1d592ed0d85e7bebf33dc42f2">Cal_BddManagerQuit</a></div><div class="ttdeci">EXTERN int Cal_BddManagerQuit(Cal_BddManager bddManager)</div><div class="ttdoc">Frees the BDD manager and all the associated allocations.</div></div>
+<div class="ttc" id="agroup__module____c_html_gade9f273d604671b7acd5a0970b002c13"><div class="ttname"><a href="group__module____c.html#gade9f273d604671b7acd5a0970b002c13">Cal_TempAssociationAugment</a></div><div class="ttdeci">EXTERN void Cal_TempAssociationAugment(Cal_BddManager bddManager, Cal_Bdd *associationInfoUserBdds, int pairs)</div><div class="ttdoc">Adds to the temporary variable association.</div></div>
+<div class="ttc" id="agroup__module____c_html_gae7714b8ec553600a99cb319f0a7454eb"><div class="ttname"><a href="group__module____c.html#gae7714b8ec553600a99cb319f0a7454eb">Cal_BddForAll</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddForAll(Cal_BddManager bddManager, Cal_Bdd fUserBdd)</div><div class="ttdoc">Universal quantification of some variables from the given BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaeb3aa8e0189e1cea6361cb5ed026bfda"><div class="ttname"><a href="group__module____c.html#gaeb3aa8e0189e1cea6361cb5ed026bfda">Cal_BddNor</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddNor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical NOR of argument BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaed17a8b2916a9576e8760373593b814d"><div class="ttname"><a href="group__module____c.html#gaed17a8b2916a9576e8760373593b814d">Cal_BddImplies</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddImplies(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Computes a BDD that implies conjunction of f and Cal_BddNot(g).</div></div>
+<div class="ttc" id="agroup__module____c_html_gaed37c140c3268b23dc97225a93902406"><div class="ttname"><a href="group__module____c.html#gaed37c140c3268b23dc97225a93902406">Cal_BddOr</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddOr(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical Or of argument BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaf1b13a06fe3b22f9e33cdf31bf2d511d"><div class="ttname"><a href="group__module____c.html#gaf1b13a06fe3b22f9e33cdf31bf2d511d">Cal_BddMultiwayOr</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)</div><div class="ttdoc">Logical OR of BDDs in argument null-terminated array of BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaf48cb29c426e1e2f2ba01975c7356315"><div class="ttname"><a href="group__module____c.html#gaf48cb29c426e1e2f2ba01975c7356315">Cal_BddNull</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddNull(Cal_BddManager bddManager)</div><div class="ttdoc">Returns the NULL BDD.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaf4a2a5e1512c5c51fcb9373dd3a6023c"><div class="ttname"><a href="group__module____c.html#gaf4a2a5e1512c5c51fcb9373dd3a6023c">Cal_BddIsBddNull</a></div><div class="ttdeci">EXTERN int Cal_BddIsBddNull(Cal_BddManager bddManager, Cal_Bdd userBdd)</div><div class="ttdoc">1 if the argument BDD is NULL, 0 otherwise.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaf7e81563199741e5cc8465ffed299211"><div class="ttname"><a href="group__module____c.html#gaf7e81563199741e5cc8465ffed299211">Cal_BddSwapVars</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddSwapVars(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd, Cal_Bdd hUserBdd)</div><div class="ttdoc">The function obtained by swapping two variables.</div></div>
+<div class="ttc" id="agroup__module____c_html_gaf922a0fac8b3f7773a04e16c8ded07f1"><div class="ttname"><a href="group__module____c.html#gaf922a0fac8b3f7773a04e16c8ded07f1">Cal_BddAnd</a></div><div class="ttdeci">EXTERN Cal_Bdd Cal_BddAnd(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)</div><div class="ttdoc">Logical AND of argument BDDs.</div></div>
+<div class="ttc" id="agroup__module____c_html_gafd206e0e93fad37ed022933f832128c4"><div class="ttname"><a href="group__module____c.html#gafd206e0e93fad37ed022933f832128c4">Cal_BddManagerSetHooks</a></div><div class="ttdeci">EXTERN void Cal_BddManagerSetHooks(Cal_BddManager bddManager, void *hooks)</div><div class="ttdoc">Sets the hooks field of the manager.</div></div>
+<div class="ttc" id="agroup__module____c_html_gafe2c00a5c4b79ca80a9a3c5ef798227a"><div class="ttname"><a href="group__module____c.html#gafe2c00a5c4b79ca80a9a3c5ef798227a">Cal_BddManagerSetParameters</a></div><div class="ttdeci">EXTERN void Cal_BddManagerSetParameters(Cal_BddManager bddManager, long reorderingThreshold, long maxForwardedNodes, double repackAfterGCThreshold, double tableRepackThreshold)</div><div class="ttdoc">Sets appropriate fields of BDD Manager.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
