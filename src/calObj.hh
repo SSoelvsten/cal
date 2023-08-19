@@ -114,7 +114,7 @@ public:
   { return static_cast<Type_t>(Cal_BddType(this->_bddManager, this->_bdd)); }
 
   unsigned long Size(bool negout = false) const
-  { return Cal_BddSize(_bddManager, this->_bdd, 0); }
+  { return Cal_BddSize(this->_bddManager, this->_bdd, 0); }
 
   double SatisfyingFraction() const
   { return Cal_BddSatisfyingFraction(this->_bddManager, this->_bdd); }
@@ -400,7 +400,7 @@ private:
   // Constructors
 public:
   Cal()
-    :_bddManager(Cal_BddManagerInit())
+    : _bddManager(Cal_BddManagerInit())
   { }
 
   Cal(unsigned int numVars)
@@ -484,11 +484,11 @@ public:
 
   void DynamicReordering(ReorderTechnique technique, ReorderMethod method = ReorderMethod::DF)
   {
-    Cal_BddDynamicReordering(_bddManager, technique, method);
+    Cal_BddDynamicReordering(this->_bddManager, technique, method);
   }
 
   void Reorder()
-  { Cal_BddReorder(_bddManager); }
+  { Cal_BddReorder(this->_bddManager); }
 
   // SwapVars(const BDD &x, const BDD &y);
 
@@ -509,10 +509,10 @@ public:
   }
 
   void AssociationQuit(int i)
-  { Cal_AssociationQuit(_bddManager, i); }
+  { Cal_AssociationQuit(this->_bddManager, i); }
 
   int AssociationSetCurrent(int i)
-  { return Cal_AssociationSetCurrent(_bddManager, i); }
+  { return Cal_AssociationSetCurrent(this->_bddManager, i); }
 
   template<typename IT>
   void TempAssociationInit(IT begin, const IT end, const bool pairs = false)
