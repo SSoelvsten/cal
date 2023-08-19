@@ -26,7 +26,7 @@ message(STATUS "  Shared: ${CAL_SHARED}")
 option(CAL_DOCS "Build Documentation for CAL" ON)
 message(STATUS "  | Documentation (Doxygen): ${CAL_DOCS}")
 
-option(CAL_TEST "Build Documentation for CAL" ON)
+option(CAL_TEST "Build Test for CAL" ON)
 message(STATUS "  | Test Executables: ${CAL_TEST}")
 
 message(STATUS "")
