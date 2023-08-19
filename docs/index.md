@@ -19,7 +19,8 @@ About the Project
 This project was developed in the late 90's at
 [EECS at UC Berkeley](https://eecs.berkeley.edu/). In 2022, the
 [Logic and Semantics](https://logsem.github.io/) group at [Aarhus University](https://cs.au.dk)
-have brought this project back from the grave by upgrading it to be
+have brought this project back from the grave and upgraded it to be
+built with CMake and by adding a clean C++ API.
 
 **Current Maintainer:** [Steffan Sølvsten](mailto:soelvsten@cs.au.dk)
 
