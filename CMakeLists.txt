@@ -23,10 +23,20 @@ message(STATUS "    EXE Linker Flags: ${CMAKE_EXE_LINKER_FLAGS}")
 option(CAL_SHARED "Build CAL as a shared library" OFF)
 message(STATUS "  Shared: ${CAL_SHARED}")
 
+option(CAL_DOCS "Build Documentation for CAL" ON)
+message(STATUS "  | Documentation (Doxygen): ${CAL_DOCS}")
+
 option(CAL_TEST "Build Documentation for CAL" ON)
 message(STATUS "  | Test Executables: ${CAL_TEST}")
 
 message(STATUS "")
+
+# ============================================================================ #
+# docs/
+# ============================================================================ #
+if (CAL_DOCS)
+  add_subdirectory(docs)
+endif (CAL_DOCS)
 
 # ============================================================================ #
 # src/
