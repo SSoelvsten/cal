@@ -6,7 +6,7 @@ var searchData=
   ['setgclimit_176',['SetGCLimit',['../classCal.html#a309763349ad5b6372d00a226bbda76f5',1,'Cal']]],
   ['setgcmode_177',['SetGCMode',['../classCal.html#a7591ac3fcaa17a9b1a5b71f0e8a022a2',1,'Cal']]],
   ['setparameters_178',['SetParameters',['../classCal.html#a2fc8ea9f75fab4da77fdfc8f42581ce2',1,'Cal']]],
-  ['size_179',['Size',['../classBDD.html#a8ff15dee010eefc567d18994e9064af0',1,'BDD::Size()'],['../classCal.html#a472a4f70e8f3fa6733e50835752756d3',1,'Cal::Size(const BDD &amp;f, bool negout=false)'],['../classCal.html#af863d484e7f9708877710ca585790e78',1,'Cal::Size(IT begin, IT end, bool negout)'],['../classCal.html#a559c46646808aa6ae09440038f8332fe',1,'Cal::Size(Container c, bool negout=false)']]],
+  ['size_179',['Size',['../classBDD.html#a2f1dfafa5555d822855f2c51ad564d19',1,'BDD::Size()'],['../classCal.html#a6c1ca37660fcaffa9f986f0a2cf08e78',1,'Cal::Size(const BDD &amp;f, bool negout=true)'],['../classCal.html#af56a5694a6a34d6395f2fe27b6d08163',1,'Cal::Size(IT begin, IT end, bool negout=true)'],['../classCal.html#a5b97be64eeecf02f10f970bb194e5b90',1,'Cal::Size(Container c, bool negout=true)']]],
   ['stats_180',['Stats',['../classCal.html#afe76da43d82585e8514527824e130904',1,'Cal']]],
   ['swapvars_181',['SwapVars',['../classBDD.html#a49cc939f4558eddc698d196f8ea4366d',1,'BDD::SwapVars()'],['../classCal.html#a920c28b8b75e2274f39ae09609e9bf9a',1,'Cal::SwapVars()']]]
 ];

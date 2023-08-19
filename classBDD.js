@@ -54,7 +54,7 @@ var classBDD =
     [ "Satisfy", "classBDD.html#aac1b14e4b3419cc90c523ef98aed5294", null ],
     [ "SatisfyingFraction", "classBDD.html#aad556c21b3a4a76545a7ad881add4cbc", null ],
     [ "SatisfySupport", "classBDD.html#a9a3a91ea5647f584ea5aca74a505ffbe", null ],
-    [ "Size", "classBDD.html#a8ff15dee010eefc567d18994e9064af0", null ],
+    [ "Size", "classBDD.html#a2f1dfafa5555d822855f2c51ad564d19", null ],
     [ "SwapVars", "classBDD.html#a49cc939f4558eddc698d196f8ea4366d", null ],
     [ "Then", "classBDD.html#a0e7879c854dfdaf2e665aa1784386542", null ],
     [ "ToString", "classBDD.html#a23c4d23b2c8f5b2446f00e0fa37542b6", null ],
