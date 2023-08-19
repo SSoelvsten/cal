@@ -7,6 +7,7 @@ extern "C" {
 }
 
 #include <vector>
+#include <sstream>
 
 class BDD;
 class Cal;
