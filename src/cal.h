@@ -415,8 +415,6 @@ EXTERN void Cal_TempAssociationAugment(Cal_BddManager bddManager,
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Cleans up temporary association.
 ///
-/// \remark This is optional
-///
 /// \see Cal_TempAssociationInit
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN void Cal_TempAssociationQuit(Cal_BddManager bddManager);
