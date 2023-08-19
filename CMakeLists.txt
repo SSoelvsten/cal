@@ -23,6 +23,9 @@ message(STATUS "    EXE Linker Flags: ${CMAKE_EXE_LINKER_FLAGS}")
 option(CAL_SHARED "Build CAL as a shared library" OFF)
 message(STATUS "  Shared: ${CAL_SHARED}")
 
+option(CAL_TEST "Build Documentation for CAL" ON)
+message(STATUS "  | Test Executables: ${CAL_TEST}")
+
 message(STATUS "")
 
 # ============================================================================ #
@@ -33,4 +36,6 @@ add_subdirectory (src)
 # ============================================================================ #
 # test/
 # ============================================================================ #
-add_subdirectory (test)
+if (CAL_TEST)
+  add_subdirectory (test)
+endif (CAL_TEST)
