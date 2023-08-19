@@ -1,3 +1,41 @@
+/**CPPHeaderFile***************************************************************
+
+  FileName    [calObj.hh]
+
+  PackageName [cal]
+
+  Synopsis    [C++ Header CAL file for exported data structures and functions.]
+
+  Description []
+
+  SeeAlso     []
+
+  Author      [Steffan Sølvsten (soelvsten@cs.au.dk)]
+
+  Copyright   [Copyright (c) 2023, Aarhus University]
+
+  All rights reserved.
+
+  Permission is hereby granted, without written agreement and without license
+  or royalty fees, to use, copy, modify, and distribute this software and its
+  documentation for any purpose, provided that the above copyright notice and
+  the following two paragraphs appear in all copies of this software.
+
+  IN NO EVENT SHALL AARHUS UNIVERSITY OR THE UNIVERSITY OF CALIFORNIA BE LIABLE
+  TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
+  DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
+  EITHER UNIVERSITY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+  BOTH UNIVERSITIES SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+  PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON AN "AS IS" BASIS,
+  AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE,
+  SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.]
+
+  Revision    [$Id: calObj.h,v 3.0 2023/08/19 17:48:05 soelvsten Exp $]
+
+******************************************************************************/
+
 #ifndef _CALOBJ
 #define _CALOBJ
 
