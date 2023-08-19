@@ -79,17 +79,6 @@ static void chars(char c, int n, FILE * fp);
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Displays the node profile for f on fp. lineLength specifies 
-               the maximum line length.  varNamingFn is as in
-               Cal_BddPrintBdd.]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddPrintProfile(Cal_BddManager  bddManager,
@@ -112,16 +101,6 @@ Cal_BddPrintProfile(Cal_BddManager  bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Cal_BddPrintProfileMultiple is like Cal_BddPrintProfile except
-               it displays the profile for a set of BDDs]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddPrintProfileMultiple(
@@ -146,16 +125,6 @@ Cal_BddPrintProfileMultiple(
 
 
 /**Function********************************************************************
-
-  Synopsis    [Cal_BddPrintFunctionProfile is like Cal_BddPrintProfile except
-               it displays a function profile for f]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddPrintFunctionProfile(Cal_BddManager bddManager,
@@ -178,16 +147,6 @@ Cal_BddPrintFunctionProfile(Cal_BddManager bddManager,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Cal_BddPrintFunctionProfileMultiple is like
-               Cal_BddPrintFunctionProfile except for multiple BDDs]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddPrintFunctionProfileMultiple(Cal_BddManager bddManager,
@@ -211,17 +170,8 @@ Cal_BddPrintFunctionProfileMultiple(Cal_BddManager bddManager,
 /* Definition of static functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Prints a profile to the file given by fp.  The varNamingProc
-               is as in Cal_BddPrintBdd. lineLength gives the line width to scale
-               the profile to.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Prints a profile to the file given by fp. The varNamingProc is as in
+  Cal_BddPrintBdd. lineLength gives the line width to scale the profile to.]
 ******************************************************************************/
 static void
 CalBddPrintProfileAux(
@@ -298,15 +248,6 @@ CalBddPrintProfileAux(
 }
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 chars(

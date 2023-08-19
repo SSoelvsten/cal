@@ -8,7 +8,7 @@
   pair of BDDs or on an array of pair of BDDs or on an array of BDDs.]
 
   Description [The "cal" specific routines are "Cal_BddPairwiseAnd/Or",
-  "Cal_BddMultiwayAnd/Or".] 
+  "Cal_BddMultiwayAnd/Or".]
 
   SeeAlso     [optional]
 
@@ -78,13 +78,6 @@ static int CeilLog2(int number);
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical AND of argument BDDs]
-
-  Description [Returns the BDD for logical AND of f and g]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddAnd(
@@ -114,13 +107,6 @@ Cal_BddAnd(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical NAND of argument BDDs]
-
-  Description [Returns the BDD for logical NAND of f and g]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddNand(
@@ -132,8 +118,8 @@ Cal_BddNand(
   Cal_Bdd_t F, G;
   Cal_Bdd userResult;
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd)){
-    F = CalBddGetInternalBdd(bddManager, fUserBdd); 
-    G = CalBddGetInternalBdd(bddManager, gUserBdd); 
+    F = CalBddGetInternalBdd(bddManager, fUserBdd);
+    G = CalBddGetInternalBdd(bddManager, gUserBdd);
     result = CalBddOpBF(bddManager, CalOpNand, F, G);
   }
   else{
@@ -149,13 +135,6 @@ Cal_BddNand(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical OR of argument BDDs]
-
-  Description [Returns the BDD for logical OR of f and g]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddOr(Cal_BddManager bddManager,
@@ -166,8 +145,8 @@ Cal_BddOr(Cal_BddManager bddManager,
   Cal_Bdd_t F, G;
   Cal_Bdd userResult;
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd)){
-    F = CalBddGetInternalBdd(bddManager, fUserBdd); 
-    G = CalBddGetInternalBdd(bddManager, gUserBdd); 
+    F = CalBddGetInternalBdd(bddManager, fUserBdd);
+    G = CalBddGetInternalBdd(bddManager, gUserBdd);
     result = CalBddOpBF(bddManager, CalOpOr, F, G);
   }
   else{
@@ -183,13 +162,6 @@ Cal_BddOr(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical NOR of argument BDDs]
-
-  Description [Returns the BDD for logical NOR of f and g]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddNor(Cal_BddManager bddManager,
@@ -200,8 +172,8 @@ Cal_BddNor(Cal_BddManager bddManager,
   Cal_Bdd userResult;
   Cal_Bdd_t F, G;
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd)){
-    F = CalBddGetInternalBdd(bddManager, fUserBdd); 
-    G = CalBddGetInternalBdd(bddManager, gUserBdd); 
+    F = CalBddGetInternalBdd(bddManager, fUserBdd);
+    G = CalBddGetInternalBdd(bddManager, gUserBdd);
     result = CalBddOpBF(bddManager, CalOpOr, F, G);
     CalBddNot(result, result);
   }
@@ -218,13 +190,6 @@ Cal_BddNor(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical exclusive OR of argument BDDs]
-
-  Description [Returns the BDD for logical exclusive OR of f and g]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddXor(Cal_BddManager bddManager,
@@ -235,8 +200,8 @@ Cal_BddXor(Cal_BddManager bddManager,
   Cal_Bdd userResult;
   Cal_Bdd_t F, G;
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd)){
-    F = CalBddGetInternalBdd(bddManager, fUserBdd); 
-    G = CalBddGetInternalBdd(bddManager, gUserBdd); 
+    F = CalBddGetInternalBdd(bddManager, fUserBdd);
+    G = CalBddGetInternalBdd(bddManager, gUserBdd);
     result = CalBddOpBF(bddManager, CalOpXor, F, G);
   }
   else{
@@ -252,13 +217,6 @@ Cal_BddXor(Cal_BddManager bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical exclusive NOR of argument BDDs]
-
-  Description [Returns the BDD for logical exclusive NOR of f and g]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddXnor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
@@ -267,8 +225,8 @@ Cal_BddXnor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
   Cal_Bdd userResult;
   Cal_Bdd_t F, G;
   if (CalBddPreProcessing(bddManager, 2, fUserBdd, gUserBdd)){
-    F = CalBddGetInternalBdd(bddManager, fUserBdd); 
-    G = CalBddGetInternalBdd(bddManager, gUserBdd); 
+    F = CalBddGetInternalBdd(bddManager, fUserBdd);
+    G = CalBddGetInternalBdd(bddManager, gUserBdd);
     result = CalBddOpBF(bddManager, CalOpXor, F, G);
     CalBddNot(result, result);
   }
@@ -285,19 +243,6 @@ Cal_BddXnor(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns an array of BDDs obtained by logical AND of BDD pairs
-  specified by an BDD array in which a BDD at an even location is paired with
-  a BDD at an odd location of the array]
-
-  Description [Returns an array of BDDs obtained by logical AND of BDD pairs
-  specified by an BDD array in which a BDD at an even location is paired with
-  a BDD at an odd location of the array]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddPairwiseOr]
-
 ******************************************************************************/
 Cal_Bdd *
 Cal_BddPairwiseAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
@@ -307,7 +252,7 @@ Cal_BddPairwiseAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   Cal_Bdd_t *resultArray;
   Cal_Bdd userBdd;
   Cal_Bdd *userResultArray;
- 
+
   for (num = 0; (userBdd = userBddArray[num]); num++){
     if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
       return Cal_Nil(Cal_Bdd);
@@ -340,19 +285,6 @@ Cal_BddPairwiseAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns an array of BDDs obtained by logical OR of BDD pairs
-  specified by an BDD array in which a BDD at an even location is paired with
-  a BDD at an odd location of the array]
-
-  Description [Returns an array of BDDs obtained by logical OR of BDD pairs
-  specified by an BDD array in which a BDD at an even location is paired with
-  a BDD at an odd location of the array]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddPairwiseAnd]
-
 ******************************************************************************/
 Cal_Bdd *
 Cal_BddPairwiseOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
@@ -362,7 +294,7 @@ Cal_BddPairwiseOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   Cal_Bdd_t *resultArray;
   Cal_Bdd userBdd;
   Cal_Bdd *userResultArray;
- 
+
   for (num = 0; (userBdd = userBddArray[num]); num++){
     if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
       return Cal_Nil(Cal_Bdd);
@@ -387,19 +319,6 @@ Cal_BddPairwiseOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns an array of BDDs obtained by logical XOR of BDD pairs
-  specified by an BDD array in which a BDD at an even location is paired with
-  a BDD at an odd location of the array]
-
-  Description [Returns an array of BDDs obtained by logical XOR of BDD pairs
-  specified by an BDD array in which a BDD at an even location is paired with
-  a BDD at an odd location of the array]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddPairwiseAnd]
-
 ******************************************************************************/
 Cal_Bdd *
 Cal_BddPairwiseXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
@@ -409,7 +328,7 @@ Cal_BddPairwiseXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   Cal_Bdd_t *resultArray;
   Cal_Bdd userBdd;
   Cal_Bdd *userResultArray;
- 
+
   for (num = 0; (userBdd = userBddArray[num]); num++){
     if (CalBddPreProcessing(bddManager, 1, userBdd) == 0){
       return Cal_Nil(Cal_Bdd);
@@ -433,16 +352,7 @@ Cal_BddPairwiseXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   return userResultArray;
 }
 
-
-
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical AND of argument BDDs]
-
-  Description [Returns the BDD for logical AND of set of BDDs in the bddArray]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
@@ -457,7 +367,7 @@ Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
       return Cal_BddNull(bddManager);
     }
   }
-  
+
   if (numBdds == 0){
     CalBddWarningMessage("Multiway AND called with 0 length array");
     return Cal_BddNull(bddManager);
@@ -475,15 +385,8 @@ Cal_BddMultiwayAnd(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   }
   return CalBddGetExternalBdd(bddManager, result);
 }
- 
+
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical OR of argument BDDs]
-
-  Description [Returns the BDD for logical OR of set of BDDs in the bddArray]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
@@ -498,7 +401,7 @@ Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
       return Cal_BddNull(bddManager);
     }
   }
-  
+
   if (numBdds == 0){
     CalBddWarningMessage("Multiway OR called with 0 length array");
     return Cal_BddNull(bddManager);
@@ -516,15 +419,8 @@ Cal_BddMultiwayOr(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
   }
   return CalBddGetExternalBdd(bddManager, result);
 }
- 
+
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical XOR of argument BDDs]
-
-  Description [Returns the BDD for logical XOR of set of BDDs in the bddArray]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
@@ -539,7 +435,7 @@ Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
       return Cal_BddNull(bddManager);
     }
   }
-  
+
   if (numBdds == 0){
     CalBddWarningMessage("Multiway OR called with 0 length array");
     return Cal_BddNull(bddManager);
@@ -563,20 +459,13 @@ Cal_BddMultiwayXor(Cal_BddManager bddManager, Cal_Bdd *userBddArray)
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 
-
 /**Function********************************************************************
+  Computes result BDDs for an array of lists, each entry of which is pair of
+  pointers, each of which points to a operand BDD or an entry in another list
+  with a smaller array index
 
-  Synopsis    [Computes result BDDs for an array of lists, each entry of which 
-  is pair of pointers, each of which points to a operand BDD or an entry in
-  another list with a smaller array index]
-
-  Description [Computes result BDDs for an array of lists, each entry of which
-  is pair of pointers, each of which points to a operand BDD or an entry in
-  another list with a smaller array index]
-
-  SideEffects [ThenBDD pointer of an entry is over written by the result BDD
-  and ElseBDD pointer is marked using FORWARD_FLAG]
-
+  SideEffects are ThenBDD pointer of an entry is over written by the result BDD
+  and ElseBDD pointer is marked using FORWARD_FLAG
 ******************************************************************************/
 void
 CalRequestNodeListArrayOp(Cal_BddManager_t * bddManager,
@@ -588,7 +477,7 @@ CalRequestNodeListArrayOp(Cal_BddManager_t * bddManager,
   int pipeDepth, bddId, bddIndex;
   CalHashTable_t **reqQueAtPipeDepth, *hashTable, *uniqueTableForId;
   CalHashTable_t ***reqQue = bddManager->reqQue;
-  
+
   /* ReqQueInsertUsingReqListArray */
   for(pipeDepth = 0; pipeDepth < bddManager->depth; pipeDepth++){
     reqQueAtPipeDepth = reqQue[pipeDepth];
@@ -665,8 +554,8 @@ CalRequestNodeListArrayOp(Cal_BddManager_t * bddManager,
       }
     }
     calAfterReduceToAfterApplyNodesRatio =
-        ((double)calNumEntriesAfterReduce)/((double)calNumEntriesAfterApply); 
-    calAfterReduceToUniqueTableNodesRatio = 
+        ((double)calNumEntriesAfterReduce)/((double)calNumEntriesAfterApply);
+    calAfterReduceToUniqueTableNodesRatio =
         ((double)calNumEntriesAfterReduce)/((double)bddManager->numNodes);
   }
 #endif
@@ -693,13 +582,7 @@ CalRequestNodeListArrayOp(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Internal routine to compute a logical operation on a pair of BDDs]
-
-  Description [Internal routine to compute a logical operation on a pair of BDDs]
-
-  SideEffects [None]
-
+  Internal routine to compute a logical operation on a pair of BDDs
 ******************************************************************************/
 Cal_Bdd_t
 CalBddOpBF(
@@ -710,18 +593,18 @@ CalBddOpBF(
 {
   Cal_Bdd_t result;
   Cal_BddId_t minId, bddId;
-  /*Cal_BddIndex_t minIndex; Commented out because of the problem on alpha*/ 
+  /*Cal_BddIndex_t minIndex; Commented out because of the problem on alpha*/
   int minIndex;
   int bddIndex;
   CalHashTable_t *hashTable, **hashTableArray, *uniqueTableForId;
-  
+
   if (calOpProc(bddManager, F, G, &result)){
     return result;
   }
   CalBddGetMinIdAndMinIndex(bddManager, F, G, minId, minIndex);
   hashTableArray = bddManager->reqQue[0];
   CalHashTableFindOrAdd(hashTableArray[minId], F, G, &result);
-  
+
   /* ReqQueApply */
   for(bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
@@ -758,7 +641,7 @@ CalBddOpBF(
     for(bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
       CalRequestNode_t *next;
       Cal_BddId_t bddId;
-      
+
       bddId = bddManager->indexToId[bddIndex];
       hashTable = hashTableArray[bddId];
       for (requestNode = hashTable->requestNodeList; requestNode !=
@@ -769,8 +652,8 @@ CalBddOpBF(
       }
     }
     calAfterReduceToAfterApplyNodesRatio =
-        ((double)calNumEntriesAfterReduce)/((double)calNumEntriesAfterApply); 
-    calAfterReduceToUniqueTableNodesRatio = 
+        ((double)calNumEntriesAfterReduce)/((double)calNumEntriesAfterApply);
+    calAfterReduceToUniqueTableNodesRatio =
         ((double)calNumEntriesAfterReduce)/((double)bddManager->numNodes);
   }
 #endif
@@ -783,17 +666,12 @@ CalBddOpBF(
   return result;
 }
 
-
-
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [Internal common routine for Cal_BddPairwiseAnd and Cal_BddPairwiseOr]
-
-  SideEffects [None]
-
+  Internal common routine for Cal_BddPairwiseAnd and Cal_BddPairwiseOr]
 ******************************************************************************/
 static Cal_Bdd_t *
 BddArrayOpBF(Cal_BddManager_t * bddManager, Cal_Bdd_t*  bddArray,
@@ -808,7 +686,7 @@ BddArrayOpBF(Cal_BddManager_t * bddManager, Cal_Bdd_t*  bddArray,
   int numPairs = numFunction/2;
   Cal_Bdd_t *resultArray = Cal_MemAlloc(Cal_Bdd_t, numPairs);
   int i;
-  
+
   hashTableArray = bddManager->reqQue[0];
   for (i=0; i<numPairs; i++){
     F = bddArray[i<<1];
@@ -819,8 +697,8 @@ BddArrayOpBF(Cal_BddManager_t * bddManager, Cal_Bdd_t*  bddArray,
     }
     resultArray[i] = result;
   }
-  
-  
+
+
   /* ReqQueApply */
   for(bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
     bddId = bddManager->indexToId[bddIndex];
@@ -851,13 +729,7 @@ BddArrayOpBF(Cal_BddManager_t * bddManager, Cal_Bdd_t*  bddArray,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Internal routine for multiway operations]
-
-  Description [Internal routine for multiway operations]
-
-  SideEffects [None]
-
+  Internal routine for multiway operations]
 ******************************************************************************/
 static Cal_Bdd_t
 BddMultiwayOp(Cal_BddManager_t * bddManager, Cal_Bdd_t * calBddArray,
@@ -866,7 +738,7 @@ BddMultiwayOp(Cal_BddManager_t * bddManager, Cal_Bdd_t * calBddArray,
   int pipeDepth;
   CalRequestNode_t *requestNode;
   Cal_Bdd_t result;
-  
+
   BddArrayToRequestNodeListArray(bddManager, calBddArray, numBdds);
   CalRequestNodeListArrayOp(bddManager, bddManager->requestNodeListArray, op);
   for(pipeDepth = 0; pipeDepth < bddManager->depth-1; pipeDepth++){
@@ -882,23 +754,15 @@ BddMultiwayOp(Cal_BddManager_t * bddManager, Cal_Bdd_t * calBddArray,
   }
   requestNode = bddManager->requestNodeListArray[bddManager->depth-1];
   bddManager->requestNodeListArray[bddManager->depth-1] =
-      Cal_Nil(CalRequestNode_t); 
-  CalRequestNodeGetThenRequest(requestNode, result); 
+      Cal_Nil(CalRequestNode_t);
+  CalRequestNodeGetThenRequest(requestNode, result);
   CalNodeManagerFreeNode(bddManager->nodeManagerArray[0],
                          requestNode);
   return result;
 }
 
-
 /**Function********************************************************************
-
-  Synopsis    [Converts an array of BDDs to a list of requests representing BDD
-  pairs]
-
-  Description [Converts an array of BDDs to a list of requests representing BDD]
-
-  SideEffects [None]
-
+  Converts an array of BDDs to a list of requests representing BDD pairs
 ******************************************************************************/
 static void
 BddArrayToRequestNodeListArray(
@@ -909,18 +773,18 @@ BddArrayToRequestNodeListArray(
   int i;
   Cal_Bdd_t lastBdd;
   CalRequestNode_t *even, *odd, *requestNode, *requestNodeList, *head;
-  
+
   bddManager->depth = CeilLog2(numBdds);
   if (bddManager->depth > 10){
     CalBddFatalMessage("Don't be stooopid\n, Use lesser depth\n");
   }
-    
+
   if (bddManager->depth > bddManager->maxDepth){
     /* Need to reallocate the memory for reqQue and
        requestNodeListArray */
     int oldMaxDepth = bddManager->maxDepth;
     bddManager->maxDepth = bddManager->depth;
-    
+
     for (i=0; i<bddManager->maxDepth; i++){
       bddManager->requestNodeListArray[i] = Cal_Nil(CalRequestNode_t);
     }
@@ -985,18 +849,9 @@ BddArrayToRequestNodeListArray(
   }
 }
 
-
-
 /**Function********************************************************************
-
-  Synopsis    [Returns the smallest integer greater than or equal to log2 of a
-  number]
-
-  Description [Returns the smallest integer greater than or equal to log2 of a
-  number (The assumption is that the number is >= 1)]
-
-  SideEffects [None]
-
+  Returns the smallest integer greater than or equal to log2 of a
+  number (The assumption is that the number is >= 1)
 ******************************************************************************/
 static int
 CeilLog2(
@@ -1007,9 +862,3 @@ CeilLog2(
   if ((1 << count) != number) count++;
   return count;
 }
-
-
-  
-
-
-

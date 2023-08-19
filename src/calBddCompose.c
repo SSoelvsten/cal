@@ -72,13 +72,6 @@
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [composition - substitute a BDD variable by a function]
-
-  Description [Returns the BDD obtained by substituting a variable by a function]
-
-  SideEffects [None]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddCompose(Cal_BddManager bddManager, Cal_Bdd  fUserBdd,
@@ -87,7 +80,7 @@ Cal_BddCompose(Cal_BddManager bddManager, Cal_Bdd  fUserBdd,
   Cal_Bdd_t result;
   CalRequestNode_t *requestNode;
   Cal_Bdd_t F, G, H;
-  
+
   if (CalBddPreProcessing(bddManager, 3, fUserBdd, gUserBdd, hUserBdd) == 0){
     result = bddManager->bddNull;
   }
@@ -106,7 +99,7 @@ Cal_BddCompose(Cal_BddManager bddManager, Cal_Bdd  fUserBdd,
   bddManager->requestNodeListArray[0] = requestNode;
   /*
   ** We can achieve a superscalar compose operation, provided G
-  ** is the same for all the compose operation 
+  ** is the same for all the compose operation
   */
 
   CalRequestNodeListCompose(bddManager, bddManager->requestNodeListArray[0],
@@ -146,15 +139,15 @@ CalRequestNodeListCompose(Cal_BddManager_t * bddManager,
   int bddId, bddIndex;
   CalHashTable_t *hashTable, *uniqueTableForId;
   CalHashTable_t **reqQueForCompose = bddManager->reqQue[0];
-  CalHashTable_t **reqQueForITE = bddManager->reqQue[1]; 
-  
+  CalHashTable_t **reqQueForITE = bddManager->reqQue[1];
+
   /* ReqQueForComposeInsertUsingReqList */
   for(requestNode = requestNodeList;
       requestNode != Cal_Nil(CalRequestNode_t);
       requestNode = CalRequestNodeGetNextRequestNode(requestNode)){
     CalRequestNodeGetF(requestNode, F);
     CalRequestNodeGetG(requestNode, H);
-    CalComposeRequestCreate(bddManager, F, H, composeIndex, 
+    CalComposeRequestCreate(bddManager, F, H, composeIndex,
         reqQueForCompose, reqQueForITE, &result);
     CalRequestNodePutThenRequest(requestNode, result);
     CalRequestNodePutElseRequestNode(requestNode, FORWARD_FLAG);
@@ -165,7 +158,7 @@ CalRequestNodeListCompose(Cal_BddManager_t * bddManager,
     bddId = bddManager->indexToId[bddIndex];
     hashTable = reqQueForCompose[bddId];
     if(hashTable->numEntries){
-      CalHashTableComposeApply(bddManager, hashTable, composeIndex, 
+      CalHashTableComposeApply(bddManager, hashTable, composeIndex,
           reqQueForCompose, reqQueForITE);
     }
     hashTable = reqQueForITE[bddId];
@@ -231,7 +224,7 @@ CalHashTableComposeApply(Cal_BddManager_t *bddManager,
   Cal_Bdd_t result;
   Cal_BddId_t bddId;
   Cal_BddIndex_t index;
-  
+
   for(i = 0; i < numBins; i++){
     for(requestNode = bins[i];
         requestNode != Cal_Nil(CalRequestNode_t);
@@ -258,7 +251,7 @@ CalHashTableComposeApply(Cal_BddManager_t *bddManager,
         calBdd1 = hx;
         CalBddGetThenBdd(fx, calBdd2);
         CalBddGetElseBdd(fx, calBdd3);
-	result = CalOpITE(bddManager, calBdd1, calBdd2, calBdd3, reqQueForITE);
+  result = CalOpITE(bddManager, calBdd1, calBdd2, calBdd3, reqQueForITE);
         CalBddIcrRefCount(result);
         CalRequestNodePutThenRequest(requestNode, result);
       }

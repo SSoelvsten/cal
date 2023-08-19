@@ -73,18 +73,8 @@ static int CeilLog2(int number);
 /*---------------------------------------------------------------------------*/
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [Sets the garbage collection mode, 0 means the garbage
-  collection should be turned off, 1 means garbage collection should
-  be on.]
-
-  Description [Sets the garbage collection mode, 0 means the garbage
-  collection should be turned off, 1 means garbage collection should
-  be on.]
-
-  SideEffects [None.]
-
 ******************************************************************************/
 void
 Cal_BddSetGCMode(
@@ -96,15 +86,6 @@ Cal_BddSetGCMode(
 
 
 /**Function********************************************************************
-
-  Synopsis    [Invokes the garbage collection at the manager level.]
-
-  Description [For each variable in the increasing id free nodes with reference
-  count equal to zero freeing a node results in decrementing reference count of
-  then and else nodes by one.]
-
-  SideEffects [None.]
-
 ******************************************************************************/
 int
 Cal_BddManagerGC(Cal_BddManager bddManager)
@@ -113,13 +94,13 @@ Cal_BddManagerGC(Cal_BddManager bddManager)
   Cal_BddId_t id;
   int numNodesFreed;
   /* unsigned long origNodes = bddManager->numNodes; */
-  
+
   if (bddManager->numPeakNodes < (bddManager->numNodes +
                                   bddManager->numForwardedNodes)){
     bddManager->numPeakNodes = bddManager->numNodes +
         bddManager->numForwardedNodes ;
   }
-  
+
   CalHashTableGC(bddManager, bddManager->uniqueTable[0]);
   for(index = 0; index < bddManager->numVars; index++){
     id = bddManager->indexToId[index];
@@ -139,16 +120,6 @@ Cal_BddManagerGC(Cal_BddManager bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Sets the limit of the garbage collection.]
-
-  Description [It tries to set the limit at twice the number of nodes
-  in the manager at the current point. However, the limit is not
-  allowed to fall below the MIN_GC_LIMIT or to exceed the value of
-  node limit (if one exists).]
-
-  SideEffects [None.]
-
 ******************************************************************************/
 void
 Cal_BddManagerSetGCLimit(Cal_BddManager manager)
@@ -166,16 +137,8 @@ Cal_BddManagerSetGCLimit(Cal_BddManager manager)
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalBddManagerGCCheck(Cal_BddManager_t * bddManager)
@@ -190,19 +153,14 @@ CalBddManagerGCCheck(Cal_BddManager_t * bddManager)
 }
 
 /**Function********************************************************************
+  This function performs the garbage collection operation for a particular
+  index.
 
-  Synopsis    [This function performs the garbage collection operation
-  for a particular index.]
+  The input is the hash table containing the nodes belonging to that level. Each
+  bin of the hash table is traversed and the Bdd nodes with 0 reference count
+  are put at the appropriate level in the processing que of the manager.
 
-  Description [The input is the hash table containing the nodes
-  belonging to that level. Each bin of the hash table is traversed and
-  the Bdd nodes with 0 reference count are put at the appropriate
-  level in the processing que of the manager.]
-
-  SideEffects [The number of nodes in the hash table can possibly decrease.]
-
-  SeeAlso     [optional]
-
+  The number of nodes in the hash table can possibly decrease.
 ******************************************************************************/
 int
 CalHashTableGC(Cal_BddManager_t *bddManager, CalHashTable_t *hashTable)
@@ -210,7 +168,7 @@ CalHashTableGC(Cal_BddManager_t *bddManager, CalHashTable_t *hashTable)
   CalBddNode_t *last, *next, *ptr, *thenBddNode, *elseBddNode;
   int i;
   int oldNumEntries;
-  
+
   oldNumEntries = hashTable->numEntries;
   for(i = 0; i < hashTable->numBins; i++){
     last = NULL;
@@ -247,15 +205,6 @@ CalHashTableGC(Cal_BddManager_t *bddManager, CalHashTable_t *hashTable)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
@@ -268,9 +217,9 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
   CalBddNode_t *bddNode, *thenBddNode, *elseBddNode, *freeNodeList;
   CalBddNode_t *newNode;
   Cal_Bdd_t thenBdd, elseBdd;
-  
+
   packingFlag = 0;
-  
+
   for (index = bddManager->numVars-1; index >= 0; index--){
     id = bddManager->indexToId[index];
     uniqueTableForId = bddManager->uniqueTable[id];
@@ -280,7 +229,7 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
       /* We just need to update the cofactors and continue; */
       for (pageNum=0; pageNum < nodeManager->numPages; pageNum++){
         for(nodeNum = 0,
-                bddNode = (CalBddNode_t *)nodeManager->pageList[pageNum]; 
+                bddNode = (CalBddNode_t *)nodeManager->pageList[pageNum];
             nodeNum < NUM_NODES_PER_PAGE; nodeNum++, bddNode += 1){
           if (CalBddNodeIsRefCountZero(bddNode) ||
               CalBddNodeIsForwarded(bddNode)) continue;
@@ -301,8 +250,8 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
           Cal_Assert(!CalBddIsRefCountZero(thenBdd));
           Cal_Assert(!CalBddIsRefCountZero(elseBdd));
           Cal_Assert(bddManager->idToIndex[id] <
-                     bddManager->idToIndex[bddNode->thenBddId]);   
-          Cal_Assert(bddManager->idToIndex[id] < 
+                     bddManager->idToIndex[bddNode->thenBddId]);
+          Cal_Assert(bddManager->idToIndex[id] <
                      bddManager->idToIndex[bddNode->elseBddId]);
           if (rehashFlag){
             CalUniqueTableForIdRehashNode(uniqueTableForId, bddNode,
@@ -319,16 +268,16 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
       Cal_MemFree(uniqueTableForId->bins);
       /* Create the new set of bins */
       newSizeIndex =
-          CeilLog2(uniqueTableForId->numEntries/HASH_TABLE_DEFAULT_MAX_DENSITY); 
+          CeilLog2(uniqueTableForId->numEntries/HASH_TABLE_DEFAULT_MAX_DENSITY);
       if (newSizeIndex < HASH_TABLE_DEFAULT_SIZE_INDEX){
         newSizeIndex = HASH_TABLE_DEFAULT_SIZE_INDEX;
       }
       uniqueTableForId->sizeIndex = newSizeIndex;
       uniqueTableForId->numBins =  TABLE_SIZE(uniqueTableForId->sizeIndex);
       uniqueTableForId->maxCapacity =
-          uniqueTableForId->numBins * HASH_TABLE_DEFAULT_MAX_DENSITY; 
+          uniqueTableForId->numBins * HASH_TABLE_DEFAULT_MAX_DENSITY;
       uniqueTableForId->bins = Cal_MemAlloc(CalBddNode_t *,
-                                            uniqueTableForId->numBins); 
+                                            uniqueTableForId->numBins);
       if(uniqueTableForId->bins == Cal_Nil(CalBddNode_t *)){
         CalBddFatalMessage("out of memory");
       }
@@ -343,7 +292,7 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
     nodeManager->freeNodeList = freeNodeList = Cal_Nil(CalBddNode_t);
     for (pageNum = 0; pageNum < nodeManager->numPages; pageNum++){
       for(nodeNum = 0,
-              bddNode = (CalBddNode_t *)nodeManager->pageList[pageNum]; 
+              bddNode = (CalBddNode_t *)nodeManager->pageList[pageNum];
           nodeNum < NUM_NODES_PER_PAGE; nodeNum++, bddNode += 1){
         if(CalBddNodeIsRefCountZero(bddNode) ||
            CalBddNodeIsForwarded(bddNode)){
@@ -361,12 +310,12 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
         }
         if (CalBddIsForwarded(elseBdd)){
           CalBddForward(elseBdd);
-          CalBddNodePutElseBdd(bddNode, elseBdd); 
+          CalBddNodePutElseBdd(bddNode, elseBdd);
         }
         if (pageNum < numPagesRequired){
           /* Simply insert the node in the unique table */
           hashValue = CalDoHash2(thenBdd.bddNode, elseBdd.bddNode,
-                                 uniqueTableForId); 
+                                 uniqueTableForId);
           CalBddNodePutNextBddNode(bddNode, uniqueTableForId->bins[hashValue]);
           uniqueTableForId->bins[hashValue] = bddNode;
         }
@@ -383,7 +332,7 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
           bddNode->thenBddId = id;
           bddNode->thenBddNode = newNode;
           hashValue = CalDoHash2(thenBdd.bddNode, elseBdd.bddNode,
-                                 uniqueTableForId); 
+                                 uniqueTableForId);
           CalBddNodePutNextBddNode(newNode, uniqueTableForId->bins[hashValue]);
           uniqueTableForId->bins[hashValue] = newNode;
         }
@@ -399,7 +348,7 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
         nodeManager->pageList[pageNum] = 0;
       }
     }
-#ifdef _CAL_VERBOSE    
+#ifdef _CAL_VERBOSE
     printf("Recycled %4d pages for %3d id\n",
            nodeManager->numPages-numPagesRequired, id);
 #endif
@@ -411,7 +360,7 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
     /* There are some results computed in pipeline */
     CalBddReorderFixProvisionalNodes(bddManager);
   }
-  
+
   CalCacheTableTwoRepackUpdate(bddManager->cacheTable);
 
   /* Fix the user BDDs */
@@ -428,15 +377,8 @@ CalRepackNodesAfterGC(Cal_BddManager_t *bddManager)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the smallest integer greater than or equal to log2 of a
-  number]
-
-  Description [Returns the smallest integer greater than or equal to log2 of a
-  number (The assumption is that the number is >= 1)]
-
-  SideEffects [None]
-
+  Returns the smallest integer greater than or equal to log2 of a number (The
+  assumption is that the number is >= 1)
 ******************************************************************************/
 static int
 CeilLog2(int  number)

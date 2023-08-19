@@ -76,18 +76,6 @@ static void CalHashTableSubstituteReduce(Cal_BddManager_t * bddManager, CalHashT
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Substitute a set of variables by set of another variables.]
-
-  Description [Returns a BDD for f using the substitution defined by current
-  variable association. It is assumed that each variable is replaced
-  by another variable. For the substitution of a variable by a
-  function, use Cal_BddSubstitute instead.]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddSubstitute]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddVarSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
@@ -127,17 +115,9 @@ Cal_BddVarSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Substitute a set of variables by functions]
-
-  Description [Returns a BDD for f using the substitution defined by current
-  variable association. Each variable is replaced by its associated BDDs. The 
-  substitution is effective simultaneously]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddCompose]
-
+  Returns a BDD for f using the substitution defined by current variable
+  association. Each variable is replaced by its associated BDDs. The
+  substitution is effective simultaneously
 ******************************************************************************/
 Cal_Bdd_t
 CalBddVarSubstitute(Cal_BddManager bddManager, Cal_Bdd_t f, unsigned
@@ -198,15 +178,6 @@ CalBddVarSubstitute(Cal_BddManager bddManager, Cal_Bdd_t f, unsigned
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalOpBddVarSubstitute(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t *
@@ -222,15 +193,6 @@ CalOpBddVarSubstitute(Cal_BddManager_t * bddManager, Cal_Bdd_t  f, Cal_Bdd_t *
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSubstituteApply(
@@ -300,15 +262,6 @@ CalHashTableSubstituteApply(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableSubstituteReduce(
@@ -522,7 +475,6 @@ CalHashTableSubstituteReduce(
           bddManager->uniqueTable[bddId]);
     }
   }
-    
 
   last = Cal_Nil(CalRequestNode_t);
   for(requestNode = requestNodeListForITE; 

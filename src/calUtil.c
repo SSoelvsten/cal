@@ -116,13 +116,6 @@ Cal_ImageDump(Cal_BddManager_t *bddManager, FILE *fp)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Prints the function implemented by the argument BDD]
-
-  Description [Prints the function implemented by the argument BDD]
-
-  SideEffects [None]
-
 ******************************************************************************/
 void
 Cal_BddFunctionPrint(Cal_BddManager bddManager, Cal_Bdd  userBdd,
@@ -137,15 +130,6 @@ Cal_BddFunctionPrint(Cal_BddManager bddManager, Cal_Bdd  userBdd,
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalUniqueTablePrint(Cal_BddManager_t *bddManager)
@@ -157,13 +141,7 @@ CalUniqueTablePrint(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Prints the function implemented by the argument BDD]
-
-  Description [Prints the function implemented by the argument BDD]
-
-  SideEffects [None]
-
+  Prints the function implemented by the argument BDD
 ******************************************************************************/
 void
 CalBddFunctionPrint(Cal_BddManager_t * bddManager,
@@ -199,15 +177,6 @@ CalBddFunctionPrint(Cal_BddManager_t * bddManager,
 }
 
 /**Function********************************************************************
-  
-  Synopsis    [required]
-  
-  Description [optional]
-  
-  SideEffects [required]
-  
-  SeeAlso     [optional]
-  
 ******************************************************************************/
 int
 CalBddPreProcessing(Cal_BddManager_t *bddManager, int count, ...)
@@ -221,10 +190,10 @@ CalBddPreProcessing(Cal_BddManager_t *bddManager, int count, ...)
   allValid=1;
   while (count){
     fUserBdd = va_arg(ap, Cal_Bdd);
-	if (fUserBdd == 0){
-	  allValid=0;
+  if (fUserBdd == 0){
+    allValid=0;
     }
-	else {
+  else {
       f = CalBddGetInternalBdd(bddManager, fUserBdd);
       if (CalBddIsRefCountZero(f)){
         CalBddFatalMessage("Bdd With Zero Reference Count Used.");
@@ -241,15 +210,6 @@ CalBddPreProcessing(Cal_BddManager_t *bddManager, int count, ...)
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalBddPostProcessing(Cal_BddManager_t *bddManager)
@@ -281,7 +241,7 @@ CalBddPostProcessing(Cal_BddManager_t *bddManager)
     }
     Cal_BddManagerSetGCLimit(bddManager);
     if (bddManager->nodeLimit && (bddManager->numNodes >
-                                  bddManager->nodeLimit)){ 
+                                  bddManager->nodeLimit)){
       CalBddWarningMessage("Overflow: Node Limit Exceeded");
       bddManager->overflow = 1;
       return CAL_BDD_OVERFLOWED;
@@ -295,18 +255,9 @@ CalBddPostProcessing(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-  
-  Synopsis    [required]
-  
-  Description [optional]
-  
-  SideEffects [required]
-  
-  SeeAlso     [optional]
-  
 ******************************************************************************/
 int
-CalBddArrayPreProcessing(Cal_BddManager_t *bddManager, Cal_Bdd *userBddArray) 
+CalBddArrayPreProcessing(Cal_BddManager_t *bddManager, Cal_Bdd *userBddArray)
 {
   int i = 0;
   Cal_Bdd userBdd;
@@ -317,20 +268,9 @@ CalBddArrayPreProcessing(Cal_BddManager_t *bddManager, Cal_Bdd *userBddArray)
   }
   return 1;
 }
-    
-                       
+
+
 /**Function********************************************************************
-
-  Name        [CalBddFatalMessage]
-
-  Synopsis    [Prints fatal message and exits.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd_t
 CalBddGetInternalBdd(Cal_BddManager bddManager, Cal_Bdd userBdd)
@@ -342,24 +282,13 @@ CalBddGetInternalBdd(Cal_BddManager bddManager, Cal_Bdd userBdd)
   else {
     Cal_Bdd userBddNot = CalBddNodeNot(userBdd);
     Cal_Bdd_t internalBdd;
-	CalBddNodeGetThenBdd(userBddNot,internalBdd);
+  CalBddNodeGetThenBdd(userBddNot,internalBdd);
     CalBddNot(internalBdd, resultBdd);
   }
   return resultBdd;
 }
 
 /**Function********************************************************************
-
-  Name        [CalBddFatalMessage]
-
-  Synopsis    [Prints fatal message and exits.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd
 CalBddGetExternalBdd(Cal_BddManager_t *bddManager, Cal_Bdd_t internalBdd)
@@ -367,7 +296,7 @@ CalBddGetExternalBdd(Cal_BddManager_t *bddManager, Cal_Bdd_t internalBdd)
   CalHashTable_t *hashTableForUserBdd = bddManager->uniqueTable[0];
   Cal_Bdd_t resultBdd;
   int found;
-  
+
   if(CalBddIsOutPos(internalBdd)){
     found = CalHashTableFindOrAdd(hashTableForUserBdd, internalBdd,
                           bddManager->bddOne, &resultBdd);
@@ -388,17 +317,7 @@ CalBddGetExternalBdd(Cal_BddManager_t *bddManager, Cal_Bdd_t internalBdd)
 
 
 /**Function********************************************************************
-
-  Name        [CalBddFatalMessage]
-
-  Synopsis    [Prints fatal message and exits.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Prints fatal message and exits.]
 ******************************************************************************/
 void
 CalBddFatalMessage(char *string)
@@ -407,17 +326,7 @@ CalBddFatalMessage(char *string)
   exit(-1);
 }
 /**Function********************************************************************
-
-  Name        [CalBddWarningMessage]
-
-  Synopsis    [Prints warning message.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Prints warning message.
 ******************************************************************************/
 void
 CalBddWarningMessage(char *string)
@@ -426,15 +335,6 @@ CalBddWarningMessage(char *string)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalBddNodePrint(CalBddNode_t *bddNode)
@@ -444,22 +344,13 @@ CalBddNodePrint(CalBddNode_t *bddNode)
   printf("Node (%lx) thenBdd(%2d %lx)  elseBdd(%2d %lx) ref_count (%d) next (%lx)\n",
          (CalAddress_t)bddNode,
          CalBddNodeGetThenBddId(bddNode),
-         (CalAddress_t) CalBddNodeGetThenBddNode(bddNode), 
+         (CalAddress_t) CalBddNodeGetThenBddNode(bddNode),
          CalBddNodeGetElseBddId(bddNode),
          (CalAddress_t) CalBddNodeGetElseBddNode(bddNode),
          refCount, (CalAddress_t)bddNode->nextBddNode);
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 
 void
@@ -469,22 +360,14 @@ CalBddPrint(Cal_Bdd_t calBdd)
       CalBddGetBddId(calBdd), (CalAddress_t) CalBddGetBddNode(calBdd));
   printf("thenBdd(%2d %lx)  elseBdd(%2d %lx)\n",
          CalBddGetThenBddId(calBdd),
-         (CalAddress_t) CalBddGetThenBddNode(calBdd), 
+         (CalAddress_t) CalBddGetThenBddNode(calBdd),
          CalBddGetElseBddId(calBdd),
          (CalAddress_t) CalBddGetElseBddNode(calBdd));
 }
 
 
 /**Function********************************************************************
-
-  Synopsis    [Prints a hash table.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Prints a hash table.
 ******************************************************************************/
 void
 CalHashTablePrint(CalHashTable_t *hashTable)
@@ -509,9 +392,9 @@ CalHashTablePrint(CalHashTable_t *hashTable)
         firstFlag = 0;
       }
       printf("\t\tbddNode(%lx) ", (CalAddress_t)ptr);
-      printf("thenId(%d) ", CalBddGetBddId(T)); 
+      printf("thenId(%d) ", CalBddGetBddId(T));
       printf("thenBddNode(%lx) ", (CalAddress_t) CalBddGetBddNode(T));
-      printf("elseId(%d) ", CalBddGetBddId(E)); 
+      printf("elseId(%d) ", CalBddGetBddId(E));
       printf("elseBddNode(%lx) ", (unsigned long)CalBddGetBddNode(E));
       CalBddGetRefCount(calBdd, refCount);
       printf("refCount(%d)\n", refCount);
@@ -521,15 +404,6 @@ CalHashTablePrint(CalHashTable_t *hashTable)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalHashTableOnePrint(CalHashTable_t *hashTable, int flag)
@@ -545,12 +419,12 @@ CalHashTableOnePrint(CalHashTable_t *hashTable, int flag)
       CalBddNodeGetThenBdd(ptr, keyBdd);
       node = CalBddNodeGetElseBddNode(ptr);
       if(flag == 1){
-        printf("Key(%d %lx) Value(%f)\n", 
-            CalBddGetBddId(keyBdd), (CalAddress_t)CalBddGetBddNode(keyBdd), *(double *)node); 
+        printf("Key(%d %lx) Value(%f)\n",
+            CalBddGetBddId(keyBdd), (CalAddress_t)CalBddGetBddNode(keyBdd), *(double *)node);
       }
       else{
         printf("Key(%d %lx) Value(%d)\n",
-            CalBddGetBddId(keyBdd), (CalAddress_t)CalBddGetBddNode(keyBdd),  *(int *)node); 
+            CalBddGetBddId(keyBdd), (CalAddress_t)CalBddGetBddNode(keyBdd),  *(int *)node);
       }
       ptr = CalBddNodeGetNextBddNode(ptr);
     }
@@ -558,20 +432,11 @@ CalHashTableOnePrint(CalHashTable_t *hashTable, int flag)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Initializer for the portable random number generator.]
-
-  Description [Initializer for the portable number generator based on
-  ran2 in "Numerical Recipes in C." The input is the seed for the
-  generator. If it is negative, its absolute value is taken as seed.
-  If it is 0, then 1 is taken as seed. The initialized sets up the two
-  recurrences used to generate a long-period stream, and sets up the
-  shuffle table.]
-
-  SideEffects [None]
-
-  SeeAlso     [CalUtilRandom]
-
+  Initializer for the portable number generator based on ran2 in "Numerical
+  Recipes in C." The input is the seed for the generator. If it is negative, its
+  absolute value is taken as seed. If it is 0, then 1 is taken as seed. The
+  initialized sets up the two recurrences used to generate a long-period stream,
+  and sets up the shuffle table.
 ******************************************************************************/
 void
 CalUtilSRandom(long seed)
@@ -584,31 +449,22 @@ CalUtilSRandom(long seed)
     utilRand2 = utilRand;
     /* Load the shuffle table (after 11 warm-ups). */
     for (i = 0; i < CAL_STAB_SIZE + 11; i++) {
-	long int w;
-	w = utilRand / CAL_LEQQ1;
-	utilRand = CAL_LEQA1 * (utilRand - w * CAL_LEQQ1) - w * CAL_LEQR1;
-	utilRand += (utilRand < 0) * CAL_MODULUS1;
-	shuffleTable[i % CAL_STAB_SIZE] = utilRand;
+  long int w;
+  w = utilRand / CAL_LEQQ1;
+  utilRand = CAL_LEQA1 * (utilRand - w * CAL_LEQQ1) - w * CAL_LEQR1;
+  utilRand += (utilRand < 0) * CAL_MODULUS1;
+  shuffleTable[i % CAL_STAB_SIZE] = utilRand;
     }
     shuffleSelect = shuffleTable[1 % CAL_STAB_SIZE];
 } /* end of CalUtilSRandom */
 
 /**Function********************************************************************
-
-  Synopsis    [Portable random number generator.]
-
-  Description [Portable number generator based on ran2 from "Numerical
-  Recipes in C." It is a long period (> 2 * 10^18) random number generator
-  of L'Ecuyer with Bays-Durham shuffle. Returns a long integer uniformly
-  distributed between 0 and 2147483561 (inclusive of the endpoint values).
-  The random generator can be explicitly initialized by calling
-  CalUtilSRandom. If no explicit initialization is performed, then the
-  seed 1 is assumed.]
-
-  SideEffects []
-
-  SeeAlso     [CalUtilSRandom]
-
+  Portable number generator based on ran2 from "Numerical Recipes in C." It is a
+  long period (> 2 * 10^18) random number generator of L'Ecuyer with Bays-Durham
+  shuffle. Returns a long integer uniformly distributed between 0 and 2147483561
+  (inclusive of the endpoint values). The random generator can be explicitly
+  initialized by calling CalUtilSRandom. If no explicit initialization is
+  performed, then the seed 1 is assumed.
 ******************************************************************************/
 long
 CalUtilRandom()
@@ -654,5 +510,3 @@ CalUtilRandom()
     return(shuffleSelect - 1);
 
 } /* end of CalUtilRandom */
-
-

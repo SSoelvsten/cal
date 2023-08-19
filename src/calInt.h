@@ -51,7 +51,7 @@
 
 /* Garbage collection and reordering related constants */
 /* The following constants could significantly affect the
-   performance of the package */ 
+   performance of the package */
 
 
 #define CAL_MIN_GC_LIMIT 10000 /* minimum number of nodes in the unique table
@@ -64,7 +64,7 @@
 #define CAL_REPACK_AFTER_GC_THRESHOLD 0.75 /* If the number of nodes fall below
                                            this factor after garbage
                                            collection, repacking should be
-                                           done */ 
+                                           done */
 /* A note about repacking after garbage collection: Since repacking
 ** moves the node pointers, it is important that "user" does not have
 ** access to internal node pointers during such times. If for some
@@ -75,14 +75,14 @@
 
 #define CAL_TABLE_REPACK_THRESHOLD 0.9 /* If the page utility of a unique
                                             table (for some id) goes below this, repacking
-                                            would be done */ 
+                                            would be done */
 
 #define CAL_BDD_REORDER_THRESHOLD 10000 /* Don't perform reordering below these
                                            many nodes */
 
 #define CAL_NUM_PAGES_THRESHOLD 3
 
-#define CAL_NUM_FORWARDED_NODES_LIMIT 50000 /* maximum number of forwarded nodes 
+#define CAL_NUM_FORWARDED_NODES_LIMIT 50000 /* maximum number of forwarded nodes
                                                allowed during BF reordering */
 
 #define CAL_GC_CHECK 100       /* garbage collection check performed after
@@ -271,8 +271,8 @@ struct Cal_BddStruct {
   CalBddNode_t *bddNode;  /* pointer to the bdd node */
 };
 
-typedef int (*CalOpProc_t) (Cal_BddManager, Cal_Bdd_t, Cal_Bdd_t, Cal_Bdd_t *); 
-typedef int (*CalOpProc1_t) (Cal_BddManager, Cal_Bdd_t, Cal_Bdd_t *); 
+typedef int (*CalOpProc_t) (Cal_BddManager, Cal_Bdd_t, Cal_Bdd_t, Cal_Bdd_t *);
+typedef int (*CalOpProc1_t) (Cal_BddManager, Cal_Bdd_t, Cal_Bdd_t *);
 
 
 /*---------------------------------------------------------------------------*/
@@ -345,7 +345,7 @@ struct Cal_BddManagerStruct {
 
   int numVars; /*
                 * Number of BDD variables present in the manager. This does
-                * not include the constant. The maximum number of variables 
+                * not include the constant. The maximum number of variables
                 * manager can have is CAL_MAX_VAR_ID (as opposed to
                 CAL_MAX_VAR_ID+1, id "0" being used for constant).
                 * CAL_MAX_VAR_ID = (((1 << 16) - 1) -1 )
@@ -355,14 +355,14 @@ struct Cal_BddManagerStruct {
 
   Cal_Bdd_t *varBdds; /* Array of Cal_Bdd_t's. Cal_Bdd_t[i] is the BDD
                          corresponding to variable with id "i". */
-  
+
   /* memory management */
   CalPageManager_t *pageManager1;  /* manages memory pages */
   CalPageManager_t *pageManager2;  /* manages memory pages */
   CalNodeManager_t **nodeManagerArray; /*
                                         * nodeManagerArray[i] is the node
                                         * manager for the variable with id = i.
-                                        */     
+                                        */
   /* special nodes */
   Cal_Bdd_t bddOne; /* Constant: Id = 0; Index = CAL_MAX_INDEX */
   Cal_Bdd_t bddZero;
@@ -383,7 +383,7 @@ struct Cal_BddManagerStruct {
                               * has entries from 1 to n (idToIndex[1] through
                               * idToIndex[n]).
                               */
-  
+
   CalHashTable_t **uniqueTable; /* uniqueTable[i] is the unique table for the
                                  * variable id " i". Unique table for an id is
                                  * a hash table of the nodes with that
@@ -401,7 +401,7 @@ struct Cal_BddManagerStruct {
                                  * requests corresponding to variable id "id"
                                  * and the request depth "depth".
                                  */
-                               
+
   /* Pipeline related information */
   int depth;
   int maxDepth;
@@ -414,7 +414,7 @@ struct Cal_BddManagerStruct {
                                                   pointing to provisional
                                                   BDDs */
   CalRequestNode_t **requestNodeListArray;
-  
+
 
   /* garbage collection related information */
   unsigned long numNodes;
@@ -427,14 +427,14 @@ struct Cal_BddManagerStruct {
   unsigned long nodeLimit;
   int overflow;
   float repackAfterGCThreshold;
-  
+
 
   /* Association related stuff */
   CalAssociation_t *currentAssociation;
   CalAssociation_t *associationList;
   CalAssociation_t *tempAssociation;
   unsigned short tempOpCode; /* To store the id of temporary associations. */
-  
+
   /* Variable reordering related stuff */
   long *interact; /* Interaction matrix */
   int reorderMethod;
@@ -455,7 +455,7 @@ struct Cal_BddManagerStruct {
   void *hooks;
   int debugFlag;
 
-  
+
 };
 
 
@@ -469,7 +469,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
 
 /*---------------------------------------------------------------------------*/
 /* Macro declarations                                                        */
-/*---------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------*/
 
 
 #define CalNodeManagerAllocNode(nodeManager, node)                          \
@@ -597,7 +597,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
  *     ThenBdd, ElseBdd, BddId, BddNode, NextBddNode}
  * {CalBdd} X {Get, Put, Icr, Dcr, Add} X {RefCount}
  * {CalBdd,CalBddNode} X {Get} X {BddIndex}
- * {CalBdd} X {Is} X {RefCountZero, OutPos, BddOne, BddZero, BddNull, BddConst} 
+ * {CalBdd} X {Is} X {RefCountZero, OutPos, BddOne, BddZero, BddNull, BddConst}
  * {CalBddManager} X {Get} X {BddZero, BddOne, BddNull}
  * {CalBddNode} X {Get, Put} X {ThenBddId, ElseBddId, ThenBddNode, ElseBddNode,
  *     ThenBdd, ElseBdd, NextBddNode}
@@ -664,7 +664,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
     ((CalBddNode_t*) \
     (((CalAddress_t)(CAL_BDD_POINTER((calBdd).bddNode)->elseBddNode) \
     & ~0xe) ^ (CAL_TAG0((calBdd).bddNode))))
- 
+
 #define CalBddGetThenBdd(calBdd, _thenBdd) \
 { \
   CalBddNode_t *_bddNode, *_bddNodeTagged; \
@@ -719,7 +719,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
       (((CalAddress_t)(_bddNode->elseBddNode) & 0xe)| \
       (((CalAddress_t) _elseBddNode) & ~0xe));	\
 }
- 
+
 #define CalBddPutThenBdd(calBdd, thenBdd) \
 { \
   CalBddNode_t *_bddNode; \
@@ -761,7 +761,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
   refCount <<= 3; \
   refCount |= ((CalAddress_t)(_bddNode->nextBddNode) & 0xf); \
 }
-                                        
+
 #define CalBddPutRefCount(calBdd, count) \
 { \
   Cal_BddRefCount_t _nextTag, _thenTag, _elseTag; \
@@ -999,7 +999,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
     ((CalBddNode_t *)((CalAddress_t)((_bddNode)->thenBddNode) & ~0xe))
 #define CalBddNodeGetElseBddNode(_bddNode) \
     ((CalBddNode_t *)((CalAddress_t)((_bddNode)->elseBddNode) & ~0xe))
- 
+
 #define CalBddNodeGetThenBdd(_bddNode, _thenBdd) \
 { \
   (_thenBdd).bddId = (_bddNode)->thenBddId; \
@@ -1036,7 +1036,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
       (((CalAddress_t)((_bddNode)->elseBddNode) & 0xe)| \
       (((CalAddress_t) _elseBddNode) & ~0xe));	\
 }
- 
+
 #define CalBddNodePutThenBdd(_bddNode, _thenBdd) \
 { \
   (_bddNode)->thenBddId = (_thenBdd).bddId; \
@@ -1069,7 +1069,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
   refCount <<= 3; \
   refCount |= ((CalAddress_t)(_bddNode->nextBddNode) & 0xf); \
 }
-                                        
+
 #define CalBddNodePutRefCount(_bddNode, count) \
 { \
   Cal_BddRefCount_t _nextTag, _thenTag, _elseTag; \
@@ -1261,7 +1261,7 @@ double calAfterReduceToAfterApplyNodesRatio, calAfterReduceToUniqueTableNodesRat
 #define CalRequestIsNull(calRequest) \
     ((CalRequestGetRequestId(calRequest) == 0) \
     && (CalRequestGetRequestNode(calRequest) == 0))
-                                      
+
 #define CalRequestIsMarked CalBddIsMarked
 #define CalRequestMark CalBddMark
 #define CalRequestUnmark CalBddUnmark

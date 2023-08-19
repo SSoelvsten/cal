@@ -5,7 +5,7 @@
   PackageName [cal]
 
   Synopsis    [BDD size and profile routines]
-              
+
 
   Description [ ]
 
@@ -14,7 +14,7 @@
   Author      [Jagesh Sanghavi (sanghavi@eecs.berkeley.edu)
                Rajeev Ranjan   (rajeev@eecs.berkeley.edu)
                Originally written by David Long.
-              ] 
+              ]
   Copyright   [Copyright (c) 1994-1996 The Regents of the Univ. of California.
   All rights reserved.
 
@@ -78,7 +78,7 @@ static void BddDominatedStep(Cal_BddManager_t * bddManager, Cal_Bdd_t f, long * 
 /**AutomaticEnd***************************************************************/
 
 static
-int (*(countingFns[]))(Cal_Bdd_t) = 
+int (*(countingFns[]))(Cal_Bdd_t) =
 {
   BddCountNoNodes,
   BddCountNodes,
@@ -89,16 +89,6 @@ int (*(countingFns[]))(Cal_Bdd_t) =
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [Returns the number of nodes in f when negout is nonzero. If
-  negout is zero, we pretend that the BDDs don't have negative-output pointers.]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 long
 Cal_BddSize(Cal_BddManager bddManager, Cal_Bdd fUserBdd, int  negout)
@@ -117,16 +107,6 @@ Cal_BddSize(Cal_BddManager bddManager, Cal_Bdd fUserBdd, int  negout)
 
 
 /**Function********************************************************************
-
-  Synopsis    [The routine is like Cal_BddSize, but takes a null-terminated
-               array of BDDs and accounts for sharing of nodes.]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 long
 Cal_BddSizeMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
@@ -138,11 +118,11 @@ Cal_BddSizeMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
   Cal_Bdd_t *fArray;
   int i, j;
   Cal_Bdd userBdd;
-  
+
   if (CalBddArrayPreProcessing(bddManager, fUserBddArray) == 0){
     return -1;
   }
-  
+
   for(i = 0; (userBdd = fUserBddArray[i]); ++i);
 
   fArray = Cal_MemAlloc(Cal_Bdd_t, i+1);
@@ -150,7 +130,7 @@ Cal_BddSizeMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
     fArray[j] = CalBddGetInternalBdd(bddManager,fUserBddArray[j]);
   }
   fArray[j] = bddManager->bddNull;
-  
+
   g  =  CalBddOne(bddManager);
   CalBddPutMark(g, 0);
   for(f = fArray; !CalBddIsBddNull(bddManager, *f); ++f){
@@ -165,17 +145,6 @@ Cal_BddSizeMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns a "node profile" of f, i.e., the number of nodes at each
-  level in f.]
-
-  Description [negout is as in Cal_BddSize. levelCounts should be an array of
-  size Cal_BddVars(bddManager)+1 to hold the profile.]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
@@ -197,15 +166,6 @@ Cal_BddProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
@@ -216,7 +176,7 @@ Cal_BddProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
   int i, j;
 
   Cal_Bdd userBdd;
-  
+
   CalBddArrayPreProcessing(bddManager, fUserBddArray);
 
   for(i = 0; (userBdd = fUserBddArray[i]); ++i);
@@ -226,7 +186,7 @@ Cal_BddProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
     fArray[j] = CalBddGetInternalBdd(bddManager,fUserBddArray[j]);
   }
   fArray[j] = bddManager->bddNull;
-    
+
   for(i = 0; i <=  bddManager->numVars; i++){
     levelCounts[i] = 0l;
   }
@@ -243,28 +203,16 @@ Cal_BddProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *fUserBddArray,
 
 
 /**Function********************************************************************
-
-  Synopsis    [Returns a "function profile" for f.]
-
-  Description [The nth entry of the function
-  profile array is the number of subfunctions of f which may be obtained by 
-  restricting the variables whose index is less than n.  An entry of zero 
-  indicates that f is independent of the variable with the corresponding index.]
-
-  SideEffects []
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddFunctionProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
-                       long * funcCounts) 
+                       long * funcCounts)
 {
   long i;
   Cal_BddIndex_t j;
   CalHashTable_t *h;
   Cal_Bdd_t f;
-  
+
   /* The number of subfunctions obtainable by restricting the */
   /* variables of index < n is the number of subfunctions whose top */
   /* variable has index n plus the number of subfunctions obtainable */
@@ -284,10 +232,10 @@ Cal_BddFunctionProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
     /* those levels where f actually has a node. */
     for(j = 0; j < bddManager->numVars; ++j){
       if(!funcCounts[j]){
-	funcCounts[j] = 1;
+  funcCounts[j] = 1;
       }
       else{
-	funcCounts[j] <<= 1;
+  funcCounts[j] <<= 1;
       }
     }
     h = CalHashTableOneInit(bddManager, sizeof(int));
@@ -304,26 +252,17 @@ Cal_BddFunctionProfile(Cal_BddManager bddManager, Cal_Bdd fUserBdd,
     /* Now add each level n+1 result to that of level n. */
     for(i = bddManager->numVars-1, j = i+1; i>=  0; --i){
       if(funcCounts[i] !=  1){
-	funcCounts[i] = (funcCounts[i] >> 1) + funcCounts[j];
-	j = i;
+  funcCounts[i] = (funcCounts[i] >> 1) + funcCounts[j];
+  j = i;
       }
       else{
-	  funcCounts[i] = 0;
+    funcCounts[i] = 0;
       }
     }
   }
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Returns a "function profile" for fArray.]
-
-  Description [optional]
-
-  SideEffects [None]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 Cal_BddFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd
@@ -335,7 +274,7 @@ Cal_BddFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd
   CalHashTable_t *h;
 
   Cal_Bdd userBdd;
-  
+
   CalBddArrayPreProcessing(bddManager, fUserBddArray);
 
   for(i = 0; (userBdd = fUserBddArray[i]); ++i);
@@ -390,15 +329,6 @@ Cal_BddFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddMarkBdd(Cal_Bdd_t  f)
@@ -423,15 +353,6 @@ BddMarkBdd(Cal_Bdd_t  f)
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 BddCountNoNodes(
@@ -442,15 +363,6 @@ BddCountNoNodes(
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static int
 BddCountNodes(
@@ -465,15 +377,6 @@ BddCountNodes(
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static long
 BddSizeStep(
@@ -501,15 +404,6 @@ BddSizeStep(
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddProfileStep(
@@ -538,15 +432,6 @@ BddProfileStep(
 
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddHighestRefStep(
@@ -585,15 +470,6 @@ BddHighestRefStep(
 }
 
 /**Function********************************************************************
-
-  Synopsis    []
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddDominatedStep(
@@ -618,12 +494,3 @@ BddDominatedStep(
     }
   }
 }
-
-
-
-
-
-
-
-
-

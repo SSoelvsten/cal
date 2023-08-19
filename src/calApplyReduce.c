@@ -90,7 +90,7 @@
 void
 CalHashTableApply(Cal_BddManager_t * bddManager, CalHashTable_t *
                   hashTable, CalHashTable_t ** reqQueAtPipeDepth, CalOpProc_t
-                  calOpProc) 
+                  calOpProc)
 {
   int i, numBins;
   CalBddNode_t **bins = 0;
@@ -213,12 +213,7 @@ CalHashTableReduce(Cal_BddManager_t * bddManager,
   memset((char *)bins, 0, hashTable->numBins * sizeof(CalBddNode_t *));
   hashTable->endNode = endNode;
 }
+
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
-
-
-  
-
-
-

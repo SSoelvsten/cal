@@ -123,30 +123,24 @@ CalSetInteract(Cal_BddManager_t *bddManager, int x, int y)
 
 
 /**Function********************************************************************
+  Test interaction matrix entries.
 
-  Synopsis    [Test interaction matrix entries.]
-
-  Description [Given a pair of variables 0 <= x < y < bddManager->numVars,
-  tests whether the corresponding bit of the interaction matrix is 1.
-  Returns the value of the bit.]
-
-  SideEffects [None]
-
-  SeeAlso     []
-
+  Given a pair of variables 0 <= x < y < bddManager->numVars, tests whether the
+  corresponding bit of the interaction matrix is 1. Returns the value of the
+  bit.
 ******************************************************************************/
 int
 CalTestInteract(Cal_BddManager_t *bddManager, int x, int y)
 {
     int posn, word, bit, result;
 
-    x -= 1; 
+    x -= 1;
     y -= 1;
-    
+
     if (x > y) {
-	int tmp = x;
-	x = y;
-	y = tmp;
+  int tmp = x;
+  x = y;
+  y = tmp;
     }
     Cal_Assert(x < y);
     Cal_Assert(y < bddManager->numVars);
@@ -162,20 +156,11 @@ CalTestInteract(Cal_BddManager_t *bddManager, int x, int y)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Initializes the interaction matrix.]
-
-  Description [Initializes the interaction matrix. The interaction
-  matrix is implemented as a bit vector storing the upper triangle of
-  the symmetric interaction matrix. The bit vector is kept in an array
-  of long integers. The computation is based on a series of depth-first
-  searches, one for each root of the DAG. A local flag (the mark bits)
-  is used.]
-
-  SideEffects [None]
-
-  SeeAlso     []
-
+  Initializes the interaction matrix. The interaction matrix is implemented as a
+  bit vector storing the upper triangle of the symmetric interaction matrix. The
+  bit vector is kept in an array of long integers. The computation is based on a
+  series of depth-first searches, one for each root of the DAG. A local flag
+  (the mark bits) is used.
 ******************************************************************************/
 int
 CalInitInteract(Cal_BddManager_t *bddManager)
@@ -186,16 +171,16 @@ CalInitInteract(Cal_BddManager_t *bddManager)
   int *support;
   long numBins;
   CalBddNode_t **bins, *bddNode, *nextBddNode;
-  
+
   int n = bddManager->numVars;
-  
+
   words = ((n * (n-1)) >> (1 + LOGBPL)) + 1;
   bddManager->interact = interact = Cal_MemAlloc(long, words);
   if (interact == NULL) return(0);
   for (i = 0; i < words; i++) {
       interact[i] = 0;
   }
-  
+
   support = Cal_MemAlloc(int, n);
   if (support == Cal_Nil(int)) {
     Cal_MemFree(interact);
@@ -221,13 +206,13 @@ CalInitInteract(Cal_BddManager_t *bddManager)
 
   if (bddManager->pipelineState == CREATE){
     CalRequestNode_t **requestNodeListArray =
-        bddManager->requestNodeListArray; 
+        bddManager->requestNodeListArray;
     Cal_Bdd_t resultBdd;
     for (i=0;
          i<bddManager->pipelineDepth-bddManager->currentPipelineDepth;
          i++){
       for (bddNode = *requestNodeListArray; bddNode;
-           bddNode = nextBddNode){ 
+           bddNode = nextBddNode){
         nextBddNode = CalBddNodeGetNextBddNode(bddNode);
         Cal_Assert(CalBddNodeIsForwarded(bddNode));
         CalBddNodeGetThenBdd(bddNode, resultBdd);
@@ -242,11 +227,11 @@ CalInitInteract(Cal_BddManager_t *bddManager)
       requestNodeListArray++;
     }
   }
-  
-  
+
+
   Cal_MemFree(support);
   return(1);
-  
+
 } /* end of CalInitInteract */
 
 
@@ -256,16 +241,10 @@ CalInitInteract(Cal_BddManager_t *bddManager)
 
 
 /**Function********************************************************************
+  Find the support of f.
 
-  Synopsis    [Find the support of f.]
-
-  Description [Performs a DFS from f. Uses the LSB of the then pointer
-  as visited flag.]
-
-  SideEffects [Accumulates in support the variables on which f depends.]
-
-  SeeAlso     []
-
+  Performs a DFS from f. Uses the LSB of the then pointer as visited flag.
+  This is accumulated in support the variables on which f depends.
 ******************************************************************************/
 static void
 ddSuppInteract(Cal_BddManager_t *bddManager, Cal_Bdd_t f, int *support)
@@ -286,22 +265,14 @@ ddSuppInteract(Cal_BddManager_t *bddManager, Cal_Bdd_t f, int *support)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Performs a DFS from f, clearing the LSB of the then pointers.]
-
-  Description []
-
-  SideEffects [None]
-
-  SeeAlso     []
-
+  Performs a DFS from f, clearing the LSB of the then pointers.
 ******************************************************************************/
 static void
 ddClearLocal(Cal_Bdd_t f)
 {
   Cal_Bdd_t thenBdd;
   Cal_Bdd_t elseBdd;
-  CalBddGetElseBdd(f, elseBdd);  
+  CalBddGetElseBdd(f, elseBdd);
   if (CalBddIsBddConst(f) || !CalBddIsMarked(f)){
     return;
   }
@@ -316,33 +287,24 @@ ddClearLocal(Cal_Bdd_t f)
 
 
 /**Function********************************************************************
+  Marks as interacting all pairs of variables that appear in support.
 
-  Synopsis [Marks as interacting all pairs of variables that appear in
-  support.]
-
-  Description [If support[i] == support[j] == 1, sets the (i,j) entry
-  of the interaction matrix to 1.]
-
-  SideEffects [None]
-
-  SeeAlso     []
-
+  If support[i] == support[j] == 1, sets the (i,j) entry of the interaction
+  matrix to 1.
 ******************************************************************************/
 static void
 ddUpdateInteract(Cal_BddManager_t *bddManager, int *support)
 {
   int i,j;
   int n = bddManager->numVars;
-  
+
   for (i = 0; i < n-1; i++) {
-	if (support[i] == 1) {
+  if (support[i] == 1) {
       for (j = i+1; j < n; j++) {
-		if (support[j] == 1) {
+    if (support[j] == 1) {
           CalSetInteract(bddManager, i, j);
-		}
+    }
       }
-	}
+  }
   }
 } /* end of ddUpdateInteract */
-
-

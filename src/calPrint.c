@@ -86,26 +86,6 @@ static void BddTerminalValueAux(Cal_BddManager_t *bddManager, Cal_Bdd_t f, CalAd
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Prints a BDD in the human readable form.]
-
-  Description [Prints a human-readable representation of the BDD f to
-  the file given by fp. The namingFn should be a pointer to a function
-  taking a bddManager, a BDD and the pointer given by env. This
-  function should return either a null pointer or a srting that is the
-  name of the supplied variable. If it returns a null pointer, a
-  default name is generated based on the index of the variable. It is
-  also legal for naminFN to e null; in this case, default names are
-  generated for all variables. The macro bddNamingFnNone is a null
-  pointer of suitable type. terminalIdFn should be apointer to a
-  function taking a bddManager and two longs. plus the pointer given
-  by the env. It should return either a null pointer. If it returns a
-  null pointer, or if terminalIdFn is null, then default names are
-  generated for the terminals. The macro bddTerminalIdFnNone is a null
-  pointer of suitable type.]
-
-  SideEffects [None.]
-
 ******************************************************************************/
 void
 Cal_BddPrintBdd(Cal_BddManager bddManager,
@@ -130,15 +110,6 @@ Cal_BddPrintBdd(Cal_BddManager bddManager,
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 char *
 CalBddVarName(Cal_BddManager_t *bddManager, Cal_Bdd_t v,
@@ -160,15 +131,6 @@ CalBddVarName(Cal_BddManager_t *bddManager, Cal_Bdd_t v,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalBddNumberSharedNodes(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
@@ -176,7 +138,7 @@ CalBddNumberSharedNodes(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
 {
   Cal_Bdd_t thenBdd, elseBdd;
   int mark;
-  
+
   if (CalBddIsBddConst(f) || ((1 << CalBddTypeAux(bddManager, f)) &
                            ((1 << CAL_BDD_TYPE_POSVAR) |
                             (1 << CAL_BDD_TYPE_NEGVAR))))
@@ -195,28 +157,19 @@ CalBddNumberSharedNodes(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalBddMarkSharedNodes(Cal_BddManager_t *bddManager, Cal_Bdd_t f)
 {
   int mark;
   Cal_Bdd_t thenBdd, elseBdd;
-  
+
   if (CalBddIsOutPos(f) == 0){
     CalBddNot(f,f);
   }
   if (CalBddIsBddConst(f) || CalBddTypeAux(bddManager, f) ==
       CAL_BDD_TYPE_POSVAR)
-    return; 
+    return;
   if ((mark = CalBddGetMark(f))){
     if (mark == 1){
       CalBddPutMark(f, 2);
@@ -235,15 +188,6 @@ CalBddMarkSharedNodes(Cal_BddManager_t *bddManager, Cal_Bdd_t f)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 Chars(char c, int n,FILE *fp)
@@ -256,15 +200,6 @@ Chars(char c, int n,FILE *fp)
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddPrintTopVar(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
@@ -272,21 +207,12 @@ BddPrintTopVar(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
 {
   Cal_Bdd_t ifVar;
   ifVar = CalBddIf(bddManager, f);
-  fputs(CalBddVarName(bddManager, ifVar, VarNamingFn, env), fp);  
+  fputs(CalBddVarName(bddManager, ifVar, VarNamingFn, env), fp);
   fputc('\n', fp);
 }
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/static void
 BddPrintBddStep(Cal_BddManager_t *bddManager,
                 Cal_Bdd_t f, Cal_VarNamingFn_t VarNamingFn,
@@ -297,7 +223,7 @@ BddPrintBddStep(Cal_BddManager_t *bddManager,
   int negated;
   long *number;
   Cal_Bdd_t fNot, thenBdd, elseBdd;
-  
+
   Chars(' ', indentation, fp);
   switch (CalBddTypeAux(bddManager, f)){
       case CAL_BDD_TYPE_ZERO:
@@ -328,9 +254,9 @@ BddPrintBddStep(Cal_BddManager_t *bddManager,
         }
       else {
         if (number){
-	      fprintf(fp, "%d: ", (int) *number);
-	      *number= -*number-1;
-	    }
+        fprintf(fp, "%d: ", (int) *number);
+        *number= -*number-1;
+      }
         fputs("if ", fp);
         BddPrintTopVar(bddManager, f, VarNamingFn, env, fp);
         CalBddGetThenBdd(f, thenBdd);
@@ -341,27 +267,18 @@ BddPrintBddStep(Cal_BddManager_t *bddManager,
         BddPrintTopVar(bddManager, f, VarNamingFn, env, fp);
         CalBddGetElseBdd(f, elseBdd);
         BddPrintBddStep(bddManager, elseBdd, VarNamingFn,
-                        TerminalIdFn, env, fp, hashTable, indentation+2); 
+                        TerminalIdFn, env, fp, hashTable, indentation+2);
         Chars(' ', indentation, fp);
         fputs("endif ", fp);
         BddPrintTopVar(bddManager, f, VarNamingFn, env, fp);
       }
         break;
       default:
-        CalBddFatalMessage("BddPrintBddStep: unknown type returned by Cal_BddType"); 
+        CalBddFatalMessage("BddPrintBddStep: unknown type returned by Cal_BddType");
   }
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static char *
 BddTerminalId(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
@@ -384,15 +301,6 @@ BddTerminalId(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
 
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 BddTerminalValueAux(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
@@ -406,13 +314,5 @@ BddTerminalValueAux(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
     (*bddManager->TransformFn)(bddManager,
                                (CalAddress_t)CalBddGetThenBddNode(f),
                                (CalAddress_t)CalBddGetElseBddNode(f),
-                                value1, value2, bddManager->transformEnv);  
+                                value1, value2, bddManager->transformEnv);
 }
-
-
-
-
-
-
-
-

@@ -134,15 +134,7 @@ static void CacheTablePrint(CalCacheTable_t *cacheTable);
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [Initialize a Cache table using default parameters.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Initialize a Cache table using default parameters.
 ******************************************************************************/
 CalCacheTable_t *
 CalCacheTableTwoInit(Cal_BddManager_t *bddManager)
@@ -158,9 +150,9 @@ CalCacheTableTwoInit(Cal_BddManager_t *bddManager)
   cacheTable->bins = Cal_MemAlloc(CacheEntry_t, cacheTable->numBins);
   if(cacheTable->bins == Cal_Nil(CacheEntry_t)){
     CalBddFatalMessage("out of memory");
-  }		
+  }
   memset((char *)cacheTable->bins, 0,
-	 cacheTable->numBins*sizeof(CacheEntry_t));
+   cacheTable->numBins*sizeof(CacheEntry_t));
   cacheTable->numInsertions = 0;
   cacheTable->numEntries = 0;
   cacheTable->numHits = 0;
@@ -171,15 +163,7 @@ CalCacheTableTwoInit(Cal_BddManager_t *bddManager)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Free a Cache table along with the associated storage.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Free a Cache table along with the associated storage.
 ******************************************************************************/
 int
 CalCacheTableTwoQuit(CalCacheTable_t *cacheTable)
@@ -192,15 +176,7 @@ CalCacheTableTwoQuit(CalCacheTable_t *cacheTable)
 
 
 /**Function********************************************************************
-
-  Synopsis    [Directly insert a BDD node in the Cache table.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Directly insert a BDD node in the Cache table.
 ******************************************************************************/
 void
 CalCacheTableTwoInsert(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
@@ -215,7 +191,7 @@ CalCacheTableTwoInsert(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
   cacheTable = bddManager->cacheTable;
   cacheTable->numInsertions++;
   hashValue = CacheTableTwoDoHash(cacheTable, CalBddGetBddNode(f),
-                                  CalBddGetBddNode(g), opCode); 
+                                  CalBddGetBddNode(g), opCode);
 
   bin = cacheTable->bins + hashValue;
   if (bin->opCode != CAL_OP_INVALID){
@@ -224,10 +200,10 @@ CalCacheTableTwoInsert(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
   else{
     cacheTable->numEntries++;
   }
-  
+
   bin->opCode = opCode;
   if ((CalAddress_t)CalBddGetBddNode(f) >
-      (CalAddress_t)CalBddGetBddNode(g)){ 
+      (CalAddress_t)CalBddGetBddNode(g)){
     operand1Node = CalBddGetBddNode(g);
     operand2Node = CalBddGetBddNode(f);
   }
@@ -235,7 +211,7 @@ CalCacheTableTwoInsert(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
     operand1Node = CalBddGetBddNode(f);
     operand2Node = CalBddGetBddNode(g);
   }
-  
+
   if (cacheLevel){
   /*
    * Mark this result as temporary node to be forwarded at the end of
@@ -254,35 +230,26 @@ CalCacheTableTwoInsert(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
   return;
 }
 
-  
+
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalCacheTableTwoLookup(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
                        Cal_Bdd_t g, unsigned long opCode, Cal_Bdd_t
-                       *resultBddPtr)  
+                       *resultBddPtr)
 {
   int hashValue;
   CalCacheTable_t *cacheTable;
   CacheEntry_t *bin;
   CalBddNode_t *operand1Node, *operand2Node;
-  
+
   cacheTable = bddManager->cacheTable;
   cacheTable->numLookups++;
   hashValue = CacheTableTwoDoHash(cacheTable, CalBddGetBddNode(f),
-                                  CalBddGetBddNode(g), opCode); 
+                                  CalBddGetBddNode(g), opCode);
 
   bin = cacheTable->bins+hashValue;
-  
+
   if ((CalAddress_t)CalBddGetBddNode(f) > (CalAddress_t)CalBddGetBddNode(g)){
     operand1Node = CalBddGetBddNode(g);
     operand2Node = CalBddGetBddNode(f);
@@ -303,34 +270,18 @@ CalCacheTableTwoLookup(Cal_BddManager_t *bddManager, Cal_Bdd_t f,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Free a Cache table along with the associated storage.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Free a Cache table along with the associated storage.
 ******************************************************************************/
 void
 CalCacheTableTwoFlush(CalCacheTable_t *cacheTable)
 {
   memset((char *)cacheTable->bins, 0,
-	 cacheTable->numBins*sizeof(CacheEntry_t));
+   cacheTable->numBins*sizeof(CacheEntry_t));
   cacheTable->numEntries = 0;
 }
 
 /**Function********************************************************************
-
-  Synopsis    [Free a Cache table along with the associated storage.]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+  Free a Cache table along with the associated storage.
 ******************************************************************************/
 int
 CalCacheTableTwoFlushAll(CalCacheTable_t *cacheTable)
@@ -343,15 +294,6 @@ CalCacheTableTwoFlushAll(CalCacheTable_t *cacheTable)
   return 0;
 }
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalCacheTableTwoGCFlush(CalCacheTable_t *cacheTable)
@@ -374,15 +316,6 @@ CalCacheTableTwoGCFlush(CalCacheTable_t *cacheTable)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalCacheTableTwoRepackUpdate(CalCacheTable_t *cacheTable)
@@ -390,7 +323,7 @@ CalCacheTableTwoRepackUpdate(CalCacheTable_t *cacheTable)
   int i;
   CacheEntry_t *bin = cacheTable->bins;
   int numBins = cacheTable->numBins;
-  
+
   for (i=0; i<numBins; bin++,i++){
     if (bin->opCode != CAL_OP_INVALID){
       if (CalBddNodeIsForwarded(CAL_BDD_POINTER(bin->operand1))){
@@ -407,15 +340,6 @@ CalCacheTableTwoRepackUpdate(CalCacheTable_t *cacheTable)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalCheckCacheTableValidity(Cal_BddManager bddManager)
@@ -424,7 +348,7 @@ CalCheckCacheTableValidity(Cal_BddManager bddManager)
   int i;
   CacheEntry_t *bin = cacheTable->bins;
   int numBins = cacheTable->numBins;
-  
+
   for (i=0; i<numBins; bin++,i++){
     if (bin->opCode != CAL_OP_INVALID){
       Cal_Assert(CalBddNodeIsForwarded(CAL_BDD_POINTER(bin->operand1))
@@ -438,15 +362,6 @@ CalCheckCacheTableValidity(Cal_BddManager bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalCacheTableTwoFixResultPointers(Cal_BddManager_t *bddManager)
@@ -455,7 +370,7 @@ CalCacheTableTwoFixResultPointers(Cal_BddManager_t *bddManager)
   int i;
   CacheEntry_t *bin = cacheTable->bins;
   int numBins = cacheTable->numBins;
-  
+
   for (i=0; i<numBins; bin++,i++){
     if ((CalAddress_t)bin->operand1 & 0x2){ /* If the result node is temporary
                                    node */
@@ -466,18 +381,7 @@ CalCacheTableTwoFixResultPointers(Cal_BddManager_t *bddManager)
   }
 }
 
-
-
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalCacheTablePrint(Cal_BddManager_t *bddManager)
@@ -486,15 +390,6 @@ CalCacheTablePrint(Cal_BddManager_t *bddManager)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalBddManagerGetCacheTableData(Cal_BddManager_t *bddManager,
@@ -515,15 +410,6 @@ CalBddManagerGetCacheTableData(Cal_BddManager_t *bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalCacheTableRehash(Cal_BddManager_t *bddManager)
@@ -536,16 +422,7 @@ CalCacheTableRehash(Cal_BddManager_t *bddManager)
   }
 }
 /**Function********************************************************************
-
-  Synopsis           [Flushes the entries from the cache which
-                      correspond to the given associationId.]
-
-  Description        []
-
-  SideEffects        [Cache entries are affected.]
-
-  SeeAlso            []
-
+  Flushes the entries from the cache corresponding to the given associationId.
 ******************************************************************************/
 void
 CalCacheTableTwoFlushAssociationId(Cal_BddManager_t *bddManager, int
@@ -554,7 +431,7 @@ CalCacheTableTwoFlushAssociationId(Cal_BddManager_t *bddManager, int
   CalCacheTable_t *cacheTable =   bddManager->cacheTable;
   int i;
   CacheEntry_t *bin;
-  
+
   for (i=0; i < cacheTable->numBins; i++){
     bin = cacheTable->bins+i;
     if ((bin->opCode == (CAL_OP_QUANT+associationId)) ||
@@ -568,15 +445,6 @@ CalCacheTableTwoFlushAssociationId(Cal_BddManager_t *bddManager, int
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 unsigned long
 CalCacheTableMemoryConsumption(CalCacheTable_t *cacheTable)
@@ -588,17 +456,7 @@ CalCacheTableMemoryConsumption(CalCacheTable_t *cacheTable)
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
 
-
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CacheTableTwoRehash(CalCacheTable_t *cacheTable,int grow)
@@ -607,8 +465,8 @@ CacheTableTwoRehash(CalCacheTable_t *cacheTable,int grow)
   int i, hashValue;
   int oldNumBins = cacheTable->numBins;
   CacheEntry_t *bin, *newBin;
-  
-  
+
+
   if(grow){
     cacheTable->sizeIndex++;
   }
@@ -624,9 +482,9 @@ CacheTableTwoRehash(CalCacheTable_t *cacheTable,int grow)
   if(cacheTable->bins == Cal_Nil(CacheEntry_t)){
     CalBddFatalMessage("out of memory");
   }
-  
-  memset((char *)cacheTable->bins, 0, 
-	 cacheTable->numBins*sizeof(CacheEntry_t));
+
+  memset((char *)cacheTable->bins, 0,
+   cacheTable->numBins*sizeof(CacheEntry_t));
 
   for(i = 0; i < oldNumBins; i++){
       bin  = oldBins+i;
@@ -649,15 +507,6 @@ CacheTableTwoRehash(CalCacheTable_t *cacheTable,int grow)
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CacheTablePrint(CalCacheTable_t *cacheTable)
@@ -665,7 +514,7 @@ CacheTablePrint(CalCacheTable_t *cacheTable)
   int i;
   unsigned long opCode;
   CacheEntry_t *bin;
-  
+
   printf("cacheTable entries(%ld) bins(%ld)\n",
          cacheTable->numEntries, cacheTable->numBins);
   for(i = 0; i < cacheTable->numBins; i++){
@@ -678,15 +527,14 @@ CacheTablePrint(CalCacheTable_t *cacheTable)
                                                             CAL_OP_QUANT) ?
                                                            "QUANT" :
                                                            ((opCode ==
-                                                             CAL_OP_REL_PROD)   
+                                                             CAL_OP_REL_PROD)
                                                             ?
                                                             "RELPROD"
                                                             :
-                                                            "Nothing")))), 
+                                                            "Nothing")))),
               (CalAddress_t)bin->operand1,
-              (CalAddress_t)bin->operand2, bin->resultBddId, 
+              (CalAddress_t)bin->operand2, bin->resultBddId,
               (CalAddress_t)bin->resultBddNode);
     }
   }
 }
-

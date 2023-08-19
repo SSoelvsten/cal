@@ -94,15 +94,6 @@ static void CalHashTableThreeRehash(CalHashTable_t *hashTable, int grow);
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 int
 CalHashTableThreeFindOrAdd(CalHashTable_t * hashTable,
@@ -114,8 +105,8 @@ CalHashTableThreeFindOrAdd(CalHashTable_t * hashTable,
   CalBddNode_t *ptr, *ptrIndirect;
   Cal_Bdd_t tmpBdd;
   int hashValue;
-  
-  hashValue = CalDoHash3(CalBddGetBddNode(f), 
+
+  hashValue = CalDoHash3(CalBddGetBddNode(f),
       CalBddGetBddNode(g), CalBddGetBddNode(h), hashTable);
   ptr = hashTable->bins[hashValue];
   while(ptr != Cal_Nil(CalBddNode_t)){
@@ -157,15 +148,6 @@ CalHashTableThreeFindOrAdd(CalHashTable_t * hashTable,
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 static void
 CalHashTableThreeRehash(CalHashTable_t *hashTable, int grow)
@@ -211,11 +193,3 @@ CalHashTableThreeRehash(CalHashTable_t *hashTable, int grow)
   }
   Cal_MemFree(oldBins);
 }
-
-
-
-
-
-
-
-

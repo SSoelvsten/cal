@@ -51,7 +51,6 @@
 /* Variable declarations                                                     */
 /*---------------------------------------------------------------------------*/
 
-
 /*---------------------------------------------------------------------------*/
 /* Macro declarations                                                        */
 /*---------------------------------------------------------------------------*/
@@ -71,31 +70,18 @@ static void AddBlock(Cal_Block b1, Cal_Block b2);
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
 /**Function********************************************************************
-
-  Synopsis           [Creates and returns a variable block used for
-  controlling dynamic reordering.]
-
-  Description        [The block is specified by passing the first
-  variable and the length of the block. The "length" number of
-  consecutive variables starting from "variable" are put in the
-  block.]   
-
-  SideEffects        [A new block is created.]
-
-  SeeAlso            []
-
 ******************************************************************************/
 Cal_Block
 Cal_BddNewVarBlock(Cal_BddManager bddManager, Cal_Bdd variable, long length)
 {
   Cal_Block b;
   Cal_Bdd_t calBdd = CalBddGetInternalBdd(bddManager, variable);
-  
+
   if (CalBddTypeAux(bddManager, calBdd) != CAL_BDD_TYPE_POSVAR) {
-    CalBddWarningMessage("Cal_BddNewVarBlock: second argument is not a positive variable\n"); 
+    CalBddWarningMessage("Cal_BddNewVarBlock: second argument is not a positive variable\n");
     if (CalBddIsBddConst(calBdd)){
       return (Cal_Block) 0;
-	}
+  }
   }
 
   /*b = CAL_BDD_NEW_REC(bddManager, Cal_Block_t);*/
@@ -108,23 +94,13 @@ Cal_BddNewVarBlock(Cal_BddManager bddManager, Cal_Bdd variable, long length)
   }
   b->lastIndex = b->firstIndex + length - 1;
   if (b->lastIndex >= bddManager->numVars) {
-    CalBddWarningMessage("Cal_BddNewVarBlock: range covers non-existent variables"); 
+    CalBddWarningMessage("Cal_BddNewVarBlock: range covers non-existent variables");
     b->lastIndex = bddManager->numVars - 1;
   }
   AddBlock(bddManager->superBlock, b);
   return (b);
 }
 /**Function********************************************************************
-
-  Synopsis           [Sets the reoderability of a particular block.]
-
-  Description        [If a block is reorderable, the child blocks are
-  recursively involved in swapping.]
-
-  SideEffects        [None.]
-
-  SeeAlso            []
-
 ******************************************************************************/
 void
 Cal_BddVarBlockReorderable(Cal_BddManager bddManager, Cal_Block block,
@@ -136,16 +112,8 @@ Cal_BddVarBlockReorderable(Cal_BddManager bddManager, Cal_Block block,
 /*---------------------------------------------------------------------------*/
 /* Definition of internal functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 long
 CalBddFindBlock(Cal_Block block, long index)
@@ -171,15 +139,6 @@ CalBddFindBlock(Cal_Block block, long index)
 }
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalBddBlockDelta(Cal_Block b, long delta)
@@ -193,15 +152,6 @@ CalBddBlockDelta(Cal_Block b, long delta)
 
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 Cal_Block
 CalBddShiftBlock(Cal_BddManager_t *bddManager, Cal_Block b, long index)
@@ -240,45 +190,29 @@ CalBddShiftBlock(Cal_BddManager_t *bddManager, Cal_Block b, long index)
   }
   return (b);
 }
+
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 unsigned long
 CalBlockMemoryConsumption(Cal_Block block)
 {
   unsigned long totalBytes = 0;
   int i;
-  
+
   totalBytes += sizeof(Cal_Block);
   for (i=0; i<block->numChildren; i++){
     totalBytes += CalBlockMemoryConsumption(block->children[i]);
   }
   return totalBytes;
 }
+
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 void
 CalFreeBlockRecursively(Cal_Block block)
 {
   int i;
-  
+
   for (i=0; i<block->numChildren; i++){
     CalFreeBlockRecursively(block->children[i]);
   }
@@ -291,15 +225,6 @@ CalFreeBlockRecursively(Cal_Block block)
 /*---------------------------------------------------------------------------*/
 
 /**Function********************************************************************
-
-  Synopsis           [required]
-
-  Description        [optional]
-
-  SideEffects        [required]
-
-  SeeAlso            [optional]
-
 ******************************************************************************/
 static void
 AddBlock(Cal_Block b1, Cal_Block b2)
@@ -321,28 +246,26 @@ AddBlock(Cal_Block b1, Cal_Block b2)
         CalBddFatalMessage("AddBlock: illegal block overlap");
       }
       b2->numChildren = j-i+1;
-	  b2->children = Cal_MemAlloc(Cal_Block, b2->numChildren); 
-	  for (k=0; k < b2->numChildren; ++k){
-	    b2->children[k] = b1->children[i+k];
+    b2->children = Cal_MemAlloc(Cal_Block, b2->numChildren);
+    for (k=0; k < b2->numChildren; ++k){
+      b2->children[k] = b1->children[i+k];
       }
-	  b1->children[i] = b2;
-	  ++i;
-	  for (k=j+1; k < b1->numChildren; ++k, ++i){
-	    b1->children[i] = b1->children[k];
+    b1->children[i] = b2;
+    ++i;
+    for (k=j+1; k < b1->numChildren; ++k, ++i){
+      b1->children[i] = b1->children[k];
       }
-	  b1->numChildren -= (b2->numChildren-1);
-	  b1->children = (Cal_Block *)
+    b1->numChildren -= (b2->numChildren-1);
+    b1->children = (Cal_Block *)
           Cal_MemRealloc(Cal_Block, b1->children, b1->numChildren);
-	}
+  }
   }
   else {
       /* b1 and b2 are blocks representing just single variables. */
       b1->numChildren = 1;
-      b1->children = Cal_MemAlloc(Cal_Block, b1->numChildren); 
+      b1->children = Cal_MemAlloc(Cal_Block, b1->numChildren);
       b1->children[0] = b2;
       b2->numChildren = 0;
       b2->children = 0;
   }
 }
-
-

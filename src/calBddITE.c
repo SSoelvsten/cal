@@ -71,18 +71,8 @@
 /*---------------------------------------------------------------------------*/
 /* Definition of exported functions                                          */
 /*---------------------------------------------------------------------------*/
+
 /**Function********************************************************************
-
-  Synopsis    [Returns the BDD for logical If-Then-Else
-
-  Description [Returns the BDD for the logical operation IF f THEN g ELSE h
-  - f g + f' h]
-
-  SideEffects [None]
-
-  SeeAlso     [Cal_BddAnd, Cal_BddNand, Cal_BddOr, Cal_BddNor, Cal_BddXor,
-  Cal_BddXnor]
-
 ******************************************************************************/
 Cal_Bdd
 Cal_BddITE(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd,
@@ -115,19 +105,8 @@ Cal_BddITE(Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_Bdd gUserBdd,
 
 
 /**Function********************************************************************
-
-  Name        [CalRequestNodeListArrayOp]
-
-  Synopsis    [required]
-
-  Description [This routine is to be used for pipelined and
-  superscalar ITE operations. Currently there is no user interface
-  provided to this routine.]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
+   This routine is to be used for pipelined and superscalar ITE operations.
+   Currently there is no user interface provided to this routine.
 ******************************************************************************/
 void
 CalRequestNodeListArrayITE(Cal_BddManager_t *bddManager,
@@ -138,7 +117,7 @@ CalRequestNodeListArrayITE(Cal_BddManager_t *bddManager,
   int pipeDepth, bddId, bddIndex;
   CalHashTable_t **reqQueAtPipeDepth, *hashTable, *uniqueTableForId;
   CalHashTable_t ***reqQue = bddManager->reqQue;
-  
+
   /* ReqQueInsertUsingReqListArray */
   for(pipeDepth = 0; pipeDepth < bddManager->depth; pipeDepth++){
     reqQueAtPipeDepth = reqQue[pipeDepth];
@@ -204,15 +183,6 @@ CalRequestNodeListArrayITE(Cal_BddManager_t *bddManager,
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 Cal_Bdd_t
 CalBddOpITEBF(
@@ -229,9 +199,9 @@ CalBddOpITEBF(
   CalHashTable_t *hashTable;
   CalHashTable_t *uniqueTableForId;
   CalHashTable_t **reqQueForITE = bddManager->reqQue[0];
-  
+
   result = CalOpITE(bddManager, f, g, h, reqQueForITE);
-  
+
   CalBddGetMinIndex3(bddManager, f, g, h, minIndex);
   /* ReqQueApply */
   for(bddIndex = minIndex; bddIndex < bddManager->numVars; bddIndex++){
@@ -264,15 +234,6 @@ CalBddOpITEBF(
 }
 
 /**Function********************************************************************
-
-  Synopsis    [required]
-
-  Description [optional]
-
-  SideEffects [required]
-
-  SeeAlso     [optional]
-
 ******************************************************************************/
 void
 CalHashTableITEApply(
@@ -285,7 +246,7 @@ CalHashTableITEApply(
   CalRequestNode_t *requestNode;
   Cal_Bdd_t fx, gx, fxbar, gxbar, hx, hxbar, result;
   CalNodeManager_t *nodeManager = hashTable->nodeManager;
-  
+
   for(i = 0; i < numBins; i++){
     for(requestNode = bins[i];
         requestNode != Cal_Nil(CalRequestNode_t);
@@ -306,17 +267,6 @@ CalHashTableITEApply(
 }
 
 /**Function********************************************************************
- 
-   Synopsis    [Returns the BDD for logical If-Then-Else
- 
-   Description [Returns the BDD for the logical operation IF f THEN g ELSE h
-   - f g + f' h]
- 
-   SideEffects [None]
- 
-   SeeAlso     [Cal_BddAnd, Cal_BddNand, Cal_BddOr, Cal_BddNor, Cal_BddXor,
-   Cal_BddXnor]
- 
 ******************************************************************************/
 Cal_Bdd_t
 CalBddITE(Cal_BddManager_t *bddManager, Cal_Bdd_t F, Cal_Bdd_t G,
