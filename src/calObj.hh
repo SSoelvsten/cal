@@ -58,9 +58,6 @@ public:
   }
 
   // ---------------------------------------------------------------------------
-  // TODO: Operators functions as member functions?
-
-  // ---------------------------------------------------------------------------
   // Predicates
   bool IsOne() const
   { return Cal_BddIsBddOne(this->_bddManager, this->_bdd); }
