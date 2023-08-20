@@ -289,7 +289,7 @@ public:
   {
     // Unlike other BDD operations of CAL, `Cal_BddGetRegular` does not
     // increment the reference count of its output. Hence, we have to do so here
-    // to compensate for the `UnFree(...)` in `~BDD()`.
+    // to compensate for the `Free(...)` in `~BDD()`.
     BDD res(this->_bddManager, Cal_BddGetRegular(this->_bddManager, this->_bdd));
     BDD::UnFree(res._bddManager, res._bdd);
     return res;
