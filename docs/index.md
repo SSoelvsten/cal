@@ -1,6 +1,6 @@
 \mainpage Main Page
 
-CAL is a BDD package that uses breadt-first algorithms to exploit a locality of
+CAL is a BDD package that uses breadth-first algorithms to exploit a locality of
 BDD nodes in swap memory. This allows one to obtain a high performance when
 manipulating Binary Decision Diagrams, even when they outgrow the memory limit
 of the given machine.

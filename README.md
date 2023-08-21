@@ -7,7 +7,7 @@
 [![test](https://img.shields.io/github/actions/workflow/status/ssoelvsten/cal/test.yml?branch=main&label=test&logo=github&logoColor=white)](https://github.com/SSoelvsten/cal/actions/workflows/test.yml)
 &nbsp;
 
-CAL is a BDD package [[Bryant86](#references)] that uses breadt-first
+CAL is a BDD package [[Bryant86](#references)] that uses breadth-first
 algorithms [[Ochi93](#references), [Ashar94](#references),
 [Sanghavi96](#references)] to exploit a locality of BDD nodes on disk.
 This allows one to obtain a high performance when manipulating Binary
