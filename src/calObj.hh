@@ -46,6 +46,7 @@ extern "C" {
 
 #include <vector>
 #include <sstream>
+#include <string>
 
 class BDD;
 class Cal;
@@ -469,6 +470,69 @@ public:
 public:
 
   //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief Cal_BddPrintBdd
+  //////////////////////////////////////////////////////////////////////////////
+  void Print(FILE *fp = stdout) const
+  {
+    // TODO: Extend to use your own NamingFn and TerminalIdFn
+    //       (and their environment).
+    Cal_BddPrintBdd(this->_bddManager, this->_bdd,
+                    Cal_BddNamingFnNone, Cal_BddTerminalIdFnNone, NULL,
+                    fp);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief Cal_BddFunctionPrint
+  //////////////////////////////////////////////////////////////////////////////
+  void FunctionPrint(std::string &name) const
+  { Cal_BddFunctionPrint(this->_bddManager, this->_bdd, name.data()); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief Cal_BddProfile
+  //////////////////////////////////////////////////////////////////////////////
+  std::vector<long> Profile(bool negout = true) const
+  {
+    std::vector<long> results;
+    results.reserve(Cal_BddVars(this->_bddManager)+1);
+    Cal_BddProfile(this->_bddManager, this->_bdd, results.data(), negout);
+    return results;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief Cal_BddPrintProfile
+  //////////////////////////////////////////////////////////////////////////////
+  void PrintProfile(int lineLength = 79, FILE *fp = stdout) const
+  {
+    // TODO: Extend to use your own NamingFn (and its environment).
+    Cal_BddPrintProfile(this->_bddManager, this->_bdd,
+                        Cal_BddNamingFnNone, NULL,
+                        lineLength, fp);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief Cal_BddFunctionProfile
+  //////////////////////////////////////////////////////////////////////////////
+  std::vector<long> FunctionProfile() const
+  {
+    std::vector<long> results;
+    results.reserve(Cal_BddVars(this->_bddManager)+1);
+    Cal_BddFunctionProfile(this->_bddManager, this->_bdd, results.data());
+    return results;
+  }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief Cal_BddPrintFunctionProfile
+  //////////////////////////////////////////////////////////////////////////////
+  void PrintFunctionProfile(int lineLength = 79, FILE *fp = stdout) const
+  {
+    // TODO: Extend to use your own NamingFn (and its environment).
+    Cal_BddPrintFunctionProfile(this->_bddManager, this->_bdd,
+                                Cal_BddNamingFnNone, NULL,
+                                lineLength, fp);
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
   /// \brief The reference count of this BDD
   ///
   /// \details The reference count is a value between 0 and 255. If a reference
@@ -750,25 +814,25 @@ public:
   //////////////////////////////////////////////////////////////////////////////
   /// \copybrief Cal_BddVars
   //////////////////////////////////////////////////////////////////////////////
-  long Vars()
+  long Vars() const
   { return Cal_BddVars(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
   /// \copybrief Cal_BddOverflow
   //////////////////////////////////////////////////////////////////////////////
-  bool Overflow()
+  bool Overflow() const
   { return Cal_BddOverflow(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
   /// \copybrief Cal_BddTotalSize
   //////////////////////////////////////////////////////////////////////////////
-  unsigned long TotalSize()
+  unsigned long TotalSize() const
   { return Cal_BddTotalSize(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
   /// \copybrief Cal_BddStats
   //////////////////////////////////////////////////////////////////////////////
-  void Stats(FILE* fp = stdout)
+  void Stats(FILE* fp = stdout) const
   { Cal_BddStats(this->_bddManager, fp); }
 
   // TODO: obtain error
@@ -1444,6 +1508,191 @@ public:
   //////////////////////////////////////////////////////////////////////////////
   BDD Else(const BDD &f)
   { return f.Else(); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Debugging
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copydoc BDD::Print
+  //////////////////////////////////////////////////////////////////////////////
+  void Print(const BDD &f, FILE *fp = stdout) const
+  { f.Print(fp); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copydoc BDD::FunctionPrint
+  //////////////////////////////////////////////////////////////////////////////
+  void FunctionPrint(const BDD &f, std::string &name) const
+  { f.FunctionPrint(name); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copydoc BDD::Profile
+  //////////////////////////////////////////////////////////////////////////////
+  std::vector<long> Profile(const BDD &f, bool negout = true) const
+  { return f.Profile(negout); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::Profile` for an iterator of BDDs. But, this
+  /// accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename IT>
+  std::vector<long> Profile(IT begin, IT end, bool negout = true) const
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    std::vector<long> levelCounts;
+    levelCounts.reserve(this->Vars()+1);
+
+    Cal_BddProfileMultiple(this->_bddManager,
+                           c_arg.data(),
+                           levelCounts.data(),
+                           negout);
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return levelCounts;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::Profile` for a container of BDDs. But, this
+  /// accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename Container>
+  std::vector<long> Profile(const Container &c, bool negout = true) const
+  { return Profile(c.begin(), c.end(), negout); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief BDD::PrintProfile
+  //////////////////////////////////////////////////////////////////////////////
+  void PrintProfile(const BDD &f, int lineLength = 79, FILE *fp = stdout) const
+  { return f.PrintProfile(lineLength, fp); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::PrintProfile` for an iterator of BDDs. But, this
+  /// accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename IT>
+  void PrintProfile(IT begin, IT end,
+                    int lineLength = 79,
+                    FILE *fp = stdout) const
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    // TODO: Extend to use your own NamingFn (and its environment).
+    Cal_BddPrintProfileMultiple(this->_bddManager, c_arg.data(),
+                                Cal_BddNamingFnNone, NULL,
+                                lineLength, fp);
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::PrintProfile` for a container of BDDs. But, this
+  /// accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename Container>
+  void PrintProfile(const Container &c,
+                    int lineLength = 79,
+                    FILE *fp = stdout) const
+  { PrintProfile(c.begin, c.end, lineLength, fp); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief BDD::FunctionProfile
+  //////////////////////////////////////////////////////////////////////////////
+  std::vector<long> FunctionProfile(const BDD &f) const
+  { return f.FunctionProfile(); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::FunctionProfile` for an iterator of BDDs. But,
+  /// this accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename IT>
+  std::vector<long> FunctionProfile(IT begin, IT end) const
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    std::vector<long> funcCounts;
+    funcCounts.reserve(Vars()+1);
+
+    Cal_BddFunctionProfileMultiple(this->_bddManager, c_arg.data(), funcCounts.data());
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+
+    return funcCounts;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::FunctionProfile` for a container of BDDs. But,
+  /// this accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename Container>
+  std::vector<long> FunctionProfile(const Container &c) const
+  { return FunctionProfile(c.begin(), c.end()); }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \copybrief BDD::PrintFunctionProfile
+  //////////////////////////////////////////////////////////////////////////////
+  void PrintFunctionProfile(const BDD &f,
+                            int lineLength = 79,
+                            FILE *fp = stdout) const
+  { return f.PrintFunctionProfile(lineLength, fp); }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::PrintFunctionProfile` for an iterator of BDDs.
+  /// But, this accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename IT>
+  void PrintFunctionProfile(IT begin, IT end,
+                    int lineLength = 79,
+                    FILE *fp = stdout) const
+  {
+    std::vector<Cal_Bdd> c_arg =
+      BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
+
+    // TODO: Extend to use your own NamingFn (and its environment).
+    Cal_BddPrintFunctionProfileMultiple(this->_bddManager, c_arg.data(),
+                                        Cal_BddNamingFnNone, NULL,
+                                        lineLength, fp);
+
+    BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Similar to `Cal::PrintFunctionProfile` for a container of BDDs.
+  /// But, this accounts for sharing of nodes.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  //////////////////////////////////////////////////////////////////////////////
+  template<typename Container>
+  void PrintFunctionProfile(const Container &c,
+                            int lineLength = 79,
+                            FILE *fp = stdout) const
+  { PrintFunctionProfile(c.begin, c.end, lineLength, fp); }
 
   //////////////////////////////////////////////////////////////////////////////
   // BDD Pipelining
