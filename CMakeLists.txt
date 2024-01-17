@@ -3,10 +3,8 @@ project (cal
   VERSION 3.0.0
   DESCRIPTION "CAL: University of California BDD Package"
   HOMEPAGE_URL "https://ssoelvsten.github.io/cal/"
-  LANGUAGES CXX
+  LANGUAGES C CXX
 )
-
-enable_language(C)
 
 # ============================================================================ #
 # Settings
