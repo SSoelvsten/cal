@@ -1524,6 +1524,7 @@ EXTERN Cal_Block CalBddShiftBlock(Cal_BddManager_t *bddManager, Cal_Block b, lon
 EXTERN unsigned long CalBlockMemoryConsumption(Cal_Block block);
 EXTERN void CalFreeBlockRecursively(Cal_Block block);
 EXTERN CalCacheTable_t * CalCacheTableTwoInit(Cal_BddManager_t *bddManager);
+EXTERN void CacheTableTwoRehash(CalCacheTable_t *cacheTable, int grow);
 EXTERN int CalCacheTableTwoQuit(CalCacheTable_t *cacheTable);
 EXTERN void CalCacheTableTwoInsert(Cal_BddManager_t *bddManager, Cal_Bdd_t f, Cal_Bdd_t g, Cal_Bdd_t result, unsigned long opCode, int cacheLevel);
 EXTERN int CalCacheTableTwoLookup(Cal_BddManager_t *bddManager, Cal_Bdd_t f, Cal_Bdd_t g, unsigned long opCode, Cal_Bdd_t *resultBddPtr);

@@ -119,7 +119,6 @@ struct CacheEntryStruct {
 /* Static function prototypes                                                */
 /*---------------------------------------------------------------------------*/
 
-static void CacheTableTwoRehash(CalCacheTable_t *cacheTable, int grow);
 static void CacheTablePrint(CalCacheTable_t *cacheTable);
 
 /**AutomaticEnd***************************************************************/
@@ -161,6 +160,56 @@ CalCacheTableTwoInit(Cal_BddManager_t *bddManager)
   return cacheTable;
 }
 
+/**Function********************************************************************
+  Reshash Cacch table (if desired, while also growing the table).
+******************************************************************************/
+void
+CacheTableTwoRehash(CalCacheTable_t *cacheTable, int grow)
+{
+  CacheEntry_t *oldBins = cacheTable->bins;
+  int i, hashValue;
+  int oldNumBins = cacheTable->numBins;
+  CacheEntry_t *bin, *newBin;
+
+
+  if(grow){
+    cacheTable->sizeIndex++;
+  }
+  else{
+    if (cacheTable->sizeIndex <= CACHE_TABLE_DEFAULT_SIZE_INDEX){/* No need to Rehash */
+      return;
+    }
+    cacheTable->sizeIndex--;
+  }
+
+  cacheTable->numBins = TABLE_SIZE(cacheTable->sizeIndex);
+  cacheTable->bins = Cal_MemAlloc(CacheEntry_t, cacheTable->numBins);
+  if(cacheTable->bins == Cal_Nil(CacheEntry_t)){
+    CalBddFatalMessage("out of memory");
+  }
+
+  memset((char *)cacheTable->bins, 0,
+   cacheTable->numBins*sizeof(CacheEntry_t));
+
+  for(i = 0; i < oldNumBins; i++){
+      bin  = oldBins+i;
+      if (bin->opCode == CAL_OP_INVALID) continue;
+      hashValue = CacheTableTwoDoHash(cacheTable,
+                                      bin->operand1,
+                                      bin->operand2,
+                                      bin->opCode);
+      newBin = cacheTable->bins+hashValue;
+      if (newBin->opCode != CAL_OP_INVALID){
+        cacheTable->numEntries--;
+      }
+      newBin->opCode = bin->opCode;
+      newBin->operand1 = bin->operand1;
+      newBin->operand2 = bin->operand2;
+      newBin->resultBddId = bin->resultBddId;
+      newBin->resultBddNode = bin->resultBddNode;
+  }
+  Cal_MemFree(oldBins);
+}
 
 /**Function********************************************************************
   Free a Cache table along with the associated storage.
@@ -455,56 +504,6 @@ CalCacheTableMemoryConsumption(CalCacheTable_t *cacheTable)
 /*---------------------------------------------------------------------------*/
 /* Definition of static functions                                            */
 /*---------------------------------------------------------------------------*/
-
-/**Function********************************************************************
-******************************************************************************/
-static void
-CacheTableTwoRehash(CalCacheTable_t *cacheTable,int grow)
-{
-  CacheEntry_t *oldBins = cacheTable->bins;
-  int i, hashValue;
-  int oldNumBins = cacheTable->numBins;
-  CacheEntry_t *bin, *newBin;
-
-
-  if(grow){
-    cacheTable->sizeIndex++;
-  }
-  else{
-    if (cacheTable->sizeIndex <= CACHE_TABLE_DEFAULT_SIZE_INDEX){/* No need to Rehash */
-      return;
-    }
-    cacheTable->sizeIndex--;
-  }
-
-  cacheTable->numBins = TABLE_SIZE(cacheTable->sizeIndex);
-  cacheTable->bins = Cal_MemAlloc(CacheEntry_t, cacheTable->numBins);
-  if(cacheTable->bins == Cal_Nil(CacheEntry_t)){
-    CalBddFatalMessage("out of memory");
-  }
-
-  memset((char *)cacheTable->bins, 0,
-   cacheTable->numBins*sizeof(CacheEntry_t));
-
-  for(i = 0; i < oldNumBins; i++){
-      bin  = oldBins+i;
-      if (bin->opCode == CAL_OP_INVALID) continue;
-      hashValue = CacheTableTwoDoHash(cacheTable,
-                                      bin->operand1,
-                                      bin->operand2,
-                                      bin->opCode);
-      newBin = cacheTable->bins+hashValue;
-      if (newBin->opCode != CAL_OP_INVALID){
-        cacheTable->numEntries--;
-      }
-      newBin->opCode = bin->opCode;
-      newBin->operand1 = bin->operand1;
-      newBin->operand2 = bin->operand2;
-      newBin->resultBddId = bin->resultBddId;
-      newBin->resultBddNode = bin->resultBddNode;
-  }
-  Cal_MemFree(oldBins);
-}
 
 /**Function********************************************************************
 ******************************************************************************/
