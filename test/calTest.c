@@ -42,6 +42,7 @@
 #include <calInt.h>
 #include "time.h"
 #include <signal.h>
+#include <unistd.h>
 
 /*---------------------------------------------------------------------------*/
 /* Constant declarations                                                     */
