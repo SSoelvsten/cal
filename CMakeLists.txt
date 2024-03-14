@@ -10,22 +10,26 @@ project (cal
 # Settings
 # ============================================================================ #
 
+message(STATUS "")
+
 message(STATUS "CMake build configuration for CAL ${PROJECT_VERSION}")
 
-message(STATUS "  OS: ${CMAKE_SYSTEM_NAME}")
-message(STATUS "  Compiler: ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "    C Flags: ${CMAKE_C_FLAGS}")
-message(STATUS "    CXX Flags: ${CMAKE_CXX_FLAGS}")
-message(STATUS "    EXE Linker Flags: ${CMAKE_EXE_LINKER_FLAGS}")
+message(STATUS "  OS:                         ${CMAKE_SYSTEM_NAME}")
+message(STATUS "  Compiler:                   ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+message(STATUS "  |  C Flags:                 ${CMAKE_C_FLAGS}")
+message(STATUS "  |  CXX Flags:               ${CMAKE_CXX_FLAGS}")
+message(STATUS "  |  EXE Linker Flags:        ${CMAKE_EXE_LINKER_FLAGS}")
+
+message(STATUS "  Library Options:")
 
 option(CAL_SHARED "Build CAL as a shared library" OFF)
-message(STATUS "  Shared: ${CAL_SHARED}")
+message(STATUS "  |  Shared:                  ${CAL_SHARED}")
 
 option(CAL_DOCS "Build Documentation for CAL" ON)
-message(STATUS "  | Documentation (Doxygen): ${CAL_DOCS}")
+message(STATUS "  |  Documentation (Doxygen): ${CAL_DOCS}")
 
 option(CAL_TEST "Build Test for CAL" ON)
-message(STATUS "  | Test Executables: ${CAL_TEST}")
+message(STATUS "  |  Test Executables:        ${CAL_TEST}")
 
 message(STATUS "")
 
