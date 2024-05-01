@@ -609,7 +609,7 @@ protected:
 
     out.push_back(Cal_BddNull(bddManager));
 
-    return std::move(out);
+    return out;
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -628,7 +628,7 @@ protected:
       res.push_back(BDD(bddManager, bddArray[i]));
     }
 
-    return std::move(res);
+    return res;
   }
 
   /// \endcond
