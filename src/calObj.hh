@@ -1201,7 +1201,7 @@ public:
     std::vector<Cal_Bdd> c_arg =
       BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
 
-    const BDD res = Cal_BddMultiwayAnd(this->_bddManager, c_arg.data());
+    const BDD res(this->_bddManager, Cal_BddMultiwayAnd(this->_bddManager, c_arg.data()));
 
     BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
 
@@ -1242,7 +1242,7 @@ public:
     std::vector<Cal_Bdd> c_arg =
       BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
 
-    const BDD res = Cal_BddMultiwayOr(this->_bddManager, c_arg.data());
+    const BDD res(this->_bddManager, Cal_BddMultiwayOr(this->_bddManager, c_arg.data()));
 
     BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
 
@@ -1283,7 +1283,7 @@ public:
     std::vector<Cal_Bdd> c_arg =
       BDD::C_Bdd_vector(this->_bddManager, std::move(begin), std::move(end));
 
-    const BDD res = Cal_BddMultiwayXor(this->_bddManager, c_arg.data());
+    const BDD res(this->_bddManager, Cal_BddMultiwayXor(this->_bddManager, c_arg.data()));
 
     BDD::Free(this->_bddManager, c_arg.begin(), c_arg.end());
 
