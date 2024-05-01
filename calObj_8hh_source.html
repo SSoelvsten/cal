@@ -99,8 +99,8 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define _CALOBJ</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &lt;cal.h&gt;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &lt;calInt.h&gt;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;cal.h&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;calInt.h&quot;</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
@@ -244,7 +244,7 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="keyword">  </span>{ <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code" href="classBDD.html#a71eace1cfe06d171180a323ed4218989">Type_t</a><span class="keyword">&gt;</span>(<a class="code" href="group__module____c.html#gab4f07470db15052da757687b9975002e">Cal_BddType</a>(this-&gt;_bddManager, this-&gt;_bdd)); }</div>
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
 <div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="classBDD.html#a2f1dfafa5555d822855f2c51ad564d19">  294</a></span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="classBDD.html#a2f1dfafa5555d822855f2c51ad564d19">Size</a>(<span class="keywordtype">bool</span> negout = <span class="keyword">true</span>)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keyword">  </span>{ <span class="keywordflow">return</span> <a class="code" href="group__module____c.html#ga8d3dd5507f3bd45f56ac70bc68c76df2">Cal_BddSize</a>(this-&gt;_bddManager, this-&gt;_bdd, 0); }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keyword">  </span>{ <span class="keywordflow">return</span> <a class="code" href="group__module____c.html#ga8d3dd5507f3bd45f56ac70bc68c76df2">Cal_BddSize</a>(this-&gt;_bddManager, this-&gt;_bdd, negout); }</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
 <div class="line"><a name="l00300"></a><span class="lineno"><a class="line" href="classBDD.html#aad556c21b3a4a76545a7ad881add4cbc">  300</a></span>&#160;  <span class="keywordtype">double</span> <a class="code" href="classBDD.html#aad556c21b3a4a76545a7ad881add4cbc">SatisfyingFraction</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="keyword">  </span>{ <span class="keywordflow">return</span> <a class="code" href="group__module____c.html#ga0434c0c01c1c73907b6dd257a0953bfa">Cal_BddSatisfyingFraction</a>(this-&gt;_bddManager, this-&gt;_bdd); }</div>
@@ -442,7 +442,7 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160; </div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;    out.push_back(<a class="code" href="group__module____c.html#gaf48cb29c426e1e2f2ba01975c7356315">Cal_BddNull</a>(bddManager));</div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160; </div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;    <span class="keywordflow">return</span> std::move(out);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;    <span class="keywordflow">return</span> out;</div>
 <div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;  }</div>
 <div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160; </div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;  <span class="keyword">static</span> std::vector&lt;BDD&gt;</div>
@@ -457,7 +457,7 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;      res.push_back(<a class="code" href="classBDD.html#abc551344b2e136090b8d2d82ab6ff0f2">BDD</a>(bddManager, bddArray[i]));</div>
 <div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;    }</div>
 <div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160; </div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;    <span class="keywordflow">return</span> std::move(res);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;    <span class="keywordflow">return</span> res;</div>
 <div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;  }</div>
 <div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160; </div>
 <div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160; </div>
@@ -804,7 +804,7 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l01201"></a><span class="lineno"> 1201</span>&#160;    std::vector&lt;Cal_Bdd&gt; c_arg =</div>
 <div class="line"><a name="l01202"></a><span class="lineno"> 1202</span>&#160;      BDD::C_Bdd_vector(this-&gt;_bddManager, std::move(begin), std::move(end));</div>
 <div class="line"><a name="l01203"></a><span class="lineno"> 1203</span>&#160; </div>
-<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;    <span class="keyword">const</span> <a class="code" href="classBDD.html">BDD</a> res = <a class="code" href="group__module____c.html#ga52d1736f6a1aa20d38d860a0ae3c2245">Cal_BddMultiwayAnd</a>(this-&gt;_bddManager, c_arg.data());</div>
+<div class="line"><a name="l01204"></a><span class="lineno"> 1204</span>&#160;    <span class="keyword">const</span> <a class="code" href="classBDD.html">BDD</a> res(this-&gt;_bddManager, <a class="code" href="group__module____c.html#ga52d1736f6a1aa20d38d860a0ae3c2245">Cal_BddMultiwayAnd</a>(this-&gt;_bddManager, c_arg.data()));</div>
 <div class="line"><a name="l01205"></a><span class="lineno"> 1205</span>&#160; </div>
 <div class="line"><a name="l01206"></a><span class="lineno"> 1206</span>&#160;    BDD::Free(this-&gt;_bddManager, c_arg.begin(), c_arg.end());</div>
 <div class="line"><a name="l01207"></a><span class="lineno"> 1207</span>&#160; </div>
@@ -827,7 +827,7 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l01242"></a><span class="lineno"> 1242</span>&#160;    std::vector&lt;Cal_Bdd&gt; c_arg =</div>
 <div class="line"><a name="l01243"></a><span class="lineno"> 1243</span>&#160;      BDD::C_Bdd_vector(this-&gt;_bddManager, std::move(begin), std::move(end));</div>
 <div class="line"><a name="l01244"></a><span class="lineno"> 1244</span>&#160; </div>
-<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;    <span class="keyword">const</span> <a class="code" href="classBDD.html">BDD</a> res = <a class="code" href="group__module____c.html#gaf1b13a06fe3b22f9e33cdf31bf2d511d">Cal_BddMultiwayOr</a>(this-&gt;_bddManager, c_arg.data());</div>
+<div class="line"><a name="l01245"></a><span class="lineno"> 1245</span>&#160;    <span class="keyword">const</span> <a class="code" href="classBDD.html">BDD</a> res(this-&gt;_bddManager, <a class="code" href="group__module____c.html#gaf1b13a06fe3b22f9e33cdf31bf2d511d">Cal_BddMultiwayOr</a>(this-&gt;_bddManager, c_arg.data()));</div>
 <div class="line"><a name="l01246"></a><span class="lineno"> 1246</span>&#160; </div>
 <div class="line"><a name="l01247"></a><span class="lineno"> 1247</span>&#160;    BDD::Free(this-&gt;_bddManager, c_arg.begin(), c_arg.end());</div>
 <div class="line"><a name="l01248"></a><span class="lineno"> 1248</span>&#160; </div>
@@ -850,7 +850,7 @@ $(document).ready(function(){initNavTree('calObj_8hh_source.html',''); initResiz
 <div class="line"><a name="l01283"></a><span class="lineno"> 1283</span>&#160;    std::vector&lt;Cal_Bdd&gt; c_arg =</div>
 <div class="line"><a name="l01284"></a><span class="lineno"> 1284</span>&#160;      BDD::C_Bdd_vector(this-&gt;_bddManager, std::move(begin), std::move(end));</div>
 <div class="line"><a name="l01285"></a><span class="lineno"> 1285</span>&#160; </div>
-<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;    <span class="keyword">const</span> <a class="code" href="classBDD.html">BDD</a> res = <a class="code" href="group__module____c.html#ga4965bf1245e4a15136c20f7e22020263">Cal_BddMultiwayXor</a>(this-&gt;_bddManager, c_arg.data());</div>
+<div class="line"><a name="l01286"></a><span class="lineno"> 1286</span>&#160;    <span class="keyword">const</span> <a class="code" href="classBDD.html">BDD</a> res(this-&gt;_bddManager, <a class="code" href="group__module____c.html#ga4965bf1245e4a15136c20f7e22020263">Cal_BddMultiwayXor</a>(this-&gt;_bddManager, c_arg.data()));</div>
 <div class="line"><a name="l01287"></a><span class="lineno"> 1287</span>&#160; </div>
 <div class="line"><a name="l01288"></a><span class="lineno"> 1288</span>&#160;    BDD::Free(this-&gt;_bddManager, c_arg.begin(), c_arg.end());</div>
 <div class="line"><a name="l01289"></a><span class="lineno"> 1289</span>&#160; </div>
