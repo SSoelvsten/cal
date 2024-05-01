@@ -40,8 +40,8 @@
 #define _CALOBJ
 
 extern "C" {
-#include <cal.h>
-#include <calInt.h>
+#include "cal.h"
+#include "calInt.h"
 }
 
 #include <vector>
