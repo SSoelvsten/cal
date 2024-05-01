@@ -292,7 +292,7 @@ public:
   ///               negative-output pointers (complement edges).
   //////////////////////////////////////////////////////////////////////////////
   unsigned long Size(bool negout = true) const
-  { return Cal_BddSize(this->_bddManager, this->_bdd, 0); }
+  { return Cal_BddSize(this->_bddManager, this->_bdd, negout); }
 
   //////////////////////////////////////////////////////////////////////////////
   /// \copybrief Cal_BddSatisfyingFraction
