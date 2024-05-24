@@ -364,6 +364,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a518df5a4d9893652e38cb40c412db606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCal.html#a518df5a4d9893652e38cb40c412db606">SatisfySupport</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;f)</td></tr>
 <tr class="memdesc:a518df5a4d9893652e38cb40c412db606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a special cube contained in this.  <a href="classCal.html#a518df5a4d9893652e38cb40c412db606">More...</a><br /></td></tr>
 <tr class="separator:a518df5a4d9893652e38cb40c412db606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42ae2e5a4d8d619ec0c70715f50f5daf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCal.html#a42ae2e5a4d8d619ec0c70715f50f5daf">Substitute</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;f)</td></tr>
+<tr class="memdesc:a42ae2e5a4d8d619ec0c70715f50f5daf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Substitute a set of variables by functions.  <a href="classCal.html#a42ae2e5a4d8d619ec0c70715f50f5daf">More...</a><br /></td></tr>
+<tr class="separator:a42ae2e5a4d8d619ec0c70715f50f5daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfecb9436ab15bd2bb63f22a8fe6d76d"><td class="memItemLeft" align="right" valign="top"><a id="abfecb9436ab15bd2bb63f22a8fe6d76d"></a>
+<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><b>VarSubstitute</b> (const <a class="el" href="classBDD.html">BDD</a> &amp;f)</td></tr>
+<tr class="separator:abfecb9436ab15bd2bb63f22a8fe6d76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a920c28b8b75e2274f39ae09609e9bf9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCal.html#a920c28b8b75e2274f39ae09609e9bf9a">SwapVars</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;f, const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h)</td></tr>
 <tr class="memdesc:a920c28b8b75e2274f39ae09609e9bf9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function obtained by swapping two variables.  <a href="classCal.html#a920c28b8b75e2274f39ae09609e9bf9a">More...</a><br /></td></tr>
 <tr class="separator:a920c28b8b75e2274f39ae09609e9bf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3184,6 +3190,36 @@ template&lt;typename IT &gt; </div>
 
 </div>
 </div>
+<a id="a42ae2e5a4d8d619ec0c70715f50f5daf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42ae2e5a4d8d619ec0c70715f50f5daf">&#9670;&nbsp;</a></span>Substitute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> Cal::Substitute </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Substitute a set of variables by functions. </p>
+<p>Returns a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> for <code>f</code> using the substitution defined by current variable association. Each variable is replaced by its associated BDDs. The substitution is effective simultaneously.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classCal.html#a7ab876c57c4c3728867d31e272af14b8" title="Substitute a BDD variable by a function, i.e. f[h/g].">Cal::Compose()</a>, Cal::VarSubstitute(), <a class="el" href="classCal.html#a50c9fa3a4d0b51eae1dd71c8a8ecf7b9" title="Creates or finds a variable association.">Cal::AssociationInit()</a>, <a class="el" href="classCal.html#a77a8177a8f9d848c26fba0c8d000a009" title="Sets the temporary variable association.">Cal::TempAssociationInit()</a> </dd></dl>
+
+</div>
+</div>
 <a id="a920c28b8b75e2274f39ae09609e9bf9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a920c28b8b75e2274f39ae09609e9bf9a">&#9670;&nbsp;</a></span>SwapVars()</h2>
 
@@ -3226,7 +3262,7 @@ template&lt;typename IT &gt; </div>
 
 <p>The function obtained by swapping two variables. </p>
 <p>Returns the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> obtained by simultaneously substituting variable <code>g</code> by variable <code>h</code> and variable <code>h</code> and variable <code>g</code> in <code>f</code>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a49cc939f4558eddc698d196f8ea4366d" title="The function obtained by swapping two variables.">BDD::SwapVars()</a>, Cal::Substitute() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a49cc939f4558eddc698d196f8ea4366d" title="The function obtained by swapping two variables.">BDD::SwapVars()</a>, <a class="el" href="classCal.html#a42ae2e5a4d8d619ec0c70715f50f5daf" title="Substitute a set of variables by functions.">Cal::Substitute()</a> </dd></dl>
 
 </div>
 </div>
