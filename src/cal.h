@@ -960,7 +960,7 @@ EXTERN Cal_Bdd * Cal_BddPairwiseXor(Cal_BddManager bddManager,
 /// variable association. Each variable is replaced by its associated BDDs. The
 /// substitution is effective simultaneously.
 ///
-/// \see Cal_BddCompose
+/// \see Cal_BddCompose, Cal_BddVarSubstitute
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_Bdd Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd);
 

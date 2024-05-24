@@ -1722,12 +1722,32 @@ public:
   { return f.SatisfySupport(); }
 
   //////////////////////////////////////////////////////////////////////////////
+  /// \brief Substitute a set of variables by functions.
+  ///
+  /// \details Returns a BDD for `f` using the substitution defined by current
+  /// variable association. Each variable is replaced by its associated BDDs. The
+  /// substitution is effective simultaneously.
+  ///
+  /// \see Cal::Compose(), Cal::VarSubstitute(), Cal::AssociationInit(),
+  /// Cal::TempAssociationInit()
   //////////////////////////////////////////////////////////////////////////////
-  // BDD Substitute(const BDD &f)
+  BDD Substitute(const BDD &f)
+  { return BDD(this->_bddManager, Cal_BddSubstitute(this->_bddManager, f._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
+  // \brief Substitute a set of variables by set of another variables.
+  //
+  // \details Returns a BDD for `f` using the substitution defined by current
+  // variable association. It is assumed that each variable is replaced by
+  // another variable.
+  //
+  // \remark For the substitution of a variable by a function, use
+  // `Cal_BddSubstitute` instead.
+  //
+  // \see Cal::Substitute(), Cal::AssociationInit(), Cal::TempAssociationInit()
   //////////////////////////////////////////////////////////////////////////////
-  // BDD VarSubstitute(const BDD &f)
+  BDD VarSubstitute(const BDD &f)
+  { return BDD(this->_bddManager, Cal_BddVarSubstitute(this->_bddManager, f._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
   /// \brief The function obtained by swapping two variables.
