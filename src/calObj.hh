@@ -78,13 +78,13 @@ class BDD
 public:
   //////////////////////////////////////////////////////////////////////////////
   /// \brief Type of BDD identifiers, i.e. the variable name independent of the
-  ///        current variable ordering.
+  /// current variable ordering.
   //////////////////////////////////////////////////////////////////////////////
   using Id_t = Cal_BddId_t;
 
   //////////////////////////////////////////////////////////////////////////////
   /// \brief Type of BDD indices, i.e. their placement in the current variable
-  ///        ordering.
+  /// ordering.
   //////////////////////////////////////////////////////////////////////////////
   using Index_t = Cal_BddIndex_t;
 
@@ -129,6 +129,8 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
+  /// \brief Copy ownership of another BDD during assignment.
+  //////////////////////////////////////////////////////////////////////////////
   BDD& operator= (const BDD &other)
   {
     this->Free();
@@ -150,6 +152,8 @@ public:
     other._bdd = Cal_BddNull(other._bddManager);
   }
 
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Move ownership of another BDD during assignment.
   //////////////////////////////////////////////////////////////////////////////
   BDD& operator= (BDD &&other)
   {
@@ -176,55 +180,66 @@ public:
 public:
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIsBddOne
+  /// \brief `true` if the this BDD is constant one, `false `otherwise.
+  ///
+  /// \see BDD::IsZero(), BDD::IsConst()
   //////////////////////////////////////////////////////////////////////////////
   bool IsOne() const
   { return Cal_BddIsBddOne(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIsBddZero
+  /// \brief `true` if the this BDD is constant zero, `false `otherwise.
+  ///
+  /// \see BDD::IsOne(), BDD::IsConst()
   //////////////////////////////////////////////////////////////////////////////
   bool IsZero() const
   { return Cal_BddIsBddZero(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIsBddNull
+  /// \brief `true` if the this BDD is NULL, `false` otherwise.
   //////////////////////////////////////////////////////////////////////////////
   bool IsNull() const
   { return BDD::IsNull(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIsBddConst
+  /// \brief `true` if the this BDD is either constant one or constant zero,
+  /// otherwise returns `false`.
+  ///
+  /// \see BDD::IsOne(), BDD::IsZero()
   //////////////////////////////////////////////////////////////////////////////
   bool IsConst() const
   { return Cal_BddIsBddConst(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIsCube
+  /// \brief `true` if the this BDD is a cube, `false` otherwise.
   //////////////////////////////////////////////////////////////////////////////
   bool IsCube() const
   { return Cal_BddIsCube(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIsEqual
+  /// \brief `true` if this BDD is equal to `other`, `false` otherwise.
   //////////////////////////////////////////////////////////////////////////////
   bool IsEqualTo(const BDD &other) const
   { return Cal_BddIsEqual(this->_bddManager, this->_bdd, other._bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::IsEqualTo
+  /// \brief `true` if argument BDDs are equal, `false` otherwise.
+  ///
+  /// \see BDD::IsEqualTo()
   //////////////////////////////////////////////////////////////////////////////
   bool operator== (const BDD &other) const
   { return this->IsEqualTo(other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::IsEqualTo
+  /// \brief `false` if argument BDDs are equal, `true` otherwise.
+  ///
+  /// \see BDD::IsEqualTo()
   //////////////////////////////////////////////////////////////////////////////
-  bool  operator!= (const BDD &other) const
+  bool operator!= (const BDD &other) const
   { return !(*this == other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddDependsOn
+  /// \brief `true` if this depends on `var`, `false` otherwise.
   //////////////////////////////////////////////////////////////////////////////
   bool DependsOn(const BDD &var) const
   { return Cal_BddDependsOn(this->_bddManager, this->_bdd, var._bdd); }
@@ -234,31 +249,38 @@ public:
 public:
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIf
+  /// \brief BDD corresponding to the top variable of the this BDD.
+  ///
+  /// \see Bdd::Id(), BDD::Index()
   //////////////////////////////////////////////////////////////////////////////
   BDD If() const
   { return BDD(this->_bddManager, Cal_BddIf(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddGetIfId
+  /// \brief Returns the id of this BDD's top variable.
+  ///
+  /// \see BDD::Index()
   //////////////////////////////////////////////////////////////////////////////
   Id_t Id() const
   { return Cal_BddGetIfId(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddGetIfIndex
+  /// \brief Returns the index of this BDD's top variable.
+  ///
+  /// \see BDD::Id()
   //////////////////////////////////////////////////////////////////////////////
   Index_t Index() const
   { return Cal_BddGetIfIndex(this->_bddManager, this->_bdd); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddThen
+  /// \brief The positive cofactor of this BDD with respect to its top
+  /// variable.
   //////////////////////////////////////////////////////////////////////////////
   BDD Then() const
   { return BDD(this->_bddManager, Cal_BddThen(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddElse
+  /// \brief The negative cofactor of this BDD with respect to its top variable.
   //////////////////////////////////////////////////////////////////////////////
   BDD Else() const
   { return BDD(this->_bddManager, Cal_BddElse(this->_bddManager, this->_bdd)); }
@@ -270,23 +292,30 @@ public:
   //////////////////////////////////////////////////////////////////////////////
   enum Type_t
   {
-    NonTerminal = CAL_BDD_TYPE_NONTERMINAL,
+    /** The Zero terminal */
     Zero        = CAL_BDD_TYPE_ZERO,
+    /** The One terminal */
     One         = CAL_BDD_TYPE_ONE,
+    /** Constant (Non-Boolean) */
+    Constant    = CAL_BDD_TYPE_CONSTANT,
+    /** Positive variable */
     Posvar      = CAL_BDD_TYPE_POSVAR,
+    /** Negative variable */
     Negvar      = CAL_BDD_TYPE_NEGVAR,
+    /** Invalid/Missing result due to Overflow */
     Overflow    = CAL_BDD_TYPE_OVERFLOW,
-    Constant    = CAL_BDD_TYPE_CONSTANT
+    /** BDD type encompassing all other cases */
+    NonTerminal = CAL_BDD_TYPE_NONTERMINAL
   };
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddType
+  /// \brief The BDD type (0, 1, +var, -var, overflow, nonterminal).
   //////////////////////////////////////////////////////////////////////////////
   Type_t Type() const
   { return static_cast<Type_t>(Cal_BddType(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddSize
+  /// \brief This BDD's size.
   ///
   /// \param negout If `false` then counting pretends the BDD does not have
   ///               negative-output pointers (complement edges).
@@ -295,7 +324,10 @@ public:
   { return Cal_BddSize(this->_bddManager, this->_bdd, negout); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddSatisfyingFraction
+  /// \brief Fraction of valuations which make this BDD true.
+  ///
+  /// \remark This fraction is independent of whatever set of variables `f` is
+  /// supposed to be a function of.
   //////////////////////////////////////////////////////////////////////////////
   double SatisfyingFraction() const
   { return Cal_BddSatisfyingFraction(this->_bddManager, this->_bdd); }
@@ -305,13 +337,17 @@ public:
 public:
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIdentity
+  /// \brief Duplicate of this BDD.
+  ///
+  /// \see BDD::Not()
   //////////////////////////////////////////////////////////////////////////////
   BDD Identity() const
   { return BDD(this->_bddManager, Cal_BddIdentity(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddGetRegular
+  /// \brief Returns a BDD in positive form (regardless of this BDDs phase).
+  ///
+  /// \see BDD::Not()
   //////////////////////////////////////////////////////////////////////////////
   BDD Regular() const
   {
@@ -324,143 +360,191 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddNot
+  /// \brief Complement of this BDD.
   //////////////////////////////////////////////////////////////////////////////
   BDD Not() const
   { return BDD(this->_bddManager, Cal_BddNot(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::Not
+  /// \see BDD::Not()
   //////////////////////////////////////////////////////////////////////////////
-  BDD  operator~ () const
+  BDD operator~ () const
   { return this->Not(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddCompose
+  /// \brief Substitute a BDD variable by a function.
+  ///
+  /// \param g Variable to be substituted.
+  ///
+  /// \param h Function to substitute.
   //////////////////////////////////////////////////////////////////////////////
   BDD Compose(const BDD &g, const BDD &h) const
   { return BDD(this->_bddManager, Cal_BddCompose(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddIntersects
+  /// \brief Computes a BDD that implies conjunction of this and `g`.
+  ///
+  /// \see BDD::Implies()
   //////////////////////////////////////////////////////////////////////////////
   BDD Intersects(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddIntersects(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddImplies
+  /// \brief Computes a BDD that implies conjunction of this and `g.Not()`.
+  ///
+  /// \see BDD::Intersects()
   //////////////////////////////////////////////////////////////////////////////
   BDD Implies(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddImplies(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddITE
+  /// \brief Logical If-Then-Else.
+  ///
+  /// \details Returns the BDD for the logical operation `f ? g : h`, i.e.
+  /// `f&g | ~f&h`.
+  ///
+  /// \see BDD::And(), BDD::Nand(), BDD::Or(), BDD::Nor(), BDD::Xor(),
+  /// BDD::Xnor()
   //////////////////////////////////////////////////////////////////////////////
   BDD ITE(const BDD &g, const BDD &h) const
   { return BDD(this->_bddManager, Cal_BddITE(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddAnd
+  /// \brief Logical AND operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD And(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddAnd(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::And
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   BDD  operator& (const BDD &other) const
   { return this->And(other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::And
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   BDD& operator&= (const BDD &other)
   { return (*this = (*this) & other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddNand
+  /// \brief Logical Negated AND operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Nand(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddNand(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddOr
+  /// \brief Logical OR operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Or(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddOr(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::Or
+  /// \see BDD::Or()
   //////////////////////////////////////////////////////////////////////////////
   BDD  operator| (const BDD &other) const
   { return this->Or(other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::Or
+  /// \see BDD::Or()
   //////////////////////////////////////////////////////////////////////////////
   BDD& operator|= (const BDD &other)
   { return (*this = (*this) | other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddNor
+  /// \brief Logical Negated OR operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Nor(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddNor(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddXor
+  /// \brief Logical XOR operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Xor(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddXor(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::Xor
+  /// \see BDD::Xor()
   //////////////////////////////////////////////////////////////////////////////
   BDD  operator^ (const BDD &other) const
   { return this->Xor(other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \see BDD::Xor
+  /// \see BDD::Xor()
   //////////////////////////////////////////////////////////////////////////////
   BDD& operator^= (const BDD &other)
   { return (*this = (*this) ^ other); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddXnor
+  /// \brief Logical Negated XOR operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Xnor(const BDD &g) const
   { return BDD(this->_bddManager, Cal_BddXnor(this->_bddManager, this->_bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddSatisfy
+  /// \brief A satisfying assignment of this BDD.
+  ///
+  /// \details Returns a BDD which implies this, true for some valuation on
+  /// which f is true, and which has at most one node at each level.
   //////////////////////////////////////////////////////////////////////////////
   BDD Satisfy() const
   { return BDD(this->_bddManager, Cal_BddSatisfy(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddSatisfySupport
+  /// \brief Returns a special cube contained in this
+  ///
+  /// \details The returned BDD which implies this, is true for some valuation
+  /// on which f is true, which has at most one node at each level, and which
+  /// has exactly one node corresponding to each variable which is associated
+  /// with something in the current variable association.
   //////////////////////////////////////////////////////////////////////////////
   BDD SatisfySupport() const
   { return BDD(this->_bddManager, Cal_BddSatisfySupport(this->_bddManager, this->_bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddSwapVars
+  /// \brief The function obtained by swapping two variables.
+  ///
+  /// \details Returns the BDD obtained by simultaneously substituting variable
+  /// `g` by variable `h` and variable `h` and variable `g` in this BDD.
+  ///
+  /// \see BDD::Substitute()
   //////////////////////////////////////////////////////////////////////////////
   BDD SwapVars(const BDD &g, const BDD &h) const
   { return BDD(this->_bddManager, Cal_BddSwapVars(this->_bddManager, this->_bdd, g._bdd, h._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////
+  // BDD Exists(...) const
+
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  // BDD ForAll(...) const
+
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
   // BDD RelProd(const BDD &g) const
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddCofactor
+  /// \brief Generalized cofactor of this with respect to `c`.
+  ///
+  /// \details The constrain operator given by Coudert et al (ICCAD90) is used
+  /// to find the generalized cofactor.
+  ///
+  /// \see BDD::Reduce()
   //////////////////////////////////////////////////////////////////////////////
   BDD Cofactor(const BDD &c) const
   { return BDD(this->_bddManager, Cal_BddCofactor(this->_bddManager, this->_bdd, c._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddReduce
+  /// \brief A function that agrees with this for all valuations which satisfy
+  /// `c`.
+  ///
+  /// \details The result is usually smaller in terms of number of BDD nodes
+  /// than this. This operation is typically used in state space searches to
+  /// simplify the representation for the set of states wich will be expanded at
+  /// each step.
+  ///
+  /// \see BDD::Cofactor()
   //////////////////////////////////////////////////////////////////////////////
   BDD Reduce(const BDD &c) const
   { return BDD(this->_bddManager, Cal_BddReduce(this->_bddManager, this->_bdd, c._bdd)); }
@@ -470,7 +554,7 @@ public:
 public:
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddPrintBdd
+  /// \brief Prints this BDD in the human readable form.
   //////////////////////////////////////////////////////////////////////////////
   void Print(FILE *fp = stdout) const
   {
@@ -482,13 +566,16 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddFunctionPrint
+  /// \brief Prints the function implemented by this BDD.
   //////////////////////////////////////////////////////////////////////////////
   void FunctionPrint(std::string &name) const
   { Cal_BddFunctionPrint(this->_bddManager, this->_bdd, name.data()); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddProfile
+  /// \brief Obtain a vector with the number of nodes at each level in f.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
   //////////////////////////////////////////////////////////////////////////////
   std::vector<long> Profile(bool negout = true) const
   {
@@ -499,7 +586,11 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddPrintProfile
+  /// \brief Prints a BDD in the human readable form.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
   //////////////////////////////////////////////////////////////////////////////
   void PrintProfile(int lineLength = 79, FILE *fp = stdout) const
   {
@@ -510,7 +601,13 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddFunctionProfile
+  /// \brief The number of subfunctions of this which may be obtained by
+  /// restricting variables with an index lower than *n*.
+  ///
+  /// \details The nth entry of the function profile array is the number of
+  /// subfunctions of this which may be obtained by restricting the variables
+  /// whose index is less than n. An entry of zero indicates that this is
+  /// independent of the variable with the corresponding index.
   //////////////////////////////////////////////////////////////////////////////
   std::vector<long> FunctionProfile() const
   {
@@ -522,7 +619,12 @@ public:
 
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddPrintFunctionProfile
+  /// \brief Similar to `BDD::PrintProfile()` but displays a function profile
+  /// for this.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
   //////////////////////////////////////////////////////////////////////////////
   void PrintFunctionProfile(int lineLength = 79, FILE *fp = stdout) const
   {
@@ -537,7 +639,7 @@ public:
   ///
   /// \details The reference count is a value between 0 and 255. If a reference
   /// count is 255 then incrementing or decrementing it has no effect. This is
-  /// safe-guard constants and variables from being garbage collectd.
+  /// to safe-guard constants and variables from being garbage collected.
   //////////////////////////////////////////////////////////////////////////////
   int RefCount() const
   {
@@ -712,12 +814,14 @@ class Cal
   using Bdd_t = BDD;
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Id_t
+  /// \brief Type of BDD identifiers, i.e. the variable name independent of the
+  /// current variable ordering.
   //////////////////////////////////////////////////////////////////////////////
   using Id_t = BDD::Id_t;
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Index_t
+  /// \brief Type of BDD indices, i.e. their placement in the current variable
+  /// ordering.
   //////////////////////////////////////////////////////////////////////////////
   using Index_t = BDD::Index_t;
 
@@ -791,7 +895,19 @@ public:
   // Settings + Statistics
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerSetParameters
+  /// \brief Sets appropriate fields of BDD Manager.
+  ///
+  /// \param reorderingThreshold The number of nodes below which reordering will
+  ///                            NOT beinvoked.
+  ///
+  /// \param maxForwardedNodes The maximum number of forwarded nodes which are
+  ///                          allowed (at that point the cleanup must be done)
+  ///
+  /// \param repackAfterGCThreshold The fraction of the page utilized that
+  ///                               garbage collection has to achieve.
+  ///
+  /// \param tableRepackThreshold The fraction of the page utilized below which
+  ///                             repacking has to be invoked.
   //////////////////////////////////////////////////////////////////////////////
   void SetParameters(long reorderingThreshold,
                      long maxForwardedNodes,
@@ -806,31 +922,39 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerGetNumNodes
+  /// \brief The number of BDD nodes.
+  ///
+  /// \see Cal::TotalSize()
   //////////////////////////////////////////////////////////////////////////////
   unsigned long Nodes() const
   { return Cal_BddManagerGetNumNodes(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddVars
+  /// \brief The number of BDD variables.
   //////////////////////////////////////////////////////////////////////////////
   long Vars() const
   { return Cal_BddVars(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddOverflow
+  /// \brief `true` if the node limit has been exceeded, `false` otherwise.
+  ///
+  /// \sideeffect The overflow flag is cleared.
+  ///
+  /// \see Cal::NodeLimit()
   //////////////////////////////////////////////////////////////////////////////
   bool Overflow() const
   { return Cal_BddOverflow(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddTotalSize
+  /// \brief The number of nodes in the Unique table.
+  ///
+  /// \see Cal::Nodes()
   //////////////////////////////////////////////////////////////////////////////
   unsigned long TotalSize() const
   { return Cal_BddTotalSize(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddStats
+  /// \brief Prints miscellaneous BDD statistics.
   //////////////////////////////////////////////////////////////////////////////
   void Stats(FILE* fp = stdout) const
   { Cal_BddStats(this->_bddManager, fp); }
@@ -841,25 +965,40 @@ public:
   // Memory and Garbage Collection
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddNodeLimit
+  /// \brief Sets the node limit to `newLimit` and returns the previous limit.
+  ///
+  /// \sideeffect Threshold for garbage collection may change.
+  ///
+  /// \see Cal::SetGCLimit(), Cal::GC()
   //////////////////////////////////////////////////////////////////////////////
   long NodeLimit(long newLimit)
   { return Cal_BddNodeLimit(this->_bddManager, newLimit); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddSetGCMode
+  /// \brief Enable or Disable garbage collection.
   //////////////////////////////////////////////////////////////////////////////
   void SetGCMode(bool enableGC)
   { Cal_BddSetGCMode(this->_bddManager, enableGC); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerSetGCLimit
+  /// \brief Sets the limit of the garbage collection.
+  ///
+  /// \details It tries to set the limit at twice the number of nodes in the
+  /// manager at the current point. However, the limit is not allowed to fall
+  /// below the `MIN_GC_LIMIT` or to exceed the value of node limit (if one
+  /// exists).
+  ///
+  /// \see Cal::NodeLimit()
   //////////////////////////////////////////////////////////////////////////////
   void SetGCLimit()
   { Cal_BddManagerSetGCLimit(this->_bddManager); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerGC
+  /// \brief Invokes the garbage collection at the manager level.
+  ///
+  /// \details For each variable in the increasing id free nodes with reference
+  /// count equal to zero freeing a node results in decrementing reference count
+  /// of then and else nodes by one.
   //////////////////////////////////////////////////////////////////////////////
   void GC()
   { Cal_BddManagerGC(this->_bddManager); }
@@ -889,13 +1028,23 @@ public:
     DF = CAL_REORDER_METHOD_DF
   };
 
-  /// \copybrief Cal_BddDynamicReordering
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Specify dynamic reordering technique and method.
+  ///
+  /// \see Cal::Reorder()
+  //////////////////////////////////////////////////////////////////////////////
   void DynamicReordering(ReorderTechnique technique, ReorderMethod method = ReorderMethod::DF)
   {
     Cal_BddDynamicReordering(this->_bddManager, technique, method);
   }
 
-  /// \copybrief Cal_BddReorder
+  //////////////////////////////////////////////////////////////////////////////
+  /// \brief Invoke the current dynamic reodering method.
+  ///
+  /// \sideeffect Indexes of a variable may change due to reodering.
+  ///
+  /// \see Cal::DynamicReordering()
+  //////////////////////////////////////////////////////////////////////////////
   void Reorder()
   { Cal_BddReorder(this->_bddManager); }
 
@@ -906,13 +1055,22 @@ public:
   // TODO: container-based functions
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_AssociationInit
+  /// \brief Creates or finds a variable association.
+  ///
+  /// \param begin Iterator pointing to the start of the given range.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
   ///
   /// \param pairs If `false`, the array assumed to be an array of variables.
   ///              If `true`, it is interpreted as consecutive pairs of
-  ///              variables.
+  ///              variables (and hence it must be of even length).
   ///
-  /// \see Cal::AssociationSetCurrent
+  /// \returns An integer identifier for this association. If the given
+  ///          association is equivalent to one which already exists, the same
+  ///          identifier is used for both, and the reference count of the
+  ///          association is increased by one.
+  ///
+  /// \see Cal::AssociationSetCurrent()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   int AssociationInit(IT begin, IT end, const bool pairs = false)
@@ -928,23 +1086,37 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_AssociationSetCurrent
+  /// \brief Sets the current variable association to the one given.
   ///
-  /// \see Cal::AssociationQuit
+  /// \returns ID of the prior association (if any). A return value of -1
+  /// indicates the temporary association.
+  ///
+  /// \see Cal::AssociationQuit()
   //////////////////////////////////////////////////////////////////////////////
   int AssociationSetCurrent(int i)
   { return Cal_AssociationSetCurrent(this->_bddManager, i); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_AssociationQuit
+  /// \brief Deletes the variable association given by id.
+  ///
+  /// \details Decrements the reference count of the variable association with
+  ///          identifier id, and frees it if the reference count becomes zero.
+  ///
+  /// \see Cal::AssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   void AssociationQuit(int i)
   { Cal_AssociationQuit(this->_bddManager, i); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_TempAssociationInit
+  /// \brief Sets the temporary variable association.
   ///
-  /// \see Cal::AssociationInit
+  /// \param begin Iterator pointing to the start of the given range.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \param pairs Similar to `Cal::AssociationInit()`.
+  ///
+  /// \see Cal::AssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   void TempAssociationInit(IT begin, const IT end, const bool pairs = false)
@@ -958,7 +1130,15 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_TempAssociationAugment
+  /// \brief Adds to the temporary variable association.
+  ///
+  /// \param begin Iterator pointing to the start of the given range.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \param pairs Similar to `Cal::AssociationInit()`.
+  ///
+  /// \see Cal::TempAssociationInit(), Cal::AssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   void TempAssociationAugment(IT begin, const IT end, const bool pairs = false)
@@ -972,7 +1152,9 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_TempAssociationQuit
+  /// \brief Cleans up temporary association.
+  ///
+  /// \see Cal::TempAssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   void TempAssociationQuit()
   { Cal_TempAssociationQuit(this->_bddManager); }
@@ -987,55 +1169,66 @@ public:
   // BDD Constructors
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddNull
+  /// \brief The NULL BDD.
   //////////////////////////////////////////////////////////////////////////////
   BDD Null() const
   { return BDD(this->_bddManager, Cal_BddNull(this->_bddManager)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddOne
+  /// \brief The BDD for the constant one.
+  ///
+  /// \see Cal::Zero()
   //////////////////////////////////////////////////////////////////////////////
   BDD One() const
   { return BDD(this->_bddManager, Cal_BddOne(this->_bddManager)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddZero
+  /// \brief The BDD for the constant zero.
+  ///
+  /// \see Cal::One()
   //////////////////////////////////////////////////////////////////////////////
   BDD Zero() const
   { return BDD(this->_bddManager, Cal_BddZero(this->_bddManager)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerGetVarWithId
+  /// \brief The variable with the specified id, null if no such variable exists
+  ///
+  /// \see Cal::Index()
   //////////////////////////////////////////////////////////////////////////////
   BDD Id(Id_t id) const
   { return BDD(this->_bddManager, Cal_BddManagerGetVarWithId(this->_bddManager, id)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerGetVarWithIndex
+  /// \brief The variable with the specified index, null if no such variable
+  /// exists.
+  ///
+  /// \see Cal::Id()
   //////////////////////////////////////////////////////////////////////////////
   BDD Index(Index_t idx) const
   { return BDD(this->_bddManager, Cal_BddManagerGetVarWithIndex(this->_bddManager, idx)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerCreateNewVarFirst
+  /// \brief Create and obtain a new variable at the start of the variable order.
   //////////////////////////////////////////////////////////////////////////////
   BDD CreateNewVarFirst()
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarFirst(this->_bddManager)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerCreateNewVarLast
+  /// \brief Create and obtain a new variable at the end of the variable order.
   //////////////////////////////////////////////////////////////////////////////
   BDD CreateNewVarLast()
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarLast(this->_bddManager)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerCreateNewVarBefore
+  /// \brief Create and obtain a new variable before the specified one in the
+  /// variable order.
   //////////////////////////////////////////////////////////////////////////////
   BDD CreateNewVarBefore(const BDD &x)
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarBefore(this->_bddManager, x._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddManagerCreateNewVarAfter
+  /// \brief Create and obtain a new variable after the specified one in the
+  /// variable order.
   //////////////////////////////////////////////////////////////////////////////
   BDD CreateNewVarAfter(const BDD &x)
   { return BDD(this->_bddManager, Cal_BddManagerCreateNewVarAfter(this->_bddManager, x._bdd)); }
@@ -1044,43 +1237,54 @@ public:
   // BDD Predicates
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::IsNull
+  /// \brief `true` if the given BDD is NULL, `false` otherwise.
   //////////////////////////////////////////////////////////////////////////////
   bool IsNull(const BDD &f) const
   { return f.IsNull(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::IsOne
+  /// \brief `true` if the given BDD is constant one, `false `otherwise.
+  ///
+  /// \see BDD::IsOne, Cal::IsZero(), Cal::IsConst()
   //////////////////////////////////////////////////////////////////////////////
   bool IsOne(const BDD &f) const
   { return f.IsOne(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::IsZero
+  /// \brief `true` if the given BDD is constant zero, `false `otherwise.
+  ///
+  /// \see BDD::IsZero(), Cal::IsOne(), Cal::IsConst()
   //////////////////////////////////////////////////////////////////////////////
   bool IsZero(const BDD &f) const
   { return f.IsZero(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::IsConst
+  /// \brief `true` if the given BDD is either constant one or constant zero,
+  /// otherwise returns `false`.
+  ///
+  /// \see BDD::IsConst(), Cal::IsOne(), Cal::isZero()
   //////////////////////////////////////////////////////////////////////////////
   bool IsConst(const BDD &f) const
   { return f.IsConst(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::IsCube
+  /// \brief `true` if the given BDD is a cube, `false` otherwise.
   //////////////////////////////////////////////////////////////////////////////
   bool IsCube(const BDD &f) const
   { return f.IsCube(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::IsEqualTo
+  /// \brief `true` if the two BDDs are equal, `false` otherwise.
+  ///
+  /// \see BDD::IsEqualTo()
   //////////////////////////////////////////////////////////////////////////////
   bool IsEqual(const BDD &f, const BDD &g) const
   { return f.IsEqualTo(g); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::DependsOn
+  /// \brief `true` if the BDD `f` depends on `var`, `false` otherwise.
+  ///
+  /// \see BDD::DependsOn()
   //////////////////////////////////////////////////////////////////////////////
   bool DependsOn(const BDD &f, const BDD &var) const
   { return f.DependsOn(var); }
@@ -1089,20 +1293,32 @@ public:
   // BDD Information
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::SatisfyingFraction()
+  /// \brief Fraction of valuations which make this BDD true.
+  ///
+  /// \remark This fraction is independent of whatever set of variables `f` is
+  /// supposed to be a function of.
   //////////////////////////////////////////////////////////////////////////////
   double SatisfyingFraction(const BDD &f)
   { return f.SatisfyingFraction(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Size
+  /// \brief This BDD's size.
+  ///
+  /// \param f BDD of interest.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
   //////////////////////////////////////////////////////////////////////////////
   unsigned long Size(const BDD &f, bool negout = true)
   { return f.Size(negout); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \brief Similar to `Cal::Size` for an iterator of BDDs. But, this accounts
-  /// for sharing of nodes.
+  /// \brief Similar to `Cal::Size()` for an iterator of BDDs. But, this
+  /// accounts for sharing of nodes.
+  ///
+  /// \param begin Iterator pointing to the start of the set of BDDs.
+  ///
+  /// \param end Iterator pointing to the end.
   ///
   /// \param negout If `false` then counting pretends the BDD does not have
   ///               negative-output pointers (complement edges).
@@ -1124,8 +1340,10 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \brief Similar to `Cal::Size` for a container of BDDs. But, this accounts
-  /// for sharing of nodes.
+  /// \brief Similar to `Cal::Size()` for a container of BDDs. But, this
+  /// accounts for sharing of nodes.
+  ///
+  /// \param c Container of BDDs which supports `begin()` and `end()` iterators.
   ///
   /// \param negout If `false` then counting pretends the BDD does not have
   ///               negative-output pointers (complement edges).
@@ -1142,49 +1360,63 @@ public:
   // Manipulation
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Identity
+  /// \brief Duplicate of given BDD.
+  ///
+  /// \see BDD::Identity(), Cal::Not()
   //////////////////////////////////////////////////////////////////////////////
   BDD Identity(const BDD &f)
   { return f.Identity(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Regular
+  /// \brief The given BDD in positive form (regardless of its phase).
+  ///
+  /// \see BDD::Regular()
   //////////////////////////////////////////////////////////////////////////////
   BDD Regular(const BDD &f)
   { return f.Regular(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Not
+  /// \brief Complement of the given BDD.
   //////////////////////////////////////////////////////////////////////////////
   BDD Not(const BDD &f)
   { return f.Not(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Compose
+  /// \brief Substitute a BDD variable by a function, i.e. *f[h/g]*.
+  ///
+  /// \see BDD::Compose()
   //////////////////////////////////////////////////////////////////////////////
   BDD Compose(const BDD &f, const BDD &g, const BDD &h)
   { return f.Compose(g, h); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Intersects
+  /// \brief Computes a BDD that implies the conjunction of both BDDs.
+  ///
+  /// \see BDD::Intersects(), Cal::Implies()
   //////////////////////////////////////////////////////////////////////////////
   BDD Intersects(const BDD &f, const BDD &g)
   { return f.Intersects(g); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Implies
+  /// \brief Computes a BDD that implies the conjunction of `f` and `g.Not()`.
+  ///
+  /// \see BDD::Implies(), Cal::Intersects()
   //////////////////////////////////////////////////////////////////////////////
   BDD Implies(const BDD &f, const BDD &g)
   { return f.Implies(g); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::ITE
+  /// \brief Logical If-Then-Else.
+  ///
+  /// \see BDD::ITE()
   //////////////////////////////////////////////////////////////////////////////
   BDD ITE(const BDD &f, const BDD &g, const BDD &h)
   { return f.ITE(g, h); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::And
+  /// \brief Logical AND operation.
+  ///
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   BDD And(const BDD &f, const BDD &g)
   { return f.And(g); }
@@ -1193,7 +1425,14 @@ public:
   /// \brief Logical AND of iterator of `BDD` or `int`.
   ///
   /// \details If `IT::value_type` is `int` then the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param begin Iterator pointing to the start of the given range of BDDs or
+  /// integers.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   BDD And(IT begin, IT end)
@@ -1212,20 +1451,27 @@ public:
   /// \brief Logical AND of container with `BDD`s or `int`s.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param c Container of BDDs or integers which supports `begin()` and
+  /// `end()` iterators.
+  ///
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   BDD And(const Container &c)
   { return And(std::begin(c), std::end(c)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Nand
+  /// \brief Logical Negated AND operation.
+  ///
+  /// \see BDD::Nand()
   //////////////////////////////////////////////////////////////////////////////
   BDD Nand(const BDD &f, const BDD &g)
   { return f.Nand(g); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Or
+  /// \brief Logical OR operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Or(const BDD &f, const BDD &g)
   { return f.Or(g); }
@@ -1234,7 +1480,14 @@ public:
   /// \brief Logical OR of iterator of `BDD` or `int`.
   ///
   /// \details If `IT::value_type` is `int` then the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param begin Iterator pointing to the start of the given range of BDDs or
+  /// integers.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \see BDD::Or()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   BDD Or(IT begin, IT end)
@@ -1253,20 +1506,27 @@ public:
   /// \brief Logical OR of container with `BDD`s or `int`s.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param c Container of BDDs or integers which supports `begin()` and
+  /// `end()` iterators.
+  ///
+  /// \see BDD::Or()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   BDD Or(const Container &c)
   { return Or(std::begin(c), std::end(c)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD:Nor
+  /// \brief Logical Negated OR operation.
+  ///
+  /// \see BDD::Nor()
   //////////////////////////////////////////////////////////////////////////////
   BDD Nor(const BDD &f, const BDD &g)
   { return f.Nor(g); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD:Xor
+  /// \brief Logical XOR operation.w
   //////////////////////////////////////////////////////////////////////////////
   BDD Xor(const BDD &f, const BDD &g)
   { return f.Xor(g); }
@@ -1275,7 +1535,14 @@ public:
   /// \brief Logical XOR of iterator of `BDD` or `int`.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param begin Iterator pointing to the start of the given range of BDDs or
+  /// integers.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \see BDD::Xor()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   BDD Xor(IT begin, IT end)
@@ -1294,14 +1561,19 @@ public:
   /// \brief Logical XOR of container with `BDD`s or `int`s.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param c Container of BDDs or integers which supports `begin()` and
+  /// `end()` iterators.
+  ///
+  /// \see BDD::Xor()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   BDD Xor(const Container &c)
   { return Xor(std::begin(c), std::end(c)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD:Xnor
+  /// \brief Logical Negated XOR operation.
   //////////////////////////////////////////////////////////////////////////////
   BDD Xnor(const BDD &f, const BDD &g)
   { return f.Xnor(g); }
@@ -1310,7 +1582,14 @@ public:
   /// \brief Pairwise AND of `BDD`s or `int`s provided by an iterator.
   ///
   /// \details If `IT::value_type` is `int` then the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param begin Iterator pointing to the start of the given range of BDDs or
+  /// integers.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   std::vector<BDD>
@@ -1331,7 +1610,12 @@ public:
   /// \brief Pairwise AND of `BDD`s or `int`s within a container.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param c Container of BDDs or integers which supports `begin()` and
+  /// `end()` iterators.
+  ///
+  /// \see BDD::And()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   std::vector<BDD>
@@ -1342,7 +1626,14 @@ public:
   /// \brief Pairwise OR of `BDD`s or `int`s provided by an iterator.
   ///
   /// \details If `IT::value_type` is `int` then the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Call::Id()`.
+  ///
+  /// \param begin Iterator pointing to the start of the given range of BDDs or
+  /// integers.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \see BDD::Or()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   std::vector<BDD>
@@ -1363,7 +1654,12 @@ public:
   /// \brief Pairwise OR of `BDD`s or `int`s within a container.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param c Container of BDDs or integers which supports `begin()` and
+  /// `end()` iterators.
+  ///
+  /// \see BDD::Or()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   std::vector<BDD>
@@ -1374,7 +1670,7 @@ public:
   /// \brief Pairwise XOR of `BDD`s or `int`s provided by an iterator.
   ///
   /// \details If `IT::value_type` is `int` then the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   std::vector<BDD>
@@ -1395,7 +1691,10 @@ public:
   /// \brief Pairwise XOR of `BDD`s or `int`s within a container.
   ///
   /// \details If the container is of `int`s, the integers are converted into
-  /// a `BDD` with `Call::Id`.
+  /// a `BDD` with `Cal::Id()`.
+  ///
+  /// \param c Container of BDDs or integers which supports `begin()` and
+  /// `end()` iterators.
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   std::vector<BDD>
@@ -1403,13 +1702,21 @@ public:
   { return PairwiseXor(std::begin(c), std::end(c)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Satisfy
+  /// \brief A satisfying assignment of this BDD.
+  ///
+  /// \copydetails BDD::Satisfy()
+  ///
+  /// \see BDD::Satisfy()
   //////////////////////////////////////////////////////////////////////////////
   BDD Satisfy(const BDD &f)
   { return f.Satisfy(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::SatisfySupport
+  /// \brief Returns a special cube contained in this
+  ///
+  /// \copydetails BDD::Satisfy()
+  ///
+  /// \see BDD::SatisfySupport()
   //////////////////////////////////////////////////////////////////////////////
   BDD SatisfySupport(const BDD &f)
   { return f.SatisfySupport(); }
@@ -1423,55 +1730,86 @@ public:
   // BDD VarSubstitute(const BDD &f)
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::SwapVars
+  /// \brief The function obtained by swapping two variables.
+  ///
+  /// \details Returns the BDD obtained by simultaneously substituting variable
+  /// `g` by variable `h` and variable `h` and variable `g` in `f`.
+  ///
+  /// \see BDD::SwapVars(), Cal::Substitute()
   //////////////////////////////////////////////////////////////////////////////
   BDD SwapVars(const BDD &f, const BDD &g, const BDD &h)
   { return f.SwapVars(g, h); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddExists
+  /// \brief Existentially quantification of some variables from the given BDD.
   ///
-  /// \copydetails Cal_BddExists
+  /// \details Returns the BDD for `f` with all the variables that are
+  /// paired with something in the current variable association
+  /// existentially quantified out.
   ///
-  /// \see Cal::AssociationInit, Cal::TempAssociationInit
+  /// \see Cal::AssociationInit(), Cal::TempAssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   BDD Exists(const BDD &f)
   { return BDD(this->_bddManager, Cal_BddExists(this->_bddManager, f._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddForAll
+  /// \brief Universal quantification of some variables from the given BDD.
   ///
-  /// \copydetails Cal_BddForAll
+  /// \details Returns the BDD for `f` with all the variables that are
+  /// paired with something in the current variable association
+  /// universally quantified out.
   ///
-  /// \see Cal::AssociationInit, Cal::TempAssociationInit
+  /// \see Cal::AssociationInit(), Cal::TempAssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   BDD ForAll(const BDD &f)
   { return BDD(this->_bddManager, Cal_BddForAll(this->_bddManager, f._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief Cal_BddRelProd
+  /// \brief Logical AND of the argument BDDs and existentially quantifying some
+  /// variables from the product.
   ///
   /// \copydetails Cal_BddRelProd
   ///
-  /// \see Cal::AssociationInit, Cal::TempAssociationInit
+  /// \see Cal::And(), Cal::Exists(), Cal::AssociationInit(),
+  /// Cal::AssociationSetCurrent(), Cal::TempAssociationInit()
   //////////////////////////////////////////////////////////////////////////////
   BDD RelProd(const BDD &f, const BDD &g)
   { return BDD(this->_bddManager, Cal_BddRelProd(this->_bddManager, f._bdd, g._bdd)); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Cofactor
+  /// \brief Generalized cofactor of `f` with respect to `c`.
+  ///
+  /// \details Returns the generalized cofactor of `f` with respect to BDD `c`.
+  /// The constrain operator given by Coudert et al (ICCAD90) is used to find
+  /// the generalized cofactor.
+  ///
+  /// \see BDD::Cofactor(), Cal::Reduce()
   //////////////////////////////////////////////////////////////////////////////
   BDD Cofactor(const BDD &f, const BDD &c)
   { return f.Cofactor(c); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Reduce
+  /// \brief Function that agrees with `f` for all valuations that satisfy `c`.
+  ///
+  /// \details The result is usually smaller in terms of number of BDD nodes
+  /// than this. This operation is typically used in state space searches to
+  /// simplify the representation for the set of states wich will be expanded at
+  /// each step.
+  ///
+  /// \see BDD::Reduce(), Cal::Cofactor()
   //////////////////////////////////////////////////////////////////////////////
   BDD Reduce(const BDD &f, const BDD &c)
   { return f.Reduce(c); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Between
+  /// \brief Function that contains `fMin` and is contained in `fMax`.
+  ///
+  /// \details Returns a minimal BDD `f` which is contains `fMin` and is
+  /// contained in `fMax` (`fMin <= f <= fMax`). This operation is typically
+  /// used in state space searches to simplify the representation for the set of
+  /// states wich will be expanded at each step (`Rk Rk-1' <= f <= Rk`).
+  ///
+  /// \see Cal::Cofactor(), Cal::Reduce()
   //////////////////////////////////////////////////////////////////////////////
   BDD Between(const BDD &fMin, const BDD &fMax)
   { return BDD(this->_bddManager, Cal_BddBetween(this->_bddManager, fMin._bdd, fMax._bdd)); }
@@ -1480,31 +1818,43 @@ public:
   // BDD Node Access / Traversal
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::If
+  /// \brief BDD corresponding to the top variable of the given BDD.
+  ///
+  /// \see Bdd::If(), Cal::IfId(), Cal::IfIndex()
   //////////////////////////////////////////////////////////////////////////////
   BDD If(const BDD &f) const
   { return f.If(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Id
+  /// \brief Returns the id of the given BDD's top variable.
+  ///
+  /// \see BDD::Id(), Cal::IfIndex()
   //////////////////////////////////////////////////////////////////////////////
   Id_t IfId(const BDD &f) const
   { return f.Id(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Index
+  /// \brief Returns the index of this BDD's top variable.
+  ///
+  /// \see BDD::Index(), Cal::IfId()
   //////////////////////////////////////////////////////////////////////////////
   Index_t IfIndex(const BDD &f) const
   { return f.Index(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Then
+  /// \brief The positive cofactor of the given BDD with respect to its top
+  /// variable.
+  ///
+  /// \see BDD::Then()
   //////////////////////////////////////////////////////////////////////////////
   BDD Then(const BDD &f)
   { return f.Then(); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Else
+  /// \brief The negative cofactor of the given BDD with respect to its top
+  /// variable.
+  ///
+  /// \see BDD::Else()
   //////////////////////////////////////////////////////////////////////////////
   BDD Else(const BDD &f)
   { return f.Else(); }
@@ -1513,29 +1863,50 @@ public:
   // Debugging
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Print
+  /// \brief Prints a BDD in the human readable form.
+  ///
+  /// \param f BDD to be printed.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
+  ///
+  /// \see BDD::Print()
   //////////////////////////////////////////////////////////////////////////////
   void Print(const BDD &f, FILE *fp = stdout) const
   { f.Print(fp); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::FunctionPrint
+  /// \brief Prints the function implemented by the given BDD.
+  ///
+  /// \see BDD::FunctionPrint()
   //////////////////////////////////////////////////////////////////////////////
   void FunctionPrint(const BDD &f, std::string &name) const
   { f.FunctionPrint(name); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copydoc BDD::Profile
+  /// \brief Obtain a vector with the number of nodes at each level in f.
+  ///
+  /// \param f BDD of interest.
+  ///
+  /// \param negout If `false` then counting pretends the BDD does not have
+  ///               negative-output pointers (complement edges).
+  ///
+  /// \see BDD::Profile()
   //////////////////////////////////////////////////////////////////////////////
   std::vector<long> Profile(const BDD &f, bool negout = true) const
   { return f.Profile(negout); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \brief Similar to `Cal::Profile` for an iterator of BDDs. But, this
+  /// \brief Similar to `Cal::Profile()` for an iterator of BDDs. But, this
   /// accounts for sharing of nodes.
+  ///
+  /// \param begin Iterator pointing to the start of the given range of BDDs.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
   ///
   /// \param negout If `false` then counting pretends the BDD does not have
   ///               negative-output pointers (complement edges).
+  ///
+  /// \see BDD::Profile()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   std::vector<long> Profile(IT begin, IT end, bool negout = true) const
@@ -1557,28 +1928,43 @@ public:
   }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \brief Similar to `Cal::Profile` for a container of BDDs. But, this
+  /// \brief Similar to `Cal::Profile()` for a container of BDDs. But, this
   /// accounts for sharing of nodes.
   ///
   /// \param negout If `false` then counting pretends the BDD does not have
   ///               negative-output pointers (complement edges).
+  ///
+  /// \param c Container of BDDs which supports `begin()` and `end()` iterators.
+  ///
+  /// \see BDD::Profile()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   std::vector<long> Profile(const Container &c, bool negout = true) const
   { return Profile(c.begin(), c.end(), negout); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief BDD::PrintProfile
+  /// \brief Prints a BDD in the human readable form.
+  ///
+  /// \param f BDD to be printed.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
   //////////////////////////////////////////////////////////////////////////////
   void PrintProfile(const BDD &f, int lineLength = 79, FILE *fp = stdout) const
   { return f.PrintProfile(lineLength, fp); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \brief Similar to `Cal::PrintProfile` for an iterator of BDDs. But, this
+  /// \brief Similar to `Cal::PrintProfile()` for an iterator of BDDs. But, this
   /// accounts for sharing of nodes.
   ///
-  /// \param negout If `false` then counting pretends the BDD does not have
-  ///               negative-output pointers (complement edges).
+  /// \param begin Iterator pointing to the start of the given range of BDDs.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   void PrintProfile(IT begin, IT end,
@@ -1598,19 +1984,27 @@ public:
 
   //////////////////////////////////////////////////////////////////////////////
   /// \brief Similar to `Cal::PrintProfile` for a container of BDDs. But, this
-  /// accounts for sharing of nodes.
+  /// accounts for sharing of nodes.AssociationSetCurrent
   ///
-  /// \param negout If `false` then counting pretends the BDD does not have
-  ///               negative-output pointers (complement edges).
+  /// \param c Container of BDDs which supports `begin()` and `end()` iterators.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   void PrintProfile(const Container &c,
                     int lineLength = 79,
                     FILE *fp = stdout) const
-  { PrintProfile(c.begin, c.end, lineLength, fp); }
+  { PrintProfile(c.begin(), c.end(), lineLength, fp); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief BDD::FunctionProfile
+  /// \brief The number of subfunctions of the given BDD which may be obtained
+  /// by restricting variables with an index lower than *n*.
+  ///
+  /// \copydetails BDD::FunctionProfile()
+  ///
+  /// \see BDD::FunctionProfile()
   //////////////////////////////////////////////////////////////////////////////
   std::vector<long> FunctionProfile(const BDD &f) const
   { return f.FunctionProfile(); }
@@ -1619,8 +2013,11 @@ public:
   /// \brief Similar to `Cal::FunctionProfile` for an iterator of BDDs. But,
   /// this accounts for sharing of nodes.
   ///
-  /// \param negout If `false` then counting pretends the BDD does not have
-  ///               negative-output pointers (complement edges).
+  /// \param begin Iterator pointing to the start of the given range of BDDs.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \see BDD::FunctionProfile()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   std::vector<long> FunctionProfile(IT begin, IT end) const
@@ -1642,15 +2039,25 @@ public:
   /// \brief Similar to `Cal::FunctionProfile` for a container of BDDs. But,
   /// this accounts for sharing of nodes.
   ///
-  /// \param negout If `false` then counting pretends the BDD does not have
-  ///               negative-output pointers (complement edges).
+  /// \param c Container of BDDs which supports `begin()` and `end()` iterators.
+  ///
+  /// \see BDD::FunctionProfile()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   std::vector<long> FunctionProfile(const Container &c) const
   { return FunctionProfile(c.begin(), c.end()); }
 
   //////////////////////////////////////////////////////////////////////////////
-  /// \copybrief BDD::PrintFunctionProfile
+  /// \brief Similar to `Cal::PrintProfile()` but displays a function profile
+  /// for the given BDD.
+  ///
+  /// \param f BDD to be printed.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
+  ///
+  /// \see BDD::PrintFunctionProfile()
   //////////////////////////////////////////////////////////////////////////////
   void PrintFunctionProfile(const BDD &f,
                             int lineLength = 79,
@@ -1662,8 +2069,15 @@ public:
   /// \brief Similar to `Cal::PrintFunctionProfile` for an iterator of BDDs.
   /// But, this accounts for sharing of nodes.
   ///
-  /// \param negout If `false` then counting pretends the BDD does not have
-  ///               negative-output pointers (complement edges).
+  /// \param begin Iterator pointing to the start of the given range of BDDs.
+  ///
+  /// \param end Iterator pointing to the end of the given range.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
+  ///
+  /// \see BDD::PrintFunctionProfile()
   //////////////////////////////////////////////////////////////////////////////
   template<typename IT>
   void PrintFunctionProfile(IT begin, IT end,
@@ -1685,14 +2099,19 @@ public:
   /// \brief Similar to `Cal::PrintFunctionProfile` for a container of BDDs.
   /// But, this accounts for sharing of nodes.
   ///
-  /// \param negout If `false` then counting pretends the BDD does not have
-  ///               negative-output pointers (complement edges).
+  /// \param c Container of BDDs which supports `begin()` and `end()` iterators.
+  ///
+  /// \param lineLength The maximum line length.
+  ///
+  /// \param fp Pointer to the `FILE` to output to (default `stdout`).
+  ///
+  /// \see BDD::PrintFunctionProfile()
   //////////////////////////////////////////////////////////////////////////////
   template<typename Container>
   void PrintFunctionProfile(const Container &c,
                             int lineLength = 79,
                             FILE *fp = stdout) const
-  { PrintFunctionProfile(c.begin, c.end, lineLength, fp); }
+  { PrintFunctionProfile(c.begin(), c.end(), lineLength, fp); }
 
   //////////////////////////////////////////////////////////////////////////////
   // BDD Pipelining

@@ -388,7 +388,7 @@ EXTERN void Cal_AssociationQuit(Cal_BddManager bddManager, int associationId);
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Sets the current variable association to the one given.
 ///
-/// \returns ID of the prior association (if any). An return value of -1
+/// \returns ID of the prior association (if any). A return value of -1
 /// indicates the temporary association.
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN int Cal_AssociationSetCurrent(Cal_BddManager bddManager,
@@ -573,22 +573,22 @@ EXTERN Cal_Bdd Cal_BddManagerGetVarWithId(Cal_BddManager bddManager,
 EXTERN int Cal_BddIsBddNull(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Returns 1 if the argument BDD is constant one, 0 otherwise.
+/// \brief Returns 1 if the argument BDD is constant one, 0 otherwise.
 ///
 /// \see Cal_BddIsBddZero, Cal_BddIsBddConst
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN int Cal_BddIsBddOne(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Returns 1 if the argument BDD is constant zero, 0 otherwise.
+/// \brief Returns 1 if the argument BDD is constant zero, 0 otherwise.
 ///
 /// \see Cal_BddIsBddOne, Cal_BddIsBddConst
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN int Cal_BddIsBddZero(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Returns Returns 1 if the argument BDD is either constant one or constant
-/// zero, otherwise returns 0.
+/// \brief Returns 1 if the argument BDD is either constant one or constant
+///        zero, otherwise returns 0.
 ///
 /// \see Cal_BddIsBddOne, Cal_BddIsBddZero
 ////////////////////////////////////////////////////////////////////////////////
@@ -614,10 +614,11 @@ EXTERN int Cal_BddDependsOn(Cal_BddManager bddManager,
                             Cal_Bdd varUserBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// \brief BDD size of `f`.
+/// \brief BDD size of `fUserBdd`.
 ///
-/// \param negout If non-zero then the number of nodes in `f` is counted. If
-/// zero, the counting pretends the BDDs do not have negative-output pointers.
+/// \param negout If non-zero then the number of nodes in `fUserBdd` is counted.
+///               If zero, the counting pretends the BDDs do not have
+///               negative-output pointers.
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN long Cal_BddSize(Cal_BddManager bddManager,
                         Cal_Bdd fUserBdd,
@@ -688,14 +689,13 @@ EXTERN void Cal_BddFunctionProfileMultiple(Cal_BddManager bddManager, Cal_Bdd *f
 ///
 /// \param VarNamingFn A pointer to a function taking a bddManager, a BDD and
 ///                    the pointer given by env. This function should return
-///                    either a null pointer or a srting that is the name of the
+///                    either a null pointer or a string that is the name of the
 ///                    supplied variable. If it returns a null pointer, a
 ///                    default name is generated based on the index of the
 ///                    variable. It is also legal for naminFN to be null; in
 ///                    this case, default names are generated for all variables.
 ///                    The macro bddNamingFnNone is a null pointer of suitable
 ///                    type.
-///
 /// \param TerminalIdFn A pointer to a function taking a bddManager, two longs,
 ///                     and the pointer given by the env. It should return
 ///                     either a null pointer. If it returns a null pointer, or
@@ -804,8 +804,6 @@ EXTERN Cal_Bdd Cal_BddNot(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Substitute a BDD variable by a function.
-///
-/// \details Returns the BDD obtained by substituting a variable by a function.
 ////////////////////////////////////////////////////////////////////////////////
 EXTERN Cal_Bdd Cal_BddCompose(Cal_BddManager bddManager,
                               Cal_Bdd fUserBdd,
@@ -837,8 +835,8 @@ EXTERN Cal_Bdd Cal_BddImplies(Cal_BddManager bddManager,
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Logical If-Then-Else.
 ///
-/// \details Returns the BDD for the logical operation `f ? g : h`, i.e. *f g +
-/// f' h*.
+/// \details Returns the BDD for the logical operation `f ? g : h`, i.e.
+/// `f&g | ~f&h`.
 ///
 /// \see Cal_BddAnd, Cal_BddNand, Cal_BddOr, Cal_BddNor, Cal_BddXor, Cal_BddXnor
 ////////////////////////////////////////////////////////////////////////////////
@@ -974,7 +972,7 @@ EXTERN Cal_Bdd Cal_BddSubstitute(Cal_BddManager bddManager, Cal_Bdd fUserBdd);
 /// another variable.
 ///
 /// \remark For the substitution of a variable by a function, use
-/// `Cal_BddSubstitute` instead.
+/// `Cal::Substitute()` instead.
 ///
 /// \see Cal_BddSubstitute
 ////////////////////////////////////////////////////////////////////////////////
@@ -1094,8 +1092,6 @@ EXTERN Cal_Bdd Cal_BddSatisfySupport(Cal_BddManager bddManager,
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Fraction of valuations which make `f` true.
 ///
-/// \details Returns the fraction of valuations which make `f` true.
-///
 /// \remark This fraction is independent of whatever set of variables `f` is
 /// supposed to be a function of.
 ////////////////////////////////////////////////////////////////////////////////
@@ -1117,7 +1113,7 @@ EXTERN double Cal_BddSatisfyingFraction(Cal_BddManager bddManager,
 EXTERN int Cal_BddType(Cal_BddManager bddManager, Cal_Bdd fUserBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// \brief Returns the id of the top variable of the argument BDD.
+/// \brief Returns the index of the top variable of the argument BDD.
 ///
 /// \see Cal_BddGetIfId
 ////////////////////////////////////////////////////////////////////////////////
@@ -1125,7 +1121,7 @@ EXTERN Cal_BddId_t Cal_BddGetIfIndex(Cal_BddManager bddManager,
                                      Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// \brief Returns the index of the top variable of the argument BDD.
+/// \brief Returns the id of the top variable of the argument BDD.
 ///
 /// \see Cal_BddGetIfIndex
 ////////////////////////////////////////////////////////////////////////////////
@@ -1139,7 +1135,7 @@ EXTERN Cal_BddId_t Cal_BddGetIfId(Cal_BddManager bddManager, Cal_Bdd userBdd);
 EXTERN Cal_Bdd Cal_BddIf(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// \brief the positive cofactor of the argument BDD with respect to its top
+/// \brief The positive cofactor of the argument BDD with respect to its top
 /// variable.
 ///
 /// \see Cal_BddElse
@@ -1147,7 +1143,7 @@ EXTERN Cal_Bdd Cal_BddIf(Cal_BddManager bddManager, Cal_Bdd userBdd);
 EXTERN Cal_Bdd Cal_BddThen(Cal_BddManager bddManager, Cal_Bdd userBdd);
 
 ////////////////////////////////////////////////////////////////////////////////
-/// \brief the negative cofactor of the argument BDD with respect to its top
+/// \brief The negative cofactor of the argument BDD with respect to its top
 /// variable.
 ///
 /// \see Cal_BddThen
