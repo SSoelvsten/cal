@@ -270,13 +270,13 @@ public:
   //////////////////////////////////////////////////////////////////////////////
   enum Type_t
   {
-    NONTERMINAL = CAL_BDD_TYPE_NONTERMINAL,
-    ZERO        = CAL_BDD_TYPE_ZERO,
-    ONE         = CAL_BDD_TYPE_ONE,
-    POSVAR      = CAL_BDD_TYPE_POSVAR,
-    NEGVAR      = CAL_BDD_TYPE_NEGVAR,
-    OVERFLOW    = CAL_BDD_TYPE_OVERFLOW,
-    CONSTANT    = CAL_BDD_TYPE_CONSTANT
+    NonTerminal = CAL_BDD_TYPE_NONTERMINAL,
+    Zero        = CAL_BDD_TYPE_ZERO,
+    One         = CAL_BDD_TYPE_ONE,
+    Posvar      = CAL_BDD_TYPE_POSVAR,
+    Negvar      = CAL_BDD_TYPE_NEGVAR,
+    Overflow    = CAL_BDD_TYPE_OVERFLOW,
+    Constant    = CAL_BDD_TYPE_CONSTANT
   };
 
   //////////////////////////////////////////////////////////////////////////////
@@ -873,9 +873,9 @@ public:
   /// \see Cal::DynamicReordering, Cal::ReorderMethod
   //////////////////////////////////////////////////////////////////////////////
   enum ReorderTechnique {
-    NONE = CAL_REORDER_NONE,
-    SIFT = CAL_REORDER_SIFT,
-    WINDOW = CAL_REORDER_WINDOW
+    None = CAL_REORDER_NONE,
+    Sift = CAL_REORDER_SIFT,
+    Window = CAL_REORDER_WINDOW
   };
 
   //////////////////////////////////////////////////////////////////////////////
