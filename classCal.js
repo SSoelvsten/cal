@@ -5,9 +5,9 @@ var classCal =
       [ "DF", "classCal.html#ac0a069147933bfe31733a00082222f1aacc7b0c1a03df9ab5ddbdecbfb4312580", null ]
     ] ],
     [ "ReorderTechnique", "classCal.html#afb4d11823103d9feeca83507ddc733b3", [
-      [ "NONE", "classCal.html#afb4d11823103d9feeca83507ddc733b3aa3442a7ba7d087ed65969b0914a32c5e", null ],
-      [ "SIFT", "classCal.html#afb4d11823103d9feeca83507ddc733b3aecf77572bd33a9fdaed8cbc708836441", null ],
-      [ "WINDOW", "classCal.html#afb4d11823103d9feeca83507ddc733b3ad84ffebab802e6165f1c894908610bc3", null ]
+      [ "None", "classCal.html#afb4d11823103d9feeca83507ddc733b3a03533654385e63190b50a21e0639b793", null ],
+      [ "Sift", "classCal.html#afb4d11823103d9feeca83507ddc733b3a1bd4063fc173bbd9ecf9046445f6da02", null ],
+      [ "Window", "classCal.html#afb4d11823103d9feeca83507ddc733b3a4b3ae7ff6b54a49652477185ef065e2f", null ]
     ] ],
     [ "Cal", "classCal.html#abbb4e105e6842d8c79aa34a3831f836b", null ],
     [ "Cal", "classCal.html#a635655fb3f146f36a727d92c77917e2b", null ],

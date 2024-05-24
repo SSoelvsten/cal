@@ -4,13 +4,13 @@ var group__module____cpp =
       [ "Id_t", "classBDD.html#ae048f1d21f974af96639598c16b2a5dd", null ],
       [ "Index_t", "classBDD.html#a2ed3dfb53f13be43dd4dbf51379e7b79", null ],
       [ "Type_t", "classBDD.html#a71eace1cfe06d171180a323ed4218989", [
-        [ "NONTERMINAL", "classBDD.html#a71eace1cfe06d171180a323ed4218989a38c8b68842961d88e037e5a112cef4d6", null ],
-        [ "ZERO", "classBDD.html#a71eace1cfe06d171180a323ed4218989a415f4e66b54567b81822a9d95326c528", null ],
-        [ "ONE", "classBDD.html#a71eace1cfe06d171180a323ed4218989addf5336ffdc8c6f7d4737afd7b8af611", null ],
-        [ "POSVAR", "classBDD.html#a71eace1cfe06d171180a323ed4218989a1ac12b6cac0898520a00fb062700e6ee", null ],
-        [ "NEGVAR", "classBDD.html#a71eace1cfe06d171180a323ed4218989a83968c16f90eedef9b29636f8dcca724", null ],
-        [ "OVERFLOW", "classBDD.html#a71eace1cfe06d171180a323ed4218989a65d2823e4d74e7b6d2cc998d35f201e7", null ],
-        [ "CONSTANT", "classBDD.html#a71eace1cfe06d171180a323ed4218989ad4081befb05c822193052b7cb15e09ec", null ]
+        [ "NonTerminal", "classBDD.html#a71eace1cfe06d171180a323ed4218989a8075642922d673fdf4ae8eb8d5c5ee2a", null ],
+        [ "Zero", "classBDD.html#a71eace1cfe06d171180a323ed4218989a7999f5af0b8857118eb3730359d64553", null ],
+        [ "One", "classBDD.html#a71eace1cfe06d171180a323ed4218989a116de2b9b920d6b17c71bda0a3a07d50", null ],
+        [ "Posvar", "classBDD.html#a71eace1cfe06d171180a323ed4218989a1ff69c880c24e4cc5f25bb19cb715806", null ],
+        [ "Negvar", "classBDD.html#a71eace1cfe06d171180a323ed4218989a0b8066f15addc5e9c38e7b76dd0c91dd", null ],
+        [ "Overflow", "classBDD.html#a71eace1cfe06d171180a323ed4218989a63b5dc320ee17287fc9dd7d50d31e29d", null ],
+        [ "Constant", "classBDD.html#a71eace1cfe06d171180a323ed4218989a40c1bbb26dfbadc545700ba152111e0a", null ]
       ] ],
       [ "BDD", "classBDD.html#ad5a150187672e35413ad79573bfb524f", null ],
       [ "BDD", "classBDD.html#abc551344b2e136090b8d2d82ab6ff0f2", null ],
@@ -76,9 +76,9 @@ var group__module____cpp =
         [ "DF", "classCal.html#ac0a069147933bfe31733a00082222f1aacc7b0c1a03df9ab5ddbdecbfb4312580", null ]
       ] ],
       [ "ReorderTechnique", "classCal.html#afb4d11823103d9feeca83507ddc733b3", [
-        [ "NONE", "classCal.html#afb4d11823103d9feeca83507ddc733b3aa3442a7ba7d087ed65969b0914a32c5e", null ],
-        [ "SIFT", "classCal.html#afb4d11823103d9feeca83507ddc733b3aecf77572bd33a9fdaed8cbc708836441", null ],
-        [ "WINDOW", "classCal.html#afb4d11823103d9feeca83507ddc733b3ad84ffebab802e6165f1c894908610bc3", null ]
+        [ "None", "classCal.html#afb4d11823103d9feeca83507ddc733b3a03533654385e63190b50a21e0639b793", null ],
+        [ "Sift", "classCal.html#afb4d11823103d9feeca83507ddc733b3a1bd4063fc173bbd9ecf9046445f6da02", null ],
+        [ "Window", "classCal.html#afb4d11823103d9feeca83507ddc733b3a4b3ae7ff6b54a49652477185ef065e2f", null ]
       ] ],
       [ "Cal", "classCal.html#abbb4e105e6842d8c79aa34a3831f836b", null ],
       [ "Cal", "classCal.html#a635655fb3f146f36a727d92c77917e2b", null ],
