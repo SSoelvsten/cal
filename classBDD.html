@@ -108,14 +108,14 @@ $(document).ready(function(){initNavTree('classBDD.html',''); initResizable(); }
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a71eace1cfe06d171180a323ed4218989"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989">Type_t</a> { <br />
-&#160;&#160;<b>NonTerminal</b> = CAL_BDD_TYPE_NONTERMINAL
-, <b>Zero</b> = CAL_BDD_TYPE_ZERO
-, <b>One</b> = CAL_BDD_TYPE_ONE
-, <b>Posvar</b> = CAL_BDD_TYPE_POSVAR
+&#160;&#160;<a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a7999f5af0b8857118eb3730359d64553">Zero</a> = CAL_BDD_TYPE_ZERO
+, <a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a116de2b9b920d6b17c71bda0a3a07d50">One</a> = CAL_BDD_TYPE_ONE
+, <a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a40c1bbb26dfbadc545700ba152111e0a">Constant</a> = CAL_BDD_TYPE_CONSTANT
+, <a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a1ff69c880c24e4cc5f25bb19cb715806">Posvar</a> = CAL_BDD_TYPE_POSVAR
 , <br />
-&#160;&#160;<b>Negvar</b> = CAL_BDD_TYPE_NEGVAR
-, <b>Overflow</b> = CAL_BDD_TYPE_OVERFLOW
-, <b>Constant</b> = CAL_BDD_TYPE_CONSTANT
+&#160;&#160;<a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a0b8066f15addc5e9c38e7b76dd0c91dd">Negvar</a> = CAL_BDD_TYPE_NEGVAR
+, <a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a63b5dc320ee17287fc9dd7d50d31e29d">Overflow</a> = CAL_BDD_TYPE_OVERFLOW
+, <a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989a8075642922d673fdf4ae8eb8d5c5ee2a">NonTerminal</a> = CAL_BDD_TYPE_NONTERMINAL
 <br />
  }</td></tr>
 <tr class="memdesc:a71eace1cfe06d171180a323ed4218989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible types a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> can be.  <a href="classBDD.html#a71eace1cfe06d171180a323ed4218989">More...</a><br /></td></tr>
@@ -140,112 +140,106 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5c0305a866ccb983e33b42ad52104a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies ownership of another <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
 <tr class="separator:a5c0305a866ccb983e33b42ad52104a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f2e761a05ca5d0762ab106e9f81f7b2"><td class="memItemLeft" align="right" valign="top"><a id="a4f2e761a05ca5d0762ab106e9f81f7b2"></a>
-<a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classBDD.html">BDD</a> &amp;other)</td></tr>
+<a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a4f2e761a05ca5d0762ab106e9f81f7b2">operator=</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other)</td></tr>
+<tr class="memdesc:a4f2e761a05ca5d0762ab106e9f81f7b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy ownership of another <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> during assignment. <br /></td></tr>
 <tr class="separator:a4f2e761a05ca5d0762ab106e9f81f7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e1604a4e1db492ea94b812ee43edb48"><td class="memItemLeft" align="right" valign="top"><a id="a3e1604a4e1db492ea94b812ee43edb48"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a3e1604a4e1db492ea94b812ee43edb48">BDD</a> (<a class="el" href="classBDD.html">BDD</a> &amp;&amp;other)</td></tr>
 <tr class="memdesc:a3e1604a4e1db492ea94b812ee43edb48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move ownership of another <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
 <tr class="separator:a3e1604a4e1db492ea94b812ee43edb48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac71cd788e827c3e33db4d94f45c64dfa"><td class="memItemLeft" align="right" valign="top"><a id="ac71cd788e827c3e33db4d94f45c64dfa"></a>
-<a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classBDD.html">BDD</a> &amp;&amp;other)</td></tr>
+<a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ac71cd788e827c3e33db4d94f45c64dfa">operator=</a> (<a class="el" href="classBDD.html">BDD</a> &amp;&amp;other)</td></tr>
+<tr class="memdesc:ac71cd788e827c3e33db4d94f45c64dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move ownership of another <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> during assignment. <br /></td></tr>
 <tr class="separator:ac71cd788e827c3e33db4d94f45c64dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a865c7d7590e1c3f227346b1045713099"><td class="memItemLeft" align="right" valign="top"><a id="a865c7d7590e1c3f227346b1045713099"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a865c7d7590e1c3f227346b1045713099">~BDD</a> ()</td></tr>
 <tr class="memdesc:a865c7d7590e1c3f227346b1045713099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement reference count upon leaving scope. <br /></td></tr>
 <tr class="separator:a865c7d7590e1c3f227346b1045713099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1c631fc528ced29c6304acdae0501d3"><td class="memItemLeft" align="right" valign="top"><a id="ad1c631fc528ced29c6304acdae0501d3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ad1c631fc528ced29c6304acdae0501d3">IsOne</a> () const</td></tr>
+<tr class="memitem:ad1c631fc528ced29c6304acdae0501d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ad1c631fc528ced29c6304acdae0501d3">IsOne</a> () const</td></tr>
+<tr class="memdesc:ad1c631fc528ced29c6304acdae0501d3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is constant one, <code>false</code>otherwise.  <a href="classBDD.html#ad1c631fc528ced29c6304acdae0501d3">More...</a><br /></td></tr>
 <tr class="separator:ad1c631fc528ced29c6304acdae0501d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ca69cc90444bb7957633a88128adbec"><td class="memItemLeft" align="right" valign="top"><a id="a5ca69cc90444bb7957633a88128adbec"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a5ca69cc90444bb7957633a88128adbec">IsZero</a> () const</td></tr>
+<tr class="memitem:a5ca69cc90444bb7957633a88128adbec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a5ca69cc90444bb7957633a88128adbec">IsZero</a> () const</td></tr>
+<tr class="memdesc:a5ca69cc90444bb7957633a88128adbec"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is constant zero, <code>false</code>otherwise.  <a href="classBDD.html#a5ca69cc90444bb7957633a88128adbec">More...</a><br /></td></tr>
 <tr class="separator:a5ca69cc90444bb7957633a88128adbec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14ffb2b4018a209e1edb330a2b368779"><td class="memItemLeft" align="right" valign="top"><a id="a14ffb2b4018a209e1edb330a2b368779"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a14ffb2b4018a209e1edb330a2b368779">IsNull</a> () const</td></tr>
-<tr class="memdesc:a14ffb2b4018a209e1edb330a2b368779"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 if the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is NULL, 0 otherwise. <br /></td></tr>
+<tr class="memdesc:a14ffb2b4018a209e1edb330a2b368779"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is NULL, <code>false</code> otherwise. <br /></td></tr>
 <tr class="separator:a14ffb2b4018a209e1edb330a2b368779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a359d6a969318f14e22adf979aa1fc6cc"><td class="memItemLeft" align="right" valign="top"><a id="a359d6a969318f14e22adf979aa1fc6cc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a359d6a969318f14e22adf979aa1fc6cc">IsConst</a> () const</td></tr>
+<tr class="memitem:a359d6a969318f14e22adf979aa1fc6cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a359d6a969318f14e22adf979aa1fc6cc">IsConst</a> () const</td></tr>
+<tr class="memdesc:a359d6a969318f14e22adf979aa1fc6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is either constant one or constant zero, otherwise returns <code>false</code>.  <a href="classBDD.html#a359d6a969318f14e22adf979aa1fc6cc">More...</a><br /></td></tr>
 <tr class="separator:a359d6a969318f14e22adf979aa1fc6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a355706d6264ea226d1259acafa25e52b"><td class="memItemLeft" align="right" valign="top"><a id="a355706d6264ea226d1259acafa25e52b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a355706d6264ea226d1259acafa25e52b">IsCube</a> () const</td></tr>
-<tr class="memdesc:a355706d6264ea226d1259acafa25e52b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns 1 if the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is a cube, 0 otherwise. <br /></td></tr>
+<tr class="memdesc:a355706d6264ea226d1259acafa25e52b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is a cube, <code>false</code> otherwise. <br /></td></tr>
 <tr class="separator:a355706d6264ea226d1259acafa25e52b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a820830ced076e7cc30742e81bb26faf0"><td class="memItemLeft" align="right" valign="top"><a id="a820830ced076e7cc30742e81bb26faf0"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a820830ced076e7cc30742e81bb26faf0">IsEqualTo</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
-<tr class="memdesc:a820830ced076e7cc30742e81bb26faf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns 1 if argument BDDs are equal, 0 otherwise. <br /></td></tr>
+<tr class="memdesc:a820830ced076e7cc30742e81bb26faf0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is equal to <code>other</code>, <code>false</code> otherwise. <br /></td></tr>
 <tr class="separator:a820830ced076e7cc30742e81bb26faf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2d3415c44cc325ae795e884af22c036"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ac2d3415c44cc325ae795e884af22c036">operator==</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
+<tr class="memdesc:ac2d3415c44cc325ae795e884af22c036"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if argument BDDs are equal, <code>false</code> otherwise.  <a href="classBDD.html#ac2d3415c44cc325ae795e884af22c036">More...</a><br /></td></tr>
 <tr class="separator:ac2d3415c44cc325ae795e884af22c036"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a323909b99bc71c9e71873c767b538002"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a323909b99bc71c9e71873c767b538002">operator!=</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
+<tr class="memdesc:a323909b99bc71c9e71873c767b538002"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>false</code> if argument BDDs are equal, <code>true</code> otherwise.  <a href="classBDD.html#a323909b99bc71c9e71873c767b538002">More...</a><br /></td></tr>
 <tr class="separator:a323909b99bc71c9e71873c767b538002"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa43847e403eaba5a537557955a691ca4"><td class="memItemLeft" align="right" valign="top"><a id="aa43847e403eaba5a537557955a691ca4"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aa43847e403eaba5a537557955a691ca4">DependsOn</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;var) const</td></tr>
-<tr class="memdesc:aa43847e403eaba5a537557955a691ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns 1 if f depends on var and returns 0 otherwise. <br /></td></tr>
+<tr class="memdesc:aa43847e403eaba5a537557955a691ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>true</code> if this depends on <code>var</code>, <code>false</code> otherwise. <br /></td></tr>
 <tr class="separator:aa43847e403eaba5a537557955a691ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff3abacac30fab6e9d477b5a7a8704f3"><td class="memItemLeft" align="right" valign="top"><a id="aff3abacac30fab6e9d477b5a7a8704f3"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aff3abacac30fab6e9d477b5a7a8704f3">If</a> () const</td></tr>
-<tr class="memdesc:aff3abacac30fab6e9d477b5a7a8704f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> corresponding to the top variable of the given <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
+<tr class="memitem:aff3abacac30fab6e9d477b5a7a8704f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aff3abacac30fab6e9d477b5a7a8704f3">If</a> () const</td></tr>
+<tr class="memdesc:aff3abacac30fab6e9d477b5a7a8704f3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> corresponding to the top variable of the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>.  <a href="classBDD.html#aff3abacac30fab6e9d477b5a7a8704f3">More...</a><br /></td></tr>
 <tr class="separator:aff3abacac30fab6e9d477b5a7a8704f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a140e25e7cfcc123e80a047eac58c49c0"><td class="memItemLeft" align="right" valign="top"><a id="a140e25e7cfcc123e80a047eac58c49c0"></a>
-<a class="el" href="classBDD.html#ae048f1d21f974af96639598c16b2a5dd">Id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a140e25e7cfcc123e80a047eac58c49c0">Id</a> () const</td></tr>
-<tr class="memdesc:a140e25e7cfcc123e80a047eac58c49c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the index of the top variable of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
+<tr class="memitem:a140e25e7cfcc123e80a047eac58c49c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html#ae048f1d21f974af96639598c16b2a5dd">Id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a140e25e7cfcc123e80a047eac58c49c0">Id</a> () const</td></tr>
+<tr class="memdesc:a140e25e7cfcc123e80a047eac58c49c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the id of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>'s top variable.  <a href="classBDD.html#a140e25e7cfcc123e80a047eac58c49c0">More...</a><br /></td></tr>
 <tr class="separator:a140e25e7cfcc123e80a047eac58c49c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60226935b77ecd9b8f92405fa468e8f3"><td class="memItemLeft" align="right" valign="top"><a id="a60226935b77ecd9b8f92405fa468e8f3"></a>
-<a class="el" href="classBDD.html#a2ed3dfb53f13be43dd4dbf51379e7b79">Index_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a60226935b77ecd9b8f92405fa468e8f3">Index</a> () const</td></tr>
-<tr class="memdesc:a60226935b77ecd9b8f92405fa468e8f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the id of the top variable of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
+<tr class="memitem:a60226935b77ecd9b8f92405fa468e8f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html#a2ed3dfb53f13be43dd4dbf51379e7b79">Index_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a60226935b77ecd9b8f92405fa468e8f3">Index</a> () const</td></tr>
+<tr class="memdesc:a60226935b77ecd9b8f92405fa468e8f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the index of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>'s top variable.  <a href="classBDD.html#a60226935b77ecd9b8f92405fa468e8f3">More...</a><br /></td></tr>
 <tr class="separator:a60226935b77ecd9b8f92405fa468e8f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e7879c854dfdaf2e665aa1784386542"><td class="memItemLeft" align="right" valign="top"><a id="a0e7879c854dfdaf2e665aa1784386542"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a0e7879c854dfdaf2e665aa1784386542">Then</a> () const</td></tr>
-<tr class="memdesc:a0e7879c854dfdaf2e665aa1784386542"><td class="mdescLeft">&#160;</td><td class="mdescRight">the positive cofactor of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with respect to its top variable. <br /></td></tr>
+<tr class="memdesc:a0e7879c854dfdaf2e665aa1784386542"><td class="mdescLeft">&#160;</td><td class="mdescRight">The positive cofactor of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with respect to its top variable. <br /></td></tr>
 <tr class="separator:a0e7879c854dfdaf2e665aa1784386542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adebe36944b183944c44287260b5aacd4"><td class="memItemLeft" align="right" valign="top"><a id="adebe36944b183944c44287260b5aacd4"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#adebe36944b183944c44287260b5aacd4">Else</a> () const</td></tr>
-<tr class="memdesc:adebe36944b183944c44287260b5aacd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">the negative cofactor of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with respect to its top variable. <br /></td></tr>
+<tr class="memdesc:adebe36944b183944c44287260b5aacd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The negative cofactor of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with respect to its top variable. <br /></td></tr>
 <tr class="separator:adebe36944b183944c44287260b5aacd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab183babd9637821207a5d507527bec89"><td class="memItemLeft" align="right" valign="top"><a id="ab183babd9637821207a5d507527bec89"></a>
 <a class="el" href="classBDD.html#a71eace1cfe06d171180a323ed4218989">Type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ab183babd9637821207a5d507527bec89">Type</a> () const</td></tr>
-<tr class="memdesc:ab183babd9637821207a5d507527bec89"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the given <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> (0, 1, +var, -var, overflow, nonterminal). <br /></td></tr>
+<tr class="memdesc:ab183babd9637821207a5d507527bec89"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> type (0, 1, +var, -var, overflow, nonterminal). <br /></td></tr>
 <tr class="separator:ab183babd9637821207a5d507527bec89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f1dfafa5555d822855f2c51ad564d19"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a2f1dfafa5555d822855f2c51ad564d19">Size</a> (bool negout=true) const</td></tr>
-<tr class="memdesc:a2f1dfafa5555d822855f2c51ad564d19"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> size of <code>f</code>.  <a href="classBDD.html#a2f1dfafa5555d822855f2c51ad564d19">More...</a><br /></td></tr>
+<tr class="memdesc:a2f1dfafa5555d822855f2c51ad564d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">This <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>'s size.  <a href="classBDD.html#a2f1dfafa5555d822855f2c51ad564d19">More...</a><br /></td></tr>
 <tr class="separator:a2f1dfafa5555d822855f2c51ad564d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad556c21b3a4a76545a7ad881add4cbc"><td class="memItemLeft" align="right" valign="top"><a id="aad556c21b3a4a76545a7ad881add4cbc"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aad556c21b3a4a76545a7ad881add4cbc">SatisfyingFraction</a> () const</td></tr>
-<tr class="memdesc:aad556c21b3a4a76545a7ad881add4cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fraction of valuations which make <code>f</code> true. <br /></td></tr>
+<tr class="memitem:aad556c21b3a4a76545a7ad881add4cbc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aad556c21b3a4a76545a7ad881add4cbc">SatisfyingFraction</a> () const</td></tr>
+<tr class="memdesc:aad556c21b3a4a76545a7ad881add4cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fraction of valuations which make this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> true.  <a href="classBDD.html#aad556c21b3a4a76545a7ad881add4cbc">More...</a><br /></td></tr>
 <tr class="separator:aad556c21b3a4a76545a7ad881add4cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a511f9b242a5856c4d45b6b51d70c9799"><td class="memItemLeft" align="right" valign="top"><a id="a511f9b242a5856c4d45b6b51d70c9799"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a511f9b242a5856c4d45b6b51d70c9799">Identity</a> () const</td></tr>
-<tr class="memdesc:a511f9b242a5856c4d45b6b51d70c9799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
+<tr class="memitem:a511f9b242a5856c4d45b6b51d70c9799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a511f9b242a5856c4d45b6b51d70c9799">Identity</a> () const</td></tr>
+<tr class="memdesc:a511f9b242a5856c4d45b6b51d70c9799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>.  <a href="classBDD.html#a511f9b242a5856c4d45b6b51d70c9799">More...</a><br /></td></tr>
 <tr class="separator:a511f9b242a5856c4d45b6b51d70c9799"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0568055f6d666827f165931a1ffad268"><td class="memItemLeft" align="right" valign="top"><a id="a0568055f6d666827f165931a1ffad268"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a0568055f6d666827f165931a1ffad268">Regular</a> () const</td></tr>
-<tr class="memdesc:a0568055f6d666827f165931a1ffad268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with positive from a given <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> with arbitrary phase. <br /></td></tr>
+<tr class="memitem:a0568055f6d666827f165931a1ffad268"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a0568055f6d666827f165931a1ffad268">Regular</a> () const</td></tr>
+<tr class="memdesc:a0568055f6d666827f165931a1ffad268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in positive form (regardless of this BDDs phase).  <a href="classBDD.html#a0568055f6d666827f165931a1ffad268">More...</a><br /></td></tr>
 <tr class="separator:a0568055f6d666827f165931a1ffad268"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab58af307e0edffcfa19a0ad30e93599d"><td class="memItemLeft" align="right" valign="top"><a id="ab58af307e0edffcfa19a0ad30e93599d"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ab58af307e0edffcfa19a0ad30e93599d">Not</a> () const</td></tr>
-<tr class="memdesc:ab58af307e0edffcfa19a0ad30e93599d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complement of the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
+<tr class="memdesc:ab58af307e0edffcfa19a0ad30e93599d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complement of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
 <tr class="separator:ab58af307e0edffcfa19a0ad30e93599d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a641842f61e04ffee713d4616c568fe41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a641842f61e04ffee713d4616c568fe41">operator~</a> () const</td></tr>
 <tr class="separator:a641842f61e04ffee713d4616c568fe41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfe4eb39ae9ab2cf4b77a24ac972b7b8"><td class="memItemLeft" align="right" valign="top"><a id="adfe4eb39ae9ab2cf4b77a24ac972b7b8"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#adfe4eb39ae9ab2cf4b77a24ac972b7b8">Compose</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h) const</td></tr>
-<tr class="memdesc:adfe4eb39ae9ab2cf4b77a24ac972b7b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Substitute a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> variable by a function. <br /></td></tr>
+<tr class="memitem:adfe4eb39ae9ab2cf4b77a24ac972b7b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#adfe4eb39ae9ab2cf4b77a24ac972b7b8">Compose</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h) const</td></tr>
+<tr class="memdesc:adfe4eb39ae9ab2cf4b77a24ac972b7b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Substitute a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> variable by a function.  <a href="classBDD.html#adfe4eb39ae9ab2cf4b77a24ac972b7b8">More...</a><br /></td></tr>
 <tr class="separator:adfe4eb39ae9ab2cf4b77a24ac972b7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46c03769476a716cf36f1fe3dd115b22"><td class="memItemLeft" align="right" valign="top"><a id="a46c03769476a716cf36f1fe3dd115b22"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a46c03769476a716cf36f1fe3dd115b22">Intersects</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:a46c03769476a716cf36f1fe3dd115b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> that implies conjunction of <code>f</code> and <code>g</code>. <br /></td></tr>
+<tr class="memitem:a46c03769476a716cf36f1fe3dd115b22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a46c03769476a716cf36f1fe3dd115b22">Intersects</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
+<tr class="memdesc:a46c03769476a716cf36f1fe3dd115b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> that implies conjunction of this and <code>g</code>.  <a href="classBDD.html#a46c03769476a716cf36f1fe3dd115b22">More...</a><br /></td></tr>
 <tr class="separator:a46c03769476a716cf36f1fe3dd115b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad95d556d045ba8fc7ffa2165f9396a6c"><td class="memItemLeft" align="right" valign="top"><a id="ad95d556d045ba8fc7ffa2165f9396a6c"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ad95d556d045ba8fc7ffa2165f9396a6c">Implies</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:ad95d556d045ba8fc7ffa2165f9396a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> that implies conjunction of <code>f</code> and <code>Cal_BddNot(g)</code>. <br /></td></tr>
+<tr class="memitem:ad95d556d045ba8fc7ffa2165f9396a6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ad95d556d045ba8fc7ffa2165f9396a6c">Implies</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
+<tr class="memdesc:ad95d556d045ba8fc7ffa2165f9396a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> that implies conjunction of this and <code>g.Not()</code>.  <a href="classBDD.html#ad95d556d045ba8fc7ffa2165f9396a6c">More...</a><br /></td></tr>
 <tr class="separator:ad95d556d045ba8fc7ffa2165f9396a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d8b4036ce9f78129e030229949175bc"><td class="memItemLeft" align="right" valign="top"><a id="a0d8b4036ce9f78129e030229949175bc"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a0d8b4036ce9f78129e030229949175bc">ITE</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h) const</td></tr>
-<tr class="memdesc:a0d8b4036ce9f78129e030229949175bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical If-Then-Else. <br /></td></tr>
+<tr class="memitem:a0d8b4036ce9f78129e030229949175bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a0d8b4036ce9f78129e030229949175bc">ITE</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h) const</td></tr>
+<tr class="memdesc:a0d8b4036ce9f78129e030229949175bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical If-Then-Else.  <a href="classBDD.html#a0d8b4036ce9f78129e030229949175bc">More...</a><br /></td></tr>
 <tr class="separator:a0d8b4036ce9f78129e030229949175bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97e1a18af5c70f9846df1faccae48579"><td class="memItemLeft" align="right" valign="top"><a id="a97e1a18af5c70f9846df1faccae48579"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a97e1a18af5c70f9846df1faccae48579">And</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:a97e1a18af5c70f9846df1faccae48579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical AND of argument BDDs. <br /></td></tr>
+<tr class="memdesc:a97e1a18af5c70f9846df1faccae48579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical AND operation. <br /></td></tr>
 <tr class="separator:a97e1a18af5c70f9846df1faccae48579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ea05c27a8cbc6ef9ee9a906cd4bd41c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a9ea05c27a8cbc6ef9ee9a906cd4bd41c">operator&amp;</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
 <tr class="separator:a9ea05c27a8cbc6ef9ee9a906cd4bd41c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,11 +247,11 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:aaad0ac265446f048d03d3ecbb30d7c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7719b18f9f1fbfc3e890244b422249d4"><td class="memItemLeft" align="right" valign="top"><a id="a7719b18f9f1fbfc3e890244b422249d4"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a7719b18f9f1fbfc3e890244b422249d4">Nand</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:a7719b18f9f1fbfc3e890244b422249d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical NAND of argument BDDs. <br /></td></tr>
+<tr class="memdesc:a7719b18f9f1fbfc3e890244b422249d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical Negated AND operation. <br /></td></tr>
 <tr class="separator:a7719b18f9f1fbfc3e890244b422249d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec04ea7284bc720fe7703d304776d14d"><td class="memItemLeft" align="right" valign="top"><a id="aec04ea7284bc720fe7703d304776d14d"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aec04ea7284bc720fe7703d304776d14d">Or</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:aec04ea7284bc720fe7703d304776d14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical Or of argument BDDs. <br /></td></tr>
+<tr class="memdesc:aec04ea7284bc720fe7703d304776d14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical OR operation. <br /></td></tr>
 <tr class="separator:aec04ea7284bc720fe7703d304776d14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1d934b49d13895575dcb130d3b95b22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ab1d934b49d13895575dcb130d3b95b22">operator|</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
 <tr class="separator:ab1d934b49d13895575dcb130d3b95b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,11 +259,11 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:a4436fd1289c12ab6ea37143028b52863"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6874c06d1dec74e57ad31f19e5dc7e3"><td class="memItemLeft" align="right" valign="top"><a id="af6874c06d1dec74e57ad31f19e5dc7e3"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#af6874c06d1dec74e57ad31f19e5dc7e3">Nor</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:af6874c06d1dec74e57ad31f19e5dc7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical NOR of argument BDDs. <br /></td></tr>
+<tr class="memdesc:af6874c06d1dec74e57ad31f19e5dc7e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical Negated OR operation. <br /></td></tr>
 <tr class="separator:af6874c06d1dec74e57ad31f19e5dc7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea70be4379bd6862f22fee014f19d05c"><td class="memItemLeft" align="right" valign="top"><a id="aea70be4379bd6862f22fee014f19d05c"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c">Xor</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:aea70be4379bd6862f22fee014f19d05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical XOR of argument BDDs. <br /></td></tr>
+<tr class="memdesc:aea70be4379bd6862f22fee014f19d05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical XOR operation. <br /></td></tr>
 <tr class="separator:aea70be4379bd6862f22fee014f19d05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfaf5f081ed4e97a94cff216ad67215a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#acfaf5f081ed4e97a94cff216ad67215a">operator^</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
 <tr class="separator:acfaf5f081ed4e97a94cff216ad67215a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -277,51 +271,42 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:a4b1a8404319f6e17629863ae8ced8510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6dfbc215edbe05a24f2d6606a341fbb"><td class="memItemLeft" align="right" valign="top"><a id="ac6dfbc215edbe05a24f2d6606a341fbb"></a>
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#ac6dfbc215edbe05a24f2d6606a341fbb">Xnor</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
-<tr class="memdesc:ac6dfbc215edbe05a24f2d6606a341fbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical XNOR of argument BDDs. <br /></td></tr>
+<tr class="memdesc:ac6dfbc215edbe05a24f2d6606a341fbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical Negated XOR operation. <br /></td></tr>
 <tr class="separator:ac6dfbc215edbe05a24f2d6606a341fbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac1b14e4b3419cc90c523ef98aed5294"><td class="memItemLeft" align="right" valign="top"><a id="aac1b14e4b3419cc90c523ef98aed5294"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aac1b14e4b3419cc90c523ef98aed5294">Satisfy</a> () const</td></tr>
-<tr class="memdesc:aac1b14e4b3419cc90c523ef98aed5294"><td class="mdescLeft">&#160;</td><td class="mdescRight">A satisfying assignment of <code>f</code>. <br /></td></tr>
+<tr class="memitem:aac1b14e4b3419cc90c523ef98aed5294"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aac1b14e4b3419cc90c523ef98aed5294">Satisfy</a> () const</td></tr>
+<tr class="memdesc:aac1b14e4b3419cc90c523ef98aed5294"><td class="mdescLeft">&#160;</td><td class="mdescRight">A satisfying assignment of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>.  <a href="classBDD.html#aac1b14e4b3419cc90c523ef98aed5294">More...</a><br /></td></tr>
 <tr class="separator:aac1b14e4b3419cc90c523ef98aed5294"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a3a91ea5647f584ea5aca74a505ffbe"><td class="memItemLeft" align="right" valign="top"><a id="a9a3a91ea5647f584ea5aca74a505ffbe"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a9a3a91ea5647f584ea5aca74a505ffbe">SatisfySupport</a> () const</td></tr>
-<tr class="memdesc:a9a3a91ea5647f584ea5aca74a505ffbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a special cube contained in <code>f</code>. <br /></td></tr>
+<tr class="memitem:a9a3a91ea5647f584ea5aca74a505ffbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a9a3a91ea5647f584ea5aca74a505ffbe">SatisfySupport</a> () const</td></tr>
+<tr class="memdesc:a9a3a91ea5647f584ea5aca74a505ffbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a special cube contained in this.  <a href="classBDD.html#a9a3a91ea5647f584ea5aca74a505ffbe">More...</a><br /></td></tr>
 <tr class="separator:a9a3a91ea5647f584ea5aca74a505ffbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49cc939f4558eddc698d196f8ea4366d"><td class="memItemLeft" align="right" valign="top"><a id="a49cc939f4558eddc698d196f8ea4366d"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a49cc939f4558eddc698d196f8ea4366d">SwapVars</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h) const</td></tr>
-<tr class="memdesc:a49cc939f4558eddc698d196f8ea4366d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function obtained by swapping two variables. <br /></td></tr>
+<tr class="memitem:a49cc939f4558eddc698d196f8ea4366d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a49cc939f4558eddc698d196f8ea4366d">SwapVars</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g, const <a class="el" href="classBDD.html">BDD</a> &amp;h) const</td></tr>
+<tr class="memdesc:a49cc939f4558eddc698d196f8ea4366d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function obtained by swapping two variables.  <a href="classBDD.html#a49cc939f4558eddc698d196f8ea4366d">More...</a><br /></td></tr>
 <tr class="separator:a49cc939f4558eddc698d196f8ea4366d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc516561f6dc9bfd9045c422a1b65d28"><td class="memItemLeft" align="right" valign="top"><a id="acc516561f6dc9bfd9045c422a1b65d28"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#acc516561f6dc9bfd9045c422a1b65d28">Cofactor</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;c) const</td></tr>
-<tr class="memdesc:acc516561f6dc9bfd9045c422a1b65d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalized cofactor of <code>f</code> with respect to <code>c</code>. <br /></td></tr>
+<tr class="memitem:acc516561f6dc9bfd9045c422a1b65d28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#acc516561f6dc9bfd9045c422a1b65d28">Cofactor</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;c) const</td></tr>
+<tr class="memdesc:acc516561f6dc9bfd9045c422a1b65d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalized cofactor of this with respect to <code>c</code>.  <a href="classBDD.html#acc516561f6dc9bfd9045c422a1b65d28">More...</a><br /></td></tr>
 <tr class="separator:acc516561f6dc9bfd9045c422a1b65d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5680fe394d4adaf8ba953051f476c4a7"><td class="memItemLeft" align="right" valign="top"><a id="a5680fe394d4adaf8ba953051f476c4a7"></a>
-<a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a5680fe394d4adaf8ba953051f476c4a7">Reduce</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;c) const</td></tr>
-<tr class="memdesc:a5680fe394d4adaf8ba953051f476c4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that agrees with <code>f</code> for all valuations which satisfy <code>c</code>. <br /></td></tr>
+<tr class="memitem:a5680fe394d4adaf8ba953051f476c4a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a5680fe394d4adaf8ba953051f476c4a7">Reduce</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;c) const</td></tr>
+<tr class="memdesc:a5680fe394d4adaf8ba953051f476c4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that agrees with this for all valuations which satisfy <code>c</code>.  <a href="classBDD.html#a5680fe394d4adaf8ba953051f476c4a7">More...</a><br /></td></tr>
 <tr class="separator:a5680fe394d4adaf8ba953051f476c4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9f1abae8a21eb24d97a9269f4619f72"><td class="memItemLeft" align="right" valign="top"><a id="af9f1abae8a21eb24d97a9269f4619f72"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#af9f1abae8a21eb24d97a9269f4619f72">Print</a> (FILE *fp=stdout) const</td></tr>
-<tr class="memdesc:af9f1abae8a21eb24d97a9269f4619f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form. <br /></td></tr>
+<tr class="memdesc:af9f1abae8a21eb24d97a9269f4619f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form. <br /></td></tr>
 <tr class="separator:af9f1abae8a21eb24d97a9269f4619f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48e336a7e6fc9f6ea83fc8647f6b2f6f"><td class="memItemLeft" align="right" valign="top"><a id="a48e336a7e6fc9f6ea83fc8647f6b2f6f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a48e336a7e6fc9f6ea83fc8647f6b2f6f">FunctionPrint</a> (std::string &amp;name) const</td></tr>
-<tr class="memdesc:a48e336a7e6fc9f6ea83fc8647f6b2f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the function implemented by the argument <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
+<tr class="memdesc:a48e336a7e6fc9f6ea83fc8647f6b2f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the function implemented by this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. <br /></td></tr>
 <tr class="separator:a48e336a7e6fc9f6ea83fc8647f6b2f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6fb6ee15fc48f8d4bac9acb54d1b251"><td class="memItemLeft" align="right" valign="top"><a id="af6fb6ee15fc48f8d4bac9acb54d1b251"></a>
-std::vector&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#af6fb6ee15fc48f8d4bac9acb54d1b251">Profile</a> (bool negout=true) const</td></tr>
-<tr class="memdesc:af6fb6ee15fc48f8d4bac9acb54d1b251"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of nodes at each level in f. <br /></td></tr>
+<tr class="memitem:af6fb6ee15fc48f8d4bac9acb54d1b251"><td class="memItemLeft" align="right" valign="top">std::vector&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#af6fb6ee15fc48f8d4bac9acb54d1b251">Profile</a> (bool negout=true) const</td></tr>
+<tr class="memdesc:af6fb6ee15fc48f8d4bac9acb54d1b251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtain a vector with the number of nodes at each level in f.  <a href="classBDD.html#af6fb6ee15fc48f8d4bac9acb54d1b251">More...</a><br /></td></tr>
 <tr class="separator:af6fb6ee15fc48f8d4bac9acb54d1b251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e4641b9e305ef0673baaac2429635bb"><td class="memItemLeft" align="right" valign="top"><a id="a3e4641b9e305ef0673baaac2429635bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a3e4641b9e305ef0673baaac2429635bb">PrintProfile</a> (int lineLength=79, FILE *fp=stdout) const</td></tr>
-<tr class="memdesc:a3e4641b9e305ef0673baaac2429635bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the node profile for <code>f</code> on <code>fp</code>. <br /></td></tr>
+<tr class="memitem:a3e4641b9e305ef0673baaac2429635bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a3e4641b9e305ef0673baaac2429635bb">PrintProfile</a> (int lineLength=79, FILE *fp=stdout) const</td></tr>
+<tr class="memdesc:a3e4641b9e305ef0673baaac2429635bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form.  <a href="classBDD.html#a3e4641b9e305ef0673baaac2429635bb">More...</a><br /></td></tr>
 <tr class="separator:a3e4641b9e305ef0673baaac2429635bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eebf32f7794bcebdb8d45b193fe7367"><td class="memItemLeft" align="right" valign="top"><a id="a4eebf32f7794bcebdb8d45b193fe7367"></a>
-std::vector&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a4eebf32f7794bcebdb8d45b193fe7367">FunctionProfile</a> () const</td></tr>
-<tr class="memdesc:a4eebf32f7794bcebdb8d45b193fe7367"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of subfunctions of <code>f</code> which may be obtained by restricting variables with an index lower than <em>n</em>. <br /></td></tr>
+<tr class="memitem:a4eebf32f7794bcebdb8d45b193fe7367"><td class="memItemLeft" align="right" valign="top">std::vector&lt; long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a4eebf32f7794bcebdb8d45b193fe7367">FunctionProfile</a> () const</td></tr>
+<tr class="memdesc:a4eebf32f7794bcebdb8d45b193fe7367"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of subfunctions of this which may be obtained by restricting variables with an index lower than <em>n</em>.  <a href="classBDD.html#a4eebf32f7794bcebdb8d45b193fe7367">More...</a><br /></td></tr>
 <tr class="separator:a4eebf32f7794bcebdb8d45b193fe7367"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cde5290b772aa7853527850147548fd"><td class="memItemLeft" align="right" valign="top"><a id="a5cde5290b772aa7853527850147548fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a5cde5290b772aa7853527850147548fd">PrintFunctionProfile</a> (int lineLength=79, FILE *fp=stdout) const</td></tr>
-<tr class="memdesc:a5cde5290b772aa7853527850147548fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to <code>Cal_BddPrintProfile</code> but displays a function profile for <code>f</code>. <br /></td></tr>
+<tr class="memitem:a5cde5290b772aa7853527850147548fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a5cde5290b772aa7853527850147548fd">PrintFunctionProfile</a> (int lineLength=79, FILE *fp=stdout) const</td></tr>
+<tr class="memdesc:a5cde5290b772aa7853527850147548fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to <code><a class="el" href="classBDD.html#a3e4641b9e305ef0673baaac2429635bb" title="Prints a BDD in the human readable form.">BDD::PrintProfile()</a></code> but displays a function profile for this.  <a href="classBDD.html#a5cde5290b772aa7853527850147548fd">More...</a><br /></td></tr>
 <tr class="separator:a5cde5290b772aa7853527850147548fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae695c127d47458569395063c6f38d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#afae695c127d47458569395063c6f38d9">RefCount</a> () const</td></tr>
 <tr class="memdesc:afae695c127d47458569395063c6f38d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reference count of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>.  <a href="classBDD.html#afae695c127d47458569395063c6f38d9">More...</a><br /></td></tr>
@@ -355,7 +340,23 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Possible types a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> can be. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ab183babd9637821207a5d507527bec89" title="The type of the given BDD (0, 1, +var, -var, overflow, nonterminal).">BDD::Type()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ab183babd9637821207a5d507527bec89" title="The BDD type (0, 1, +var, -var, overflow, nonterminal).">BDD::Type()</a> </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a7999f5af0b8857118eb3730359d64553"></a>Zero&#160;</td><td class="fielddoc"><p>The Zero terminal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a116de2b9b920d6b17c71bda0a3a07d50"></a>One&#160;</td><td class="fielddoc"><p>The One terminal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a40c1bbb26dfbadc545700ba152111e0a"></a>Constant&#160;</td><td class="fielddoc"><p>Constant (Non-Boolean) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a1ff69c880c24e4cc5f25bb19cb715806"></a>Posvar&#160;</td><td class="fielddoc"><p>Positive variable </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a0b8066f15addc5e9c38e7b76dd0c91dd"></a>Negvar&#160;</td><td class="fielddoc"><p>Negative variable </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a63b5dc320ee17287fc9dd7d50d31e29d"></a>Overflow&#160;</td><td class="fielddoc"><p>Invalid/Missing result due to Overflow </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a71eace1cfe06d171180a323ed4218989a8075642922d673fdf4ae8eb8d5c5ee2a"></a>NonTerminal&#160;</td><td class="fielddoc"><p><a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> type encompassing all other cases </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -400,6 +401,403 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="acc516561f6dc9bfd9045c422a1b65d28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc516561f6dc9bfd9045c422a1b65d28">&#9670;&nbsp;</a></span>Cofactor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Cofactor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generalized cofactor of this with respect to <code>c</code>. </p>
+<p>The constrain operator given by Coudert et al (ICCAD90) is used to find the generalized cofactor.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a5680fe394d4adaf8ba953051f476c4a7" title="A function that agrees with this for all valuations which satisfy c.">BDD::Reduce()</a> </dd></dl>
+
+</div>
+</div>
+<a id="adfe4eb39ae9ab2cf4b77a24ac972b7b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe4eb39ae9ab2cf4b77a24ac972b7b8">&#9670;&nbsp;</a></span>Compose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Compose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Substitute a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> variable by a function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">g</td><td>Variable to be substituted.</td></tr>
+    <tr><td class="paramname">h</td><td>Function to substitute. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4eebf32f7794bcebdb8d45b193fe7367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eebf32f7794bcebdb8d45b193fe7367">&#9670;&nbsp;</a></span>FunctionProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;long&gt; BDD::FunctionProfile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number of subfunctions of this which may be obtained by restricting variables with an index lower than <em>n</em>. </p>
+<p>The nth entry of the function profile array is the number of subfunctions of this which may be obtained by restricting the variables whose index is less than n. An entry of zero indicates that this is independent of the variable with the corresponding index. </p>
+
+</div>
+</div>
+<a id="a140e25e7cfcc123e80a047eac58c49c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a140e25e7cfcc123e80a047eac58c49c0">&#9670;&nbsp;</a></span>Id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html#ae048f1d21f974af96639598c16b2a5dd">Id_t</a> BDD::Id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the id of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>'s top variable. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a60226935b77ecd9b8f92405fa468e8f3" title="Returns the index of this BDD&#39;s top variable.">BDD::Index()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a511f9b242a5856c4d45b6b51d70c9799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511f9b242a5856c4d45b6b51d70c9799">&#9670;&nbsp;</a></span>Identity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Identity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Duplicate of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ab58af307e0edffcfa19a0ad30e93599d" title="Complement of this BDD.">BDD::Not()</a> </dd></dl>
+
+</div>
+</div>
+<a id="aff3abacac30fab6e9d477b5a7a8704f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff3abacac30fab6e9d477b5a7a8704f3">&#9670;&nbsp;</a></span>If()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::If </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> corresponding to the top variable of the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
+<dl class="section see"><dt>See also</dt><dd>Bdd::Id(), <a class="el" href="classBDD.html#a60226935b77ecd9b8f92405fa468e8f3" title="Returns the index of this BDD&#39;s top variable.">BDD::Index()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ad95d556d045ba8fc7ffa2165f9396a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad95d556d045ba8fc7ffa2165f9396a6c">&#9670;&nbsp;</a></span>Implies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Implies </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>g</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> that implies conjunction of this and <code>g.Not()</code>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a46c03769476a716cf36f1fe3dd115b22" title="Computes a BDD that implies conjunction of this and g.">BDD::Intersects()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a60226935b77ecd9b8f92405fa468e8f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60226935b77ecd9b8f92405fa468e8f3">&#9670;&nbsp;</a></span>Index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html#a2ed3dfb53f13be43dd4dbf51379e7b79">Index_t</a> BDD::Index </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the index of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>'s top variable. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a140e25e7cfcc123e80a047eac58c49c0" title="Returns the id of this BDD&#39;s top variable.">BDD::Id()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a46c03769476a716cf36f1fe3dd115b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c03769476a716cf36f1fe3dd115b22">&#9670;&nbsp;</a></span>Intersects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Intersects </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>g</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> that implies conjunction of this and <code>g</code>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ad95d556d045ba8fc7ffa2165f9396a6c" title="Computes a BDD that implies conjunction of this and g.Not().">BDD::Implies()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a359d6a969318f14e22adf979aa1fc6cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359d6a969318f14e22adf979aa1fc6cc">&#9670;&nbsp;</a></span>IsConst()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BDD::IsConst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is either constant one or constant zero, otherwise returns <code>false</code>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ad1c631fc528ced29c6304acdae0501d3" title="true if the this BDD is constant one, falseotherwise.">BDD::IsOne()</a>, <a class="el" href="classBDD.html#a5ca69cc90444bb7957633a88128adbec" title="true if the this BDD is constant zero, falseotherwise.">BDD::IsZero()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ad1c631fc528ced29c6304acdae0501d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c631fc528ced29c6304acdae0501d3">&#9670;&nbsp;</a></span>IsOne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BDD::IsOne </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is constant one, <code>false</code>otherwise. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a5ca69cc90444bb7957633a88128adbec" title="true if the this BDD is constant zero, falseotherwise.">BDD::IsZero()</a>, <a class="el" href="classBDD.html#a359d6a969318f14e22adf979aa1fc6cc" title="true if the this BDD is either constant one or constant zero, otherwise returns false.">BDD::IsConst()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a5ca69cc90444bb7957633a88128adbec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca69cc90444bb7957633a88128adbec">&#9670;&nbsp;</a></span>IsZero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BDD::IsZero </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><code>true</code> if the this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> is constant zero, <code>false</code>otherwise. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ad1c631fc528ced29c6304acdae0501d3" title="true if the this BDD is constant one, falseotherwise.">BDD::IsOne()</a>, <a class="el" href="classBDD.html#a359d6a969318f14e22adf979aa1fc6cc" title="true if the this BDD is either constant one or constant zero, otherwise returns false.">BDD::IsConst()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a0d8b4036ce9f78129e030229949175bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d8b4036ce9f78129e030229949175bc">&#9670;&nbsp;</a></span>ITE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::ITE </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Logical If-Then-Else. </p>
+<p>Returns the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> for the logical operation <code>f ? g : h</code>, i.e. <code>f&amp;g | ~f&amp;h</code>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a97e1a18af5c70f9846df1faccae48579" title="Logical AND operation.">BDD::And()</a>, <a class="el" href="classBDD.html#a7719b18f9f1fbfc3e890244b422249d4" title="Logical Negated AND operation.">BDD::Nand()</a>, <a class="el" href="classBDD.html#aec04ea7284bc720fe7703d304776d14d" title="Logical OR operation.">BDD::Or()</a>, <a class="el" href="classBDD.html#af6874c06d1dec74e57ad31f19e5dc7e3" title="Logical Negated OR operation.">BDD::Nor()</a>, <a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c" title="Logical XOR operation.">BDD::Xor()</a>, <a class="el" href="classBDD.html#ac6dfbc215edbe05a24f2d6606a341fbb" title="Logical Negated XOR operation.">BDD::Xnor()</a> </dd></dl>
+
+</div>
+</div>
 <a id="a323909b99bc71c9e71873c767b538002"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a323909b99bc71c9e71873c767b538002">&#9670;&nbsp;</a></span>operator!=()</h2>
 
@@ -423,7 +821,9 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a820830ced076e7cc30742e81bb26faf0" title="Returns 1 if argument BDDs are equal, 0 otherwise.">BDD::IsEqualTo</a> </dd></dl>
+
+<p><code>false</code> if argument BDDs are equal, <code>true</code> otherwise. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a820830ced076e7cc30742e81bb26faf0" title="true if this BDD is equal to other, false otherwise.">BDD::IsEqualTo()</a> </dd></dl>
 
 </div>
 </div>
@@ -450,7 +850,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a97e1a18af5c70f9846df1faccae48579" title="Logical AND of argument BDDs.">BDD::And</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a97e1a18af5c70f9846df1faccae48579" title="Logical AND operation.">BDD::And()</a> </dd></dl>
 
 </div>
 </div>
@@ -477,7 +877,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a97e1a18af5c70f9846df1faccae48579" title="Logical AND of argument BDDs.">BDD::And</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a97e1a18af5c70f9846df1faccae48579" title="Logical AND operation.">BDD::And()</a> </dd></dl>
 
 </div>
 </div>
@@ -504,7 +904,9 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a820830ced076e7cc30742e81bb26faf0" title="Returns 1 if argument BDDs are equal, 0 otherwise.">BDD::IsEqualTo</a> </dd></dl>
+
+<p><code>true</code> if argument BDDs are equal, <code>false</code> otherwise. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a820830ced076e7cc30742e81bb26faf0" title="true if this BDD is equal to other, false otherwise.">BDD::IsEqualTo()</a> </dd></dl>
 
 </div>
 </div>
@@ -531,7 +933,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c" title="Logical XOR of argument BDDs.">BDD::Xor</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c" title="Logical XOR operation.">BDD::Xor()</a> </dd></dl>
 
 </div>
 </div>
@@ -558,7 +960,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c" title="Logical XOR of argument BDDs.">BDD::Xor</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c" title="Logical XOR operation.">BDD::Xor()</a> </dd></dl>
 
 </div>
 </div>
@@ -585,7 +987,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aec04ea7284bc720fe7703d304776d14d" title="Logical Or of argument BDDs.">BDD::Or</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aec04ea7284bc720fe7703d304776d14d" title="Logical OR operation.">BDD::Or()</a> </dd></dl>
 
 </div>
 </div>
@@ -612,7 +1014,7 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aec04ea7284bc720fe7703d304776d14d" title="Logical Or of argument BDDs.">BDD::Or</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aec04ea7284bc720fe7703d304776d14d" title="Logical OR operation.">BDD::Or()</a> </dd></dl>
 
 </div>
 </div>
@@ -638,7 +1040,161 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ab58af307e0edffcfa19a0ad30e93599d" title="Complement of the argument BDD.">BDD::Not</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ab58af307e0edffcfa19a0ad30e93599d" title="Complement of this BDD.">BDD::Not()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a5cde5290b772aa7853527850147548fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cde5290b772aa7853527850147548fd">&#9670;&nbsp;</a></span>PrintFunctionProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BDD::PrintFunctionProfile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lineLength</em> = <code>79</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em> = <code>stdout</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Similar to <code><a class="el" href="classBDD.html#a3e4641b9e305ef0673baaac2429635bb" title="Prints a BDD in the human readable form.">BDD::PrintProfile()</a></code> but displays a function profile for this. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lineLength</td><td>The maximum line length.</td></tr>
+    <tr><td class="paramname">fp</td><td>Pointer to the <code>FILE</code> to output to (default <code>stdout</code>). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e4641b9e305ef0673baaac2429635bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e4641b9e305ef0673baaac2429635bb">&#9670;&nbsp;</a></span>PrintProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BDD::PrintProfile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lineLength</em> = <code>79</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em> = <code>stdout</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lineLength</td><td>The maximum line length.</td></tr>
+    <tr><td class="paramname">fp</td><td>Pointer to the <code>FILE</code> to output to (default <code>stdout</code>). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6fb6ee15fc48f8d4bac9acb54d1b251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6fb6ee15fc48f8d4bac9acb54d1b251">&#9670;&nbsp;</a></span>Profile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;long&gt; BDD::Profile </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>negout</em> = <code>true</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtain a vector with the number of nodes at each level in f. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">negout</td><td>If <code>false</code> then counting pretends the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> does not have negative-output pointers (complement edges). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5680fe394d4adaf8ba953051f476c4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5680fe394d4adaf8ba953051f476c4a7">&#9670;&nbsp;</a></span>Reduce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Reduce </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A function that agrees with this for all valuations which satisfy <code>c</code>. </p>
+<p>The result is usually smaller in terms of number of <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> nodes than this. This operation is typically used in state space searches to simplify the representation for the set of states wich will be expanded at each step.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#acc516561f6dc9bfd9045c422a1b65d28" title="Generalized cofactor of this with respect to c.">BDD::Cofactor()</a> </dd></dl>
 
 </div>
 </div>
@@ -666,7 +1222,119 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The reference count of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
-<p>The reference count is a value between 0 and 255. If a reference count is 255 then incrementing or decrementing it has no effect. This is safe-guard constants and variables from being garbage collectd. </p>
+<p>The reference count is a value between 0 and 255. If a reference count is 255 then incrementing or decrementing it has no effect. This is to safe-guard constants and variables from being garbage collected. </p>
+
+</div>
+</div>
+<a id="a0568055f6d666827f165931a1ffad268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0568055f6d666827f165931a1ffad268">&#9670;&nbsp;</a></span>Regular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Regular </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in positive form (regardless of this BDDs phase). </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#ab58af307e0edffcfa19a0ad30e93599d" title="Complement of this BDD.">BDD::Not()</a> </dd></dl>
+
+</div>
+</div>
+<a id="aac1b14e4b3419cc90c523ef98aed5294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac1b14e4b3419cc90c523ef98aed5294">&#9670;&nbsp;</a></span>Satisfy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::Satisfy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A satisfying assignment of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>. </p>
+<p>Returns a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> which implies this, true for some valuation on which f is true, and which has at most one node at each level. </p>
+
+</div>
+</div>
+<a id="aad556c21b3a4a76545a7ad881add4cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad556c21b3a4a76545a7ad881add4cbc">&#9670;&nbsp;</a></span>SatisfyingFraction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double BDD::SatisfyingFraction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fraction of valuations which make this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> true. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This fraction is independent of whatever set of variables <code>f</code> is supposed to be a function of. </dd></dl>
+
+</div>
+</div>
+<a id="a9a3a91ea5647f584ea5aca74a505ffbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a3a91ea5647f584ea5aca74a505ffbe">&#9670;&nbsp;</a></span>SatisfySupport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::SatisfySupport </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a special cube contained in this. </p>
+<p>The returned <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> which implies this, is true for some valuation on which f is true, which has at most one node at each level, and which has exactly one node corresponding to each variable which is associated with something in the current variable association. </p>
 
 </div>
 </div>
@@ -694,13 +1362,53 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> size of <code>f</code>. </p>
+<p>This <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>'s size. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">negout</td><td>If <code>false</code> then counting pretends the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> does not have negative-output pointers (complement edges). </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a49cc939f4558eddc698d196f8ea4366d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49cc939f4558eddc698d196f8ea4366d">&#9670;&nbsp;</a></span>SwapVars()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::SwapVars </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The function obtained by swapping two variables. </p>
+<p>Returns the <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> obtained by simultaneously substituting variable <code>g</code> by variable <code>h</code> and variable <code>h</code> and variable <code>g</code> in this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>.</p>
+<dl class="section see"><dt>See also</dt><dd>BDD::Substitute() </dd></dl>
 
 </div>
 </div>

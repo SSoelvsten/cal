@@ -3,13 +3,13 @@ var classBDD =
     [ "Id_t", "classBDD.html#ae048f1d21f974af96639598c16b2a5dd", null ],
     [ "Index_t", "classBDD.html#a2ed3dfb53f13be43dd4dbf51379e7b79", null ],
     [ "Type_t", "classBDD.html#a71eace1cfe06d171180a323ed4218989", [
-      [ "NonTerminal", "classBDD.html#a71eace1cfe06d171180a323ed4218989a8075642922d673fdf4ae8eb8d5c5ee2a", null ],
       [ "Zero", "classBDD.html#a71eace1cfe06d171180a323ed4218989a7999f5af0b8857118eb3730359d64553", null ],
       [ "One", "classBDD.html#a71eace1cfe06d171180a323ed4218989a116de2b9b920d6b17c71bda0a3a07d50", null ],
+      [ "Constant", "classBDD.html#a71eace1cfe06d171180a323ed4218989a40c1bbb26dfbadc545700ba152111e0a", null ],
       [ "Posvar", "classBDD.html#a71eace1cfe06d171180a323ed4218989a1ff69c880c24e4cc5f25bb19cb715806", null ],
       [ "Negvar", "classBDD.html#a71eace1cfe06d171180a323ed4218989a0b8066f15addc5e9c38e7b76dd0c91dd", null ],
       [ "Overflow", "classBDD.html#a71eace1cfe06d171180a323ed4218989a63b5dc320ee17287fc9dd7d50d31e29d", null ],
-      [ "Constant", "classBDD.html#a71eace1cfe06d171180a323ed4218989a40c1bbb26dfbadc545700ba152111e0a", null ]
+      [ "NonTerminal", "classBDD.html#a71eace1cfe06d171180a323ed4218989a8075642922d673fdf4ae8eb8d5c5ee2a", null ]
     ] ],
     [ "BDD", "classBDD.html#ad5a150187672e35413ad79573bfb524f", null ],
     [ "BDD", "classBDD.html#abc551344b2e136090b8d2d82ab6ff0f2", null ],

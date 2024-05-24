@@ -63,7 +63,6 @@ var group__module____c =
     [ "Cal_BddPairwiseAnd", "group__module____c.html#ga2af9da07752702d20e2dfd2fffe16ba9", null ],
     [ "Cal_BddPairwiseOr", "group__module____c.html#ga95011b43a17c947527078aa2e9c0d94e", null ],
     [ "Cal_BddPairwiseXor", "group__module____c.html#ga1e268aa82214efec564610247b163e79", null ],
-    [ "Cal_BddPrintBdd", "group__module____c.html#ga4a8d7be504032d296c567d16c1280c37", null ],
     [ "Cal_BddPrintFunctionProfile", "group__module____c.html#ga682c9ea7d24fa307dc6bd681ffe81127", null ],
     [ "Cal_BddPrintFunctionProfileMultiple", "group__module____c.html#ga3e27cb5e8864010f322932919928613e", null ],
     [ "Cal_BddPrintProfile", "group__module____c.html#ga8a259bbea195eea7b76c208e687a2726", null ],
