@@ -300,8 +300,11 @@ EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:gacc04e070213a96dd1c21b3fabc76fe49"><td class="memItemLeft" align="right" valign="top">EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__module____c.html#gacc04e070213a96dd1c21b3fabc76fe49">Cal_BddFunctionProfileMultiple</a> (Cal_BddManager bddManager, Cal_Bdd *fUserBddArray, long *funcCounts)</td></tr>
 <tr class="memdesc:gacc04e070213a96dd1c21b3fabc76fe49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to <code>Cal_BddFunctionProfile</code> for a null-terminated array of BDDs and accounting for sharing of nodes.  <a href="group__module____c.html#gacc04e070213a96dd1c21b3fabc76fe49">More...</a><br /></td></tr>
 <tr class="separator:gacc04e070213a96dd1c21b3fabc76fe49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4a8d7be504032d296c567d16c1280c37"><td class="memItemLeft" align="right" valign="top">EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__module____c.html#ga4a8d7be504032d296c567d16c1280c37">Cal_BddPrintBdd</a> (Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_VarNamingFn_t VarNamingFn, Cal_TerminalIdFn_t TerminalIdFn, Cal_Pointer_t env, FILE *fp)</td></tr>
+<tr class="memdesc:ga4a8d7be504032d296c567d16c1280c37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form.  <a href="group__module____c.html#ga4a8d7be504032d296c567d16c1280c37">More...</a><br /></td></tr>
+<tr class="separator:ga4a8d7be504032d296c567d16c1280c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8a259bbea195eea7b76c208e687a2726"><td class="memItemLeft" align="right" valign="top">EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726">Cal_BddPrintProfile</a> (Cal_BddManager bddManager, Cal_Bdd fUserBdd, Cal_VarNamingFn_t varNamingProc, char *env, int lineLength, FILE *fp)</td></tr>
-<tr class="memdesc:ga8a259bbea195eea7b76c208e687a2726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form.  <a href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726">More...</a><br /></td></tr>
+<tr class="memdesc:ga8a259bbea195eea7b76c208e687a2726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the node profile for <code>f</code> on <code>fp</code>.  <a href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726">More...</a><br /></td></tr>
 <tr class="separator:ga8a259bbea195eea7b76c208e687a2726"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga949af55cbfe77f394ae9222a28c32f62"><td class="memItemLeft" align="right" valign="top">EXTERN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__module____c.html#ga949af55cbfe77f394ae9222a28c32f62">Cal_BddPrintProfileMultiple</a> (Cal_BddManager bddManager, Cal_Bdd *userBdds, Cal_VarNamingFn_t varNamingProc, char *env, int lineLength, FILE *fp)</td></tr>
 <tr class="memdesc:ga949af55cbfe77f394ae9222a28c32f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Similar to <code>Cal_BddPrintProfile</code> but displays the profile for a set of BDDs.  <a href="group__module____c.html#ga949af55cbfe77f394ae9222a28c32f62">More...</a><br /></td></tr>
@@ -640,7 +643,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Sets the current variable association to the one given. </p>
-<dl class="section return"><dt>Returns</dt><dd>ID of the prior association (if any). An return value of -1 indicates the temporary association. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ID of the prior association (if any). A return value of -1 indicates the temporary association. </dd></dl>
 
 </div>
 </div>
@@ -2096,6 +2099,69 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 </div>
 </div>
+<a id="ga4a8d7be504032d296c567d16c1280c37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4a8d7be504032d296c567d16c1280c37">&#9670;&nbsp;</a></span>Cal_BddPrintBdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EXTERN void Cal_BddPrintBdd </td>
+          <td>(</td>
+          <td class="paramtype">Cal_BddManager&#160;</td>
+          <td class="paramname"><em>bddManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Cal_Bdd&#160;</td>
+          <td class="paramname"><em>fUserBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Cal_VarNamingFn_t&#160;</td>
+          <td class="paramname"><em>VarNamingFn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Cal_TerminalIdFn_t&#160;</td>
+          <td class="paramname"><em>TerminalIdFn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Cal_Pointer_t&#160;</td>
+          <td class="paramname"><em>env</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>fp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">VarNamingFn</td><td>A pointer to a function taking a bddManager, a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> and the pointer given by env. This function should return either a null pointer or a string that is the name of the supplied variable. If it returns a null pointer, a default name is generated based on the index of the variable. It is also legal for naminFN to be null; in this case, default names are generated for all variables. The macro bddNamingFnNone is a null pointer of suitable type. </td></tr>
+    <tr><td class="paramname">TerminalIdFn</td><td>A pointer to a function taking a bddManager, two longs, and the pointer given by the env. It should return either a null pointer. If it returns a null pointer, or if <code>terminalIdFn</code> is null, then default names are generated for the terminals. The macro bddTerminalIdFnNone is a null pointer of suitable type.</td></tr>
+    <tr><td class="paramname">fp</td><td>File to print the output to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411" title="Default BDD variable naming function.">Cal_BddNamingFnNone</a>, <a class="el" href="group__module____c.html#ga398d29a2c27cc2eee06b2f59eaada488" title="Default BDD terminal naming function.">Cal_BddTerminalIdFnNone</a> </dd></dl>
+
+</div>
+</div>
 <a id="ga682c9ea7d24fa307dc6bd681ffe81127"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga682c9ea7d24fa307dc6bd681ffe81127">&#9670;&nbsp;</a></span>Cal_BddPrintFunctionProfile()</h2>
 
@@ -2147,7 +2213,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Similar to <code>Cal_BddPrintProfile</code> but displays a function profile for <code>f</code>. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726" title="Prints a BDD in the human readable form.">Cal_BddPrintProfile</a>, <a class="el" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411" title="Default BDD variable naming function.">Cal_BddNamingFnNone</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726" title="Displays the node profile for f on fp.">Cal_BddPrintProfile</a>, <a class="el" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411" title="Default BDD variable naming function.">Cal_BddNamingFnNone</a> </dd></dl>
 
 </div>
 </div>
@@ -2256,14 +2322,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
       </table>
 </div><div class="memdoc">
 
-<p>Prints a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> in the human readable form. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">VarNamingFn</td><td>A pointer to a function taking a bddManager, a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> and the pointer given by env. This function should return either a null pointer or a string that is the name of the supplied variable. If it returns a null pointer, a default name is generated based on the index of the variable. It is also legal for naminFN to be null; in this case, default names are generated for all variables. The macro bddNamingFnNone is a null pointer of suitable type.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Displays the node profile for <code>f</code> on <code>fp</code>.</p>
+<p>Displays the node profile for <code>f</code> on <code>fp</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lineLength</td><td>The maximum line length.</td></tr>
@@ -2326,7 +2385,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 </div><div class="memdoc">
 
 <p>Similar to <code>Cal_BddPrintProfile</code> but displays the profile for a set of BDDs. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726" title="Prints a BDD in the human readable form.">Cal_BddPrintProfile</a>, <a class="el" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411" title="Default BDD variable naming function.">Cal_BddNamingFnNone</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga8a259bbea195eea7b76c208e687a2726" title="Displays the node profile for f on fp.">Cal_BddPrintProfile</a>, <a class="el" href="group__module____c.html#gab7dc5e4d2c7151827b23c0e82c280411" title="Default BDD variable naming function.">Cal_BddNamingFnNone</a> </dd></dl>
 
 </div>
 </div>
@@ -2995,7 +3054,7 @@ EXTERN Cal_Bdd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 
 <p>Substitute a set of variables by set of another variables. </p>
 <p>Returns a <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a> for f using the substitution defined by current variable association. It is assumed that each variable is replaced by another variable.</p>
-<dl class="section remark"><dt>Remarks</dt><dd>For the substitution of a variable by a function, use <code>Cal_BddSubstitute</code> instead.</dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>For the substitution of a variable by a function, use <code><a class="el" href="classCal.html#a42ae2e5a4d8d619ec0c70715f50f5daf" title="Substitute a set of variables by functions.">Cal::Substitute()</a></code> instead.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__module____c.html#ga65c0d2b9381f7c4e853d20223e5c0c34" title="Substitute a set of variables by functions.">Cal_BddSubstitute</a> </dd></dl>
 
 </div>
