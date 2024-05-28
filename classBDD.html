@@ -277,10 +277,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a7277939b86e0482ae91df0aab3aefa93">Diff</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;g) const</td></tr>
 <tr class="memdesc:a7277939b86e0482ae91df0aab3aefa93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical Difference operation. <br /></td></tr>
 <tr class="separator:a7277939b86e0482ae91df0aab3aefa93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfaf5f081ed4e97a94cff216ad67215a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#acfaf5f081ed4e97a94cff216ad67215a">operator^</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
-<tr class="separator:acfaf5f081ed4e97a94cff216ad67215a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b1a8404319f6e17629863ae8ced8510"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a4b1a8404319f6e17629863ae8ced8510">operator^=</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other)</td></tr>
-<tr class="separator:a4b1a8404319f6e17629863ae8ced8510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813fe9e629f239d9812b78ff912daaeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a813fe9e629f239d9812b78ff912daaeb">operator-</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other) const</td></tr>
+<tr class="separator:a813fe9e629f239d9812b78ff912daaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c1af42594b34ccd2cb965f06a5d4d34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#a7c1af42594b34ccd2cb965f06a5d4d34">operator-=</a> (const <a class="el" href="classBDD.html">BDD</a> &amp;other)</td></tr>
+<tr class="separator:a7c1af42594b34ccd2cb965f06a5d4d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac1b14e4b3419cc90c523ef98aed5294"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBDD.html">BDD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBDD.html#aac1b14e4b3419cc90c523ef98aed5294">Satisfy</a> () const</td></tr>
 <tr class="memdesc:aac1b14e4b3419cc90c523ef98aed5294"><td class="mdescLeft">&#160;</td><td class="mdescRight">A satisfying assignment of this <a class="el" href="classBDD.html" title="C++ wrapper for Cal_Bdd, managing reference count with RAII.">BDD</a>.  <a href="classBDD.html#aac1b14e4b3419cc90c523ef98aed5294">More...</a><br /></td></tr>
 <tr class="separator:aac1b14e4b3419cc90c523ef98aed5294"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -889,6 +889,60 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a813fe9e629f239d9812b78ff912daaeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813fe9e629f239d9812b78ff912daaeb">&#9670;&nbsp;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a7277939b86e0482ae91df0aab3aefa93" title="Logical Difference operation.">BDD::Diff()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a7c1af42594b34ccd2cb965f06a5d4d34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1af42594b34ccd2cb965f06a5d4d34">&#9670;&nbsp;</a></span>operator-=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBDD.html">BDD</a>&amp; BDD::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a7277939b86e0482ae91df0aab3aefa93" title="Logical Difference operation.">BDD::Diff()</a> </dd></dl>
+
+</div>
+</div>
 <a id="ac2d3415c44cc325ae795e884af22c036"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac2d3415c44cc325ae795e884af22c036">&#9670;&nbsp;</a></span>operator==()</h2>
 
@@ -919,7 +973,7 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="acfaf5f081ed4e97a94cff216ad67215a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfaf5f081ed4e97a94cff216ad67215a">&#9670;&nbsp;</a></span>operator^() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acfaf5f081ed4e97a94cff216ad67215a">&#9670;&nbsp;</a></span>operator^()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -945,35 +999,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acfaf5f081ed4e97a94cff216ad67215a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfaf5f081ed4e97a94cff216ad67215a">&#9670;&nbsp;</a></span>operator^() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classBDD.html">BDD</a> BDD::operator^ </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a7277939b86e0482ae91df0aab3aefa93" title="Logical Difference operation.">BDD::Diff()</a> </dd></dl>
-
-</div>
-</div>
 <a id="a4b1a8404319f6e17629863ae8ced8510"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b1a8404319f6e17629863ae8ced8510">&#9670;&nbsp;</a></span>operator^=() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b1a8404319f6e17629863ae8ced8510">&#9670;&nbsp;</a></span>operator^=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -996,33 +1023,6 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#aea70be4379bd6862f22fee014f19d05c" title="Logical XOR operation.">BDD::Xor()</a> </dd></dl>
-
-</div>
-</div>
-<a id="a4b1a8404319f6e17629863ae8ced8510"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b1a8404319f6e17629863ae8ced8510">&#9670;&nbsp;</a></span>operator^=() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classBDD.html">BDD</a>&amp; BDD::operator^= </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classBDD.html">BDD</a> &amp;&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classBDD.html#a7277939b86e0482ae91df0aab3aefa93" title="Logical Difference operation.">BDD::Diff()</a> </dd></dl>
 
 </div>
 </div>
