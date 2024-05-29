@@ -388,6 +388,9 @@ EXTERN void Cal_AssociationQuit(Cal_BddManager bddManager, int associationId);
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Sets the current variable association to the one given.
 ///
+/// \param associationId The id of the association to currently use. Set it to
+/// -1 if the temporary association should be used.
+///
 /// \returns ID of the prior association (if any). A return value of -1
 /// indicates the temporary association.
 ////////////////////////////////////////////////////////////////////////////////
