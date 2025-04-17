@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['tempassociationaugment_197',['TempAssociationAugment',['../classCal.html#ab1ad246d08c3a4ac31a5bdbc9ec5dfd6',1,'Cal']]],
-  ['tempassociationinit_198',['TempAssociationInit',['../classCal.html#a77a8177a8f9d848c26fba0c8d000a009',1,'Cal']]],
-  ['tempassociationquit_199',['TempAssociationQuit',['../classCal.html#aaa5ffbb62033dc577e705b3982e94ba9',1,'Cal']]],
-  ['then_200',['Then',['../classBDD.html#a0e7879c854dfdaf2e665aa1784386542',1,'BDD::Then()'],['../classCal.html#a6a33d15bca024483e9e6232d8738b942',1,'Cal::Then()']]],
-  ['todo_20list_201',['Todo List',['../todo.html',1,'']]],
-  ['tostring_202',['ToString',['../classBDD.html#a23c4d23b2c8f5b2446f00e0fa37542b6',1,'BDD']]],
-  ['totalsize_203',['TotalSize',['../classCal.html#a66590183a682851a48edfe201d4e070e',1,'Cal']]],
-  ['type_204',['Type',['../classBDD.html#ab183babd9637821207a5d507527bec89',1,'BDD']]],
-  ['type_5ft_205',['Type_t',['../classBDD.html#a71eace1cfe06d171180a323ed4218989',1,'BDD']]]
+  ['reduce_0',['reduce',['../classBDD.html#a5680fe394d4adaf8ba953051f476c4a7',1,'BDD::Reduce()'],['../classCal.html#a387f9c2d501ffa42791cd8008ad0b33b',1,'Cal::Reduce()']]],
+  ['refcount_1',['RefCount',['../classBDD.html#afae695c127d47458569395063c6f38d9',1,'BDD']]],
+  ['regular_2',['regular',['../classBDD.html#a0568055f6d666827f165931a1ffad268',1,'BDD::Regular()'],['../classCal.html#aa0341ae8899083e018690ab5e051c8a4',1,'Cal::Regular(const BDD &amp;f)']]],
+  ['relprod_3',['RelProd',['../classCal.html#a84168c1ed33270b9c1160d2da106cb9f',1,'Cal']]],
+  ['reorder_4',['Reorder',['../classCal.html#ab60a74e309a1d7f913bc92ad518000f1',1,'Cal']]],
+  ['reordermethod_5',['ReorderMethod',['../classCal.html#ac0a069147933bfe31733a00082222f1a',1,'Cal']]],
+  ['reordertechnique_6',['ReorderTechnique',['../classCal.html#afb4d11823103d9feeca83507ddc733b3',1,'Cal']]]
 ];

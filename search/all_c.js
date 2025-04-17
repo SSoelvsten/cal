@@ -1,10 +1,15 @@
 var searchData=
 [
-  ['reduce_180',['Reduce',['../classBDD.html#a5680fe394d4adaf8ba953051f476c4a7',1,'BDD::Reduce()'],['../classCal.html#a387f9c2d501ffa42791cd8008ad0b33b',1,'Cal::Reduce()']]],
-  ['refcount_181',['RefCount',['../classBDD.html#afae695c127d47458569395063c6f38d9',1,'BDD']]],
-  ['regular_182',['Regular',['../classBDD.html#a0568055f6d666827f165931a1ffad268',1,'BDD::Regular()'],['../classCal.html#aa0341ae8899083e018690ab5e051c8a4',1,'Cal::Regular(const BDD &amp;f)']]],
-  ['relprod_183',['RelProd',['../classCal.html#a84168c1ed33270b9c1160d2da106cb9f',1,'Cal']]],
-  ['reorder_184',['Reorder',['../classCal.html#ab60a74e309a1d7f913bc92ad518000f1',1,'Cal']]],
-  ['reordermethod_185',['ReorderMethod',['../classCal.html#ac0a069147933bfe31733a00082222f1a',1,'Cal']]],
-  ['reordertechnique_186',['ReorderTechnique',['../classCal.html#afb4d11823103d9feeca83507ddc733b3',1,'Cal']]]
+  ['page_0',['Main Page',['../index.html',1,'']]],
+  ['pairwiseand_1',['pairwiseand',['../classCal.html#ac3f8bcf638ef2fb450a14591df754bd0',1,'Cal::PairwiseAnd(const Container &amp;c)'],['../classCal.html#a8c4519104f0c06e2e5af43ea560d1682',1,'Cal::PairwiseAnd(IT begin, IT end)']]],
+  ['pairwiseor_2',['pairwiseor',['../classCal.html#a55dd23e2f44f2008014f13669cecb235',1,'Cal::PairwiseOr(IT begin, IT end)'],['../classCal.html#a28cf273c4a40ec9e8c05f10c8b28c469',1,'Cal::PairwiseOr(const Container &amp;c)']]],
+  ['pairwisexor_3',['pairwisexor',['../classCal.html#a52e8964351a734e0fe50e829b0950356',1,'Cal::PairwiseXor(IT begin, IT end)'],['../classCal.html#a64358b6c6e82f03a12b7dc62303798d2',1,'Cal::PairwiseXor(const Container &amp;c)']]],
+  ['papers_4',['papers',['../page__cite.html#autotoc_md9',1,'Original CAL Papers'],['../page__cite.html#autotoc_md8',1,'Preliminary Papers']]],
+  ['posvar_5',['Posvar',['../classBDD.html#a71eace1cfe06d171180a323ed4218989a1ff69c880c24e4cc5f25bb19cb715806',1,'BDD']]],
+  ['preliminary_20papers_6',['Preliminary Papers',['../page__cite.html#autotoc_md8',1,'']]],
+  ['print_7',['print',['../classCal.html#af634662ca325053347119207f1960e41',1,'Cal::Print()'],['../classBDD.html#af9f1abae8a21eb24d97a9269f4619f72',1,'BDD::Print(FILE *fp=stdout) const']]],
+  ['printfunctionprofile_8',['printfunctionprofile',['../classBDD.html#a5cde5290b772aa7853527850147548fd',1,'BDD::PrintFunctionProfile()'],['../classCal.html#acf3b4960bc5facb71010804ffbdb7eb0',1,'Cal::PrintFunctionProfile(const Container &amp;c, int lineLength=79, FILE *fp=stdout) const'],['../classCal.html#a33e7134011bd10be7921cb8f2c637a25',1,'Cal::PrintFunctionProfile(IT begin, IT end, int lineLength=79, FILE *fp=stdout) const'],['../classCal.html#a13e7c1dde4ea13af50e7dd4cb345c80f',1,'Cal::PrintFunctionProfile(const BDD &amp;f, int lineLength=79, FILE *fp=stdout) const']]],
+  ['printprofile_9',['printprofile',['../classCal.html#a256ef07c51cc7f39ec67ee143c314087',1,'Cal::PrintProfile(const BDD &amp;f, int lineLength=79, FILE *fp=stdout) const'],['../classCal.html#a6bf82ab5cb96f0fdb78eac3b99f0bdb6',1,'Cal::PrintProfile(IT begin, IT end, int lineLength=79, FILE *fp=stdout) const'],['../classCal.html#adef561af71700bce5c0802e385c94eef',1,'Cal::PrintProfile(const Container &amp;c, int lineLength=79, FILE *fp=stdout) const'],['../classBDD.html#a3e4641b9e305ef0673baaac2429635bb',1,'BDD::PrintProfile(int lineLength=79, FILE *fp=stdout) const']]],
+  ['profile_10',['profile',['../classBDD.html#ae734e11ececf0c30d79e6a35d8acf766',1,'BDD::Profile()'],['../classCal.html#ad280625f2f4983add825dc09739b3c25',1,'Cal::Profile(const BDD &amp;f, bool negout=true) const'],['../classCal.html#ac939e6997291b42ca8945a88dab086fd',1,'Cal::Profile(IT begin, IT end, bool negout=true) const'],['../classCal.html#a2ed4ca082098f7205f7b055fc2a8eb2f',1,'Cal::Profile(const Container &amp;c, bool negout=true) const']]],
+  ['project_11',['project',['../index.html#autotoc_md1',1,'About the Project'],['../page__cite.html',1,'Citing this Project']]]
 ];

@@ -25,11 +25,7 @@
 var NAVTREE =
 [
   [ "CAL", "index.html", [
-    [ "Main Page", "index.html", [
-      [ "Quick Access", "index.html#autotoc_md0", null ],
-      [ "About the Project", "index.html#autotoc_md1", null ],
-      [ "License", "index.html#autotoc_md2", null ]
-    ] ],
+    [ "Main Page", "index.html", "index" ],
     [ "Getting started", "page__getting_started.html", [
       [ "Dependencies", "page__getting_started.html#autotoc_md3", null ],
       [ "Building with CMake", "page__getting_started.html#autotoc_md4", null ],
@@ -43,7 +39,7 @@ var NAVTREE =
       [ "Original CAL Papers", "page__cite.html#autotoc_md9", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
-    [ "Modules", "modules.html", "modules" ],
+    [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -64,7 +60,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__module____c.html#ga9e700453c2e9075de29d88d9711fd9c3"
+"group__module____c.html#gaa4014e81c805b7ab51cff12df1aad0d1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
