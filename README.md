@@ -10,9 +10,11 @@
 CAL is a BDD package [[Bryant86](#references)] that uses breadth-first
 algorithms [[Ochi93](#references), [Ashar94](#references),
 [Sanghavi96](#references)] to exploit a locality of BDD nodes on disk.
-This allows one to obtain a high performance when manipulating Binary
-Decision Diagrams, even when they outgrow the memory limit of the given
-machine.
+These algorithms are designed with the goal to obtain high performance
+on Binary Decision Diagrams that outgrow the given machine main memory.
+In practice, it is much better to use the
+[Adiar](https://github.com/SSoelvsten/adiar) BDD package for such
+cases.
 
 This project was developed in the late 90's at
 [EECS at UC Berkeley](https://eecs.berkeley.edu/). In 2022, the
